@@ -420,6 +420,7 @@ class AppColors {
   static const Color authBgEnd = Color(0xFFF8FAFC);
   static const Color authInputFill = Color(0xFFF8FAFC);
   static const Color authInputBorder = Color(0xFFE2E8F0);
+  static const Color authIconCircleBg = Color(0xFFDBEAFE);
   static const Color authBadgeBg = Color(0xFFEFF6FF);
   static const Color authBadgeBorder = Color(0xFFDBEAFE);
   static const Color authBadgeDot = Color(0xFF2B7FFF);

@@ -21,6 +21,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signIn => 'Sign In';
 
   @override
+  String get authWelcomeBack => 'Welcome Back';
+
+  @override
+  String get authSignInSubtitle => 'Sign in to your account';
+
+  @override
+  String get authEmailAddress => 'Email Address';
+
+  @override
+  String get authPassword => 'Password';
+
+  @override
+  String get authEmailHint => 'you@company.com';
+
+  @override
+  String get authPasswordHint => 'Enter your password';
+
+  @override
+  String get authEmailRequired => 'Please enter your email address';
+
+  @override
+  String get authEmailInvalid => 'Please enter a valid email address';
+
+  @override
+  String get authPasswordRequired => 'Please enter your password';
+
+  @override
+  String get authNoAccountPrompt => 'Don\'t have an account? ';
+
+  @override
+  String get authRegisterNow => 'Register now';
+
+  @override
+  String get authRegisterComingSoon => 'Registration is coming soon';
+
+  @override
+  String get authSignInFailed => 'Sign in failed. Please try again.';
+
+  @override
   String get register => 'Register';
 
   @override

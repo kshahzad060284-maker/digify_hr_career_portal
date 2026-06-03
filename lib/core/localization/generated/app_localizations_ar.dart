@@ -21,6 +21,45 @@ class AppLocalizationsAr extends AppLocalizations {
   String get signIn => 'تسجيل الدخول';
 
   @override
+  String get authWelcomeBack => 'مرحباً بعودتك';
+
+  @override
+  String get authSignInSubtitle => 'سجّل الدخول إلى حسابك';
+
+  @override
+  String get authEmailAddress => 'البريد الإلكتروني';
+
+  @override
+  String get authPassword => 'كلمة المرور';
+
+  @override
+  String get authEmailHint => 'you@company.com';
+
+  @override
+  String get authPasswordHint => 'أدخل كلمة المرور';
+
+  @override
+  String get authEmailRequired => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get authEmailInvalid => 'يرجى إدخال بريد إلكتروني صالح';
+
+  @override
+  String get authPasswordRequired => 'يرجى إدخال كلمة المرور';
+
+  @override
+  String get authNoAccountPrompt => 'ليس لديك حساب؟ ';
+
+  @override
+  String get authRegisterNow => 'سجّل الآن';
+
+  @override
+  String get authRegisterComingSoon => 'التسجيل قريباً';
+
+  @override
+  String get authSignInFailed => 'فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.';
+
+  @override
   String get register => 'التسجيل';
 
   @override

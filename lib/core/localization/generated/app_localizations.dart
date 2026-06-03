@@ -122,6 +122,84 @@ abstract class AppLocalizations {
   /// **'Sign In'**
   String get signIn;
 
+  /// No description provided for @authWelcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get authWelcomeBack;
+
+  /// No description provided for @authSignInSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your account'**
+  String get authSignInSubtitle;
+
+  /// No description provided for @authEmailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get authEmailAddress;
+
+  /// No description provided for @authPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPassword;
+
+  /// No description provided for @authEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'you@company.com'**
+  String get authEmailHint;
+
+  /// No description provided for @authPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get authPasswordHint;
+
+  /// No description provided for @authEmailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email address'**
+  String get authEmailRequired;
+
+  /// No description provided for @authEmailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get authEmailInvalid;
+
+  /// No description provided for @authPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get authPasswordRequired;
+
+  /// No description provided for @authNoAccountPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? '**
+  String get authNoAccountPrompt;
+
+  /// No description provided for @authRegisterNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Register now'**
+  String get authRegisterNow;
+
+  /// No description provided for @authRegisterComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration is coming soon'**
+  String get authRegisterComingSoon;
+
+  /// No description provided for @authSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in failed. Please try again.'**
+  String get authSignInFailed;
+
   /// No description provided for @register.
   ///
   /// In en, this message translates to:

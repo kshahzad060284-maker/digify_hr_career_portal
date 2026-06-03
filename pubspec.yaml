@@ -40,6 +40,7 @@ flutter:
     - assets/icons/
     - assets/icons/dashboard/
     - assets/icons/job_detail/
+    - assets/icons/auth/
     - assets/logos/
 
   fonts:

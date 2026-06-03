@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 import '../extensions/app_extensions.dart';
+import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/dashboard/presentation/pages/dashbaord_page.dart';
 import '../../features/dashboard/presentation/pages/dashboard_job_detail_page.dart';
 import '../../features/dashboard/presentation/widgets/dashboard_content.dart';
@@ -42,6 +43,11 @@ class AppRouter {
             },
           ),
         ],
+      ),
+      GoRoute(
+        path: AppRoutes.login,
+        name: AppRouteNames.login,
+        builder: (context, state) => const LoginPage(),
       ),
       GoRoute(
         path: AppRoutes.jobs,

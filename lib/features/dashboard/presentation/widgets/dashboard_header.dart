@@ -5,8 +5,10 @@ import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
+import 'package:career_portal/core/router/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gap/gap.dart';
 
 class DashboardHeader extends StatelessWidget {
@@ -64,9 +66,7 @@ class DashboardHeader extends StatelessWidget {
         Gap(12.w),
         AppButton.text(
           label: l10n.signIn,
-          onPressed: () {
-            debugPrint('Sign In button pressed');
-          },
+          onPressed: () => context.push(AppRoutes.login),
         ),
         Gap(12.w),
         AppButton(
@@ -126,9 +126,7 @@ class DashboardHeader extends StatelessWidget {
             Expanded(
               child: AppButton.text(
                 label: l10n.signIn,
-                onPressed: () {
-                  debugPrint('Sign In button pressed');
-                },
+                onPressed: () => context.push(AppRoutes.login),
                 width: double.infinity,
                 height: 42.h,
                 fontSize: 13.sp,
