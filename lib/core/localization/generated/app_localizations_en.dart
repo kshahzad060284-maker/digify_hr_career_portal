@@ -429,6 +429,23 @@ class AppLocalizationsEn extends AppLocalizations {
       'No positions match your search or filters.';
 
   @override
+  String get dashboardJobsLoadFailed =>
+      'Could not load job postings. Please try again.';
+
+  @override
+  String get commonRetry => 'Retry';
+
+  @override
+  String paginationShowingRange(int start, int end, int total) {
+    return 'Showing $start - $end of $total items';
+  }
+
+  @override
+  String paginationPageOf(int current, int total) {
+    return 'Page $current of $total';
+  }
+
+  @override
   String dashboardJobDetailTitle(String jobId) {
     return 'Job #$jobId';
   }
@@ -444,6 +461,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboardJobDetailNotFound => 'This job could not be found.';
+
+  @override
+  String get dashboardJobDetailLoadFailed =>
+      'Could not load job details. Please try again.';
 
   @override
   String get dashboardJobDetailBack => 'Back to all jobs';

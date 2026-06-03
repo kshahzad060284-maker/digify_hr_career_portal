@@ -144,6 +144,33 @@
   },
   "dashboardJobUrgentHiring": "Urgent Hiring",
   "dashboardNoJobsFound": "No positions match your search or filters.",
+  "dashboardJobsLoadFailed": "Could not load job postings. Please try again.",
+  "commonRetry": "Retry",
+  "paginationShowingRange": "Showing {start} - {end} of {total} items",
+  "@paginationShowingRange": {
+    "placeholders": {
+      "start": {
+        "type": "int"
+      },
+      "end": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "paginationPageOf": "Page {current} of {total}",
+  "@paginationPageOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "dashboardJobDetailTitle": "Job #{jobId}",
   "@dashboardJobDetailTitle": {
     "placeholders": {
@@ -156,6 +183,7 @@
   "dashboardJobDetailResponsibilities": "Responsibilities",
   "dashboardJobDetailQualifications": "Qualifications",
   "dashboardJobDetailNotFound": "This job could not be found.",
+  "dashboardJobDetailLoadFailed": "Could not load job details. Please try again.",
   "dashboardJobDetailBack": "Back to all jobs",
   "dashboardJobDetailSignInToApply": "Sign in to Apply",
   "dashboardJobDetailSidebarTitle": "Job Details",

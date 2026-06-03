@@ -884,6 +884,30 @@ abstract class AppLocalizations {
   /// **'No positions match your search or filters.'**
   String get dashboardNoJobsFound;
 
+  /// No description provided for @dashboardJobsLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load job postings. Please try again.'**
+  String get dashboardJobsLoadFailed;
+
+  /// No description provided for @commonRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get commonRetry;
+
+  /// No description provided for @paginationShowingRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing {start} - {end} of {total} items'**
+  String paginationShowingRange(int start, int end, int total);
+
+  /// No description provided for @paginationPageOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {current} of {total}'**
+  String paginationPageOf(int current, int total);
+
   /// No description provided for @dashboardJobDetailTitle.
   ///
   /// In en, this message translates to:
@@ -913,6 +937,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This job could not be found.'**
   String get dashboardJobDetailNotFound;
+
+  /// No description provided for @dashboardJobDetailLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load job details. Please try again.'**
+  String get dashboardJobDetailLoadFailed;
 
   /// No description provided for @dashboardJobDetailBack.
   ///

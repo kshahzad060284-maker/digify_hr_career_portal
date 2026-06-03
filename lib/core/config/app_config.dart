@@ -19,7 +19,7 @@ abstract final class AppConfig {
   // Network configuration
   static const String baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: '',
+    defaultValue: 'https://digift-hr-system-backend-48wi.onrender.com',
   );
   static const Duration connectTimeout = Duration(seconds: 20);
   static const Duration receiveTimeout = Duration(seconds: 20);

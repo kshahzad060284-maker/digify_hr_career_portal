@@ -427,6 +427,23 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا توجد وظائف تطابق بحثك أو عوامل التصفية.';
 
   @override
+  String get dashboardJobsLoadFailed =>
+      'تعذر تحميل الوظائف. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get commonRetry => 'إعادة المحاولة';
+
+  @override
+  String paginationShowingRange(int start, int end, int total) {
+    return 'عرض $start - $end من $total عنصر';
+  }
+
+  @override
+  String paginationPageOf(int current, int total) {
+    return 'صفحة $current من $total';
+  }
+
+  @override
   String dashboardJobDetailTitle(String jobId) {
     return 'الوظيفة رقم $jobId';
   }
@@ -442,6 +459,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dashboardJobDetailNotFound => 'تعذر العثور على هذه الوظيفة.';
+
+  @override
+  String get dashboardJobDetailLoadFailed =>
+      'تعذر تحميل تفاصيل الوظيفة. يرجى المحاولة مرة أخرى.';
 
   @override
   String get dashboardJobDetailBack => 'العودة إلى جميع الوظائف';

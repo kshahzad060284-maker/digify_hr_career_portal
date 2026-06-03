@@ -3,7 +3,7 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/core/theme/app_shadows.dart';
-import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_search_controller.dart';
+import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_list_provider.dart';
 import 'package:career_portal/shared/widgets/common/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,9 +18,7 @@ class DashboardContentHeader extends ConsumerWidget {
     final isMobile = context.isMobileLayout;
     final horizontalPadding = ResponsiveHelper.pagePadding(context).horizontal;
     final headerHeight = isMobile ? 240.h : 280.h;
-    final searchController = ref.read(
-      dashboardJobSearchControllerProvider.notifier,
-    );
+    final jobsController = ref.read(dashboardJobsControllerProvider.notifier);
 
     return SizedBox(
       height: headerHeight,
@@ -65,8 +63,8 @@ class DashboardContentHeader extends ConsumerWidget {
                     hintText: l10n.dashboardJobSearchPlaceholder,
                     filled: true,
                     fillColor: AppColors.cardBackground,
-                    onChanged: searchController.onSearchChanged,
-                    onSubmitted: searchController.onSearchSubmitted,
+                    onChanged: jobsController.onSearchChanged,
+                    onSubmitted: jobsController.onSearchSubmitted,
                   ),
                 ),
               ),

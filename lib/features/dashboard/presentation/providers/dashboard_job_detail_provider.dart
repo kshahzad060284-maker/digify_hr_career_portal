@@ -1,16 +1,12 @@
-import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
-import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_provider.dart';
+import 'package:career_portal/features/dashboard/presentation/controllers/dashboard_job_detail_controller.dart';
+import 'package:career_portal/features/dashboard/presentation/state/dashboard_job_detail_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final dashboardJobByIdProvider = Provider.family<DashboardJob?, String>((
-  ref,
-  jobId,
-) {
-  final jobs = ref.watch(dashboardAllJobsProvider);
-  for (final job in jobs) {
-    if (job.id == jobId) {
-      return job;
-    }
-  }
-  return null;
-});
+export 'dashboard_jobs_di_provider.dart';
+
+final dashboardJobDetailControllerProvider =
+    AutoDisposeAsyncNotifierProvider.family<
+      DashboardJobDetailController,
+      DashboardJobDetailState,
+      String
+    >(DashboardJobDetailController.new);

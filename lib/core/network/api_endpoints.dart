@@ -9,6 +9,15 @@ abstract final class ApiEndpoints {
   static String health() => '$baseUrlPath/health';
 }
 
+abstract final class RecEndpoints {
+  RecEndpoints._();
+
+  static String jobPostings() => '${ApiEndpoints.basePath}/rec/job-postings';
+
+  static String jobPosting(String postingGuid) =>
+      '${ApiEndpoints.basePath}/rec/job-postings/$postingGuid';
+}
+
 abstract final class AuthEndpoints {
   AuthEndpoints._();
 
