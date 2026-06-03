@@ -224,6 +224,96 @@ abstract class AppLocalizations {
   /// **'No positions match your search or filters.'**
   String get dashboardNoJobsFound;
 
+  /// No description provided for @dashboardJobDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Job #{jobId}'**
+  String dashboardJobDetailTitle(String jobId);
+
+  /// No description provided for @dashboardJobDetailAboutRole.
+  ///
+  /// In en, this message translates to:
+  /// **'About the Role'**
+  String get dashboardJobDetailAboutRole;
+
+  /// No description provided for @dashboardJobDetailResponsibilities.
+  ///
+  /// In en, this message translates to:
+  /// **'Responsibilities'**
+  String get dashboardJobDetailResponsibilities;
+
+  /// No description provided for @dashboardJobDetailQualifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Qualifications'**
+  String get dashboardJobDetailQualifications;
+
+  /// No description provided for @dashboardJobDetailNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This job could not be found.'**
+  String get dashboardJobDetailNotFound;
+
+  /// No description provided for @dashboardJobDetailBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to all jobs'**
+  String get dashboardJobDetailBack;
+
+  /// No description provided for @dashboardJobDetailSignInToApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to Apply'**
+  String get dashboardJobDetailSignInToApply;
+
+  /// No description provided for @dashboardJobDetailSidebarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Job Details'**
+  String get dashboardJobDetailSidebarTitle;
+
+  /// No description provided for @dashboardJobDetailSalaryRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary Range'**
+  String get dashboardJobDetailSalaryRange;
+
+  /// No description provided for @dashboardJobDetailOpeningsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Openings'**
+  String get dashboardJobDetailOpeningsLabel;
+
+  /// No description provided for @dashboardJobDetailPositionsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 position} other{{count} positions}}'**
+  String dashboardJobDetailPositionsCount(int count);
+
+  /// No description provided for @dashboardJobDetailStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date'**
+  String get dashboardJobDetailStartDate;
+
+  /// No description provided for @dashboardJobDetailLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level'**
+  String get dashboardJobDetailLevel;
+
+  /// No description provided for @dashboardJobDetailQuestionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions?'**
+  String get dashboardJobDetailQuestionsTitle;
+
+  /// No description provided for @dashboardJobDetailQuestionsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Our recruitment team is here to help. Feel free to reach out with any questions about this role.'**
+  String get dashboardJobDetailQuestionsBody;
+
   /// No description provided for @footerTagline.
   ///
   /// In en, this message translates to:

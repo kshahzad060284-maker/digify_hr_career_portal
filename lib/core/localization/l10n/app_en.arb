@@ -34,6 +34,35 @@
   },
   "dashboardJobUrgentHiring": "Urgent Hiring",
   "dashboardNoJobsFound": "No positions match your search or filters.",
+  "dashboardJobDetailTitle": "Job #{jobId}",
+  "@dashboardJobDetailTitle": {
+    "placeholders": {
+      "jobId": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardJobDetailAboutRole": "About the Role",
+  "dashboardJobDetailResponsibilities": "Responsibilities",
+  "dashboardJobDetailQualifications": "Qualifications",
+  "dashboardJobDetailNotFound": "This job could not be found.",
+  "dashboardJobDetailBack": "Back to all jobs",
+  "dashboardJobDetailSignInToApply": "Sign in to Apply",
+  "dashboardJobDetailSidebarTitle": "Job Details",
+  "dashboardJobDetailSalaryRange": "Salary Range",
+  "dashboardJobDetailOpeningsLabel": "Openings",
+  "dashboardJobDetailPositionsCount": "{count, plural, =1{1 position} other{{count} positions}}",
+  "@dashboardJobDetailPositionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardJobDetailStartDate": "Start Date",
+  "dashboardJobDetailLevel": "Level",
+  "dashboardJobDetailQuestionsTitle": "Questions?",
+  "dashboardJobDetailQuestionsBody": "Our recruitment team is here to help. Feel free to reach out with any questions about this role.",
   "footerTagline": "A clean header-content-footer layout for the web.",
   "footerCopyright": "© 2026 Career Portal. All rights reserved.",
   "footerPrivacy": "Privacy",

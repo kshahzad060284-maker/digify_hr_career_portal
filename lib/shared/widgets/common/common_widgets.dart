@@ -9,3 +9,4 @@ export 'app_divider.dart';
 export 'app_loading_indicator.dart';
 export 'app_mobile_button.dart';
 export 'app_square_capsule.dart';
+export 'status_dot.dart';

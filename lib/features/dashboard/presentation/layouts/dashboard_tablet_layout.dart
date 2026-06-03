@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/services/responsive/responsive_helper.dart';
-import '../widgets/dashboard_content.dart';
 import '../widgets/dashboard_footer.dart';
 import '../widgets/dashboard_header.dart';
 
 class DashboardTabletLayout extends StatelessWidget {
-  const DashboardTabletLayout({super.key});
+  const DashboardTabletLayout({super.key, required this.child});
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +18,12 @@ class DashboardTabletLayout extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: ResponsiveHelper.maxContentWidth(context),
             ),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                DashboardHeader(),
-                Expanded(child: DashboardContent()),
-                DashboardFooter(),
+                const DashboardHeader(),
+                Expanded(child: child),
+                const DashboardFooter(),
               ],
             ),
           ),

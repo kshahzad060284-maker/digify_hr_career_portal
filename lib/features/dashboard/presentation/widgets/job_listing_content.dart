@@ -63,8 +63,8 @@ class JobListingContent extends ConsumerWidget {
                   final job = jobs[index];
                   return DashboardJobCard(
                     job: job,
-                    onTap: () => context.goNamed(
-                      AppRouteNames.jobDetails,
+                    onTap: () => context.pushNamed(
+                      AppRouteNames.dashboardJob,
                       pathParameters: {'id': job.id},
                     ),
                   );

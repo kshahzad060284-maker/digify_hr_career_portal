@@ -4,7 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 import '../extensions/app_extensions.dart';
-import '../../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../../features/dashboard/presentation/pages/dashbaord_page.dart';
+import '../../features/dashboard/presentation/pages/dashboard_job_detail_page.dart';
+import '../../features/dashboard/presentation/widgets/dashboard_content.dart';
 import '../../features/jobs/job_details_page.dart';
 import '../../features/jobs/jobs_page.dart';
 import 'app_routes.dart';
@@ -21,10 +23,25 @@ class AppRouter {
     initialLocation: AppRoutes.home,
     debugLogDiagnostics: kDebugMode,
     routes: [
-      GoRoute(
-        path: AppRoutes.home,
-        name: AppRouteNames.home,
-        builder: (context, state) => const DashboardPage(),
+      ShellRoute(
+        builder: (context, state, child) {
+          return DashboardWebLayout(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: AppRoutes.home,
+            name: AppRouteNames.home,
+            builder: (context, state) => const DashboardContent(),
+          ),
+          GoRoute(
+            path: AppRoutes.dashboardJob,
+            name: AppRouteNames.dashboardJob,
+            builder: (context, state) {
+              final jobId = state.pathParameters['id'] ?? '';
+              return DashboardJobDetailPage(jobId: jobId);
+            },
+          ),
+        ],
       ),
       GoRoute(
         path: AppRoutes.jobs,
