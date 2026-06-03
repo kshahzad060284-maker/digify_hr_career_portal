@@ -3,6 +3,8 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/core/widgets/pagination_controls.dart';
+import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_pagination_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_filter_bar.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_card.dart';
@@ -18,7 +20,10 @@ class JobListingContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final jobs = ref.watch(dashboardFilteredJobsProvider);
+    final allFilteredJobs = ref.watch(dashboardFilteredJobsProvider);
+    final jobs = ref.watch(dashboardPaginatedJobsProvider);
+    final currentPage = ref.watch(dashboardJobsEffectivePageProvider);
+    final pagination = ref.watch(dashboardJobsPaginationInfoProvider);
     final pagePadding = ResponsiveHelper.pagePadding(context);
     final isDark = context.isDark;
     final sectionBg = isDark
@@ -40,20 +45,20 @@ class JobListingContent extends ConsumerWidget {
           children: [
             const DashboardFilterBar(),
             Text(
-              l10n.dashboardPositionsAvailable(jobs.length),
+              l10n.dashboardPositionsAvailable(allFilteredJobs.length),
               style: context.textTheme.bodyMedium?.copyWith(
                 color: AppColors.textSecondary,
                 fontSize: 16.sp,
               ),
             ),
-            if (jobs.isEmpty)
+            if (allFilteredJobs.isEmpty)
               Text(
                 l10n.dashboardNoJobsFound,
                 style: context.textTheme.bodyLarge?.copyWith(
                   color: context.themeTextSecondary,
                 ),
               )
-            else
+            else ...[
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -70,6 +75,24 @@ class JobListingContent extends ConsumerWidget {
                   );
                 },
               ),
+              PaginationControls.fromPaginationInfo(
+                paginationInfo: pagination,
+                currentPage: currentPage,
+                pageSize: dashboardJobsPageSize,
+                showBorder: false,
+                padding: EdgeInsets.zero,
+                onPrevious: pagination.hasPrevious
+                    ? () => ref
+                          .read(dashboardJobsCurrentPageProvider.notifier)
+                          .goToPreviousPage()
+                    : null,
+                onNext: pagination.hasNext
+                    ? () => ref
+                          .read(dashboardJobsCurrentPageProvider.notifier)
+                          .goToNextPage()
+                    : null,
+              ),
+            ],
           ],
         ),
       ),

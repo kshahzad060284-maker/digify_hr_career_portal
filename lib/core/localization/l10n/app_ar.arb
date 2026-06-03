@@ -130,6 +130,8 @@
   "dashboardJobOpenings": "{count, plural, =1{شاغر واحد} other{{count} شواغر}}",
   "dashboardJobUrgentHiring": "توظيف عاجل",
   "dashboardNoJobsFound": "لا توجد وظائف تطابق بحثك أو عوامل التصفية.",
+  "paginationShowingRange": "عرض {start} - {end} من {total} عنصر",
+  "paginationPageOf": "صفحة {current} من {total}",
   "dashboardJobDetailTitle": "الوظيفة رقم {jobId}",
   "dashboardJobDetailAboutRole": "نبذة عن الدور",
   "dashboardJobDetailResponsibilities": "المسؤوليات",

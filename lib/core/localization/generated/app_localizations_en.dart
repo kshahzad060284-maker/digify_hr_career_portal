@@ -429,6 +429,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'No positions match your search or filters.';
 
   @override
+  String paginationShowingRange(int start, int end, int total) {
+    return 'Showing $start - $end of $total items';
+  }
+
+  @override
+  String paginationPageOf(int current, int total) {
+    return 'Page $current of $total';
+  }
+
+  @override
   String dashboardJobDetailTitle(String jobId) {
     return 'Job #$jobId';
   }

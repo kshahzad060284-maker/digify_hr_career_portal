@@ -144,6 +144,31 @@
   },
   "dashboardJobUrgentHiring": "Urgent Hiring",
   "dashboardNoJobsFound": "No positions match your search or filters.",
+  "paginationShowingRange": "Showing {start} - {end} of {total} items",
+  "@paginationShowingRange": {
+    "placeholders": {
+      "start": {
+        "type": "int"
+      },
+      "end": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "paginationPageOf": "Page {current} of {total}",
+  "@paginationPageOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "dashboardJobDetailTitle": "Job #{jobId}",
   "@dashboardJobDetailTitle": {
     "placeholders": {

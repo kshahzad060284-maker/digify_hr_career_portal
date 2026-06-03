@@ -884,6 +884,18 @@ abstract class AppLocalizations {
   /// **'No positions match your search or filters.'**
   String get dashboardNoJobsFound;
 
+  /// No description provided for @paginationShowingRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing {start} - {end} of {total} items'**
+  String paginationShowingRange(int start, int end, int total);
+
+  /// No description provided for @paginationPageOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {current} of {total}'**
+  String paginationPageOf(int current, int total);
+
   /// No description provided for @dashboardJobDetailTitle.
   ///
   /// In en, this message translates to:

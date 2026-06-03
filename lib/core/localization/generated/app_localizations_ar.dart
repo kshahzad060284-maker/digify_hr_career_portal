@@ -427,6 +427,16 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا توجد وظائف تطابق بحثك أو عوامل التصفية.';
 
   @override
+  String paginationShowingRange(int start, int end, int total) {
+    return 'عرض $start - $end من $total عنصر';
+  }
+
+  @override
+  String paginationPageOf(int current, int total) {
+    return 'صفحة $current من $total';
+  }
+
+  @override
   String dashboardJobDetailTitle(String jobId) {
     return 'الوظيفة رقم $jobId';
   }
