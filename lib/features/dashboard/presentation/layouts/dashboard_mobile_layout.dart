@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import '../widgets/dashboard_content.dart';
 import '../widgets/dashboard_footer.dart';
 import '../widgets/dashboard_header.dart';
 
 class DashboardMobileLayout extends StatelessWidget {
-  const DashboardMobileLayout({super.key});
+  const DashboardMobileLayout({super.key, required this.child});
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DashboardHeader(),
-            Expanded(child: DashboardContent()),
-            DashboardFooter(),
+            const DashboardHeader(),
+            Expanded(child: child),
+            const DashboardFooter(),
           ],
         ),
       ),

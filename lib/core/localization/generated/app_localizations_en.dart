@@ -92,6 +92,62 @@ class AppLocalizationsEn extends AppLocalizations {
       'No positions match your search or filters.';
 
   @override
+  String dashboardJobDetailTitle(String jobId) {
+    return 'Job #$jobId';
+  }
+
+  @override
+  String get dashboardJobDetailAboutRole => 'About the Role';
+
+  @override
+  String get dashboardJobDetailResponsibilities => 'Responsibilities';
+
+  @override
+  String get dashboardJobDetailQualifications => 'Qualifications';
+
+  @override
+  String get dashboardJobDetailNotFound => 'This job could not be found.';
+
+  @override
+  String get dashboardJobDetailBack => 'Back to all jobs';
+
+  @override
+  String get dashboardJobDetailSignInToApply => 'Sign in to Apply';
+
+  @override
+  String get dashboardJobDetailSidebarTitle => 'Job Details';
+
+  @override
+  String get dashboardJobDetailSalaryRange => 'Salary Range';
+
+  @override
+  String get dashboardJobDetailOpeningsLabel => 'Openings';
+
+  @override
+  String dashboardJobDetailPositionsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count positions',
+      one: '1 position',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dashboardJobDetailStartDate => 'Start Date';
+
+  @override
+  String get dashboardJobDetailLevel => 'Level';
+
+  @override
+  String get dashboardJobDetailQuestionsTitle => 'Questions?';
+
+  @override
+  String get dashboardJobDetailQuestionsBody =>
+      'Our recruitment team is here to help. Feel free to reach out with any questions about this role.';
+
+  @override
   String get footerTagline =>
       'A clean header-content-footer layout for the web.';
 

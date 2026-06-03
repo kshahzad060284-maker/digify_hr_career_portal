@@ -6,6 +6,12 @@ class DashboardJob {
     required this.location,
     required this.employmentType,
     required this.description,
+    required this.responsibilities,
+    required this.qualifications,
+    required this.salaryRange,
+    required this.startDate,
+    required this.level,
+    required this.contactEmail,
     required this.openingsCount,
     this.isUrgent = false,
   });
@@ -16,6 +22,12 @@ class DashboardJob {
   final String location;
   final String employmentType;
   final String description;
+  final List<String> responsibilities;
+  final List<String> qualifications;
+  final String salaryRange;
+  final String startDate;
+  final String level;
+  final String contactEmail;
   final int openingsCount;
   final bool isUrgent;
 }

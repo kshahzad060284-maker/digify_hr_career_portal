@@ -92,6 +92,62 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا توجد وظائف تطابق بحثك أو عوامل التصفية.';
 
   @override
+  String dashboardJobDetailTitle(String jobId) {
+    return 'الوظيفة رقم $jobId';
+  }
+
+  @override
+  String get dashboardJobDetailAboutRole => 'نبذة عن الدور';
+
+  @override
+  String get dashboardJobDetailResponsibilities => 'المسؤوليات';
+
+  @override
+  String get dashboardJobDetailQualifications => 'المؤهلات';
+
+  @override
+  String get dashboardJobDetailNotFound => 'تعذر العثور على هذه الوظيفة.';
+
+  @override
+  String get dashboardJobDetailBack => 'العودة إلى جميع الوظائف';
+
+  @override
+  String get dashboardJobDetailSignInToApply => 'سجّل الدخول للتقديم';
+
+  @override
+  String get dashboardJobDetailSidebarTitle => 'تفاصيل الوظيفة';
+
+  @override
+  String get dashboardJobDetailSalaryRange => 'نطاق الراتب';
+
+  @override
+  String get dashboardJobDetailOpeningsLabel => 'الشواغر';
+
+  @override
+  String dashboardJobDetailPositionsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count وظائف',
+      one: 'وظيفة واحدة',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dashboardJobDetailStartDate => 'تاريخ البدء';
+
+  @override
+  String get dashboardJobDetailLevel => 'المستوى';
+
+  @override
+  String get dashboardJobDetailQuestionsTitle => 'أسئلة؟';
+
+  @override
+  String get dashboardJobDetailQuestionsBody =>
+      'فريق التوظيف لدينا هنا للمساعدة. لا تتردد في التواصل معنا بخصوص أي أسئلة حول هذا الدور.';
+
+  @override
   String get footerTagline => 'تخطيط واضح: رأس ومحتوى وتذييل للويب.';
 
   @override
