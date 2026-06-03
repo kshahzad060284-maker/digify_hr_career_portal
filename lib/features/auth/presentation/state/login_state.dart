@@ -1,9 +1,4 @@
-enum LoginToastType {
-  emailRequired,
-  emailInvalid,
-  passwordRequired,
-  signInFailed,
-}
+import 'package:career_portal/core/common/auth_enums.dart';
 
 class LoginState {
   const LoginState({

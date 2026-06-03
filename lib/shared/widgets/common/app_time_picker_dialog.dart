@@ -4,6 +4,7 @@ import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
+import 'package:career_portal/shared/widgets/common/app_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -163,7 +164,11 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
                   ],
                 ),
               ),
-              Divider(height: 1, color: dividerColor),
+              AppDivider.horizontal(
+                height: 1,
+                thickness: 1,
+                color: dividerColor,
+              ),
               Padding(
                 padding: EdgeInsets.all(24.w),
                 child: Row(

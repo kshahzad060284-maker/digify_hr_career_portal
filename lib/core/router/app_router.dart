@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../extensions/app_extensions.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/dashboard/presentation/pages/dashbaord_page.dart';
 import '../../features/dashboard/presentation/pages/dashboard_job_detail_page.dart';
 import '../../features/dashboard/presentation/widgets/dashboard_content.dart';
@@ -45,9 +46,29 @@ class AppRouter {
         ],
       ),
       GoRoute(
+        path: AppRoutes.authLogin,
+        name: AppRouteNames.authLogin,
+        builder: (context, state) => const LoginPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.authSignUp,
+        name: AppRouteNames.authSignUp,
+        builder: (context, state) => const SignUpPage(),
+      ),
+      GoRoute(
         path: AppRoutes.login,
         name: AppRouteNames.login,
-        builder: (context, state) => const LoginPage(),
+        redirect: (context, state) => AppRoutes.authLogin,
+      ),
+      GoRoute(
+        path: AppRoutes.register,
+        name: AppRouteNames.register,
+        redirect: (context, state) => AppRoutes.authSignUp,
+      ),
+      GoRoute(
+        path: AppRoutes.signUp,
+        name: AppRouteNames.signUp,
+        redirect: (context, state) => AppRoutes.authSignUp,
       ),
       GoRoute(
         path: AppRoutes.jobs,

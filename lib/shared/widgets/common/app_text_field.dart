@@ -3,6 +3,7 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
+import 'package:career_portal/shared/widgets/common/app_date_picker_dialog.dart';
 import 'package:career_portal/shared/widgets/common/app_time_picker_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -746,8 +747,8 @@ class _AppDateFieldState extends State<AppDateField> {
       initialDate = lastDate;
     }
 
-    final picked = await showDatePicker(
-      context: context,
+    final picked = await AppDatePickerDialog.show(
+      context,
       initialDate: initialDate,
       firstDate: firstDate,
       lastDate: lastDate,

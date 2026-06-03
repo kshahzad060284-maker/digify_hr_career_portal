@@ -66,13 +66,13 @@ class DashboardHeader extends StatelessWidget {
         Gap(12.w),
         AppButton.text(
           label: l10n.signIn,
-          onPressed: () => context.push(AppRoutes.login),
+          onPressed: () => context.go(AppRoutes.authLogin),
         ),
         Gap(12.w),
         AppButton(
           label: l10n.register,
           type: AppButtonType.primary,
-          onPressed: () {},
+          onPressed: () => context.go(AppRoutes.authSignUp),
         ),
       ],
     );
@@ -126,10 +126,7 @@ class DashboardHeader extends StatelessWidget {
             Expanded(
               child: AppButton.text(
                 label: l10n.signIn,
-                onPressed: () => context.push(AppRoutes.login),
-                width: double.infinity,
-                height: 42.h,
-                fontSize: 13.sp,
+                onPressed: () => context.go(AppRoutes.authLogin),
               ),
             ),
             Gap(10.w),
@@ -137,10 +134,7 @@ class DashboardHeader extends StatelessWidget {
               child: AppButton(
                 label: l10n.register,
                 type: AppButtonType.primary,
-                onPressed: () {},
-                width: double.infinity,
-                height: 42.h,
-                fontSize: 13.sp,
+                onPressed: () => context.go(AppRoutes.authSignUp),
               ),
             ),
           ],

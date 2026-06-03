@@ -1,4 +1,5 @@
-import 'package:career_portal/features/auth/presentation/providers/login_state.dart';
+import 'package:career_portal/core/common/auth_enums.dart';
+import 'package:career_portal/features/auth/presentation/state/login_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LoginController extends Notifier<LoginState> {
