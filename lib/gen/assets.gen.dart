@@ -10,8 +10,18 @@ class Assets {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  $AssetsIconsAuthGen get auth => const $AssetsIconsAuthGen();
   $AssetsIconsDashboardGen get dashboard => const $AssetsIconsDashboardGen();
   $AssetsIconsJobDetailGen get jobDetail => const $AssetsIconsJobDetailGen();
+}
+
+class $AssetsIconsAuthGen {
+  const $AssetsIconsAuthGen();
+
+  SvgGenImage get education =>
+      const SvgGenImage('assets/icons/auth/education.svg');
+  SvgGenImage get login => const SvgGenImage('assets/icons/auth/login.svg');
+  SvgGenImage get signUp => const SvgGenImage('assets/icons/auth/sign-up.svg');
 }
 
 class $AssetsIconsDashboardGen {

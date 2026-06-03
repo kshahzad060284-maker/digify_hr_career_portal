@@ -21,6 +21,343 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signIn => 'Sign In';
 
   @override
+  String get authBack => 'Back';
+
+  @override
+  String get authWelcomeBack => 'Welcome Back';
+
+  @override
+  String get authSignInSubtitle => 'Sign in to your account';
+
+  @override
+  String get authEmailAddress => 'Email Address';
+
+  @override
+  String get authPassword => 'Password';
+
+  @override
+  String get authEmailHint => 'you@company.com';
+
+  @override
+  String get authPasswordHint => 'Enter your password';
+
+  @override
+  String get authEmailRequired => 'Please enter your email address';
+
+  @override
+  String get authEmailInvalid => 'Please enter a valid email address';
+
+  @override
+  String get authPasswordRequired => 'Please enter your password';
+
+  @override
+  String get authNoAccountPrompt => 'Don\'t have an account? ';
+
+  @override
+  String get authRegisterNow => 'Register now';
+
+  @override
+  String get authRegisterComingSoon => 'Registration is coming soon';
+
+  @override
+  String get authSignInFailed => 'Sign in failed. Please try again.';
+
+  @override
+  String get authCreateAccountTitle => 'Create Your Account';
+
+  @override
+  String get authCreateAccountSubtitle =>
+      'Join us and start your career journey';
+
+  @override
+  String get authFirstName => 'First Name';
+
+  @override
+  String get authMiddleName => 'Middle Name';
+
+  @override
+  String get authLastName => 'Last Name';
+
+  @override
+  String get authFirstNameHint => 'Enter your first name';
+
+  @override
+  String get authMiddleNameHint => 'Optional';
+
+  @override
+  String get authLastNameHint => 'Enter your last name';
+
+  @override
+  String get authPhoneNumber => 'Phone Number';
+
+  @override
+  String get authPhoneHint => '5XX XXX XXXX';
+
+  @override
+  String get phoneCountrySearchHint => 'Search country...';
+
+  @override
+  String get authProfessionalInformation => 'Professional Information';
+
+  @override
+  String get authCurrentCompany => 'Current Company';
+
+  @override
+  String get authCurrentCompanyHint => 'Company name';
+
+  @override
+  String get authCurrentTitle => 'Current Title';
+
+  @override
+  String get authCurrentTitleHint => 'e.g., Software Engineer';
+
+  @override
+  String get authTotalExperience => 'Total Experience (Years)';
+
+  @override
+  String get authTotalExperienceHint => 'e.g., 5';
+
+  @override
+  String get authCurrentLocation => 'Current Location';
+
+  @override
+  String get authLocationHint => 'City, State';
+
+  @override
+  String get authWillingToRelocate => 'Willing to Relocate';
+
+  @override
+  String get authYes => 'Yes';
+
+  @override
+  String get authNo => 'No';
+
+  @override
+  String get authCurrentSalaryOptional => 'Current Salary (Optional)';
+
+  @override
+  String get authExpectedSalaryOptional => 'Expected Salary (Optional)';
+
+  @override
+  String get authSalaryExampleHint => 'e.g., \$80,000';
+
+  @override
+  String get authExpectedSalaryExampleHint => 'e.g., \$100,000';
+
+  @override
+  String get authSocialLinksSection => 'Social & Professional Links';
+
+  @override
+  String get authLinkedInProfile => 'LinkedIn Profile';
+
+  @override
+  String get authLinkedInHint => 'https://linkedin.com/in/yourprofile';
+
+  @override
+  String get authGitHubProfile => 'GitHub Profile';
+
+  @override
+  String get authGitHubHint => 'https://github.com/yourusername';
+
+  @override
+  String get authPortfolioWebsite => 'Portfolio/Website';
+
+  @override
+  String get authPortfolioHint => 'https://yourportfolio.com';
+
+  @override
+  String get authEducationOptional => 'Education (Optional)';
+
+  @override
+  String get authAddEducation => 'Add Education';
+
+  @override
+  String get authEducationEmpty =>
+      'No education added yet. Click \"Add Education\" to include your academic background.';
+
+  @override
+  String get authWorkExperienceOptional => 'Work Experience (Optional)';
+
+  @override
+  String get authAddExperience => 'Add Experience';
+
+  @override
+  String get authWorkExperienceEmpty =>
+      'No work experience added yet. Click \"Add Experience\" to include your professional background.';
+
+  @override
+  String get authSecurity => 'Security';
+
+  @override
+  String get authConfirmPassword => 'Confirm Password';
+
+  @override
+  String get authConfirmPasswordHint => 'Re-enter your password';
+
+  @override
+  String get authCreateAccount => 'Create Account';
+
+  @override
+  String get authAlreadyHaveAccountPrompt => 'Already have an account? ';
+
+  @override
+  String get authFirstNameRequired => 'Please enter your first name';
+
+  @override
+  String get authLastNameRequired => 'Please enter your last name';
+
+  @override
+  String get authPhoneRequired => 'Please enter your phone number';
+
+  @override
+  String get authConfirmPasswordRequired => 'Please confirm your password';
+
+  @override
+  String get authPasswordsMismatch => 'Passwords do not match';
+
+  @override
+  String get authCreateAccountFailed =>
+      'Could not create account. Please try again.';
+
+  @override
+  String get commonCancel => 'Cancel';
+
+  @override
+  String get commonConfirm => 'Confirm';
+
+  @override
+  String get commonDelete => 'Delete';
+
+  @override
+  String get commonSaveChanges => 'Save Changes';
+
+  @override
+  String get authRemoveEducationTitle => 'Remove education?';
+
+  @override
+  String get authRemoveEducationMessage =>
+      'Are you sure you want to remove this education entry? This action cannot be undone.';
+
+  @override
+  String get authRemoveWorkExperienceTitle => 'Remove work experience?';
+
+  @override
+  String get authRemoveWorkExperienceMessage =>
+      'Are you sure you want to remove this work experience entry? This action cannot be undone.';
+
+  @override
+  String get authPresent => 'Present';
+
+  @override
+  String get authAddEducationTitle => 'Add Education';
+
+  @override
+  String get authEditEducationTitle => 'Edit Education';
+
+  @override
+  String get authDegreeName => 'Degree Name';
+
+  @override
+  String get authDegreeNameHint => 'e.g. MBA';
+
+  @override
+  String get authDegreeNameRequired => 'Degree name is required';
+
+  @override
+  String get authInstitutionName => 'Institution Name';
+
+  @override
+  String get authInstitutionNameHint =>
+      'e.g. Hult International Business School';
+
+  @override
+  String get authInstitutionNameRequired => 'Institution name is required';
+
+  @override
+  String get authFieldOfStudy => 'Field of Study';
+
+  @override
+  String get authFieldOfStudyHint => 'e.g. Business Administration';
+
+  @override
+  String get authFieldOfStudyRequired => 'Field of study is required';
+
+  @override
+  String get authStartDate => 'Start Date';
+
+  @override
+  String get authEndDate => 'End Date';
+
+  @override
+  String get authDateHint => 'dd/mm/yyyy';
+
+  @override
+  String get authStartDateRequired => 'Start date is required';
+
+  @override
+  String get authEndDateRequired => 'End date is required';
+
+  @override
+  String get authGrade => 'Grade';
+
+  @override
+  String get authSelectGrade => 'Select grade';
+
+  @override
+  String get authGradeRequired => 'Grade is required';
+
+  @override
+  String get authEducationDescription => 'Description';
+
+  @override
+  String get authEducationDescriptionHint => 'e.g. Master Degree';
+
+  @override
+  String get authAddWorkExperienceTitle => 'Add Work Experience';
+
+  @override
+  String get authEditWorkExperienceTitle => 'Edit Work Experience';
+
+  @override
+  String get authCompanyName => 'Company Name';
+
+  @override
+  String get authCompanyNameHint => 'e.g. Digify HR';
+
+  @override
+  String get authCompanyNameRequired => 'Company name is required';
+
+  @override
+  String get authJobTitle => 'Job Title';
+
+  @override
+  String get authJobTitleHint => 'e.g. Business Applications Manager';
+
+  @override
+  String get authJobTitleRequired => 'Job title is required';
+
+  @override
+  String get authWorkLocation => 'Location';
+
+  @override
+  String get authWorkLocationHint => 'e.g. Kuwait';
+
+  @override
+  String get authWorkLocationRequired => 'Location is required';
+
+  @override
+  String get authCurrentJob => 'Current Job';
+
+  @override
+  String get authSelectCurrentJob => 'Select';
+
+  @override
+  String get authWorkDescription => 'Description';
+
+  @override
+  String get authWorkDescriptionHint => 'e.g. Managing enterprise applications';
+
+  @override
   String get register => 'Register';
 
   @override
@@ -192,4 +529,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get timePickerPm => 'PM';
+
+  @override
+  String get datePickerSelectYear => 'Select Year';
+
+  @override
+  String get datePickerSelectDate => 'Select Date';
 }

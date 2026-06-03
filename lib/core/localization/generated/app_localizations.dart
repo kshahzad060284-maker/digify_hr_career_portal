@@ -122,6 +122,666 @@ abstract class AppLocalizations {
   /// **'Sign In'**
   String get signIn;
 
+  /// No description provided for @authBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get authBack;
+
+  /// No description provided for @authWelcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get authWelcomeBack;
+
+  /// No description provided for @authSignInSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your account'**
+  String get authSignInSubtitle;
+
+  /// No description provided for @authEmailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get authEmailAddress;
+
+  /// No description provided for @authPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get authPassword;
+
+  /// No description provided for @authEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'you@company.com'**
+  String get authEmailHint;
+
+  /// No description provided for @authPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get authPasswordHint;
+
+  /// No description provided for @authEmailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email address'**
+  String get authEmailRequired;
+
+  /// No description provided for @authEmailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get authEmailInvalid;
+
+  /// No description provided for @authPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get authPasswordRequired;
+
+  /// No description provided for @authNoAccountPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? '**
+  String get authNoAccountPrompt;
+
+  /// No description provided for @authRegisterNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Register now'**
+  String get authRegisterNow;
+
+  /// No description provided for @authRegisterComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration is coming soon'**
+  String get authRegisterComingSoon;
+
+  /// No description provided for @authSignInFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in failed. Please try again.'**
+  String get authSignInFailed;
+
+  /// No description provided for @authCreateAccountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Your Account'**
+  String get authCreateAccountTitle;
+
+  /// No description provided for @authCreateAccountSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join us and start your career journey'**
+  String get authCreateAccountSubtitle;
+
+  /// No description provided for @authFirstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get authFirstName;
+
+  /// No description provided for @authMiddleName.
+  ///
+  /// In en, this message translates to:
+  /// **'Middle Name'**
+  String get authMiddleName;
+
+  /// No description provided for @authLastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get authLastName;
+
+  /// No description provided for @authFirstNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your first name'**
+  String get authFirstNameHint;
+
+  /// No description provided for @authMiddleNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get authMiddleNameHint;
+
+  /// No description provided for @authLastNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your last name'**
+  String get authLastNameHint;
+
+  /// No description provided for @authPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get authPhoneNumber;
+
+  /// No description provided for @authPhoneHint.
+  ///
+  /// In en, this message translates to:
+  /// **'5XX XXX XXXX'**
+  String get authPhoneHint;
+
+  /// No description provided for @phoneCountrySearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search country...'**
+  String get phoneCountrySearchHint;
+
+  /// No description provided for @authProfessionalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Professional Information'**
+  String get authProfessionalInformation;
+
+  /// No description provided for @authCurrentCompany.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Company'**
+  String get authCurrentCompany;
+
+  /// No description provided for @authCurrentCompanyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Company name'**
+  String get authCurrentCompanyHint;
+
+  /// No description provided for @authCurrentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Title'**
+  String get authCurrentTitle;
+
+  /// No description provided for @authCurrentTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Software Engineer'**
+  String get authCurrentTitleHint;
+
+  /// No description provided for @authTotalExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Experience (Years)'**
+  String get authTotalExperience;
+
+  /// No description provided for @authTotalExperienceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., 5'**
+  String get authTotalExperienceHint;
+
+  /// No description provided for @authCurrentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Location'**
+  String get authCurrentLocation;
+
+  /// No description provided for @authLocationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'City, State'**
+  String get authLocationHint;
+
+  /// No description provided for @authWillingToRelocate.
+  ///
+  /// In en, this message translates to:
+  /// **'Willing to Relocate'**
+  String get authWillingToRelocate;
+
+  /// No description provided for @authYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get authYes;
+
+  /// No description provided for @authNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get authNo;
+
+  /// No description provided for @authCurrentSalaryOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Salary (Optional)'**
+  String get authCurrentSalaryOptional;
+
+  /// No description provided for @authExpectedSalaryOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected Salary (Optional)'**
+  String get authExpectedSalaryOptional;
+
+  /// No description provided for @authSalaryExampleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., \$80,000'**
+  String get authSalaryExampleHint;
+
+  /// No description provided for @authExpectedSalaryExampleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., \$100,000'**
+  String get authExpectedSalaryExampleHint;
+
+  /// No description provided for @authSocialLinksSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Social & Professional Links'**
+  String get authSocialLinksSection;
+
+  /// No description provided for @authLinkedInProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn Profile'**
+  String get authLinkedInProfile;
+
+  /// No description provided for @authLinkedInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'https://linkedin.com/in/yourprofile'**
+  String get authLinkedInHint;
+
+  /// No description provided for @authGitHubProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub Profile'**
+  String get authGitHubProfile;
+
+  /// No description provided for @authGitHubHint.
+  ///
+  /// In en, this message translates to:
+  /// **'https://github.com/yourusername'**
+  String get authGitHubHint;
+
+  /// No description provided for @authPortfolioWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio/Website'**
+  String get authPortfolioWebsite;
+
+  /// No description provided for @authPortfolioHint.
+  ///
+  /// In en, this message translates to:
+  /// **'https://yourportfolio.com'**
+  String get authPortfolioHint;
+
+  /// No description provided for @authEducationOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Education (Optional)'**
+  String get authEducationOptional;
+
+  /// No description provided for @authAddEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Education'**
+  String get authAddEducation;
+
+  /// No description provided for @authEducationEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No education added yet. Click \"Add Education\" to include your academic background.'**
+  String get authEducationEmpty;
+
+  /// No description provided for @authWorkExperienceOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Work Experience (Optional)'**
+  String get authWorkExperienceOptional;
+
+  /// No description provided for @authAddExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Experience'**
+  String get authAddExperience;
+
+  /// No description provided for @authWorkExperienceEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No work experience added yet. Click \"Add Experience\" to include your professional background.'**
+  String get authWorkExperienceEmpty;
+
+  /// No description provided for @authSecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get authSecurity;
+
+  /// No description provided for @authConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get authConfirmPassword;
+
+  /// No description provided for @authConfirmPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-enter your password'**
+  String get authConfirmPasswordHint;
+
+  /// No description provided for @authCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get authCreateAccount;
+
+  /// No description provided for @authAlreadyHaveAccountPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get authAlreadyHaveAccountPrompt;
+
+  /// No description provided for @authFirstNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your first name'**
+  String get authFirstNameRequired;
+
+  /// No description provided for @authLastNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your last name'**
+  String get authLastNameRequired;
+
+  /// No description provided for @authPhoneRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your phone number'**
+  String get authPhoneRequired;
+
+  /// No description provided for @authConfirmPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get authConfirmPasswordRequired;
+
+  /// No description provided for @authPasswordsMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get authPasswordsMismatch;
+
+  /// No description provided for @authCreateAccountFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not create account. Please try again.'**
+  String get authCreateAccountFailed;
+
+  /// No description provided for @commonCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get commonCancel;
+
+  /// No description provided for @commonConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get commonConfirm;
+
+  /// No description provided for @commonDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get commonDelete;
+
+  /// No description provided for @commonSaveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get commonSaveChanges;
+
+  /// No description provided for @authRemoveEducationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove education?'**
+  String get authRemoveEducationTitle;
+
+  /// No description provided for @authRemoveEducationMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove this education entry? This action cannot be undone.'**
+  String get authRemoveEducationMessage;
+
+  /// No description provided for @authRemoveWorkExperienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove work experience?'**
+  String get authRemoveWorkExperienceTitle;
+
+  /// No description provided for @authRemoveWorkExperienceMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove this work experience entry? This action cannot be undone.'**
+  String get authRemoveWorkExperienceMessage;
+
+  /// No description provided for @authPresent.
+  ///
+  /// In en, this message translates to:
+  /// **'Present'**
+  String get authPresent;
+
+  /// No description provided for @authAddEducationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Education'**
+  String get authAddEducationTitle;
+
+  /// No description provided for @authEditEducationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Education'**
+  String get authEditEducationTitle;
+
+  /// No description provided for @authDegreeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Degree Name'**
+  String get authDegreeName;
+
+  /// No description provided for @authDegreeNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. MBA'**
+  String get authDegreeNameHint;
+
+  /// No description provided for @authDegreeNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Degree name is required'**
+  String get authDegreeNameRequired;
+
+  /// No description provided for @authInstitutionName.
+  ///
+  /// In en, this message translates to:
+  /// **'Institution Name'**
+  String get authInstitutionName;
+
+  /// No description provided for @authInstitutionNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Hult International Business School'**
+  String get authInstitutionNameHint;
+
+  /// No description provided for @authInstitutionNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Institution name is required'**
+  String get authInstitutionNameRequired;
+
+  /// No description provided for @authFieldOfStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Field of Study'**
+  String get authFieldOfStudy;
+
+  /// No description provided for @authFieldOfStudyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Business Administration'**
+  String get authFieldOfStudyHint;
+
+  /// No description provided for @authFieldOfStudyRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Field of study is required'**
+  String get authFieldOfStudyRequired;
+
+  /// No description provided for @authStartDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Date'**
+  String get authStartDate;
+
+  /// No description provided for @authEndDate.
+  ///
+  /// In en, this message translates to:
+  /// **'End Date'**
+  String get authEndDate;
+
+  /// No description provided for @authDateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'dd/mm/yyyy'**
+  String get authDateHint;
+
+  /// No description provided for @authStartDateRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Start date is required'**
+  String get authStartDateRequired;
+
+  /// No description provided for @authEndDateRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'End date is required'**
+  String get authEndDateRequired;
+
+  /// No description provided for @authGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade'**
+  String get authGrade;
+
+  /// No description provided for @authSelectGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Select grade'**
+  String get authSelectGrade;
+
+  /// No description provided for @authGradeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade is required'**
+  String get authGradeRequired;
+
+  /// No description provided for @authEducationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get authEducationDescription;
+
+  /// No description provided for @authEducationDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Master Degree'**
+  String get authEducationDescriptionHint;
+
+  /// No description provided for @authAddWorkExperienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Work Experience'**
+  String get authAddWorkExperienceTitle;
+
+  /// No description provided for @authEditWorkExperienceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Work Experience'**
+  String get authEditWorkExperienceTitle;
+
+  /// No description provided for @authCompanyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Company Name'**
+  String get authCompanyName;
+
+  /// No description provided for @authCompanyNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Digify HR'**
+  String get authCompanyNameHint;
+
+  /// No description provided for @authCompanyNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Company name is required'**
+  String get authCompanyNameRequired;
+
+  /// No description provided for @authJobTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Job Title'**
+  String get authJobTitle;
+
+  /// No description provided for @authJobTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Business Applications Manager'**
+  String get authJobTitleHint;
+
+  /// No description provided for @authJobTitleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Job title is required'**
+  String get authJobTitleRequired;
+
+  /// No description provided for @authWorkLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get authWorkLocation;
+
+  /// No description provided for @authWorkLocationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Kuwait'**
+  String get authWorkLocationHint;
+
+  /// No description provided for @authWorkLocationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is required'**
+  String get authWorkLocationRequired;
+
+  /// No description provided for @authCurrentJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Job'**
+  String get authCurrentJob;
+
+  /// No description provided for @authSelectCurrentJob.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get authSelectCurrentJob;
+
+  /// No description provided for @authWorkDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get authWorkDescription;
+
+  /// No description provided for @authWorkDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Managing enterprise applications'**
+  String get authWorkDescriptionHint;
+
   /// No description provided for @register.
   ///
   /// In en, this message translates to:
@@ -403,6 +1063,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PM'**
   String get timePickerPm;
+
+  /// No description provided for @datePickerSelectYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Year'**
+  String get datePickerSelectYear;
+
+  /// No description provided for @datePickerSelectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get datePickerSelectDate;
 }
 
 class _AppLocalizationsDelegate
