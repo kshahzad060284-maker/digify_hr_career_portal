@@ -1,0 +1,18 @@
+{
+  "appTitle": "بوابة الوظائف",
+  "appTagline": "وظائف وشركات وفرص عمل",
+  "login": "تسجيل الدخول",
+  "welcome": "مرحبا",
+  "browseJobs": "تصفح الوظائف",
+  "navHome": "الرئيسية",
+  "navJobs": "الوظائف",
+  "navCompanies": "الشركات",
+  "navAbout": "حول",
+  "dashboardWelcomeTitle": "مرحباً بك في لوحة التحكم",
+  "dashboardWelcomeSubtitle": "نظرة عامة على نشاط بوابة الوظائف والوحدات.",
+  "footerTagline": "تخطيط واضح: رأس ومحتوى وتذييل للويب.",
+  "footerCopyright": "© 2026 بوابة الوظائف. جميع الحقوق محفوظة.",
+  "footerPrivacy": "الخصوصية",
+  "footerTerms": "الشروط",
+  "footerContact": "اتصل بنا"
+}
