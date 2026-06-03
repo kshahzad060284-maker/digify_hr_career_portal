@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'app_text_theme.dart';
 
-class AppTheme {
-  AppTheme._();
+class AppMobileTheme {
+  AppMobileTheme._();
 
   static ThemeData get lightTheme {
     return ThemeData(
@@ -78,19 +78,19 @@ class AppTheme {
       ),
       scrollbarTheme: ScrollbarThemeData(
         thumbVisibility: WidgetStateProperty.all(true),
-        thickness: WidgetStateProperty.all(5.0),
-        radius: const Radius.circular(10.0),
+        thickness: WidgetStateProperty.all(8.0),
+        radius: const Radius.circular(4.0),
         minThumbLength: 48.0,
         thumbColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.hovered)) {
-            return AppColors.primary.withValues(alpha: 0.4);
+            return AppColors.textSecondary.withValues(alpha: 0.8);
           }
-          return AppColors.primary.withValues(alpha: 0.2);
+          return AppColors.textSecondary.withValues(alpha: 0.5);
         }),
         trackColor: WidgetStateProperty.all(Colors.transparent),
         trackBorderColor: WidgetStateProperty.all(Colors.transparent),
-        crossAxisMargin: 2.0,
-        mainAxisMargin: 2.0,
+        crossAxisMargin: 4.0,
+        mainAxisMargin: 4.0,
         interactive: true,
       ),
     );
@@ -167,19 +167,19 @@ class AppTheme {
       ),
       scrollbarTheme: ScrollbarThemeData(
         thumbVisibility: WidgetStateProperty.all(true),
-        thickness: WidgetStateProperty.all(5.0),
-        radius: const Radius.circular(10.0),
+        thickness: WidgetStateProperty.all(8.0),
+        radius: const Radius.circular(4.0),
         minThumbLength: 48.0,
         thumbColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.hovered)) {
-            return AppColors.primary.withValues(alpha: 0.4);
+            return AppColors.textSecondaryDark.withValues(alpha: 0.8);
           }
-          return AppColors.primary.withValues(alpha: 0.2);
+          return AppColors.textSecondaryDark.withValues(alpha: 0.5);
         }),
         trackColor: WidgetStateProperty.all(Colors.transparent),
         trackBorderColor: WidgetStateProperty.all(Colors.transparent),
-        crossAxisMargin: 2.0,
-        mainAxisMargin: 2.0,
+        crossAxisMargin: 4.0,
+        mainAxisMargin: 4.0,
         interactive: true,
       ),
     );

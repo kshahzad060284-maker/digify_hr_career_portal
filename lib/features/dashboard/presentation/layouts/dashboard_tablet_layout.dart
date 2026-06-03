@@ -17,17 +17,13 @@ class DashboardTabletLayout extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: ResponsiveHelper.maxContentWidth(context),
             ),
-            child: Padding(
-              padding: ResponsiveHelper.pagePadding(context),
-              child: const Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                  DashboardHeader(),
-                  SizedBox(height: 8),
-                  Expanded(child: DashboardContent()),
-                  DashboardFooter(),
-                ],
-              ),
+                DashboardHeader(),
+                Expanded(child: DashboardContent()),
+                DashboardFooter(),
+              ],
             ),
           ),
         ),

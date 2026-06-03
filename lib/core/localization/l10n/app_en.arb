@@ -1,7 +1,9 @@
 {
   "appTitle": "Career Portal",
-  "appTagline": "Jobs, companies, and opportunities",
+  "appTagline": "Find your next opportunity",
   "login": "Login",
+  "signIn": "Sign In",
+  "register": "Register",
   "welcome": "Welcome",
   "browseJobs": "Browse jobs",
   "navHome": "Home",
@@ -10,9 +12,41 @@
   "navAbout": "About",
   "dashboardWelcomeTitle": "Welcome to your dashboard",
   "dashboardWelcomeSubtitle": "Overview of your career portal activity and modules.",
+  "dashboardJoinTeamTitle": "Join Our Team",
+  "dashboardJoinTeamSubtitle": "Discover your next career opportunity and be part of something amazing",
+  "dashboardJobSearchPlaceholder": "Search for jobs by title, department, or keyword...",
+  "dashboardFilterAllLocations": "All Locations",
+  "dashboardPositionsAvailable": "{count, plural, =1{1 position available} other{{count} positions available}}",
+  "@dashboardPositionsAvailable": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardJobOpenings": "{count, plural, =1{1 opening} other{{count} openings}}",
+  "@dashboardJobOpenings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardJobUrgentHiring": "Urgent Hiring",
+  "dashboardNoJobsFound": "No positions match your search or filters.",
   "footerTagline": "A clean header-content-footer layout for the web.",
   "footerCopyright": "© 2026 Career Portal. All rights reserved.",
   "footerPrivacy": "Privacy",
   "footerTerms": "Terms",
-  "footerContact": "Contact"
+  "footerContact": "Contact",
+  "timePickerTitle": "Set Time",
+  "timePickerSubtitle": "Tap the number to type",
+  "timePickerHourLabel": "HOUR",
+  "timePickerMinuteLabel": "MINUTE",
+  "timePickerPeriodLabel": "PERIOD",
+  "timePickerCancel": "Cancel",
+  "timePickerUpdate": "Update Time",
+  "timePickerSelectHint": "Select Time",
+  "timePickerAm": "AM",
+  "timePickerPm": "PM"
 }

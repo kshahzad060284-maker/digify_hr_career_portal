@@ -12,10 +12,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Career Portal';
 
   @override
-  String get appTagline => 'Jobs, companies, and opportunities';
+  String get appTagline => 'Find your next opportunity';
 
   @override
   String get login => 'Login';
+
+  @override
+  String get signIn => 'Sign In';
+
+  @override
+  String get register => 'Register';
 
   @override
   String get welcome => 'Welcome';
@@ -43,6 +49,49 @@ class AppLocalizationsEn extends AppLocalizations {
       'Overview of your career portal activity and modules.';
 
   @override
+  String get dashboardJoinTeamTitle => 'Join Our Team';
+
+  @override
+  String get dashboardJoinTeamSubtitle =>
+      'Discover your next career opportunity and be part of something amazing';
+
+  @override
+  String get dashboardJobSearchPlaceholder =>
+      'Search for jobs by title, department, or keyword...';
+
+  @override
+  String get dashboardFilterAllLocations => 'All Locations';
+
+  @override
+  String dashboardPositionsAvailable(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count positions available',
+      one: '1 position available',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dashboardJobOpenings(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count openings',
+      one: '1 opening',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dashboardJobUrgentHiring => 'Urgent Hiring';
+
+  @override
+  String get dashboardNoJobsFound =>
+      'No positions match your search or filters.';
+
+  @override
   String get footerTagline =>
       'A clean header-content-footer layout for the web.';
 
@@ -57,4 +106,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get footerContact => 'Contact';
+
+  @override
+  String get timePickerTitle => 'Set Time';
+
+  @override
+  String get timePickerSubtitle => 'Tap the number to type';
+
+  @override
+  String get timePickerHourLabel => 'HOUR';
+
+  @override
+  String get timePickerMinuteLabel => 'MINUTE';
+
+  @override
+  String get timePickerPeriodLabel => 'PERIOD';
+
+  @override
+  String get timePickerCancel => 'Cancel';
+
+  @override
+  String get timePickerUpdate => 'Update Time';
+
+  @override
+  String get timePickerSelectHint => 'Select Time';
+
+  @override
+  String get timePickerAm => 'AM';
+
+  @override
+  String get timePickerPm => 'PM';
 }

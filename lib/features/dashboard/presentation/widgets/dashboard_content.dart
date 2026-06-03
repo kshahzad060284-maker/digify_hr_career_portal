@@ -1,3 +1,5 @@
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_content_header.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/job_listing_content.dart';
 import 'package:flutter/material.dart';
 
 class DashboardContent extends StatelessWidget {
@@ -5,6 +7,12 @@ class DashboardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.shrink();
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        DashboardContentHeader(),
+        Expanded(child: JobListingContent()),
+      ],
+    );
   }
 }

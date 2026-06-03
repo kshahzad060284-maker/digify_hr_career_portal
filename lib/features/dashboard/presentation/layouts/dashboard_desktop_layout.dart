@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/services/responsive/responsive_helper.dart';
 import '../widgets/dashboard_content.dart';
 import '../widgets/dashboard_footer.dart';
@@ -17,17 +16,13 @@ class DashboardDesktopLayout extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: ResponsiveHelper.maxContentWidth(context),
             ),
-            child: Padding(
-              padding: ResponsiveHelper.pagePadding(context),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  DashboardHeader(),
-                  SizedBox(height: 8),
-                  Expanded(child: DashboardContent()),
-                  DashboardFooter(),
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                DashboardHeader(),
+                Expanded(child: DashboardContent()),
+                DashboardFooter(),
+              ],
             ),
           ),
         ),

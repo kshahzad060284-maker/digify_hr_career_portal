@@ -12,10 +12,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appTitle => 'بوابة الوظائف';
 
   @override
-  String get appTagline => 'وظائف وشركات وفرص عمل';
+  String get appTagline => 'اعثر على فرصتك القادمة';
 
   @override
   String get login => 'تسجيل الدخول';
+
+  @override
+  String get signIn => 'تسجيل الدخول';
+
+  @override
+  String get register => 'التسجيل';
 
   @override
   String get welcome => 'مرحبا';
@@ -43,6 +49,49 @@ class AppLocalizationsAr extends AppLocalizations {
       'نظرة عامة على نشاط بوابة الوظائف والوحدات.';
 
   @override
+  String get dashboardJoinTeamTitle => 'انضم إلى فريقنا';
+
+  @override
+  String get dashboardJoinTeamSubtitle =>
+      'اكتشف فرصتك المهنية القادمة وكن جزءاً من شيء رائع';
+
+  @override
+  String get dashboardJobSearchPlaceholder =>
+      'ابحث عن الوظائف حسب المسمى أو القسم أو الكلمة المفتاحية...';
+
+  @override
+  String get dashboardFilterAllLocations => 'جميع المواقع';
+
+  @override
+  String dashboardPositionsAvailable(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count وظائف متاحة',
+      one: 'وظيفة واحدة متاحة',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dashboardJobOpenings(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count شواغر',
+      one: 'شاغر واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dashboardJobUrgentHiring => 'توظيف عاجل';
+
+  @override
+  String get dashboardNoJobsFound =>
+      'لا توجد وظائف تطابق بحثك أو عوامل التصفية.';
+
+  @override
   String get footerTagline => 'تخطيط واضح: رأس ومحتوى وتذييل للويب.';
 
   @override
@@ -56,4 +105,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get footerContact => 'اتصل بنا';
+
+  @override
+  String get timePickerTitle => 'تعيين الوقت';
+
+  @override
+  String get timePickerSubtitle => 'اضغط على الرقم للكتابة';
+
+  @override
+  String get timePickerHourLabel => 'الساعة';
+
+  @override
+  String get timePickerMinuteLabel => 'الدقيقة';
+
+  @override
+  String get timePickerPeriodLabel => 'الفترة';
+
+  @override
+  String get timePickerCancel => 'إلغاء';
+
+  @override
+  String get timePickerUpdate => 'تحديث الوقت';
+
+  @override
+  String get timePickerSelectHint => 'اختر الوقت';
+
+  @override
+  String get timePickerAm => 'ص';
+
+  @override
+  String get timePickerPm => 'م';
 }

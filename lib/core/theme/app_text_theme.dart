@@ -7,12 +7,14 @@ import 'app_fonts.dart';
 class AppTextTheme {
   AppTextTheme._();
 
+  static const TextBaseline textBaseline = TextBaseline.alphabetic;
   static const double _defaultHeight = 1.2;
 
   static TextStyle _style({
     required double fontSize,
     required FontWeight fontWeight,
     required Color color,
+    double? height,
   }) {
     return TextStyle(
       inherit: false,
@@ -20,8 +22,9 @@ class AppTextTheme {
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,
-      height: _defaultHeight,
+      height: height ?? _defaultHeight,
       letterSpacing: 0,
+      textBaseline: textBaseline,
     );
   }
 

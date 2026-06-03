@@ -333,6 +333,27 @@ class AppButton extends StatelessWidget {
       ),
     );
 
+    if (type == AppButtonType.text) {
+      return Semantics(
+        button: true,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: isDisabled ? null : onPressed,
+            splashFactory: NoSplash.splashFactory,
+            highlightColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            child: SizedBox(
+              width: effectiveWidth,
+              height: effectiveHeight,
+              child: Center(child: child),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Material(
       color: Colors.transparent,
       child: InkWell(

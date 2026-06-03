@@ -18,8 +18,26 @@ extension AppBuildContextExtension on BuildContext {
       isDark ? AppColors.cardBackgroundDark : AppColors.cardBackground;
   Color get themeCardBorder =>
       isDark ? AppColors.cardBorderDark : AppColors.cardBorder;
+  Color get themeTextMuted =>
+      isDark ? AppColors.textMutedDark : AppColors.textMuted;
 
   ScreenLayout get layout => AppBreakpoints.fromContext(this);
+
+  T responsiveFine<T>({
+    required T mobile,
+    required T tabletSmall,
+    required T tabletMedium,
+    required T tabletLarge,
+    required T desktop,
+  }) {
+    return switch (layout) {
+      ScreenLayout.mobile => mobile,
+      ScreenLayout.tabletSmall => tabletSmall,
+      ScreenLayout.tabletMedium => tabletMedium,
+      ScreenLayout.tabletLarge => tabletLarge,
+      ScreenLayout.desktop => desktop,
+    };
+  }
 
   bool get isMobileLayout => layout.isMobile;
   bool get isTabletLayout => layout.isTablet;

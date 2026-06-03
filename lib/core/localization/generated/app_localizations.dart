@@ -107,7 +107,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTagline.
   ///
   /// In en, this message translates to:
-  /// **'Jobs, companies, and opportunities'**
+  /// **'Find your next opportunity'**
   String get appTagline;
 
   /// No description provided for @login.
@@ -115,6 +115,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
 
   /// No description provided for @welcome.
   ///
@@ -164,6 +176,54 @@ abstract class AppLocalizations {
   /// **'Overview of your career portal activity and modules.'**
   String get dashboardWelcomeSubtitle;
 
+  /// No description provided for @dashboardJoinTeamTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Our Team'**
+  String get dashboardJoinTeamTitle;
+
+  /// No description provided for @dashboardJoinTeamSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover your next career opportunity and be part of something amazing'**
+  String get dashboardJoinTeamSubtitle;
+
+  /// No description provided for @dashboardJobSearchPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for jobs by title, department, or keyword...'**
+  String get dashboardJobSearchPlaceholder;
+
+  /// No description provided for @dashboardFilterAllLocations.
+  ///
+  /// In en, this message translates to:
+  /// **'All Locations'**
+  String get dashboardFilterAllLocations;
+
+  /// No description provided for @dashboardPositionsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 position available} other{{count} positions available}}'**
+  String dashboardPositionsAvailable(int count);
+
+  /// No description provided for @dashboardJobOpenings.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 opening} other{{count} openings}}'**
+  String dashboardJobOpenings(int count);
+
+  /// No description provided for @dashboardJobUrgentHiring.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent Hiring'**
+  String get dashboardJobUrgentHiring;
+
+  /// No description provided for @dashboardNoJobsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No positions match your search or filters.'**
+  String get dashboardNoJobsFound;
+
   /// No description provided for @footerTagline.
   ///
   /// In en, this message translates to:
@@ -193,6 +253,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact'**
   String get footerContact;
+
+  /// No description provided for @timePickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Time'**
+  String get timePickerTitle;
+
+  /// No description provided for @timePickerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the number to type'**
+  String get timePickerSubtitle;
+
+  /// No description provided for @timePickerHourLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'HOUR'**
+  String get timePickerHourLabel;
+
+  /// No description provided for @timePickerMinuteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'MINUTE'**
+  String get timePickerMinuteLabel;
+
+  /// No description provided for @timePickerPeriodLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'PERIOD'**
+  String get timePickerPeriodLabel;
+
+  /// No description provided for @timePickerCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get timePickerCancel;
+
+  /// No description provided for @timePickerUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Time'**
+  String get timePickerUpdate;
+
+  /// No description provided for @timePickerSelectHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Time'**
+  String get timePickerSelectHint;
+
+  /// No description provided for @timePickerAm.
+  ///
+  /// In en, this message translates to:
+  /// **'AM'**
+  String get timePickerAm;
+
+  /// No description provided for @timePickerPm.
+  ///
+  /// In en, this message translates to:
+  /// **'PM'**
+  String get timePickerPm;
 }
 
 class _AppLocalizationsDelegate
