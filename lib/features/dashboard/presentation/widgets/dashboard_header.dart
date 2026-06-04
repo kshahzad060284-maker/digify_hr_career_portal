@@ -3,19 +3,22 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_user_profile_chip.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-class DashboardHeader extends StatelessWidget {
+class DashboardHeader extends ConsumerWidget {
   const DashboardHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       width: double.infinity,
       color: context.isMobileLayout
@@ -31,12 +34,15 @@ class DashboardHeader extends StatelessWidget {
   }
 }
 
-class DashboardDesktopHeader extends StatelessWidget {
+class DashboardDesktopHeader extends ConsumerWidget {
   const DashboardDesktopHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final authSession = ref.watch(authSessionProvider);
+    final session = authSession.session;
+    final isLoggedIn = authSession.isLoggedIn;
 
     return Row(
       children: [
@@ -69,28 +75,36 @@ class DashboardDesktopHeader extends StatelessWidget {
             ],
           ),
         ),
-        Gap(12.w),
-        AppButton.text(
-          label: l10n.signIn,
-          onPressed: () => context.go(AppRoutes.authLogin),
-        ),
-        Gap(12.w),
-        AppButton(
-          label: l10n.register,
-          type: AppButtonType.primary,
-          onPressed: () => context.go(AppRoutes.authSignUp),
-        ),
+        if (isLoggedIn && session != null) ...[
+          Gap(12.w),
+          DashboardUserProfileChip(session: session),
+        ] else ...[
+          Gap(12.w),
+          AppButton.text(
+            label: l10n.signIn,
+            onPressed: () => context.go(AppRoutes.authLogin),
+          ),
+          Gap(12.w),
+          AppButton(
+            label: l10n.register,
+            type: AppButtonType.primary,
+            onPressed: () => context.go(AppRoutes.authSignUp),
+          ),
+        ],
       ],
     );
   }
 }
 
-class DashboardMobileHeader extends StatelessWidget {
+class DashboardMobileHeader extends ConsumerWidget {
   const DashboardMobileHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final authSession = ref.watch(authSessionProvider);
+    final session = authSession.session;
+    final isLoggedIn = authSession.isLoggedIn;
 
     return Container(
       width: double.infinity,
@@ -102,7 +116,7 @@ class DashboardMobileHeader extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               width: 40.w,
@@ -137,7 +151,7 @@ class DashboardMobileHeader extends StatelessWidget {
                   Gap(4.h),
                   Text(
                     l10n.appTagline,
-                    maxLines: 2,
+                    maxLines: isLoggedIn ? 1 : 2,
                     overflow: TextOverflow.ellipsis,
                     style: context.textTheme.labelSmall?.copyWith(
                       color: context.themeTextSecondary,
@@ -146,12 +160,17 @@ class DashboardMobileHeader extends StatelessWidget {
                 ],
               ),
             ),
-            Gap(8.w),
-            AppButton.text(
-              label: l10n.signIn,
-              onPressed: () => context.go(AppRoutes.authLogin),
-              svgPath: Assets.icons.auth.login.path,
-            ),
+            if (isLoggedIn && session != null) ...[
+              Gap(8.w),
+              DashboardUserProfileChip(session: session, compact: true),
+            ] else ...[
+              Gap(8.w),
+              AppButton.text(
+                label: l10n.signIn,
+                onPressed: () => context.go(AppRoutes.authLogin),
+                svgPath: Assets.icons.auth.login.path,
+              ),
+            ],
           ],
         ),
       ),

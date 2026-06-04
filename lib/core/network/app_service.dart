@@ -88,6 +88,27 @@ class AppService {
     );
   }
 
+  Future<T> postMultipart<T>(
+    String path, {
+    required FormData data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    T Function(dynamic data)? parser,
+    CancelToken? cancelToken,
+  }) {
+    return _request<T>(
+      method: 'POST',
+      path: path,
+      data: data,
+      queryParameters: queryParameters,
+      options: (options ?? Options()).copyWith(
+        contentType: 'multipart/form-data',
+      ),
+      parser: parser,
+      cancelToken: cancelToken,
+    );
+  }
+
   Future<T> put<T>(
     String path, {
     dynamic data,

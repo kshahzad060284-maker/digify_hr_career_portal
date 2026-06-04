@@ -24,7 +24,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authBack => 'Back';
 
   @override
-  String get authWelcomeBack => 'Welcome Back';
+  String get authSignInTitle => 'Welcome Back';
 
   @override
   String get authSignInSubtitle => 'Sign in to your account';
@@ -124,6 +124,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authLocationHint => 'City, State';
 
   @override
+  String get authSource => 'Source';
+
+  @override
+  String get authSourceHint => 'e.g., CAREER_PORTAL';
+
+  @override
+  String get authNoticePeriod => 'Notice Period (Days)';
+
+  @override
+  String get authNoticePeriodHint => 'e.g., 30';
+
+  @override
   String get authWillingToRelocate => 'Willing to Relocate';
 
   @override
@@ -218,6 +230,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get authCreateAccountFailed =>
       'Could not create account. Please try again.';
+
+  @override
+  String get authCreateAccountSuccess =>
+      'Registration successful. Please sign in to continue.';
+
+  @override
+  String get authLoggedInLabel => 'Signed in';
+
+  @override
+  String get authSignInSuccess => 'Signed in successfully.';
+
+  @override
+  String authWelcomeBackUser(String name) {
+    return 'Welcome back, $name!';
+  }
 
   @override
   String get commonCancel => 'Cancel';

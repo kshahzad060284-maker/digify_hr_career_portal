@@ -1,7 +1,12 @@
 import 'package:career_portal/core/common/auth_enums.dart';
+import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
+import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/core/utils/phone_number_utils.dart';
+import 'package:career_portal/features/auth/domain/models/register_candidate_input.dart';
 import 'package:career_portal/features/auth/domain/models/register_education_entry.dart';
 import 'package:career_portal/features/auth/domain/models/register_work_experience_entry.dart';
+import 'package:career_portal/features/auth/presentation/providers/auth_di_provider.dart';
 import 'package:career_portal/features/auth/presentation/state/register_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,10 +16,12 @@ class RegisterController extends Notifier<RegisterState> {
   @override
   RegisterState build() => const RegisterState();
 
-  void _emitToast(RegisterToastType type) {
+  void _emitToast(RegisterToastType type, {String? failureMessage}) {
     state = state.copyWith(
       toastType: type,
       toastEventId: state.toastEventId + 1,
+      registerFailureMessage: failureMessage,
+      clearRegisterFailureMessage: failureMessage == null,
     );
   }
 
@@ -47,6 +54,12 @@ class RegisterController extends Notifier<RegisterState> {
 
   void onCurrentLocationChanged(String value) =>
       state = state.copyWith(currentLocation: value, clearToast: true);
+
+  void onSourceChanged(String value) =>
+      state = state.copyWith(source: value, clearToast: true);
+
+  void onNoticePeriodChanged(String value) =>
+      state = state.copyWith(noticePeriod: value, clearToast: true);
 
   void onWillingToRelocateChanged(RegisterRelocatePreference value) =>
       state = state.copyWith(willingToRelocate: value, clearToast: true);
@@ -163,19 +176,79 @@ class RegisterController extends Notifier<RegisterState> {
     return true;
   }
 
+  RegisterCandidateInput _buildInput() {
+    final email = state.email.trim();
+    final phone =
+        PhoneNumberUtils.fullPhoneNumber(
+          dialCode: state.phoneDialCode,
+          localNumber: state.phone,
+        ) ??
+        '';
+
+    return RegisterCandidateInput(
+      enterpriseId: AppConfig.defaultEnterpriseId,
+      firstName: state.firstName.trim(),
+      lastName: state.lastName.trim(),
+      middleName: state.middleName.trim(),
+      email: email,
+      password: state.password,
+      phone: phone,
+      currentTitle: state.currentTitle.trim(),
+      currentEmployer: state.currentCompany.trim(),
+      yearsExperience: int.tryParse(state.totalExperience.trim()) ?? 0,
+      currentLocation: state.currentLocation.trim(),
+      source: state.source.trim(),
+      expectedSalary: _normalizeSalary(state.expectedSalary),
+      salaryCurrency: AppConfig.defaultSalaryCurrency,
+      noticePeriod: int.tryParse(state.noticePeriod.trim()) ?? 0,
+      linkedInProfile: state.linkedIn.trim(),
+      educationEntries: state.educationEntries,
+      workExperienceEntries: state.workExperienceEntries,
+      githubLink: state.github.trim(),
+      portfolioLink: state.portfolio.trim(),
+      willingToRelocate:
+          state.willingToRelocate == RegisterRelocatePreference.yes,
+      createdBy: email,
+    );
+  }
+
+  String _normalizeSalary(String value) {
+    return value.replaceAll(RegExp(r'[^0-9.]'), '').trim();
+  }
+
   Future<void> createAccount() async {
     if (state.isLoading) return;
     if (!validateForm()) return;
 
-    state = state.copyWith(isLoading: true, clearToast: true);
+    state = state.copyWith(
+      isLoading: true,
+      clearToast: true,
+      clearRegisterFailureMessage: true,
+      clearRegisterSuccessMessage: true,
+    );
+
     try {
-      await Future<void>.delayed(const Duration(milliseconds: 500));
+      final input = _buildInput();
+      final result = await ref
+          .read(registerCandidateUseCaseProvider)
+          .call(input);
+
+      state = state.copyWith(
+        isLoading: false,
+        clearForm: true,
+        registerSuccessEventId: state.registerSuccessEventId + 1,
+        registerSuccessMessage: result.message,
+      );
+    } on AppException catch (error) {
+      state = state.copyWith(isLoading: false);
+      _emitToast(
+        RegisterToastType.createAccountFailed,
+        failureMessage: error.message,
+      );
     } catch (_) {
       state = state.copyWith(isLoading: false);
       _emitToast(RegisterToastType.createAccountFailed);
-      return;
     }
-    state = state.copyWith(isLoading: false);
   }
 
   void reset() => state = const RegisterState();

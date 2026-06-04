@@ -26,6 +26,11 @@ abstract final class AppConfig {
   static const Duration sendTimeout = Duration(seconds: 20);
   static const Map<String, dynamic> defaultHeaders = <String, dynamic>{};
 
+  // Tenant / API defaults
+  static const int defaultEnterpriseId = 1;
+  static const String defaultRegistrationSource = 'CAREER_PORTAL';
+  static const String defaultSalaryCurrency = 'KWD';
+
   // Secrets and keys
   // Keep these in --dart-define values or a secure runtime source.
   static const String apiKey = String.fromEnvironment('API_KEY');

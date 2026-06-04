@@ -4,7 +4,7 @@
   "login": "Login",
   "signIn": "Sign In",
   "authBack": "Back",
-  "authWelcomeBack": "Welcome Back",
+  "authSignInTitle": "Welcome Back",
   "authSignInSubtitle": "Sign in to your account",
   "authEmailAddress": "Email Address",
   "authPassword": "Password",
@@ -37,6 +37,10 @@
   "authTotalExperienceHint": "e.g., 5",
   "authCurrentLocation": "Current Location",
   "authLocationHint": "City, State",
+  "authSource": "Source",
+  "authSourceHint": "e.g., CAREER_PORTAL",
+  "authNoticePeriod": "Notice Period (Days)",
+  "authNoticePeriodHint": "e.g., 30",
   "authWillingToRelocate": "Willing to Relocate",
   "authYes": "Yes",
   "authNo": "No",
@@ -68,6 +72,17 @@
   "authConfirmPasswordRequired": "Please confirm your password",
   "authPasswordsMismatch": "Passwords do not match",
   "authCreateAccountFailed": "Could not create account. Please try again.",
+  "authCreateAccountSuccess": "Registration successful. Please sign in to continue.",
+  "authLoggedInLabel": "Signed in",
+  "authSignInSuccess": "Signed in successfully.",
+  "authWelcomeBackUser": "Welcome back, {name}!",
+  "@authWelcomeBackUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "commonCancel": "Cancel",
   "commonConfirm": "Confirm",
   "commonDelete": "Delete",

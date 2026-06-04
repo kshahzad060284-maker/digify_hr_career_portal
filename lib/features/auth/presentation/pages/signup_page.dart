@@ -1,3 +1,4 @@
+import 'package:career_portal/core/common/auth_enums.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/router/app_routes.dart';
@@ -18,12 +19,23 @@ class SignUpPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
 
     ref.listen(registerControllerProvider, (previous, next) {
+      if (next.registerSuccessEventId !=
+          (previous?.registerSuccessEventId ?? 0)) {
+        ToastService.success(context, l10n.authCreateAccountSuccess);
+        context.go(AppRoutes.authLogin);
+        return;
+      }
+
       if (next.toastEventId == (previous?.toastEventId ?? 0) ||
           next.toastType == null) {
         return;
       }
       final controller = ref.read(registerControllerProvider.notifier);
-      final message = controller.toastMessage(l10n, next.toastType!);
+      final message = switch (next.toastType!) {
+        RegisterToastType.createAccountFailed =>
+          next.registerFailureMessage ?? l10n.authCreateAccountFailed,
+        _ => controller.toastMessage(l10n, next.toastType!),
+      };
       if (controller.isInfoToast(next.toastType!)) {
         ToastService.info(context, message);
       } else {

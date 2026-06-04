@@ -69,6 +69,27 @@ class RegisterFormProfessionalInfoSection extends ConsumerWidget {
           onChanged: controller.onCurrentLocationChanged,
         ),
         Gap(16.h),
+        RegisterResponsiveRow(
+          children: [
+            RegisterAuthField(
+              label: l10n.authSource,
+              initialValue: state.source,
+              hintText: l10n.authSourceHint,
+              isDark: isDark,
+              onChanged: controller.onSourceChanged,
+            ),
+            RegisterAuthField(
+              label: l10n.authNoticePeriod,
+              initialValue: state.noticePeriod,
+              hintText: l10n.authNoticePeriodHint,
+              isDark: isDark,
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              onChanged: controller.onNoticePeriodChanged,
+            ),
+          ],
+        ),
+        Gap(16.h),
         Text(
           l10n.authWillingToRelocate,
           style: context.textTheme.bodyMedium?.copyWith(
