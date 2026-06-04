@@ -38,7 +38,7 @@
   "authCurrentLocation": "Current Location",
   "authLocationHint": "City, State",
   "authSource": "Source",
-  "authSourceHint": "e.g., CAREER_PORTAL",
+  "authSourceHint": "e.g., CAREER_SITE",
   "authNoticePeriod": "Notice Period (Days)",
   "authNoticePeriodHint": "e.g., 30",
   "authWillingToRelocate": "Willing to Relocate",
@@ -201,6 +201,26 @@
   "dashboardJobDetailLoadFailed": "Could not load job details. Please try again.",
   "dashboardJobDetailBack": "Back to all jobs",
   "dashboardJobDetailSignInToApply": "Sign in to Apply",
+  "dashboardJobDetailApply": "Apply",
+  "dashboardJobApplyDialogTitle": "Apply for Job",
+  "dashboardJobApplyDialogSubtitle": "{jobTitle}",
+  "@dashboardJobApplyDialogSubtitle": {
+    "placeholders": {
+      "jobTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardJobApplyResume": "Resume",
+  "dashboardJobApplyResumeHint": "Upload PDF, DOC, or DOCX",
+  "dashboardJobApplyChooseFile": "Choose file",
+  "dashboardJobApplySourceRequired": "Please enter a source",
+  "dashboardJobApplyResumeRequired": "Please upload your resume",
+  "dashboardJobApplySubmit": "Submit application",
+  "dashboardJobApplySuccess": "Your application has been submitted.",
+  "dashboardJobApplyFailed": "Could not submit your application. Please try again.",
+  "dashboardJobApplySessionRequired": "Please sign in again to apply for this job.",
+  "dashboardJobApplyResumeInvalid": "Could not read the selected resume file.",
   "dashboardJobDetailSidebarTitle": "Job Details",
   "dashboardJobDetailSalaryRange": "Salary Range",
   "dashboardJobDetailOpeningsLabel": "Openings",

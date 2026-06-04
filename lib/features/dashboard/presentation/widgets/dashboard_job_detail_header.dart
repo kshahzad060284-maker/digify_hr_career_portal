@@ -16,13 +16,15 @@ class DashboardJobDetailHeader extends StatelessWidget {
     required this.job,
     required this.fallbackTitle,
     required this.onBack,
-    this.onSignInToApply,
+    required this.applyButtonLabel,
+    this.onApplyPressed,
   });
 
   final DashboardJob? job;
   final String fallbackTitle;
   final VoidCallback onBack;
-  final VoidCallback? onSignInToApply;
+  final String applyButtonLabel;
+  final VoidCallback? onApplyPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +71,7 @@ class DashboardJobDetailHeader extends StatelessWidget {
       children: [
         Expanded(child: _buildTitleAndMeta(context, titleColor, metaColor)),
         Gap(24.w),
-        AppButton.primary(
-          label: l10n.dashboardJobDetailSignInToApply,
-          onPressed: onSignInToApply,
-        ),
+        AppButton.primary(label: applyButtonLabel, onPressed: onApplyPressed),
       ],
     );
   }
@@ -88,10 +87,7 @@ class DashboardJobDetailHeader extends StatelessWidget {
       spacing: 16.h,
       children: [
         _buildTitleAndMeta(context, titleColor, metaColor),
-        AppButton.primary(
-          label: l10n.dashboardJobDetailSignInToApply,
-          onPressed: onSignInToApply,
-        ),
+        AppButton.primary(label: applyButtonLabel, onPressed: onApplyPressed),
       ],
     );
   }

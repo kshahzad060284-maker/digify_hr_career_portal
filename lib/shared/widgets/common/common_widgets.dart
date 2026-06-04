@@ -10,6 +10,7 @@ export 'app_checkbox.dart';
 export 'app_radio_option.dart';
 export 'app_confirmation_dialog.dart';
 export 'app_dialog.dart';
+export 'app_file_upload_field.dart';
 export 'app_divider.dart';
 export 'app_form_optional_section.dart';
 export 'app_loading_indicator.dart';

@@ -29,6 +29,8 @@ abstract final class AppConfig {
   // Tenant / API defaults
   static const int defaultEnterpriseId = 1;
   static const String defaultRegistrationSource = 'CAREER_PORTAL';
+  static const String defaultJobApplySourceCode = 'CAREER_SITE';
+  static const String defaultJobApplyCreatedBy = 'CANDIDATE';
   static const String defaultSalaryCurrency = 'KWD';
 
   // Secrets and keys

@@ -1,10 +1,14 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
+import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
+import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_detail_provider.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_apply_job_dialog.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_body.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_header.dart';
 import 'package:career_portal/shared/widgets/common/common_widgets.dart';
@@ -36,9 +40,19 @@ class _DashboardJobDetailPageState
     ref.invalidate(dashboardJobDetailControllerProvider(widget.jobId));
   }
 
+  void _onSignInToApply() => context.go(AppRoutes.authLogin);
+
+  Future<void> _onApply(DashboardJob job) {
+    return DashboardApplyJobDialog.show(context, job: job);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final isLoggedIn = ref.watch(isLoggedInProvider);
+    final applyButtonLabel = isLoggedIn
+        ? l10n.dashboardJobDetailApply
+        : l10n.dashboardJobDetailSignInToApply;
     final detailAsync = ref.watch(
       dashboardJobDetailControllerProvider(widget.jobId),
     );
@@ -93,7 +107,10 @@ class _DashboardJobDetailPageState
                 job: detailState.job,
                 fallbackTitle: l10n.dashboardJobDetailTitle(widget.jobId),
                 onBack: () => context.pop(),
-                onSignInToApply: () {},
+                applyButtonLabel: applyButtonLabel,
+                onApplyPressed: isLoggedIn
+                    ? () => _onApply(detailState.job)
+                    : _onSignInToApply,
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -104,7 +121,10 @@ class _DashboardJobDetailPageState
                 ),
                 child: DashboardJobDetailBody(
                   job: detailState.job,
-                  onSignInToApply: () {},
+                  applyButtonLabel: applyButtonLabel,
+                  onApplyPressed: isLoggedIn
+                      ? () => _onApply(detailState.job)
+                      : _onSignInToApply,
                 ),
               ),
             ],
