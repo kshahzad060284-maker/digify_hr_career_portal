@@ -7,7 +7,7 @@ import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_detail_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_body.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_header.dart';
-import 'package:career_portal/shared/widgets/common/app_loading_indicator.dart';
+import 'package:career_portal/shared/widgets/common/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,7 +64,7 @@ class _DashboardJobDetailPageState
     return ColoredBox(
       color: sectionBg,
       child: detailAsync.when(
-        loading: () => const Center(child: AppLoadingIndicator()),
+        loading: () => AppPageLoading(message: 'Loading job details...'),
         error: (error, _) => SingleChildScrollView(
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(

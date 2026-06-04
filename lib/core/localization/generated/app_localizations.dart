@@ -128,11 +128,11 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get authBack;
 
-  /// No description provided for @authWelcomeBack.
+  /// No description provided for @authSignInTitle.
   ///
   /// In en, this message translates to:
   /// **'Welcome Back'**
-  String get authWelcomeBack;
+  String get authSignInTitle;
 
   /// No description provided for @authSignInSubtitle.
   ///
@@ -326,6 +326,30 @@ abstract class AppLocalizations {
   /// **'City, State'**
   String get authLocationHint;
 
+  /// No description provided for @authSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get authSource;
+
+  /// No description provided for @authSourceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., CAREER_PORTAL'**
+  String get authSourceHint;
+
+  /// No description provided for @authNoticePeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Notice Period (Days)'**
+  String get authNoticePeriod;
+
+  /// No description provided for @authNoticePeriodHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., 30'**
+  String get authNoticePeriodHint;
+
   /// No description provided for @authWillingToRelocate.
   ///
   /// In en, this message translates to:
@@ -511,6 +535,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not create account. Please try again.'**
   String get authCreateAccountFailed;
+
+  /// No description provided for @authCreateAccountSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration successful. Please sign in to continue.'**
+  String get authCreateAccountSuccess;
+
+  /// No description provided for @authLoggedInLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in'**
+  String get authLoggedInLabel;
+
+  /// No description provided for @authSignInSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in successfully.'**
+  String get authSignInSuccess;
+
+  /// No description provided for @authWelcomeBackUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back, {name}!'**
+  String authWelcomeBackUser(String name);
 
   /// No description provided for @commonCancel.
   ///

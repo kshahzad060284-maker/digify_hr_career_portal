@@ -4,7 +4,7 @@
   "login": "تسجيل الدخول",
   "signIn": "تسجيل الدخول",
   "authBack": "رجوع",
-  "authWelcomeBack": "مرحباً بعودتك",
+  "authSignInTitle": "مرحباً بعودتك",
   "authSignInSubtitle": "سجّل الدخول إلى حسابك",
   "authEmailAddress": "البريد الإلكتروني",
   "authPassword": "كلمة المرور",
@@ -37,6 +37,10 @@
   "authTotalExperienceHint": "مثال: 5",
   "authCurrentLocation": "الموقع الحالي",
   "authLocationHint": "المدينة، المنطقة",
+  "authSource": "المصدر",
+  "authSourceHint": "مثال: CAREER_PORTAL",
+  "authNoticePeriod": "فترة الإشعار (بالأيام)",
+  "authNoticePeriodHint": "مثال: 30",
   "authWillingToRelocate": "الاستعداد للانتقال",
   "authYes": "نعم",
   "authNo": "لا",
@@ -68,6 +72,17 @@
   "authConfirmPasswordRequired": "يرجى تأكيد كلمة المرور",
   "authPasswordsMismatch": "كلمتا المرور غير متطابقتين",
   "authCreateAccountFailed": "تعذر إنشاء الحساب. يرجى المحاولة مرة أخرى.",
+  "authCreateAccountSuccess": "تم التسجيل بنجاح. يرجى تسجيل الدخول للمتابعة.",
+  "authLoggedInLabel": "تم تسجيل الدخول",
+  "authSignInSuccess": "تم تسجيل الدخول بنجاح.",
+  "authWelcomeBackUser": "مرحباً بعودتك، {name}!",
+  "@authWelcomeBackUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "commonCancel": "إلغاء",
   "commonConfirm": "تأكيد",
   "commonDelete": "حذف",

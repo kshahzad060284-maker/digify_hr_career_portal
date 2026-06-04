@@ -24,7 +24,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authBack => 'رجوع';
 
   @override
-  String get authWelcomeBack => 'مرحباً بعودتك';
+  String get authSignInTitle => 'مرحباً بعودتك';
 
   @override
   String get authSignInSubtitle => 'سجّل الدخول إلى حسابك';
@@ -123,6 +123,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authLocationHint => 'المدينة، المنطقة';
 
   @override
+  String get authSource => 'المصدر';
+
+  @override
+  String get authSourceHint => 'مثال: CAREER_PORTAL';
+
+  @override
+  String get authNoticePeriod => 'فترة الإشعار (بالأيام)';
+
+  @override
+  String get authNoticePeriodHint => 'مثال: 30';
+
+  @override
   String get authWillingToRelocate => 'الاستعداد للانتقال';
 
   @override
@@ -217,6 +229,21 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get authCreateAccountFailed =>
       'تعذر إنشاء الحساب. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get authCreateAccountSuccess =>
+      'تم التسجيل بنجاح. يرجى تسجيل الدخول للمتابعة.';
+
+  @override
+  String get authLoggedInLabel => 'تم تسجيل الدخول';
+
+  @override
+  String get authSignInSuccess => 'تم تسجيل الدخول بنجاح.';
+
+  @override
+  String authWelcomeBackUser(String name) {
+    return 'مرحباً بعودتك، $name!';
+  }
 
   @override
   String get commonCancel => 'إلغاء';

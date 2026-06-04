@@ -25,7 +25,7 @@ class LoginFormHeaderSection extends StatelessWidget {
         ),
         Gap(8.h),
         Text(
-          l10n.authWelcomeBack,
+          l10n.authSignInTitle,
           textAlign: TextAlign.center,
           style: context.textTheme.titleSmall?.copyWith(
             fontSize: 20.sp,

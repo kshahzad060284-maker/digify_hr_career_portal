@@ -1,4 +1,8 @@
 import 'package:career_portal/core/common/auth_enums.dart';
+import 'package:career_portal/core/config/app_config.dart';
+import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/features/auth/presentation/providers/auth_di_provider.dart';
+import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
 import 'package:career_portal/features/auth/presentation/state/login_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,10 +20,12 @@ class LoginController extends Notifier<LoginState> {
     state = state.copyWith(password: value, clearToast: true);
   }
 
-  void _emitToast(LoginToastType type) {
+  void _emitToast(LoginToastType type, {String? failureMessage}) {
     state = state.copyWith(
       toastType: type,
       toastEventId: state.toastEventId + 1,
+      signInFailureMessage: failureMessage,
+      clearSignInFailureMessage: failureMessage == null,
     );
   }
 
@@ -61,13 +67,26 @@ class LoginController extends Notifier<LoginState> {
 
     state = state.copyWith(isLoading: true, clearToast: true);
     try {
-      await Future<void>.delayed(const Duration(milliseconds: 400));
+      final session = await ref
+          .read(loginUseCaseProvider)
+          .call(
+            enterpriseId: AppConfig.defaultEnterpriseId,
+            email: state.email.trim(),
+            password: state.password,
+          );
+      ref.read(authSessionProvider.notifier).setSession(session);
+      state = state.copyWith(
+        isLoading: false,
+        clearCredentials: true,
+        signInSuccessEventId: state.signInSuccessEventId + 1,
+      );
+    } on AppException catch (error) {
+      state = state.copyWith(isLoading: false);
+      _emitToast(LoginToastType.signInFailed, failureMessage: error.message);
     } catch (_) {
       state = state.copyWith(isLoading: false);
       _emitToast(LoginToastType.signInFailed);
-      return;
     }
-    state = state.copyWith(isLoading: false);
   }
 
   void reset() {

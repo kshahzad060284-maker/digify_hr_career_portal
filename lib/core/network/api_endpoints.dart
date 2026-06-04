@@ -18,6 +18,14 @@ abstract final class RecEndpoints {
       '${ApiEndpoints.basePath}/rec/job-postings/$postingGuid';
 }
 
+abstract final class CandidateAuthEndpoints {
+  CandidateAuthEndpoints._();
+
+  static String login() => '${ApiEndpoints.basePath}/candidate/login';
+
+  static String register() => '${ApiEndpoints.basePath}/candidate/register';
+}
+
 abstract final class AuthEndpoints {
   AuthEndpoints._();
 
