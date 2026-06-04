@@ -1,7 +1,134 @@
 {
   "appTitle": "Career Portal",
-  "appTagline": "Jobs, companies, and opportunities",
+  "appTagline": "Find your next opportunity",
   "login": "Login",
+  "signIn": "Sign In",
+  "authBack": "Back",
+  "authSignInTitle": "Welcome Back",
+  "authSignInSubtitle": "Sign in to your account",
+  "authEmailAddress": "Email Address",
+  "authPassword": "Password",
+  "authEmailHint": "you@company.com",
+  "authPasswordHint": "Enter your password",
+  "authEmailRequired": "Please enter your email address",
+  "authEmailInvalid": "Please enter a valid email address",
+  "authPasswordRequired": "Please enter your password",
+  "authNoAccountPrompt": "Don't have an account? ",
+  "authRegisterNow": "Register now",
+  "authRegisterComingSoon": "Registration is coming soon",
+  "authSignInFailed": "Sign in failed. Please try again.",
+  "authCreateAccountTitle": "Create Your Account",
+  "authCreateAccountSubtitle": "Join us and start your career journey",
+  "authFirstName": "First Name",
+  "authMiddleName": "Middle Name",
+  "authLastName": "Last Name",
+  "authFirstNameHint": "Enter your first name",
+  "authMiddleNameHint": "Optional",
+  "authLastNameHint": "Enter your last name",
+  "authPhoneNumber": "Phone Number",
+  "authPhoneHint": "5XX XXX XXXX",
+  "phoneCountrySearchHint": "Search country...",
+  "authProfessionalInformation": "Professional Information",
+  "authCurrentCompany": "Current Company",
+  "authCurrentCompanyHint": "Company name",
+  "authCurrentTitle": "Current Title",
+  "authCurrentTitleHint": "e.g., Software Engineer",
+  "authTotalExperience": "Total Experience (Years)",
+  "authTotalExperienceHint": "e.g., 5",
+  "authCurrentLocation": "Current Location",
+  "authLocationHint": "City, State",
+  "authSource": "Source",
+  "authSourceHint": "e.g., CAREER_SITE",
+  "authNoticePeriod": "Notice Period (Days)",
+  "authNoticePeriodHint": "e.g., 30",
+  "authWillingToRelocate": "Willing to Relocate",
+  "authYes": "Yes",
+  "authNo": "No",
+  "authCurrentSalaryOptional": "Current Salary (Optional)",
+  "authExpectedSalaryOptional": "Expected Salary (Optional)",
+  "authSalaryExampleHint": "e.g., $80,000",
+  "authExpectedSalaryExampleHint": "e.g., $100,000",
+  "authSocialLinksSection": "Social & Professional Links",
+  "authLinkedInProfile": "LinkedIn Profile",
+  "authLinkedInHint": "https://linkedin.com/in/yourprofile",
+  "authGitHubProfile": "GitHub Profile",
+  "authGitHubHint": "https://github.com/yourusername",
+  "authPortfolioWebsite": "Portfolio/Website",
+  "authPortfolioHint": "https://yourportfolio.com",
+  "authEducationOptional": "Education (Optional)",
+  "authAddEducation": "Add Education",
+  "authEducationEmpty": "No education added yet. Click \"Add Education\" to include your academic background.",
+  "authWorkExperienceOptional": "Work Experience (Optional)",
+  "authAddExperience": "Add Experience",
+  "authWorkExperienceEmpty": "No work experience added yet. Click \"Add Experience\" to include your professional background.",
+  "authSecurity": "Security",
+  "authConfirmPassword": "Confirm Password",
+  "authConfirmPasswordHint": "Re-enter your password",
+  "authCreateAccount": "Create Account",
+  "authAlreadyHaveAccountPrompt": "Already have an account? ",
+  "authFirstNameRequired": "Please enter your first name",
+  "authLastNameRequired": "Please enter your last name",
+  "authPhoneRequired": "Please enter your phone number",
+  "authConfirmPasswordRequired": "Please confirm your password",
+  "authPasswordsMismatch": "Passwords do not match",
+  "authCreateAccountFailed": "Could not create account. Please try again.",
+  "authCreateAccountSuccess": "Registration successful. Please sign in to continue.",
+  "authLoggedInLabel": "Signed in",
+  "authSignInSuccess": "Signed in successfully.",
+  "authWelcomeBackUser": "Welcome back, {name}!",
+  "@authWelcomeBackUser": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "commonCancel": "Cancel",
+  "commonConfirm": "Confirm",
+  "commonDelete": "Delete",
+  "commonSaveChanges": "Save Changes",
+  "authRemoveEducationTitle": "Remove education?",
+  "authRemoveEducationMessage": "Are you sure you want to remove this education entry? This action cannot be undone.",
+  "authRemoveWorkExperienceTitle": "Remove work experience?",
+  "authRemoveWorkExperienceMessage": "Are you sure you want to remove this work experience entry? This action cannot be undone.",
+  "authPresent": "Present",
+  "authAddEducationTitle": "Add Education",
+  "authEditEducationTitle": "Edit Education",
+  "authDegreeName": "Degree Name",
+  "authDegreeNameHint": "e.g. MBA",
+  "authDegreeNameRequired": "Degree name is required",
+  "authInstitutionName": "Institution Name",
+  "authInstitutionNameHint": "e.g. Hult International Business School",
+  "authInstitutionNameRequired": "Institution name is required",
+  "authFieldOfStudy": "Field of Study",
+  "authFieldOfStudyHint": "e.g. Business Administration",
+  "authFieldOfStudyRequired": "Field of study is required",
+  "authStartDate": "Start Date",
+  "authEndDate": "End Date",
+  "authDateHint": "dd/mm/yyyy",
+  "authStartDateRequired": "Start date is required",
+  "authEndDateRequired": "End date is required",
+  "authGrade": "Grade",
+  "authSelectGrade": "Select grade",
+  "authGradeRequired": "Grade is required",
+  "authEducationDescription": "Description",
+  "authEducationDescriptionHint": "e.g. Master Degree",
+  "authAddWorkExperienceTitle": "Add Work Experience",
+  "authEditWorkExperienceTitle": "Edit Work Experience",
+  "authCompanyName": "Company Name",
+  "authCompanyNameHint": "e.g. Digify HR",
+  "authCompanyNameRequired": "Company name is required",
+  "authJobTitle": "Job Title",
+  "authJobTitleHint": "e.g. Business Applications Manager",
+  "authJobTitleRequired": "Job title is required",
+  "authWorkLocation": "Location",
+  "authWorkLocationHint": "e.g. Kuwait",
+  "authWorkLocationRequired": "Location is required",
+  "authCurrentJob": "Current Job",
+  "authSelectCurrentJob": "Select",
+  "authWorkDescription": "Description",
+  "authWorkDescriptionHint": "e.g. Managing enterprise applications",
+  "register": "Register",
   "welcome": "Welcome",
   "browseJobs": "Browse jobs",
   "navHome": "Home",
@@ -10,9 +137,120 @@
   "navAbout": "About",
   "dashboardWelcomeTitle": "Welcome to your dashboard",
   "dashboardWelcomeSubtitle": "Overview of your career portal activity and modules.",
+  "dashboardJoinTeamTitle": "Join Our Team",
+  "dashboardJoinTeamSubtitle": "Discover your next career opportunity and be part of something amazing",
+  "dashboardJobSearchPlaceholder": "Search for jobs by title, department, or keyword...",
+  "dashboardFilterAllLocations": "All Locations",
+  "dashboardPositionsAvailable": "{count, plural, =1{1 position available} other{{count} positions available}}",
+  "@dashboardPositionsAvailable": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardJobOpenings": "{count, plural, =1{1 opening} other{{count} openings}}",
+  "@dashboardJobOpenings": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardJobUrgentHiring": "Urgent Hiring",
+  "dashboardNoJobsFound": "No positions match your search or filters.",
+  "dashboardJobsLoadFailed": "Could not load job postings. Please try again.",
+  "commonRetry": "Retry",
+  "paginationShowingRange": "Showing {start} - {end} of {total} items",
+  "@paginationShowingRange": {
+    "placeholders": {
+      "start": {
+        "type": "int"
+      },
+      "end": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "paginationPageOf": "Page {current} of {total}",
+  "@paginationPageOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardJobDetailTitle": "Job #{jobId}",
+  "@dashboardJobDetailTitle": {
+    "placeholders": {
+      "jobId": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardJobDetailAboutRole": "About the Role",
+  "dashboardJobDetailResponsibilities": "Responsibilities",
+  "dashboardJobDetailQualifications": "Qualifications",
+  "dashboardJobDetailNotFound": "This job could not be found.",
+  "dashboardJobDetailLoadFailed": "Could not load job details. Please try again.",
+  "dashboardJobDetailBack": "Back to all jobs",
+  "dashboardJobDetailSignInToApply": "Sign in to Apply",
+  "dashboardJobDetailApply": "Apply",
+  "dashboardJobApplyDialogTitle": "Apply for Job",
+  "dashboardJobApplyDialogSubtitle": "{jobTitle}",
+  "@dashboardJobApplyDialogSubtitle": {
+    "placeholders": {
+      "jobTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardJobApplyResume": "Resume",
+  "dashboardJobApplyResumeHint": "Upload PDF, DOC, or DOCX",
+  "dashboardJobApplyChooseFile": "Choose file",
+  "dashboardJobApplySourceRequired": "Please enter a source",
+  "dashboardJobApplyResumeRequired": "Please upload your resume",
+  "dashboardJobApplySubmit": "Submit application",
+  "dashboardJobApplySuccess": "Your application has been submitted.",
+  "dashboardJobApplyFailed": "Could not submit your application. Please try again.",
+  "dashboardJobApplySessionRequired": "Please sign in again to apply for this job.",
+  "dashboardJobApplyResumeInvalid": "Could not read the selected resume file.",
+  "dashboardJobDetailSidebarTitle": "Job Details",
+  "dashboardJobDetailSalaryRange": "Salary Range",
+  "dashboardJobDetailOpeningsLabel": "Openings",
+  "dashboardJobDetailPositionsCount": "{count, plural, =1{1 position} other{{count} positions}}",
+  "@dashboardJobDetailPositionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashboardJobDetailStartDate": "Start Date",
+  "dashboardJobDetailLevel": "Level",
+  "dashboardJobDetailQuestionsTitle": "Questions?",
+  "dashboardJobDetailQuestionsBody": "Our recruitment team is here to help. Feel free to reach out with any questions about this role.",
   "footerTagline": "A clean header-content-footer layout for the web.",
   "footerCopyright": "© 2026 Career Portal. All rights reserved.",
   "footerPrivacy": "Privacy",
   "footerTerms": "Terms",
-  "footerContact": "Contact"
+  "footerContact": "Contact",
+  "timePickerTitle": "Set Time",
+  "timePickerSubtitle": "Tap the number to type",
+  "timePickerHourLabel": "HOUR",
+  "timePickerMinuteLabel": "MINUTE",
+  "timePickerPeriodLabel": "PERIOD",
+  "timePickerCancel": "Cancel",
+  "timePickerUpdate": "Update Time",
+  "timePickerSelectHint": "Select Time",
+  "timePickerAm": "AM",
+  "timePickerPm": "PM",
+  "datePickerSelectYear": "Select Year",
+  "datePickerSelectDate": "Select Date"
 }

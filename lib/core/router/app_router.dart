@@ -4,7 +4,11 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 import '../extensions/app_extensions.dart';
-import '../../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/signup_page.dart';
+import '../../features/dashboard/presentation/pages/dashbaord_page.dart';
+import '../../features/dashboard/presentation/pages/dashboard_job_detail_page.dart';
+import '../../features/dashboard/presentation/widgets/dashboard_content.dart';
 import '../../features/jobs/job_details_page.dart';
 import '../../features/jobs/jobs_page.dart';
 import 'app_routes.dart';
@@ -21,10 +25,50 @@ class AppRouter {
     initialLocation: AppRoutes.home,
     debugLogDiagnostics: kDebugMode,
     routes: [
+      ShellRoute(
+        builder: (context, state, child) {
+          return DashboardWebLayout(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: AppRoutes.home,
+            name: AppRouteNames.home,
+            builder: (context, state) => const DashboardContent(),
+          ),
+          GoRoute(
+            path: AppRoutes.dashboardJob,
+            name: AppRouteNames.dashboardJob,
+            builder: (context, state) {
+              final jobId = state.pathParameters['id'] ?? '';
+              return DashboardJobDetailPage(jobId: jobId);
+            },
+          ),
+        ],
+      ),
       GoRoute(
-        path: AppRoutes.home,
-        name: AppRouteNames.home,
-        builder: (context, state) => const DashboardPage(),
+        path: AppRoutes.authLogin,
+        name: AppRouteNames.authLogin,
+        builder: (context, state) => const LoginPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.authSignUp,
+        name: AppRouteNames.authSignUp,
+        builder: (context, state) => const SignUpPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.login,
+        name: AppRouteNames.login,
+        redirect: (context, state) => AppRoutes.authLogin,
+      ),
+      GoRoute(
+        path: AppRoutes.register,
+        name: AppRouteNames.register,
+        redirect: (context, state) => AppRoutes.authSignUp,
+      ),
+      GoRoute(
+        path: AppRoutes.signUp,
+        name: AppRouteNames.signUp,
+        redirect: (context, state) => AppRoutes.authSignUp,
       ),
       GoRoute(
         path: AppRoutes.jobs,

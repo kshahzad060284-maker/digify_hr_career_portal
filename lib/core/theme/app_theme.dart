@@ -1,54 +1,186 @@
+import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/core/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
-import 'app_fonts.dart';
 import 'app_text_theme.dart';
 
 class AppTheme {
-  static ThemeData light() {
-    return _buildTheme(
-      brightness: Brightness.light,
-      seedColor: AppColors.primaryLight,
-      scaffoldBackgroundColor: AppColors.background,
-      textTheme: AppTextTheme.lightTextTheme,
-      surfaceTextColor: AppColors.textPrimary,
-    );
-  }
+  AppTheme._();
 
-  static ThemeData dark() {
-    return _buildTheme(
-      brightness: Brightness.dark,
-      seedColor: AppColors.primaryDark,
-      scaffoldBackgroundColor: AppColors.backgroundDark,
-      textTheme: AppTextTheme.darkTextTheme,
-      surfaceTextColor: AppColors.textPrimaryDark,
-    );
-  }
-
-  static ThemeData _buildTheme({
-    required Brightness brightness,
-    required Color seedColor,
-    required Color scaffoldBackgroundColor,
-    required TextTheme textTheme,
-    required Color surfaceTextColor,
-  }) {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: seedColor,
-      brightness: brightness,
-    );
-
+  static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      brightness: brightness,
+      brightness: Brightness.light,
+      primaryColor: AppColors.primary,
+      scaffoldBackgroundColor: AppColors.background,
       fontFamily: AppFonts.inter,
-      colorScheme: colorScheme,
-      scaffoldBackgroundColor: scaffoldBackgroundColor,
-      textTheme: textTheme,
-      appBarTheme: AppBarTheme(
-        centerTitle: false,
-        backgroundColor: Colors.transparent,
-        foregroundColor: surfaceTextColor,
+      colorScheme: const ColorScheme.light(
+        primary: AppColors.primary,
+        secondary: AppColors.primaryLight,
+        surface: AppColors.cardBackground,
+        error: AppColors.error,
+      ),
+      textTheme: AppTextTheme.lightTextTheme,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.cardBackground,
         elevation: 0,
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        titleTextStyle: TextStyle(
+          color: AppColors.textPrimary,
+          fontSize: 19,
+          fontWeight: FontWeight.w500,
+          height: 1.58,
+        ),
+      ),
+      cardTheme: const CardThemeData(
+        color: AppColors.cardBackground,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          side: BorderSide(color: AppColors.cardBorder),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.cardBackground,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.borderGrey),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.borderGrey),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.error),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primary,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+      ),
+      scrollbarTheme: ScrollbarThemeData(
+        thumbVisibility: WidgetStateProperty.all(true),
+        thickness: WidgetStateProperty.all(5.0),
+        radius: const Radius.circular(10.0),
+        minThumbLength: 48.0,
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.hovered)) {
+            return AppColors.primary.withValues(alpha: 0.4);
+          }
+          return AppColors.primary.withValues(alpha: 0.2);
+        }),
+        trackColor: WidgetStateProperty.all(Colors.transparent),
+        trackBorderColor: WidgetStateProperty.all(Colors.transparent),
+        crossAxisMargin: 2.0,
+        mainAxisMargin: 2.0,
+        interactive: true,
+      ),
+    );
+  }
+
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+      brightness: Brightness.dark,
+      primaryColor: AppColors.primary,
+      scaffoldBackgroundColor: AppColors.backgroundDark,
+      fontFamily: AppFonts.inter,
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.primary,
+        secondary: AppColors.primaryLight,
+        surface: AppColors.cardBackgroundDark,
+        error: AppColors.error,
+      ),
+      textTheme: AppTextTheme.darkTextTheme,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.cardBackgroundDark,
+        elevation: 0,
+        iconTheme: IconThemeData(color: AppColors.textPrimaryDark),
+        titleTextStyle: TextStyle(
+          color: AppColors.textPrimaryDark,
+          fontSize: 19,
+          fontWeight: FontWeight.w500,
+          height: 1.58,
+        ),
+      ),
+      cardTheme: const CardThemeData(
+        color: AppColors.cardBackgroundDark,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          side: BorderSide(color: AppColors.cardBorderDark),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.cardBackgroundDark,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.borderGreyDark),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.borderGreyDark),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.error),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primary,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+      ),
+      scrollbarTheme: ScrollbarThemeData(
+        thumbVisibility: WidgetStateProperty.all(true),
+        thickness: WidgetStateProperty.all(5.0),
+        radius: const Radius.circular(10.0),
+        minThumbLength: 48.0,
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.hovered)) {
+            return AppColors.primary.withValues(alpha: 0.4);
+          }
+          return AppColors.primary.withValues(alpha: 0.2);
+        }),
+        trackColor: WidgetStateProperty.all(Colors.transparent),
+        trackBorderColor: WidgetStateProperty.all(Colors.transparent),
+        crossAxisMargin: 2.0,
+        mainAxisMargin: 2.0,
+        interactive: true,
       ),
     );
   }

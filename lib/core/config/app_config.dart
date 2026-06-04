@@ -19,12 +19,19 @@ abstract final class AppConfig {
   // Network configuration
   static const String baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: '',
+    defaultValue: 'https://digift-hr-system-backend-48wi.onrender.com',
   );
   static const Duration connectTimeout = Duration(seconds: 20);
   static const Duration receiveTimeout = Duration(seconds: 20);
   static const Duration sendTimeout = Duration(seconds: 20);
   static const Map<String, dynamic> defaultHeaders = <String, dynamic>{};
+
+  // Tenant / API defaults
+  static const int defaultEnterpriseId = 1;
+  static const String defaultRegistrationSource = 'CAREER_PORTAL';
+  static const String defaultJobApplySourceCode = 'CAREER_SITE';
+  static const String defaultJobApplyCreatedBy = 'CANDIDATE';
+  static const String defaultSalaryCurrency = 'KWD';
 
   // Secrets and keys
   // Keep these in --dart-define values or a secure runtime source.

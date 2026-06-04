@@ -1,9 +1,8 @@
-import 'dart:developer' as developer;
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 import '../config/app_config.dart';
+import 'api_network_logger.dart';
 import 'app_exception.dart';
 
 class AppService {
@@ -13,29 +12,35 @@ class AppService {
     Map<String, dynamic>? defaultHeaders,
     this.enableLogging = kDebugMode,
   }) : _dio =
-            dio ??
-            Dio(
-              BaseOptions(
-                baseUrl: baseUrl ?? AppConfig.baseUrl,
-                connectTimeout: AppConfig.connectTimeout,
-                receiveTimeout: AppConfig.receiveTimeout,
-                sendTimeout: AppConfig.sendTimeout,
-                headers: defaultHeaders ?? AppConfig.defaultHeaders,
-                responseType: ResponseType.json,
-              ),
-            ) {
+           dio ??
+           Dio(
+             BaseOptions(
+               baseUrl: baseUrl ?? AppConfig.baseUrl,
+               connectTimeout: AppConfig.connectTimeout,
+               receiveTimeout: AppConfig.receiveTimeout,
+               sendTimeout: AppConfig.sendTimeout,
+               headers: defaultHeaders ?? AppConfig.defaultHeaders,
+               responseType: ResponseType.json,
+             ),
+           ) {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          _logRequest(options);
+          if (enableLogging) {
+            ApiNetworkLogger.logRequest(options);
+          }
           handler.next(options);
         },
         onResponse: (response, handler) {
-          _logResponse(response);
+          if (enableLogging) {
+            ApiNetworkLogger.logResponse(response);
+          }
           handler.next(response);
         },
         onError: (error, handler) {
-          _logError(error);
+          if (enableLogging) {
+            ApiNetworkLogger.logError(error);
+          }
           handler.next(error);
         },
       ),
@@ -78,6 +83,27 @@ class AppService {
       data: data,
       queryParameters: queryParameters,
       options: options,
+      parser: parser,
+      cancelToken: cancelToken,
+    );
+  }
+
+  Future<T> postMultipart<T>(
+    String path, {
+    required FormData data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    T Function(dynamic data)? parser,
+    CancelToken? cancelToken,
+  }) {
+    return _request<T>(
+      method: 'POST',
+      path: path,
+      data: data,
+      queryParameters: queryParameters,
+      options: (options ?? Options()).copyWith(
+        contentType: 'multipart/form-data',
+      ),
       parser: parser,
       cancelToken: cancelToken,
     );
@@ -258,35 +284,5 @@ class AppService {
     }
 
     return null;
-  }
-
-  void _logRequest(RequestOptions options) {
-    if (!enableLogging) return;
-
-    developer.log(
-      'REQUEST ${options.method} ${options.uri}',
-      name: 'AppService',
-      error: options.data,
-    );
-  }
-
-  void _logResponse(Response<dynamic> response) {
-    if (!enableLogging) return;
-
-    developer.log(
-      'RESPONSE ${response.statusCode} ${response.realUri}',
-      name: 'AppService',
-      error: response.data,
-    );
-  }
-
-  void _logError(DioException error) {
-    if (!enableLogging) return;
-
-    developer.log(
-      'ERROR ${error.requestOptions.method} ${error.requestOptions.uri}',
-      name: 'AppService',
-      error: error.response?.data ?? error.error ?? error.message,
-    );
   }
 }
