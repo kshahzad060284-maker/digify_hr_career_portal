@@ -1,11 +1,14 @@
 import 'package:career_portal/core/network/api_endpoints.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/network/app_service.dart';
+import 'package:career_portal/features/dashboard/data/dto/apply_job_response_dto.dart';
 import 'package:career_portal/features/dashboard/data/dto/job_posting_detail_response_dto.dart';
 import 'package:career_portal/features/dashboard/data/dto/job_postings_response_dto.dart';
+import 'package:career_portal/features/dashboard/data/mappers/apply_job_multipart_mapper.dart';
+import 'package:career_portal/features/dashboard/data/mappers/job_posting_mapper.dart';
+import 'package:career_portal/features/dashboard/domain/models/apply_job_input.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
-import 'package:career_portal/features/dashboard/data/mappers/job_posting_mapper.dart';
 
 class JobPostingsRemoteDataSource {
   const JobPostingsRemoteDataSource(this._appService);
@@ -95,6 +98,34 @@ class JobPostingsRemoteDataSource {
     } catch (error) {
       throw AppException(
         message: 'Failed to fetch job posting.',
+        details: error,
+      );
+    }
+  }
+
+  Future<void> applyForJob(ApplyJobInput input) async {
+    try {
+      final formData = ApplyJobMultipartMapper.toFormData(input);
+      final response = await _appService.postMultipart<Map<String, dynamic>>(
+        RecEndpoints.applyJobPosting(input.postingGuid),
+        data: formData,
+        parser: (data) {
+          if (data is Map<String, dynamic>) return data;
+          throw AppException(message: 'Invalid job application response.');
+        },
+      );
+
+      final dto = ApplyJobResponseDto.fromJson(response);
+      if (!dto.success) {
+        throw AppException(
+          message: dto.message ?? 'Failed to submit job application.',
+        );
+      }
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException(
+        message: 'Failed to submit job application.',
         details: error,
       );
     }

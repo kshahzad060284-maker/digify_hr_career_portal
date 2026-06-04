@@ -335,7 +335,7 @@ abstract class AppLocalizations {
   /// No description provided for @authSourceHint.
   ///
   /// In en, this message translates to:
-  /// **'e.g., CAREER_PORTAL'**
+  /// **'e.g., CAREER_SITE'**
   String get authSourceHint;
 
   /// No description provided for @authNoticePeriod.
@@ -1003,6 +1003,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign in to Apply'**
   String get dashboardJobDetailSignInToApply;
+
+  /// No description provided for @dashboardJobDetailApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get dashboardJobDetailApply;
+
+  /// No description provided for @dashboardJobApplyDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply for Job'**
+  String get dashboardJobApplyDialogTitle;
+
+  /// No description provided for @dashboardJobApplyDialogSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{jobTitle}'**
+  String dashboardJobApplyDialogSubtitle(String jobTitle);
+
+  /// No description provided for @dashboardJobApplyResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get dashboardJobApplyResume;
+
+  /// No description provided for @dashboardJobApplyResumeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload PDF, DOC, or DOCX'**
+  String get dashboardJobApplyResumeHint;
+
+  /// No description provided for @dashboardJobApplyChooseFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose file'**
+  String get dashboardJobApplyChooseFile;
+
+  /// No description provided for @dashboardJobApplySourceRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a source'**
+  String get dashboardJobApplySourceRequired;
+
+  /// No description provided for @dashboardJobApplyResumeRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please upload your resume'**
+  String get dashboardJobApplyResumeRequired;
+
+  /// No description provided for @dashboardJobApplySubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit application'**
+  String get dashboardJobApplySubmit;
+
+  /// No description provided for @dashboardJobApplySuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your application has been submitted.'**
+  String get dashboardJobApplySuccess;
+
+  /// No description provided for @dashboardJobApplyFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not submit your application. Please try again.'**
+  String get dashboardJobApplyFailed;
+
+  /// No description provided for @dashboardJobApplySessionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in again to apply for this job.'**
+  String get dashboardJobApplySessionRequired;
+
+  /// No description provided for @dashboardJobApplyResumeInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not read the selected resume file.'**
+  String get dashboardJobApplyResumeInvalid;
 
   /// No description provided for @dashboardJobDetailSidebarTitle.
   ///

@@ -126,7 +126,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authSource => 'المصدر';
 
   @override
-  String get authSourceHint => 'مثال: CAREER_PORTAL';
+  String get authSourceHint => 'مثال: CAREER_SITE';
 
   @override
   String get authNoticePeriod => 'فترة الإشعار (بالأيام)';
@@ -496,6 +496,50 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dashboardJobDetailSignInToApply => 'سجّل الدخول للتقديم';
+
+  @override
+  String get dashboardJobDetailApply => 'تقديم';
+
+  @override
+  String get dashboardJobApplyDialogTitle => 'التقديم على الوظيفة';
+
+  @override
+  String dashboardJobApplyDialogSubtitle(String jobTitle) {
+    return '$jobTitle';
+  }
+
+  @override
+  String get dashboardJobApplyResume => 'السيرة الذاتية';
+
+  @override
+  String get dashboardJobApplyResumeHint => 'ارفع ملف PDF أو DOC أو DOCX';
+
+  @override
+  String get dashboardJobApplyChooseFile => 'اختر ملفًا';
+
+  @override
+  String get dashboardJobApplySourceRequired => 'يرجى إدخال المصدر';
+
+  @override
+  String get dashboardJobApplyResumeRequired => 'يرجى رفع سيرتك الذاتية';
+
+  @override
+  String get dashboardJobApplySubmit => 'إرسال الطلب';
+
+  @override
+  String get dashboardJobApplySuccess => 'تم إرسال طلبك بنجاح.';
+
+  @override
+  String get dashboardJobApplyFailed =>
+      'تعذر إرسال طلبك. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get dashboardJobApplySessionRequired =>
+      'يرجى تسجيل الدخول مرة أخرى للتقديم على هذه الوظيفة.';
+
+  @override
+  String get dashboardJobApplyResumeInvalid =>
+      'تعذر قراءة ملف السيرة الذاتية المحدد.';
 
   @override
   String get dashboardJobDetailSidebarTitle => 'تفاصيل الوظيفة';

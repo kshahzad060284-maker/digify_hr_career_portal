@@ -13,11 +13,13 @@ class DashboardJobDetailSidebar extends StatelessWidget {
   const DashboardJobDetailSidebar({
     super.key,
     required this.job,
-    this.onSignInToApply,
+    required this.applyButtonLabel,
+    this.onApplyPressed,
   });
 
   final DashboardJob job;
-  final VoidCallback? onSignInToApply;
+  final String applyButtonLabel;
+  final VoidCallback? onApplyPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +76,9 @@ class DashboardJobDetailSidebar extends StatelessWidget {
           ),
         ),
         AppButton(
-          label: l10n.dashboardJobDetailSignInToApply,
+          label: applyButtonLabel,
           type: AppButtonType.primary,
-          onPressed: onSignInToApply,
+          onPressed: onApplyPressed,
         ),
         _QuestionsCard(
           title: l10n.dashboardJobDetailQuestionsTitle,

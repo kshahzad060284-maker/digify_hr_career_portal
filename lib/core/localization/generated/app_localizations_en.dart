@@ -127,7 +127,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authSource => 'Source';
 
   @override
-  String get authSourceHint => 'e.g., CAREER_PORTAL';
+  String get authSourceHint => 'e.g., CAREER_SITE';
 
   @override
   String get authNoticePeriod => 'Notice Period (Days)';
@@ -498,6 +498,50 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboardJobDetailSignInToApply => 'Sign in to Apply';
+
+  @override
+  String get dashboardJobDetailApply => 'Apply';
+
+  @override
+  String get dashboardJobApplyDialogTitle => 'Apply for Job';
+
+  @override
+  String dashboardJobApplyDialogSubtitle(String jobTitle) {
+    return '$jobTitle';
+  }
+
+  @override
+  String get dashboardJobApplyResume => 'Resume';
+
+  @override
+  String get dashboardJobApplyResumeHint => 'Upload PDF, DOC, or DOCX';
+
+  @override
+  String get dashboardJobApplyChooseFile => 'Choose file';
+
+  @override
+  String get dashboardJobApplySourceRequired => 'Please enter a source';
+
+  @override
+  String get dashboardJobApplyResumeRequired => 'Please upload your resume';
+
+  @override
+  String get dashboardJobApplySubmit => 'Submit application';
+
+  @override
+  String get dashboardJobApplySuccess => 'Your application has been submitted.';
+
+  @override
+  String get dashboardJobApplyFailed =>
+      'Could not submit your application. Please try again.';
+
+  @override
+  String get dashboardJobApplySessionRequired =>
+      'Please sign in again to apply for this job.';
+
+  @override
+  String get dashboardJobApplyResumeInvalid =>
+      'Could not read the selected resume file.';
 
   @override
   String get dashboardJobDetailSidebarTitle => 'Job Details';

@@ -10,11 +10,13 @@ class DashboardJobDetailBody extends StatelessWidget {
   const DashboardJobDetailBody({
     super.key,
     required this.job,
-    this.onSignInToApply,
+    required this.applyButtonLabel,
+    this.onApplyPressed,
   });
 
   final DashboardJob job;
-  final VoidCallback? onSignInToApply;
+  final String applyButtonLabel;
+  final VoidCallback? onApplyPressed;
 
   static const double _sidebarWidth = 320;
 
@@ -33,7 +35,8 @@ class DashboardJobDetailBody extends StatelessWidget {
             width: _sidebarWidth.w,
             child: DashboardJobDetailSidebar(
               job: job,
-              onSignInToApply: onSignInToApply,
+              applyButtonLabel: applyButtonLabel,
+              onApplyPressed: onApplyPressed,
             ),
           ),
         ],
@@ -45,7 +48,11 @@ class DashboardJobDetailBody extends StatelessWidget {
       spacing: 24.h,
       children: [
         DashboardJobDetailContent(job: job),
-        DashboardJobDetailSidebar(job: job, onSignInToApply: onSignInToApply),
+        DashboardJobDetailSidebar(
+          job: job,
+          applyButtonLabel: applyButtonLabel,
+          onApplyPressed: onApplyPressed,
+        ),
       ],
     );
   }

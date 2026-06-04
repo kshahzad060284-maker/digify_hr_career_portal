@@ -32,6 +32,7 @@ dependencies:
   flutter_riverpod: ^2.6.1
   syncfusion_flutter_datepicker: ^33.2.10
   country_code_picker: ^3.4.1
+  file_picker: ^11.0.2
 
 dev_dependencies:
   flutter_test:
