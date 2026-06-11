@@ -11,6 +11,7 @@ import '../../features/dashboard/presentation/pages/dashboard_job_detail_page.da
 import '../../features/dashboard/presentation/widgets/dashboard_content.dart';
 import '../../features/jobs/job_details_page.dart';
 import '../../features/jobs/jobs_page.dart';
+import '../../features/offers/presentation/pages/candidate_offers_page.dart';
 import 'app_routes.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>(
@@ -27,7 +28,11 @@ class AppRouter {
     routes: [
       ShellRoute(
         builder: (context, state, child) {
-          return DashboardWebLayout(child: child);
+          return DashboardWebLayout(
+            showOffersNavButton:
+                state.matchedLocation != AppRoutes.candidateOffers,
+            child: child,
+          );
         },
         routes: [
           GoRoute(
@@ -42,6 +47,11 @@ class AppRouter {
               final jobId = state.pathParameters['id'] ?? '';
               return DashboardJobDetailPage(jobId: jobId);
             },
+          ),
+          GoRoute(
+            path: AppRoutes.candidateOffers,
+            name: AppRouteNames.candidateOffers,
+            builder: (context, state) => const CandidateOffersPage(),
           ),
         ],
       ),

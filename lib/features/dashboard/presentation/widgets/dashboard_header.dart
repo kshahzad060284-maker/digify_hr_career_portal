@@ -4,6 +4,7 @@ import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_offers_nav_button.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_user_profile_chip.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
@@ -15,7 +16,9 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class DashboardHeader extends ConsumerWidget {
-  const DashboardHeader({super.key});
+  const DashboardHeader({super.key, this.showOffersNavButton = true});
+
+  final bool showOffersNavButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,15 +30,17 @@ class DashboardHeader extends ConsumerWidget {
       child: Padding(
         padding: ResponsiveHelper.pagePadding(context),
         child: context.isMobileLayout
-            ? const DashboardMobileHeader()
-            : const DashboardDesktopHeader(),
+            ? DashboardMobileHeader(showOffersNavButton: showOffersNavButton)
+            : DashboardDesktopHeader(showOffersNavButton: showOffersNavButton),
       ),
     );
   }
 }
 
 class DashboardDesktopHeader extends ConsumerWidget {
-  const DashboardDesktopHeader({super.key});
+  const DashboardDesktopHeader({super.key, this.showOffersNavButton = true});
+
+  final bool showOffersNavButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -76,6 +81,10 @@ class DashboardDesktopHeader extends ConsumerWidget {
           ),
         ),
         if (isLoggedIn && session != null) ...[
+          if (showOffersNavButton) ...[
+            Gap(12.w),
+            const DashboardOffersNavButton(),
+          ],
           Gap(12.w),
           DashboardUserProfileChip(session: session),
         ] else ...[
@@ -97,7 +106,9 @@ class DashboardDesktopHeader extends ConsumerWidget {
 }
 
 class DashboardMobileHeader extends ConsumerWidget {
-  const DashboardMobileHeader({super.key});
+  const DashboardMobileHeader({super.key, this.showOffersNavButton = true});
+
+  final bool showOffersNavButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -161,6 +172,10 @@ class DashboardMobileHeader extends ConsumerWidget {
               ),
             ),
             if (isLoggedIn && session != null) ...[
+              if (showOffersNavButton) ...[
+                Gap(8.w),
+                const DashboardOffersNavButton(compact: true),
+              ],
               Gap(8.w),
               DashboardUserProfileChip(session: session, compact: true),
             ] else ...[

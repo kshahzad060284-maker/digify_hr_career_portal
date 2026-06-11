@@ -19,6 +19,12 @@ abstract final class RecEndpoints {
 
   static String applyJobPosting(String postingGuid) =>
       '${ApiEndpoints.basePath}/rec/job-postings/$postingGuid/apply';
+
+  static String acceptJobOffer(String offerGuid) =>
+      '${ApiEndpoints.basePath}/rec/job-offers/$offerGuid/accept';
+
+  static String declineJobOffer(String offerGuid) =>
+      '${ApiEndpoints.basePath}/rec/job-offers/$offerGuid/decline';
 }
 
 abstract final class CandidateAuthEndpoints {
@@ -27,6 +33,12 @@ abstract final class CandidateAuthEndpoints {
   static String login() => '${ApiEndpoints.basePath}/candidate/login';
 
   static String register() => '${ApiEndpoints.basePath}/candidate/register';
+}
+
+abstract final class CandidateEndpoints {
+  CandidateEndpoints._();
+
+  static String offers() => '${ApiEndpoints.basePath}/candidate/offers';
 }
 
 abstract final class AuthEndpoints {

@@ -4,9 +4,14 @@ import '../widgets/dashboard_footer.dart';
 import '../widgets/dashboard_header.dart';
 
 class DashboardTabletLayout extends StatelessWidget {
-  const DashboardTabletLayout({super.key, required this.child});
+  const DashboardTabletLayout({
+    super.key,
+    required this.child,
+    this.showOffersNavButton = true,
+  });
 
   final Widget child;
+  final bool showOffersNavButton;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,7 @@ class DashboardTabletLayout extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const DashboardHeader(),
+              DashboardHeader(showOffersNavButton: showOffersNavButton),
               Expanded(child: child),
               const DashboardFooter(),
             ],

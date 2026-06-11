@@ -932,6 +932,156 @@ abstract class AppLocalizations {
   /// **'No positions match your search or filters.'**
   String get dashboardNoJobsFound;
 
+  /// No description provided for @dashboardHeaderMyOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'My Offers'**
+  String get dashboardHeaderMyOffers;
+
+  /// No description provided for @candidateOffersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Offers'**
+  String get candidateOffersTitle;
+
+  /// No description provided for @candidateOffersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View job offers sent to you by companies.'**
+  String get candidateOffersSubtitle;
+
+  /// No description provided for @candidateOffersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have any offers yet. When a company sends you an offer, it will appear here.'**
+  String get candidateOffersEmpty;
+
+  /// No description provided for @candidateOffersLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load your offers. Please try again.'**
+  String get candidateOffersLoadFailed;
+
+  /// No description provided for @candidateOffersCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 offer} other{{count} offers}}'**
+  String candidateOffersCount(int count);
+
+  /// No description provided for @candidateOfferStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get candidateOfferStatusPending;
+
+  /// No description provided for @candidateOfferStatusAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accepted'**
+  String get candidateOfferStatusAccepted;
+
+  /// No description provided for @candidateOfferStatusDeclined.
+  ///
+  /// In en, this message translates to:
+  /// **'Declined'**
+  String get candidateOfferStatusDeclined;
+
+  /// No description provided for @candidateOfferStatusExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Expired'**
+  String get candidateOfferStatusExpired;
+
+  /// No description provided for @candidateOfferSentOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent {date}'**
+  String candidateOfferSentOn(String date);
+
+  /// No description provided for @candidateOfferExpiresOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Expires {date}'**
+  String candidateOfferExpiresOn(String date);
+
+  /// No description provided for @candidateOfferView.
+  ///
+  /// In en, this message translates to:
+  /// **'View Offer'**
+  String get candidateOfferView;
+
+  /// No description provided for @candidateOfferAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get candidateOfferAccept;
+
+  /// No description provided for @candidateOfferDecline.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline'**
+  String get candidateOfferDecline;
+
+  /// No description provided for @candidateOfferAcceptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept Offer'**
+  String get candidateOfferAcceptTitle;
+
+  /// No description provided for @candidateOfferAcceptMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to accept this job offer?'**
+  String get candidateOfferAcceptMessage;
+
+  /// No description provided for @candidateOfferDeclineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline Offer'**
+  String get candidateOfferDeclineTitle;
+
+  /// No description provided for @candidateOfferDeclineMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide a reason for declining this offer.'**
+  String get candidateOfferDeclineMessage;
+
+  /// No description provided for @candidateOfferDeclineCommentsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Decline reason'**
+  String get candidateOfferDeclineCommentsLabel;
+
+  /// No description provided for @candidateOfferDeclineCommentsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a reason for declining the offer.'**
+  String get candidateOfferDeclineCommentsRequired;
+
+  /// No description provided for @candidateOfferAcceptSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer accepted successfully.'**
+  String get candidateOfferAcceptSuccess;
+
+  /// No description provided for @candidateOfferDeclineSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer declined successfully.'**
+  String get candidateOfferDeclineSuccess;
+
+  /// No description provided for @candidateOfferAcceptFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not accept the offer. Please try again.'**
+  String get candidateOfferAcceptFailed;
+
+  /// No description provided for @candidateOfferDeclineFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not decline the offer. Please try again.'**
+  String get candidateOfferDeclineFailed;
+
   /// No description provided for @dashboardJobsLoadFailed.
   ///
   /// In en, this message translates to:

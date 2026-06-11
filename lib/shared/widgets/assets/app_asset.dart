@@ -28,8 +28,9 @@ class AppAsset extends StatelessWidget {
         height: height,
         fit: fit,
         alignment: alignment,
-        colorFilter:
-            color == null ? null : ColorFilter.mode(color!, BlendMode.srcIn),
+        colorFilter: color == null
+            ? null
+            : ColorFilter.mode(color!, BlendMode.srcIn),
       );
     }
 
