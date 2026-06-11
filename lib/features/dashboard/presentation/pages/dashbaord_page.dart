@@ -9,9 +9,14 @@ import '../layouts/dashboard_mobile_layout.dart';
 import '../layouts/dashboard_tablet_layout.dart';
 
 class DashboardWebLayout extends ConsumerStatefulWidget {
-  const DashboardWebLayout({super.key, required this.child});
+  const DashboardWebLayout({
+    super.key,
+    required this.child,
+    this.showOffersNavButton = true,
+  });
 
   final Widget child;
+  final bool showOffersNavButton;
 
   @override
   ConsumerState<DashboardWebLayout> createState() => _DashboardWebLayoutState();
@@ -29,9 +34,18 @@ class _DashboardWebLayoutState extends ConsumerState<DashboardWebLayout> {
   @override
   Widget build(BuildContext context) {
     return switch (context.layout) {
-      ScreenLayout.mobile => DashboardMobileLayout(child: widget.child),
-      ScreenLayout.desktop => DashboardDesktopLayout(child: widget.child),
-      _ => DashboardTabletLayout(child: widget.child),
+      ScreenLayout.mobile => DashboardMobileLayout(
+        showOffersNavButton: widget.showOffersNavButton,
+        child: widget.child,
+      ),
+      ScreenLayout.desktop => DashboardDesktopLayout(
+        showOffersNavButton: widget.showOffersNavButton,
+        child: widget.child,
+      ),
+      _ => DashboardTabletLayout(
+        showOffersNavButton: widget.showOffersNavButton,
+        child: widget.child,
+      ),
     };
   }
 }

@@ -454,6 +454,100 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا توجد وظائف تطابق بحثك أو عوامل التصفية.';
 
   @override
+  String get dashboardHeaderMyOffers => 'عروضي';
+
+  @override
+  String get candidateOffersTitle => 'عروضي';
+
+  @override
+  String get candidateOffersSubtitle =>
+      'اعرض عروض العمل المرسلة إليك من الشركات.';
+
+  @override
+  String get candidateOffersEmpty =>
+      'ليس لديك أي عروض بعد. عندما ترسل لك شركة عرضاً، سيظهر هنا.';
+
+  @override
+  String get candidateOffersLoadFailed =>
+      'تعذر تحميل عروضك. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String candidateOffersCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count عروض',
+      one: 'عرض واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get candidateOfferStatusPending => 'قيد الانتظار';
+
+  @override
+  String get candidateOfferStatusAccepted => 'مقبول';
+
+  @override
+  String get candidateOfferStatusDeclined => 'مرفوض';
+
+  @override
+  String get candidateOfferStatusExpired => 'منتهي الصلاحية';
+
+  @override
+  String candidateOfferSentOn(String date) {
+    return 'أُرسل في $date';
+  }
+
+  @override
+  String candidateOfferExpiresOn(String date) {
+    return 'ينتهي في $date';
+  }
+
+  @override
+  String get candidateOfferView => 'عرض التفاصيل';
+
+  @override
+  String get candidateOfferAccept => 'قبول';
+
+  @override
+  String get candidateOfferDecline => 'رفض';
+
+  @override
+  String get candidateOfferAcceptTitle => 'قبول العرض';
+
+  @override
+  String get candidateOfferAcceptMessage =>
+      'هل أنت متأكد أنك تريد قبول عرض العمل هذا؟';
+
+  @override
+  String get candidateOfferDeclineTitle => 'رفض العرض';
+
+  @override
+  String get candidateOfferDeclineMessage => 'يرجى تقديم سبب لرفض هذا العرض.';
+
+  @override
+  String get candidateOfferDeclineCommentsLabel => 'سبب الرفض';
+
+  @override
+  String get candidateOfferDeclineCommentsRequired =>
+      'يرجى إدخال سبب لرفض العرض.';
+
+  @override
+  String get candidateOfferAcceptSuccess => 'تم قبول العرض بنجاح.';
+
+  @override
+  String get candidateOfferDeclineSuccess => 'تم رفض العرض بنجاح.';
+
+  @override
+  String get candidateOfferAcceptFailed =>
+      'تعذر قبول العرض. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get candidateOfferDeclineFailed =>
+      'تعذر رفض العرض. يرجى المحاولة مرة أخرى.';
+
+  @override
   String get dashboardJobsLoadFailed =>
       'تعذر تحميل الوظائف. يرجى المحاولة مرة أخرى.';
 

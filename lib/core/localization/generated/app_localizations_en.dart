@@ -456,6 +456,101 @@ class AppLocalizationsEn extends AppLocalizations {
       'No positions match your search or filters.';
 
   @override
+  String get dashboardHeaderMyOffers => 'My Offers';
+
+  @override
+  String get candidateOffersTitle => 'My Offers';
+
+  @override
+  String get candidateOffersSubtitle =>
+      'View job offers sent to you by companies.';
+
+  @override
+  String get candidateOffersEmpty =>
+      'You don\'t have any offers yet. When a company sends you an offer, it will appear here.';
+
+  @override
+  String get candidateOffersLoadFailed =>
+      'Could not load your offers. Please try again.';
+
+  @override
+  String candidateOffersCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count offers',
+      one: '1 offer',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get candidateOfferStatusPending => 'Pending';
+
+  @override
+  String get candidateOfferStatusAccepted => 'Accepted';
+
+  @override
+  String get candidateOfferStatusDeclined => 'Declined';
+
+  @override
+  String get candidateOfferStatusExpired => 'Expired';
+
+  @override
+  String candidateOfferSentOn(String date) {
+    return 'Sent $date';
+  }
+
+  @override
+  String candidateOfferExpiresOn(String date) {
+    return 'Expires $date';
+  }
+
+  @override
+  String get candidateOfferView => 'View Offer';
+
+  @override
+  String get candidateOfferAccept => 'Accept';
+
+  @override
+  String get candidateOfferDecline => 'Decline';
+
+  @override
+  String get candidateOfferAcceptTitle => 'Accept Offer';
+
+  @override
+  String get candidateOfferAcceptMessage =>
+      'Are you sure you want to accept this job offer?';
+
+  @override
+  String get candidateOfferDeclineTitle => 'Decline Offer';
+
+  @override
+  String get candidateOfferDeclineMessage =>
+      'Please provide a reason for declining this offer.';
+
+  @override
+  String get candidateOfferDeclineCommentsLabel => 'Decline reason';
+
+  @override
+  String get candidateOfferDeclineCommentsRequired =>
+      'Please enter a reason for declining the offer.';
+
+  @override
+  String get candidateOfferAcceptSuccess => 'Offer accepted successfully.';
+
+  @override
+  String get candidateOfferDeclineSuccess => 'Offer declined successfully.';
+
+  @override
+  String get candidateOfferAcceptFailed =>
+      'Could not accept the offer. Please try again.';
+
+  @override
+  String get candidateOfferDeclineFailed =>
+      'Could not decline the offer. Please try again.';
+
+  @override
   String get dashboardJobsLoadFailed =>
       'Could not load job postings. Please try again.';
 

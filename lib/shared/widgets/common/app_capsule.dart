@@ -20,7 +20,10 @@ class AppCapsule extends StatelessWidget {
     this.padding,
     this.textStyle,
     this.onTap,
-  }) : assert(iconPath == null || icon == null, 'Cannot provide both iconPath and icon');
+  }) : assert(
+         iconPath == null || icon == null,
+         'Cannot provide both iconPath and icon',
+       );
 
   final String label;
   final String? iconPath;
@@ -38,9 +41,15 @@ class AppCapsule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = context.isDark;
-    final effectiveBackgroundColor = backgroundColor ?? (isDark ? AppColors.cardBackgroundGreyDark : AppColors.grayBg);
-    final effectiveTextColor = textColor ?? (isDark ? context.themeTextPrimary : AppColors.textPrimary);
-    final effectiveBorderColor = borderColor ?? (isDark ? AppColors.cardBorderDark : AppColors.cardBorder);
+    final effectiveBackgroundColor =
+        backgroundColor ??
+        (isDark ? AppColors.cardBackgroundGreyDark : AppColors.grayBg);
+    final effectiveTextColor =
+        textColor ??
+        (isDark ? context.themeTextPrimary : AppColors.textPrimary);
+    final effectiveBorderColor =
+        borderColor ??
+        (isDark ? AppColors.cardBorderDark : AppColors.cardBorder);
 
     final content = Row(
       mainAxisSize: MainAxisSize.min,
@@ -60,7 +69,12 @@ class AppCapsule extends StatelessWidget {
         Flexible(
           child: Text(
             label,
-            style: textStyle ?? context.textTheme.labelSmall?.copyWith(fontSize: 12.sp, color: effectiveTextColor),
+            style:
+                textStyle ??
+                context.textTheme.labelSmall?.copyWith(
+                  fontSize: 12.sp,
+                  color: effectiveTextColor,
+                ),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
@@ -75,7 +89,9 @@ class AppCapsule extends StatelessWidget {
       padding: padding ?? EdgeInsets.symmetric(horizontal: 11.w, vertical: 3.h),
       decoration: BoxDecoration(
         color: effectiveBackgroundColor,
-        border: borderColor != null ? Border.all(color: effectiveBorderColor, width: 1) : null,
+        border: borderColor != null
+            ? Border.all(color: effectiveBorderColor, width: 1)
+            : null,
         borderRadius: BorderRadius.circular(borderRadius ?? 20.r),
       ),
       child: width != null ? Center(child: content) : content,
@@ -84,7 +100,11 @@ class AppCapsule extends StatelessWidget {
     if (onTap != null) {
       return Material(
         color: Colors.transparent,
-        child: InkWell(onTap: onTap, borderRadius: BorderRadius.circular(borderRadius ?? 20.r), child: container),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(borderRadius ?? 20.r),
+          child: container,
+        ),
       );
     }
 

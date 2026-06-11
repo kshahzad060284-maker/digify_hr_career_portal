@@ -159,6 +159,52 @@
   },
   "dashboardJobUrgentHiring": "Urgent Hiring",
   "dashboardNoJobsFound": "No positions match your search or filters.",
+  "dashboardHeaderMyOffers": "My Offers",
+  "candidateOffersTitle": "My Offers",
+  "candidateOffersSubtitle": "View job offers sent to you by companies.",
+  "candidateOffersEmpty": "You don't have any offers yet. When a company sends you an offer, it will appear here.",
+  "candidateOffersLoadFailed": "Could not load your offers. Please try again.",
+  "candidateOffersCount": "{count, plural, =1{1 offer} other{{count} offers}}",
+  "@candidateOffersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "candidateOfferStatusPending": "Pending",
+  "candidateOfferStatusAccepted": "Accepted",
+  "candidateOfferStatusDeclined": "Declined",
+  "candidateOfferStatusExpired": "Expired",
+  "candidateOfferSentOn": "Sent {date}",
+  "@candidateOfferSentOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateOfferExpiresOn": "Expires {date}",
+  "@candidateOfferExpiresOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateOfferView": "View Offer",
+  "candidateOfferAccept": "Accept",
+  "candidateOfferDecline": "Decline",
+  "candidateOfferAcceptTitle": "Accept Offer",
+  "candidateOfferAcceptMessage": "Are you sure you want to accept this job offer?",
+  "candidateOfferDeclineTitle": "Decline Offer",
+  "candidateOfferDeclineMessage": "Please provide a reason for declining this offer.",
+  "candidateOfferDeclineCommentsLabel": "Decline reason",
+  "candidateOfferDeclineCommentsRequired": "Please enter a reason for declining the offer.",
+  "candidateOfferAcceptSuccess": "Offer accepted successfully.",
+  "candidateOfferDeclineSuccess": "Offer declined successfully.",
+  "candidateOfferAcceptFailed": "Could not accept the offer. Please try again.",
+  "candidateOfferDeclineFailed": "Could not decline the offer. Please try again.",
   "dashboardJobsLoadFailed": "Could not load job postings. Please try again.",
   "commonRetry": "Retry",
   "paginationShowingRange": "Showing {start} - {end} of {total} items",
