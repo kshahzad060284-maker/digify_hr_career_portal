@@ -1,5 +1,8 @@
+import 'package:career_portal/core/deep_link/deep_link.dart';
+import 'package:career_portal/core/enterprise/enterprise_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,13 +21,12 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>(
   debugLabel: 'root',
 );
 
-class AppRouter {
-  AppRouter._();
-
-  static final GoRouter router = GoRouter(
+final appRouterProvider = Provider<GoRouter>((ref) {
+  return GoRouter(
     navigatorKey: rootNavigatorKey,
     initialLocation: AppRoutes.home,
     debugLogDiagnostics: kDebugMode,
+    redirect: (context, state) => EnterpriseSession.syncFromUri(state.uri),
     routes: [
       ShellRoute(
         builder: (context, state, child) {
@@ -41,11 +43,16 @@ class AppRouter {
             builder: (context, state) => const DashboardContent(),
           ),
           GoRoute(
-            path: AppRoutes.dashboardJob,
-            name: AppRouteNames.dashboardJob,
+            path: AppRoutes.jobDetail,
+            name: AppRouteNames.jobDetail,
+            redirect: (context, state) {
+              if (DeepLink.jobIdOf(state.uri) == null) return AppRoutes.home;
+              return null;
+            },
             builder: (context, state) {
-              final jobId = state.pathParameters['id'] ?? '';
-              return DashboardJobDetailPage(jobId: jobId);
+              return DashboardJobDetailPage(
+                jobId: DeepLink.jobIdOf(state.uri)!,
+              );
             },
           ),
           GoRoute(
@@ -102,7 +109,7 @@ class AppRouter {
       );
     },
   );
-}
+});
 
 class _RouterErrorPage extends StatelessWidget {
   const _RouterErrorPage({required this.errorMessage});

@@ -2,6 +2,7 @@ import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
@@ -97,7 +98,7 @@ class _DashboardApplyJobDialogState
           .call(
             ApplyJobInput(
               postingGuid: widget.job.id,
-              enterpriseId: AppConfig.defaultEnterpriseId,
+              enterpriseId: ref.read(enterpriseIdProvider),
               candidateGuid: candidateGuid,
               sourceCode: sourceCode,
               resumeFileName: _resumeFile!.name,

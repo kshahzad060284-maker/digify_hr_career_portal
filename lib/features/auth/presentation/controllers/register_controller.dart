@@ -2,6 +2,7 @@ import 'package:career_portal/core/common/auth_enums.dart';
 import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/utils/phone_number_utils.dart';
 import 'package:career_portal/features/auth/domain/models/register_candidate_input.dart';
 import 'package:career_portal/features/auth/domain/models/register_education_entry.dart';
@@ -186,7 +187,7 @@ class RegisterController extends Notifier<RegisterState> {
         '';
 
     return RegisterCandidateInput(
-      enterpriseId: AppConfig.defaultEnterpriseId,
+      enterpriseId: ref.read(enterpriseIdProvider),
       firstName: state.firstName.trim(),
       lastName: state.lastName.trim(),
       middleName: state.middleName.trim(),

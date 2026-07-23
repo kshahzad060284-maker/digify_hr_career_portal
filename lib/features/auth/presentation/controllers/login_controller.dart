@@ -1,6 +1,6 @@
 import 'package:career_portal/core/common/auth_enums.dart';
-import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_di_provider.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
 import 'package:career_portal/features/auth/presentation/state/login_state.dart';
@@ -70,7 +70,7 @@ class LoginController extends Notifier<LoginState> {
       final session = await ref
           .read(loginUseCaseProvider)
           .call(
-            enterpriseId: AppConfig.defaultEnterpriseId,
+            enterpriseId: ref.read(enterpriseIdProvider),
             email: state.email.trim(),
             password: state.password,
           );
