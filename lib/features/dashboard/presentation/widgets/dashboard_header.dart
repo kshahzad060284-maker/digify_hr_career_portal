@@ -68,33 +68,43 @@ class DashboardDesktopHeader extends ConsumerWidget {
 
     return Row(
       children: [
-        AppAsset(
-          assetPath: Assets.icons.dashboard.department.path,
-          color: AppColors.primary,
-          width: 28.w,
-          height: 28.h,
-        ),
-        Gap(12.w),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.appTitle,
-                style: context.textTheme.titleLarge?.copyWith(
-                  color: context.themeTextPrimary,
-                  fontSize: 24.sp,
+          child: InkWell(
+            onTap: () => context.go(AppRoutes.home),
+            borderRadius: BorderRadius.circular(8.r),
+            child: Row(
+              children: [
+                AppAsset(
+                  assetPath: Assets.icons.dashboard.department.path,
+                  color: AppColors.primary,
+                  width: 28.w,
+                  height: 28.h,
                 ),
-              ),
-              Gap(2.h),
-              Text(
-                l10n.appTagline,
-                style: context.textTheme.labelSmall?.copyWith(
-                  color: context.themeTextSecondary,
-                  fontSize: 12.sp,
+                Gap(12.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.appTitle,
+                        style: context.textTheme.titleLarge?.copyWith(
+                          color: context.themeTextPrimary,
+                          fontSize: 24.sp,
+                        ),
+                      ),
+                      Gap(2.h),
+                      Text(
+                        l10n.appTagline,
+                        style: context.textTheme.labelSmall?.copyWith(
+                          color: context.themeTextSecondary,
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         if (isLoggedIn && session != null) ...[
@@ -155,46 +165,56 @@ class DashboardMobileHeader extends ConsumerWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 40.w,
-              height: 40.w,
-              decoration: BoxDecoration(
-                color: AppColors.sidebarActiveBg,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Center(
-                child: AppAsset(
-                  assetPath: Assets.icons.dashboard.department.path,
-                  color: AppColors.primary,
-                  width: 20.w,
-                  height: 20.w,
-                ),
-              ),
-            ),
-            Gap(12.w),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.appTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.textTheme.titleMedium?.copyWith(
-                      color: context.themeTextPrimary,
-                      fontSize: 19.sp,
+              child: InkWell(
+                onTap: () => context.go(AppRoutes.home),
+                borderRadius: BorderRadius.circular(10.r),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40.w,
+                      height: 40.w,
+                      decoration: BoxDecoration(
+                        color: AppColors.sidebarActiveBg,
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      child: Center(
+                        child: AppAsset(
+                          assetPath: Assets.icons.dashboard.department.path,
+                          color: AppColors.primary,
+                          width: 20.w,
+                          height: 20.w,
+                        ),
+                      ),
                     ),
-                  ),
-                  Gap(4.h),
-                  Text(
-                    l10n.appTagline,
-                    maxLines: isLoggedIn ? 1 : 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.textTheme.labelSmall?.copyWith(
-                      color: context.themeTextSecondary,
+                    Gap(12.w),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            l10n.appTitle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.textTheme.titleMedium?.copyWith(
+                              color: context.themeTextPrimary,
+                              fontSize: 19.sp,
+                            ),
+                          ),
+                          Gap(4.h),
+                          Text(
+                            l10n.appTagline,
+                            maxLines: isLoggedIn ? 1 : 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.textTheme.labelSmall?.copyWith(
+                              color: context.themeTextSecondary,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             if (isLoggedIn && session != null) ...[
