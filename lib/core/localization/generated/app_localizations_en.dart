@@ -452,11 +452,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardJobUrgentHiring => 'Urgent Hiring';
 
   @override
+  String get dashboardJobApplicationStatusApplied => 'Applied';
+
+  @override
+  String get dashboardJobApplicationStatusNotApplied => 'Not Applied';
+
+  @override
   String get dashboardNoJobsFound =>
       'No positions match your search or filters.';
 
   @override
   String get dashboardHeaderMyOffers => 'My Offers';
+
+  @override
+  String get dashboardHeaderMyApplications => 'My Applications';
 
   @override
   String get candidateOffersTitle => 'My Offers';
@@ -551,6 +560,40 @@ class AppLocalizationsEn extends AppLocalizations {
       'Could not decline the offer. Please try again.';
 
   @override
+  String get candidateApplicationsTitle => 'My Applications';
+
+  @override
+  String get candidateApplicationsSubtitle =>
+      'Track the jobs you have applied for.';
+
+  @override
+  String get candidateApplicationsEmpty =>
+      'You haven\'t applied to any jobs yet. When you apply, your applications will appear here.';
+
+  @override
+  String get candidateApplicationsLoadFailed =>
+      'Could not load your applications. Please try again.';
+
+  @override
+  String candidateApplicationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count applications',
+      one: '1 application',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String candidateApplicationAppliedOn(String date) {
+    return 'Applied $date';
+  }
+
+  @override
+  String get candidateApplicationViewJob => 'View Job';
+
+  @override
   String get dashboardJobsLoadFailed =>
       'Could not load job postings. Please try again.';
 
@@ -596,6 +639,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboardJobDetailApply => 'Apply';
+
+  @override
+  String get dashboardJobDetailApplied => 'Applied';
+
+  @override
+  String get dashboardJobDetailAlreadyApplied =>
+      'You have already applied for this role';
 
   @override
   String get dashboardJobApplyDialogTitle => 'Apply for Job';

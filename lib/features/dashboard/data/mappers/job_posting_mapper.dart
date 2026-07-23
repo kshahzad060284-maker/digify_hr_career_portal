@@ -2,6 +2,7 @@ import 'package:career_portal/core/domain/models/pagination_info.dart';
 import 'package:career_portal/features/dashboard/data/dto/job_posting_dto.dart';
 import 'package:career_portal/features/dashboard/data/dto/job_posting_pagination_dto.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/domain/models/job_application_status.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
 
 class JobPostingMapper {
@@ -32,6 +33,12 @@ class JobPostingMapper {
       contactEmail: '',
       openingsCount: dto.numberOfOpenings,
       isUrgent: dto.priorityCode.toUpperCase() == 'HIGH',
+      applicationStatus: JobApplicationStatus.tryParse(
+        applicationStatus: dto.applicationStatus,
+        appliedFlag: dto.appliedFlag,
+      ),
+      applicationId: dto.applicationId,
+      applicationGuid: dto.applicationGuid,
     );
   }
 

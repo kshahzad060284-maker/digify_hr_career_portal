@@ -11,12 +11,14 @@ class GetJobPostingsUseCase {
     required int page,
     required int pageSize,
     String? search,
+    String? candidateGuid,
   }) {
     return _repository.getJobPostings(
       enterpriseId: enterpriseId,
       page: page,
       pageSize: pageSize,
       search: search,
+      candidateGuid: candidateGuid,
     );
   }
 }

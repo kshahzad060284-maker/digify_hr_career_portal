@@ -4,6 +4,7 @@ import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_applications_nav_button.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_offers_nav_button.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_user_profile_chip.dart';
 import 'package:career_portal/gen/assets.gen.dart';
@@ -16,9 +17,14 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class DashboardHeader extends ConsumerWidget {
-  const DashboardHeader({super.key, this.showOffersNavButton = true});
+  const DashboardHeader({
+    super.key,
+    this.showOffersNavButton = true,
+    this.showApplicationsNavButton = true,
+  });
 
   final bool showOffersNavButton;
+  final bool showApplicationsNavButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,17 +36,28 @@ class DashboardHeader extends ConsumerWidget {
       child: Padding(
         padding: ResponsiveHelper.pagePadding(context),
         child: context.isMobileLayout
-            ? DashboardMobileHeader(showOffersNavButton: showOffersNavButton)
-            : DashboardDesktopHeader(showOffersNavButton: showOffersNavButton),
+            ? DashboardMobileHeader(
+                showOffersNavButton: showOffersNavButton,
+                showApplicationsNavButton: showApplicationsNavButton,
+              )
+            : DashboardDesktopHeader(
+                showOffersNavButton: showOffersNavButton,
+                showApplicationsNavButton: showApplicationsNavButton,
+              ),
       ),
     );
   }
 }
 
 class DashboardDesktopHeader extends ConsumerWidget {
-  const DashboardDesktopHeader({super.key, this.showOffersNavButton = true});
+  const DashboardDesktopHeader({
+    super.key,
+    this.showOffersNavButton = true,
+    this.showApplicationsNavButton = true,
+  });
 
   final bool showOffersNavButton;
+  final bool showApplicationsNavButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -81,6 +98,10 @@ class DashboardDesktopHeader extends ConsumerWidget {
           ),
         ),
         if (isLoggedIn && session != null) ...[
+          if (showApplicationsNavButton) ...[
+            Gap(12.w),
+            const DashboardApplicationsNavButton(),
+          ],
           if (showOffersNavButton) ...[
             Gap(12.w),
             const DashboardOffersNavButton(),
@@ -106,9 +127,14 @@ class DashboardDesktopHeader extends ConsumerWidget {
 }
 
 class DashboardMobileHeader extends ConsumerWidget {
-  const DashboardMobileHeader({super.key, this.showOffersNavButton = true});
+  const DashboardMobileHeader({
+    super.key,
+    this.showOffersNavButton = true,
+    this.showApplicationsNavButton = true,
+  });
 
   final bool showOffersNavButton;
+  final bool showApplicationsNavButton;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -172,6 +198,10 @@ class DashboardMobileHeader extends ConsumerWidget {
               ),
             ),
             if (isLoggedIn && session != null) ...[
+              if (showApplicationsNavButton) ...[
+                Gap(8.w),
+                const DashboardApplicationsNavButton(compact: true),
+              ],
               if (showOffersNavButton) ...[
                 Gap(8.w),
                 const DashboardOffersNavButton(compact: true),

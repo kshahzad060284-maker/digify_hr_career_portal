@@ -3,6 +3,23 @@ import 'package:career_portal/features/offers/domain/models/candidate_offer.dart
 
 enum CandidateOfferProcessingAction { accept, decline }
 
+sealed class CandidateOfferActionResult {
+  const CandidateOfferActionResult();
+}
+
+final class CandidateOfferActionSuccess extends CandidateOfferActionResult {
+  const CandidateOfferActionSuccess(this.action);
+
+  final CandidateOfferProcessingAction action;
+}
+
+final class CandidateOfferActionFailure extends CandidateOfferActionResult {
+  const CandidateOfferActionFailure({required this.action, this.message});
+
+  final CandidateOfferProcessingAction action;
+  final String? message;
+}
+
 class CandidateOffersState {
   const CandidateOffersState({
     required this.offers,

@@ -7,9 +7,11 @@ import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/features/applications/presentation/providers/candidate_applications_list_provider.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_detail_provider.dart';
+import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_list_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_apply_job_dialog.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_body.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_header.dart';
@@ -44,17 +46,28 @@ class _DashboardJobDetailPageState
 
   void _onSignInToApply() => context.go(AppRoutes.authLogin);
 
-  Future<void> _onApply(DashboardJob job) {
-    return DashboardApplyJobDialog.show(context, job: job);
+  Future<void> _onApply(DashboardJob job) async {
+    final applied = await DashboardApplyJobDialog.show(context, job: job);
+    if (!mounted || applied != true) return;
+    await ref
+        .read(dashboardJobDetailControllerProvider(widget.jobId).notifier)
+        .refresh();
+    await ref.read(dashboardJobsControllerProvider.notifier).refresh();
+    ref.invalidate(candidateApplicationsControllerProvider);
+  }
+
+  String _applyButtonLabel({
+    required AppLocalizations l10n,
+    required bool isLoggedIn,
+  }) {
+    if (!isLoggedIn) return l10n.dashboardJobDetailSignInToApply;
+    return l10n.dashboardJobDetailApply;
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isLoggedIn = ref.watch(isLoggedInProvider);
-    final applyButtonLabel = isLoggedIn
-        ? l10n.dashboardJobDetailApply
-        : l10n.dashboardJobDetailSignInToApply;
     final detailAsync = ref.watch(
       dashboardJobDetailControllerProvider(widget.jobId),
     );
@@ -101,48 +114,59 @@ class _DashboardJobDetailPageState
             ),
           ),
         ),
-        data: (detailState) => SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              DashboardJobDetailHeader(
-                job: detailState.job,
-                fallbackTitle: l10n.dashboardJobDetailTitle(widget.jobId),
-                onBack: () {
-                  if (context.canPop()) {
-                    context.pop();
-                    return;
-                  }
-                  context.go(
-                    DeepLink.withEnterpriseId(
-                      AppRoutes.home,
-                      ref.read(enterpriseIdProvider),
-                    ),
-                  );
-                },
-                applyButtonLabel: applyButtonLabel,
-                onApplyPressed: isLoggedIn
-                    ? () => _onApply(detailState.job)
-                    : _onSignInToApply,
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(
-                  pagePadding.left,
-                  32.h,
-                  pagePadding.right,
-                  48.h,
-                ),
-                child: DashboardJobDetailBody(
+        data: (detailState) {
+          final hasApplied = detailState.job.hasApplied;
+          final applyButtonLabel = _applyButtonLabel(
+            l10n: l10n,
+            isLoggedIn: isLoggedIn,
+          );
+          final VoidCallback? onApplyPressed = hasApplied
+              ? null
+              : !isLoggedIn
+              ? _onSignInToApply
+              : () => _onApply(detailState.job);
+
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                DashboardJobDetailHeader(
                   job: detailState.job,
+                  fallbackTitle: l10n.dashboardJobDetailTitle(widget.jobId),
+                  onBack: () {
+                    if (context.canPop()) {
+                      context.pop();
+                      return;
+                    }
+                    context.go(
+                      DeepLink.withEnterpriseId(
+                        AppRoutes.home,
+                        ref.read(enterpriseIdProvider),
+                      ),
+                    );
+                  },
                   applyButtonLabel: applyButtonLabel,
-                  onApplyPressed: isLoggedIn
-                      ? () => _onApply(detailState.job)
-                      : _onSignInToApply,
+                  onApplyPressed: onApplyPressed,
+                  hasApplied: hasApplied,
                 ),
-              ),
-            ],
-          ),
-        ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                    pagePadding.left,
+                    32.h,
+                    pagePadding.right,
+                    48.h,
+                  ),
+                  child: DashboardJobDetailBody(
+                    job: detailState.job,
+                    applyButtonLabel: applyButtonLabel,
+                    onApplyPressed: onApplyPressed,
+                    hasApplied: hasApplied,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

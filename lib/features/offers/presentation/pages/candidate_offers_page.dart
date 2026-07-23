@@ -5,9 +5,12 @@ import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/core/widgets/pagination_controls.dart';
+import 'package:career_portal/features/offers/domain/models/candidate_offer.dart';
 import 'package:career_portal/features/offers/presentation/providers/candidate_offers_list_provider.dart';
+import 'package:career_portal/features/offers/presentation/state/candidate_offers_state.dart';
 import 'package:career_portal/features/offers/presentation/widgets/candidate_offer_card.dart';
 import 'package:career_portal/features/offers/presentation/widgets/candidate_offer_card_skeleton.dart';
+import 'package:career_portal/shared/widgets/common/app_confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +34,84 @@ class _CandidateOffersPageState extends ConsumerState<CandidateOffersPage> {
   void _fetchOffers() {
     if (!mounted) return;
     ref.invalidate(candidateOffersControllerProvider);
+  }
+
+  Future<void> _onAcceptOffer(CandidateOffer offer) async {
+    final l10n = AppLocalizations.of(context)!;
+    final confirmed = await AppConfirmationDialog.show(
+      context,
+      title: l10n.candidateOfferAcceptTitle,
+      message: l10n.candidateOfferAcceptMessage,
+      itemName: offer.jobTitle,
+      confirmLabel: l10n.candidateOfferAccept,
+      cancelLabel: l10n.commonCancel,
+      type: ConfirmationType.success,
+      icon: Icons.check_circle_outline_rounded,
+    );
+    if (confirmed != true || !mounted) return;
+
+    final result = await ref
+        .read(candidateOffersControllerProvider.notifier)
+        .acceptOffer(offer.offerGuid);
+    if (!mounted) return;
+    _showActionToast(result, l10n);
+  }
+
+  Future<void> _onDeclineOffer(CandidateOffer offer) async {
+    final l10n = AppLocalizations.of(context)!;
+    final comments = await AppConfirmationDialog.showWithInput(
+      context,
+      title: l10n.candidateOfferDeclineTitle,
+      message: l10n.candidateOfferDeclineMessage,
+      itemName: offer.jobTitle,
+      confirmLabel: l10n.candidateOfferDecline,
+      cancelLabel: l10n.commonCancel,
+      type: ConfirmationType.danger,
+      icon: Icons.cancel_outlined,
+      textFieldLabel: l10n.candidateOfferDeclineCommentsLabel,
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return l10n.candidateOfferDeclineCommentsRequired;
+        }
+        return null;
+      },
+    );
+    if (comments == null || comments.trim().isEmpty || !mounted) return;
+
+    final result = await ref
+        .read(candidateOffersControllerProvider.notifier)
+        .declineOffer(
+          offerGuid: offer.offerGuid,
+          declineComments: comments.trim(),
+        );
+    if (!mounted) return;
+    _showActionToast(result, l10n);
+  }
+
+  void _showActionToast(
+    CandidateOfferActionResult result,
+    AppLocalizations l10n,
+  ) {
+    switch (result) {
+      case CandidateOfferActionSuccess(action: final action):
+        ToastService.success(
+          context,
+          action == CandidateOfferProcessingAction.accept
+              ? l10n.candidateOfferAcceptSuccess
+              : l10n.candidateOfferDeclineSuccess,
+        );
+      case CandidateOfferActionFailure(
+        action: final action,
+        message: final message,
+      ):
+        final fallback = action == CandidateOfferProcessingAction.accept
+            ? l10n.candidateOfferAcceptFailed
+            : l10n.candidateOfferDeclineFailed;
+        ToastService.error(
+          context,
+          message != null && message.isNotEmpty ? message : fallback,
+        );
+    }
   }
 
   @override
@@ -132,8 +213,11 @@ class _CandidateOffersPageState extends ConsumerState<CandidateOffersPage> {
                       itemCount: offersState.offers.length,
                       separatorBuilder: (_, _) => Gap(16.h),
                       itemBuilder: (context, index) {
+                        final offer = offersState.offers[index];
                         return CandidateOfferCard(
-                          offer: offersState.offers[index],
+                          offer: offer,
+                          onAccept: () => _onAcceptOffer(offer),
+                          onDecline: () => _onDeclineOffer(offer),
                         );
                       },
                     ),
@@ -173,7 +257,7 @@ class _CandidateOffersEmptyState extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.themeCardBackground,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(10.r),
         border: Border.all(color: context.themeCardBorder),
       ),
       child: Padding(

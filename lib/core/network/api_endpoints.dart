@@ -41,6 +41,13 @@ abstract final class CandidateEndpoints {
   static String offers() => '${ApiEndpoints.basePath}/candidate/offers';
 }
 
+abstract final class RecruitmentEndpoints {
+  RecruitmentEndpoints._();
+
+  static String applications() =>
+      '${ApiEndpoints.basePath}/recruitment/applications';
+}
+
 abstract final class AuthEndpoints {
   AuthEndpoints._();
 

@@ -2,7 +2,6 @@ import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
-import 'package:career_portal/shared/widgets/common/status_dot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -45,6 +44,7 @@ class DashboardJobDetailContent extends StatelessWidget {
                 style: context.textTheme.bodyLarge?.copyWith(
                   color: bodyColor,
                   fontSize: 16.sp,
+                  height: 1.6,
                 ),
               ),
             ),
@@ -54,14 +54,14 @@ class DashboardJobDetailContent extends StatelessWidget {
               fontSize: 18.sp,
               color: sectionTitleColor,
             ),
-            _BulletList(items: job.responsibilities, color: bodyColor),
+            _ContentList(items: job.responsibilities, color: bodyColor),
             Gap(12.h),
             _SectionHeading(
               title: l10n.dashboardJobDetailQualifications,
               fontSize: 18.sp,
               color: sectionTitleColor,
             ),
-            _BulletList(items: job.qualifications, color: bodyColor),
+            _ContentList(items: job.qualifications, color: bodyColor),
           ],
         ),
       ),
@@ -87,13 +87,15 @@ class _SectionHeading extends StatelessWidget {
       style: context.textTheme.titleSmall?.copyWith(
         color: color,
         fontSize: fontSize,
+        fontWeight: FontWeight.w600,
+        height: 1.3,
       ),
     );
   }
 }
 
-class _BulletList extends StatelessWidget {
-  const _BulletList({required this.items, required this.color});
+class _ContentList extends StatelessWidget {
+  const _ContentList({required this.items, required this.color});
 
   final List<String> items;
   final Color color;
@@ -102,36 +104,17 @@ class _BulletList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 8.h,
+      spacing: 10.h,
       children: [
-        for (final item in items) _BulletItem(text: item, color: color),
-      ],
-    );
-  }
-}
-
-class _BulletItem extends StatelessWidget {
-  const _BulletItem({required this.text, required this.color});
-
-  final String text;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        StatusDot(color: color, size: 3.r),
-        Gap(8.w),
-        Expanded(
-          child: Text(
-            text,
+        for (final item in items)
+          Text(
+            item,
             style: context.textTheme.bodyLarge?.copyWith(
               color: color,
               fontSize: 16.sp,
+              height: 1.55,
             ),
           ),
-        ),
       ],
     );
   }

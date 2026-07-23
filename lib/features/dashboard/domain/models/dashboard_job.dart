@@ -1,3 +1,5 @@
+import 'package:career_portal/features/dashboard/domain/models/job_application_status.dart';
+
 class DashboardJob {
   const DashboardJob({
     required this.id,
@@ -14,6 +16,9 @@ class DashboardJob {
     required this.contactEmail,
     required this.openingsCount,
     this.isUrgent = false,
+    this.applicationStatus,
+    this.applicationId,
+    this.applicationGuid,
   });
 
   final String id;
@@ -30,4 +35,9 @@ class DashboardJob {
   final String contactEmail;
   final int openingsCount;
   final bool isUrgent;
+  final JobApplicationStatus? applicationStatus;
+  final int? applicationId;
+  final String? applicationGuid;
+
+  bool get hasApplied => applicationStatus == JobApplicationStatus.applied;
 }

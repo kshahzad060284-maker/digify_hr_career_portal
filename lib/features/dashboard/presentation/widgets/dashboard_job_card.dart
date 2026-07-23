@@ -2,6 +2,7 @@ import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/domain/models/job_application_status.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_meta_item.dart';
 import 'package:career_portal/shared/widgets/common/app_capsule.dart';
@@ -114,12 +115,51 @@ class DashboardJobCard extends StatelessWidget {
                           : AppColors.redBg,
                       textColor: AppColors.brandRed,
                     ),
+                  if (job.applicationStatus != null)
+                    _ApplicationStatusCapsule(
+                      status: job.applicationStatus!,
+                      isDark: isDark,
+                      l10n: l10n,
+                    ),
                 ],
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ApplicationStatusCapsule extends StatelessWidget {
+  const _ApplicationStatusCapsule({
+    required this.status,
+    required this.isDark,
+    required this.l10n,
+  });
+
+  final JobApplicationStatus status;
+  final bool isDark;
+  final AppLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context) {
+    final isApplied = status == JobApplicationStatus.applied;
+
+    return AppCapsule(
+      label: isApplied
+          ? l10n.dashboardJobApplicationStatusApplied
+          : l10n.dashboardJobApplicationStatusNotApplied,
+      backgroundColor: isApplied
+          ? (isDark
+                ? AppColors.successBg.withValues(alpha: 0.2)
+                : AppColors.successBg)
+          : (isDark
+                ? AppColors.warningBg.withValues(alpha: 0.2)
+                : AppColors.warningBg),
+      textColor: isApplied
+          ? (isDark ? AppColors.successTextDark : AppColors.successText)
+          : (isDark ? AppColors.warningTextDark : AppColors.warningText),
     );
   }
 }

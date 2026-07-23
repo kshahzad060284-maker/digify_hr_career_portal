@@ -14,6 +14,10 @@ class JobPostingDto {
     required this.numberOfOpenings,
     required this.targetStartDate,
     required this.startDate,
+    this.applicationStatus,
+    this.appliedFlag,
+    this.applicationId,
+    this.applicationGuid,
   });
 
   final int postingId;
@@ -30,6 +34,10 @@ class JobPostingDto {
   final int numberOfOpenings;
   final String? targetStartDate;
   final String? startDate;
+  final String? applicationStatus;
+  final String? appliedFlag;
+  final int? applicationId;
+  final String? applicationGuid;
 
   factory JobPostingDto.fromJson(Map<String, dynamic> json) {
     return JobPostingDto(
@@ -47,6 +55,10 @@ class JobPostingDto {
       numberOfOpenings: _asInt(json['number_of_openings'], fallback: 1),
       targetStartDate: json['target_start_date']?.toString(),
       startDate: json['start_date']?.toString(),
+      applicationStatus: json['application_status']?.toString(),
+      appliedFlag: json['applied_flag']?.toString(),
+      applicationId: _asNullableInt(json['application_id']),
+      applicationGuid: json['application_guid']?.toString(),
     );
   }
 }
@@ -61,4 +73,12 @@ int _asInt(dynamic value, {int fallback = 0}) {
   if (value is num) return value.toInt();
   if (value is String) return int.tryParse(value) ?? fallback;
   return fallback;
+}
+
+int? _asNullableInt(dynamic value) {
+  if (value == null) return null;
+  if (value is int) return value;
+  if (value is num) return value.toInt();
+  if (value is String) return int.tryParse(value);
+  return null;
 }

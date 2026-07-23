@@ -2,6 +2,7 @@ import 'dart:async' show unawaited;
 
 import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/utils/debouncer.dart';
+import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
 import 'package:career_portal/features/dashboard/domain/config/dashboard_jobs_config.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_di_provider.dart';
@@ -35,12 +36,6 @@ class DashboardJobsController extends AsyncNotifier<DashboardJobsState> {
     unawaited(_reloadFromFirstPage());
   }
 
-  Future<void> ensureLoaded() async {
-    if (state.isLoading) return;
-    if (state.hasValue) return;
-    await _reloadFromFirstPage();
-  }
-
   Future<void> refresh() => _reloadFromFirstPage();
 
   Future<void> goToPage(int page) async {
@@ -62,17 +57,19 @@ class DashboardJobsController extends AsyncNotifier<DashboardJobsState> {
   }
 
   Future<void> _reloadFromFirstPage() async {
-    state = const AsyncLoading<DashboardJobsState>().copyWithPrevious(state);
+    state = const AsyncLoading<DashboardJobsState>();
     state = await AsyncValue.guard(() => _loadPage(1));
   }
 
   Future<DashboardJobsState> _loadPage(int page) async {
+    final candidateGuid = ref.read(authSessionProvider).session?.candidateGuid;
     final useCase = ref.read(getJobPostingsUseCaseProvider);
     final pageResult = await useCase(
       enterpriseId: ref.read(enterpriseIdProvider),
       page: page,
       pageSize: DashboardJobsConfig.defaultPageSize,
       search: _searchQuery.isEmpty ? null : _searchQuery,
+      candidateGuid: candidateGuid,
     );
     return _mapToState(pageResult);
   }

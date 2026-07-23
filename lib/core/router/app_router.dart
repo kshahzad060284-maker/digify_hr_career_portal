@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 import '../extensions/app_extensions.dart';
+import '../../features/applications/presentation/pages/candidate_applications_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/signup_page.dart';
 import '../../features/dashboard/presentation/pages/dashbaord_page.dart';
@@ -30,9 +31,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       ShellRoute(
         builder: (context, state, child) {
+          final location = state.matchedLocation;
           return DashboardWebLayout(
-            showOffersNavButton:
-                state.matchedLocation != AppRoutes.candidateOffers,
+            showOffersNavButton: location != AppRoutes.candidateOffers,
+            showApplicationsNavButton:
+                location != AppRoutes.candidateApplications,
             child: child,
           );
         },
@@ -59,6 +62,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: AppRoutes.candidateOffers,
             name: AppRouteNames.candidateOffers,
             builder: (context, state) => const CandidateOffersPage(),
+          ),
+          GoRoute(
+            path: AppRoutes.candidateApplications,
+            name: AppRouteNames.candidateApplications,
+            builder: (context, state) => const CandidateApplicationsPage(),
           ),
         ],
       ),

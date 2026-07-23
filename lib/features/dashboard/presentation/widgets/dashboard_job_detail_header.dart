@@ -2,6 +2,7 @@ import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_already_applied_banner.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_meta_item.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
@@ -18,6 +19,7 @@ class DashboardJobDetailHeader extends StatelessWidget {
     required this.onBack,
     required this.applyButtonLabel,
     this.onApplyPressed,
+    this.hasApplied = false,
   });
 
   final DashboardJob? job;
@@ -25,6 +27,7 @@ class DashboardJobDetailHeader extends StatelessWidget {
   final VoidCallback onBack;
   final String applyButtonLabel;
   final VoidCallback? onApplyPressed;
+  final bool hasApplied;
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +54,30 @@ class DashboardJobDetailHeader extends StatelessWidget {
           children: [
             _BackLink(label: l10n.dashboardJobDetailBack, onPressed: onBack),
             if (isMobile)
-              _buildMobileBody(context, l10n, titleColor, metaColor)
+              _buildMobileBody(context, titleColor, metaColor)
             else
-              _buildDesktopBody(context, l10n, titleColor, metaColor),
+              _buildDesktopBody(context, titleColor, metaColor),
           ],
         ),
       ),
     );
   }
 
+  Widget _buildApplyAction() {
+    if (hasApplied) {
+      return SizedBox(
+        width: 280.w,
+        child: const DashboardJobAlreadyAppliedBanner(),
+      );
+    }
+    return AppButton.primary(
+      label: applyButtonLabel,
+      onPressed: onApplyPressed,
+    );
+  }
+
   Widget _buildDesktopBody(
     BuildContext context,
-    AppLocalizations l10n,
     Color titleColor,
     Color metaColor,
   ) {
@@ -71,14 +86,13 @@ class DashboardJobDetailHeader extends StatelessWidget {
       children: [
         Expanded(child: _buildTitleAndMeta(context, titleColor, metaColor)),
         Gap(24.w),
-        AppButton.primary(label: applyButtonLabel, onPressed: onApplyPressed),
+        _buildApplyAction(),
       ],
     );
   }
 
   Widget _buildMobileBody(
     BuildContext context,
-    AppLocalizations l10n,
     Color titleColor,
     Color metaColor,
   ) {
@@ -87,7 +101,7 @@ class DashboardJobDetailHeader extends StatelessWidget {
       spacing: 16.h,
       children: [
         _buildTitleAndMeta(context, titleColor, metaColor),
-        AppButton.primary(label: applyButtonLabel, onPressed: onApplyPressed),
+        _buildApplyAction(),
       ],
     );
   }

@@ -74,9 +74,13 @@ class CandidateOffersController
     );
   }
 
-  Future<void> acceptOffer(String offerGuid) async {
+  Future<CandidateOfferActionResult> acceptOffer(String offerGuid) async {
     final current = state.value;
-    if (current == null || current.isProcessing(offerGuid)) return;
+    if (current == null || current.isProcessing(offerGuid)) {
+      return const CandidateOfferActionFailure(
+        action: CandidateOfferProcessingAction.accept,
+      );
+    }
 
     state = AsyncData(
       current.copyWith(
@@ -90,18 +94,33 @@ class CandidateOffersController
           .read(acceptCandidateOfferUseCaseProvider)
           .call(offerGuid: offerGuid);
       await _reloadFromFirstPage();
-    } catch (error) {
+      return const CandidateOfferActionSuccess(
+        CandidateOfferProcessingAction.accept,
+      );
+    } on AppException catch (error) {
       _clearProcessing();
-      rethrow;
+      return CandidateOfferActionFailure(
+        action: CandidateOfferProcessingAction.accept,
+        message: error.message,
+      );
+    } catch (_) {
+      _clearProcessing();
+      return const CandidateOfferActionFailure(
+        action: CandidateOfferProcessingAction.accept,
+      );
     }
   }
 
-  Future<void> declineOffer({
+  Future<CandidateOfferActionResult> declineOffer({
     required String offerGuid,
     required String declineComments,
   }) async {
     final current = state.value;
-    if (current == null || current.isProcessing(offerGuid)) return;
+    if (current == null || current.isProcessing(offerGuid)) {
+      return const CandidateOfferActionFailure(
+        action: CandidateOfferProcessingAction.decline,
+      );
+    }
 
     state = AsyncData(
       current.copyWith(
@@ -115,9 +134,20 @@ class CandidateOffersController
           .read(declineCandidateOfferUseCaseProvider)
           .call(offerGuid: offerGuid, declineComments: declineComments);
       await _reloadFromFirstPage();
-    } catch (error) {
+      return const CandidateOfferActionSuccess(
+        CandidateOfferProcessingAction.decline,
+      );
+    } on AppException catch (error) {
       _clearProcessing();
-      rethrow;
+      return CandidateOfferActionFailure(
+        action: CandidateOfferProcessingAction.decline,
+        message: error.message,
+      );
+    } catch (_) {
+      _clearProcessing();
+      return const CandidateOfferActionFailure(
+        action: CandidateOfferProcessingAction.decline,
+      );
     }
   }
 

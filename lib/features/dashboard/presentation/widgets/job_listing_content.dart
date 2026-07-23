@@ -54,7 +54,16 @@ class JobListingContent extends ConsumerWidget {
           48.h,
         ),
         child: jobsAsync.when(
-          loading: () => const DashboardJobListSkeleton(showFilterBar: false),
+          skipLoadingOnReload: false,
+          skipLoadingOnRefresh: false,
+          loading: () => Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            spacing: 24.h,
+            children: const [
+              DashboardFilterBar(),
+              DashboardJobListSkeleton(showFilterBar: false),
+            ],
+          ),
           error: (error, _) => _JobsErrorView(
             message: error is AppException
                 ? error.message
@@ -63,19 +72,6 @@ class JobListingContent extends ConsumerWidget {
                 ref.read(dashboardJobsControllerProvider.notifier).refresh(),
           ),
           data: (jobsState) {
-            final isReloading = jobsAsync.isLoading;
-
-            if (isReloading) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                spacing: 24.h,
-                children: const [
-                  DashboardFilterBar(),
-                  DashboardJobListSkeleton(showFilterBar: false),
-                ],
-              );
-            }
-
             final filteredJobs = ref.watch(dashboardFilteredJobsProvider);
             final jobs = ref.watch(dashboardPaginatedJobsProvider);
             final currentPage = ref.watch(dashboardJobsEffectivePageProvider);
