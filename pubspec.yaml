@@ -48,6 +48,8 @@ flutter:
     - assets/icons/job_detail/
     - assets/icons/auth/
     - assets/logos/
+    - assets/logo/
+    - assets/favicon/
 
   fonts:
     - family: Inter

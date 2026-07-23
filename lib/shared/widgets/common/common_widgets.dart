@@ -16,5 +16,6 @@ export 'app_form_optional_section.dart';
 export 'app_loading_indicator.dart';
 export 'app_page_loading.dart';
 export 'app_mobile_button.dart';
+export 'app_meta_item.dart';
 export 'app_square_capsule.dart';
 export 'status_dot.dart';

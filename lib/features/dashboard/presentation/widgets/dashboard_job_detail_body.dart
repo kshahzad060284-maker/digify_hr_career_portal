@@ -12,11 +12,13 @@ class DashboardJobDetailBody extends StatelessWidget {
     required this.job,
     required this.applyButtonLabel,
     this.onApplyPressed,
+    this.hasApplied = false,
   });
 
   final DashboardJob job;
   final String applyButtonLabel;
   final VoidCallback? onApplyPressed;
+  final bool hasApplied;
 
   static const double _sidebarWidth = 320;
 
@@ -37,6 +39,7 @@ class DashboardJobDetailBody extends StatelessWidget {
               job: job,
               applyButtonLabel: applyButtonLabel,
               onApplyPressed: onApplyPressed,
+              hasApplied: hasApplied,
             ),
           ),
         ],
@@ -52,6 +55,7 @@ class DashboardJobDetailBody extends StatelessWidget {
           job: job,
           applyButtonLabel: applyButtonLabel,
           onApplyPressed: onApplyPressed,
+          hasApplied: hasApplied,
         ),
       ],
     );

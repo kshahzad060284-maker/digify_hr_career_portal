@@ -6,6 +6,7 @@ abstract final class AppRoutes {
   static const String authSignUp = '/auth/signup';
   static const String jobDetail = '/job';
   static const String candidateOffers = '/offers';
+  static const String candidateApplications = '/applications';
   static const String jobs = '/jobs';
   static const String jobDetails = '/jobs/:id';
 
@@ -22,6 +23,7 @@ abstract final class AppRouteNames {
   static const String authSignUp = 'auth-signup';
   static const String jobDetail = 'job-detail';
   static const String candidateOffers = 'candidate-offers';
+  static const String candidateApplications = 'candidate-applications';
   static const String jobs = 'jobs';
   static const String jobDetails = 'job-details';
 

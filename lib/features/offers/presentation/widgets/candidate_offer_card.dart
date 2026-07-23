@@ -1,12 +1,10 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
-import 'package:career_portal/core/network/app_exception.dart';
-import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/widgets/app_status_capsule.dart';
 import 'package:career_portal/features/offers/domain/models/candidate_offer.dart';
 import 'package:career_portal/features/offers/presentation/providers/candidate_offers_list_provider.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
-import 'package:career_portal/shared/widgets/common/app_confirmation_dialog.dart';
+import 'package:career_portal/shared/widgets/common/app_meta_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,95 +12,23 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 
 class CandidateOfferCard extends ConsumerWidget {
-  const CandidateOfferCard({super.key, required this.offer, this.onView});
+  const CandidateOfferCard({
+    super.key,
+    required this.offer,
+    this.onAccept,
+    this.onDecline,
+    this.onView,
+  });
 
   final CandidateOffer offer;
+  final VoidCallback? onAccept;
+  final VoidCallback? onDecline;
   final VoidCallback? onView;
 
   static final _compactButtonPadding = EdgeInsets.symmetric(
     horizontal: 12.w,
     vertical: 4.h,
   );
-
-  Future<void> _onAccept(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
-    final confirmed = await AppConfirmationDialog.show(
-      context,
-      title: l10n.candidateOfferAcceptTitle,
-      message: l10n.candidateOfferAcceptMessage,
-      itemName: offer.jobTitle,
-      confirmLabel: l10n.candidateOfferAccept,
-      cancelLabel: l10n.commonCancel,
-      type: ConfirmationType.success,
-      icon: Icons.check_circle_outline_rounded,
-    );
-
-    if (confirmed != true || !context.mounted) return;
-
-    try {
-      await ref
-          .read(candidateOffersControllerProvider.notifier)
-          .acceptOffer(offer.offerGuid);
-      if (!context.mounted) return;
-      ToastService.success(context, l10n.candidateOfferAcceptSuccess);
-    } on AppException catch (error) {
-      if (!context.mounted) return;
-      ToastService.error(
-        context,
-        error.message.isNotEmpty
-            ? error.message
-            : l10n.candidateOfferAcceptFailed,
-      );
-    } catch (_) {
-      if (!context.mounted) return;
-      ToastService.error(context, l10n.candidateOfferAcceptFailed);
-    }
-  }
-
-  Future<void> _onDecline(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
-    final comments = await AppConfirmationDialog.showWithInput(
-      context,
-      title: l10n.candidateOfferDeclineTitle,
-      message: l10n.candidateOfferDeclineMessage,
-      itemName: offer.jobTitle,
-      confirmLabel: l10n.candidateOfferDecline,
-      cancelLabel: l10n.commonCancel,
-      type: ConfirmationType.danger,
-      icon: Icons.cancel_outlined,
-      textFieldLabel: l10n.candidateOfferDeclineCommentsLabel,
-      validator: (value) {
-        if (value == null || value.trim().isEmpty) {
-          return l10n.candidateOfferDeclineCommentsRequired;
-        }
-        return null;
-      },
-    );
-
-    if (comments == null || comments.trim().isEmpty || !context.mounted) return;
-
-    try {
-      await ref
-          .read(candidateOffersControllerProvider.notifier)
-          .declineOffer(
-            offerGuid: offer.offerGuid,
-            declineComments: comments.trim(),
-          );
-      if (!context.mounted) return;
-      ToastService.success(context, l10n.candidateOfferDeclineSuccess);
-    } on AppException catch (error) {
-      if (!context.mounted) return;
-      ToastService.error(
-        context,
-        error.message.isNotEmpty
-            ? error.message
-            : l10n.candidateOfferDeclineFailed,
-      );
-    } catch (_) {
-      if (!context.mounted) return;
-      ToastService.error(context, l10n.candidateOfferDeclineFailed);
-    }
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -117,7 +43,7 @@ class CandidateOfferCard extends ConsumerWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.themeCardBackground,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(10.r),
         border: Border.all(color: context.themeCardBorder),
       ),
       child: Padding(
@@ -162,17 +88,17 @@ class CandidateOfferCard extends ConsumerWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 if (offer.location.isNotEmpty)
-                  _OfferMetaItem(
+                  AppMetaItem(
                     icon: Icons.location_on_outlined,
                     label: offer.location,
                   ),
                 if (offer.employmentType.isNotEmpty)
-                  _OfferMetaItem(
+                  AppMetaItem(
                     icon: Icons.schedule_outlined,
                     label: offer.employmentType,
                   ),
                 if (offer.salary.isNotEmpty)
-                  _OfferMetaItem(
+                  AppMetaItem(
                     icon: Icons.payments_outlined,
                     label: offer.salary,
                   ),
@@ -184,16 +110,22 @@ class CandidateOfferCard extends ConsumerWidget {
               runSpacing: 4.h,
               children: [
                 if (offer.sentDate != null)
-                  _OfferDateText(
+                  AppMetaItem(
+                    icon: Icons.send_outlined,
                     label: l10n.candidateOfferSentOn(
                       dateFormat.format(offer.sentDate!),
                     ),
+                    color: context.themeTextMuted,
+                    fontSize: 13.sp,
                   ),
                 if (offer.expiryDate != null)
-                  _OfferDateText(
+                  AppMetaItem(
+                    icon: Icons.event_outlined,
                     label: l10n.candidateOfferExpiresOn(
                       dateFormat.format(offer.expiryDate!),
                     ),
+                    color: context.themeTextMuted,
+                    fontSize: 13.sp,
                   ),
               ],
             ),
@@ -208,18 +140,14 @@ class CandidateOfferCard extends ConsumerWidget {
                       type: AppButtonType.primary,
                       padding: _compactButtonPadding,
                       isLoading: isAccepting,
-                      onPressed: isProcessing
-                          ? null
-                          : () => _onAccept(context, ref),
+                      onPressed: isProcessing ? null : onAccept,
                     ),
                     Gap(8.w),
                     AppButton.dangerOutline(
                       label: l10n.candidateOfferDecline,
                       padding: _compactButtonPadding,
                       isLoading: isDeclining,
-                      onPressed: isProcessing
-                          ? null
-                          : () => _onDecline(context, ref),
+                      onPressed: isProcessing ? null : onDecline,
                     ),
                     Gap(8.w),
                   ],
@@ -247,49 +175,5 @@ class CandidateOfferCard extends ConsumerWidget {
       if (offer.department.isNotEmpty) offer.department,
     ];
     return parts.join(' · ');
-  }
-}
-
-class _OfferMetaItem extends StatelessWidget {
-  const _OfferMetaItem({required this.icon, required this.label});
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = context.themeTextSecondary;
-
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, size: 16.sp, color: color),
-        Gap(4.w),
-        Text(
-          label,
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: color,
-            fontSize: 14.sp,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _OfferDateText extends StatelessWidget {
-  const _OfferDateText({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: context.textTheme.bodySmall?.copyWith(
-        color: context.themeTextMuted,
-        fontSize: 13.sp,
-      ),
-    );
   }
 }

@@ -450,11 +450,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashboardJobUrgentHiring => 'توظيف عاجل';
 
   @override
+  String get dashboardJobApplicationStatusApplied => 'تم التقديم';
+
+  @override
+  String get dashboardJobApplicationStatusNotApplied => 'لم يتم التقديم';
+
+  @override
   String get dashboardNoJobsFound =>
       'لا توجد وظائف تطابق بحثك أو عوامل التصفية.';
 
   @override
   String get dashboardHeaderMyOffers => 'عروضي';
+
+  @override
+  String get dashboardHeaderMyApplications => 'طلباتي';
 
   @override
   String get candidateOffersTitle => 'عروضي';
@@ -548,6 +557,39 @@ class AppLocalizationsAr extends AppLocalizations {
       'تعذر رفض العرض. يرجى المحاولة مرة أخرى.';
 
   @override
+  String get candidateApplicationsTitle => 'طلباتي';
+
+  @override
+  String get candidateApplicationsSubtitle => 'تتبع الوظائف التي تقدمت إليها.';
+
+  @override
+  String get candidateApplicationsEmpty =>
+      'لم تتقدم إلى أي وظيفة بعد. عندما تتقدم، ستظهر طلباتك هنا.';
+
+  @override
+  String get candidateApplicationsLoadFailed =>
+      'تعذر تحميل طلباتك. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String candidateApplicationsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count طلبات',
+      one: 'طلب واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String candidateApplicationAppliedOn(String date) {
+    return 'تم التقديم في $date';
+  }
+
+  @override
+  String get candidateApplicationViewJob => 'عرض الوظيفة';
+
+  @override
   String get dashboardJobsLoadFailed =>
       'تعذر تحميل الوظائف. يرجى المحاولة مرة أخرى.';
 
@@ -593,6 +635,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dashboardJobDetailApply => 'تقديم';
+
+  @override
+  String get dashboardJobDetailApplied => 'تم التقديم';
+
+  @override
+  String get dashboardJobDetailAlreadyApplied =>
+      'لقد تقدمت بالفعل على هذا الدور';
 
   @override
   String get dashboardJobApplyDialogTitle => 'التقديم على الوظيفة';

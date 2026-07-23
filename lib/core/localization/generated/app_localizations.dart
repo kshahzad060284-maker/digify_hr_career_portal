@@ -926,6 +926,18 @@ abstract class AppLocalizations {
   /// **'Urgent Hiring'**
   String get dashboardJobUrgentHiring;
 
+  /// No description provided for @dashboardJobApplicationStatusApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get dashboardJobApplicationStatusApplied;
+
+  /// No description provided for @dashboardJobApplicationStatusNotApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Applied'**
+  String get dashboardJobApplicationStatusNotApplied;
+
   /// No description provided for @dashboardNoJobsFound.
   ///
   /// In en, this message translates to:
@@ -937,6 +949,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'My Offers'**
   String get dashboardHeaderMyOffers;
+
+  /// No description provided for @dashboardHeaderMyApplications.
+  ///
+  /// In en, this message translates to:
+  /// **'My Applications'**
+  String get dashboardHeaderMyApplications;
 
   /// No description provided for @candidateOffersTitle.
   ///
@@ -1082,6 +1100,48 @@ abstract class AppLocalizations {
   /// **'Could not decline the offer. Please try again.'**
   String get candidateOfferDeclineFailed;
 
+  /// No description provided for @candidateApplicationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Applications'**
+  String get candidateApplicationsTitle;
+
+  /// No description provided for @candidateApplicationsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track the jobs you have applied for.'**
+  String get candidateApplicationsSubtitle;
+
+  /// No description provided for @candidateApplicationsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t applied to any jobs yet. When you apply, your applications will appear here.'**
+  String get candidateApplicationsEmpty;
+
+  /// No description provided for @candidateApplicationsLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load your applications. Please try again.'**
+  String get candidateApplicationsLoadFailed;
+
+  /// No description provided for @candidateApplicationsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 application} other{{count} applications}}'**
+  String candidateApplicationsCount(int count);
+
+  /// No description provided for @candidateApplicationAppliedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied {date}'**
+  String candidateApplicationAppliedOn(String date);
+
+  /// No description provided for @candidateApplicationViewJob.
+  ///
+  /// In en, this message translates to:
+  /// **'View Job'**
+  String get candidateApplicationViewJob;
+
   /// No description provided for @dashboardJobsLoadFailed.
   ///
   /// In en, this message translates to:
@@ -1159,6 +1219,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Apply'**
   String get dashboardJobDetailApply;
+
+  /// No description provided for @dashboardJobDetailApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get dashboardJobDetailApplied;
+
+  /// No description provided for @dashboardJobDetailAlreadyApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'You have already applied for this role'**
+  String get dashboardJobDetailAlreadyApplied;
 
   /// No description provided for @dashboardJobApplyDialogTitle.
   ///

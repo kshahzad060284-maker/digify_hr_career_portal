@@ -4,7 +4,7 @@ abstract final class AppConfig {
   AppConfig._();
 
   // App identity
-  static const String appName = 'Career Portal';
+  static const String appName = 'Digify Careers';
   static const String appVersion = '1.0.0';
   static const String appBuildNumber = '1';
   static const bool showDebugBanner = false;

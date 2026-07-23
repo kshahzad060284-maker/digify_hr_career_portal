@@ -15,12 +15,14 @@ class JobPostingsRepositoryImpl implements JobPostingsRepository {
     required int page,
     required int pageSize,
     String? search,
+    String? candidateGuid,
   }) {
     return _remoteDataSource.getJobPostings(
       enterpriseId: enterpriseId,
       page: page,
       pageSize: pageSize,
       search: search,
+      candidateGuid: candidateGuid,
     );
   }
 
@@ -28,10 +30,12 @@ class JobPostingsRepositoryImpl implements JobPostingsRepository {
   Future<DashboardJob> getJobPosting({
     required String postingGuid,
     required int enterpriseId,
+    String? candidateGuid,
   }) {
     return _remoteDataSource.getJobPosting(
       postingGuid: postingGuid,
       enterpriseId: enterpriseId,
+      candidateGuid: candidateGuid,
     );
   }
 

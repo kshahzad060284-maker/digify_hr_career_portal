@@ -158,8 +158,11 @@
     }
   },
   "dashboardJobUrgentHiring": "Urgent Hiring",
+  "dashboardJobApplicationStatusApplied": "Applied",
+  "dashboardJobApplicationStatusNotApplied": "Not Applied",
   "dashboardNoJobsFound": "No positions match your search or filters.",
   "dashboardHeaderMyOffers": "My Offers",
+  "dashboardHeaderMyApplications": "My Applications",
   "candidateOffersTitle": "My Offers",
   "candidateOffersSubtitle": "View job offers sent to you by companies.",
   "candidateOffersEmpty": "You don't have any offers yet. When a company sends you an offer, it will appear here.",
@@ -205,6 +208,27 @@
   "candidateOfferDeclineSuccess": "Offer declined successfully.",
   "candidateOfferAcceptFailed": "Could not accept the offer. Please try again.",
   "candidateOfferDeclineFailed": "Could not decline the offer. Please try again.",
+  "candidateApplicationsTitle": "My Applications",
+  "candidateApplicationsSubtitle": "Track the jobs you have applied for.",
+  "candidateApplicationsEmpty": "You haven't applied to any jobs yet. When you apply, your applications will appear here.",
+  "candidateApplicationsLoadFailed": "Could not load your applications. Please try again.",
+  "candidateApplicationsCount": "{count, plural, =1{1 application} other{{count} applications}}",
+  "@candidateApplicationsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "candidateApplicationAppliedOn": "Applied {date}",
+  "@candidateApplicationAppliedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateApplicationViewJob": "View Job",
   "dashboardJobsLoadFailed": "Could not load job postings. Please try again.",
   "commonRetry": "Retry",
   "paginationShowingRange": "Showing {start} - {end} of {total} items",
@@ -248,6 +272,8 @@
   "dashboardJobDetailBack": "Back to all jobs",
   "dashboardJobDetailSignInToApply": "Sign in to Apply",
   "dashboardJobDetailApply": "Apply",
+  "dashboardJobDetailApplied": "Applied",
+  "dashboardJobDetailAlreadyApplied": "You have already applied for this role",
   "dashboardJobApplyDialogTitle": "Apply for Job",
   "dashboardJobApplyDialogSubtitle": "{jobTitle}",
   "@dashboardJobApplyDialogSubtitle": {

@@ -20,6 +20,7 @@ class JobPostingsRemoteDataSource {
     required int page,
     required int pageSize,
     String? search,
+    String? candidateGuid,
   }) async {
     try {
       final queryParameters = <String, dynamic>{
@@ -30,6 +31,10 @@ class JobPostingsRemoteDataSource {
       final trimmedSearch = search?.trim();
       if (trimmedSearch != null && trimmedSearch.isNotEmpty) {
         queryParameters['search'] = trimmedSearch;
+      }
+      final trimmedCandidateGuid = candidateGuid?.trim();
+      if (trimmedCandidateGuid != null && trimmedCandidateGuid.isNotEmpty) {
+        queryParameters['candidate_guid'] = trimmedCandidateGuid;
       }
 
       final response = await _appService.get<Map<String, dynamic>>(
@@ -69,11 +74,18 @@ class JobPostingsRemoteDataSource {
   Future<DashboardJob> getJobPosting({
     required String postingGuid,
     required int enterpriseId,
+    String? candidateGuid,
   }) async {
     try {
+      final queryParameters = <String, dynamic>{'enterprise_id': enterpriseId};
+      final trimmedCandidateGuid = candidateGuid?.trim();
+      if (trimmedCandidateGuid != null && trimmedCandidateGuid.isNotEmpty) {
+        queryParameters['candidate_guid'] = trimmedCandidateGuid;
+      }
+
       final response = await _appService.get<Map<String, dynamic>>(
         RecEndpoints.jobPosting(postingGuid),
-        queryParameters: {'enterprise_id': enterpriseId},
+        queryParameters: queryParameters,
         parser: (data) {
           if (data is Map<String, dynamic>) return data;
           throw AppException(message: 'Invalid job posting response.');

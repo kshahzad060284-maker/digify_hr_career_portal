@@ -7,10 +7,12 @@ class DashboardDesktopLayout extends StatelessWidget {
     super.key,
     required this.child,
     this.showOffersNavButton = true,
+    this.showApplicationsNavButton = true,
   });
 
   final Widget child;
   final bool showOffersNavButton;
+  final bool showApplicationsNavButton;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,10 @@ class DashboardDesktopLayout extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DashboardHeader(showOffersNavButton: showOffersNavButton),
+              DashboardHeader(
+                showOffersNavButton: showOffersNavButton,
+                showApplicationsNavButton: showApplicationsNavButton,
+              ),
               Expanded(child: child),
               const DashboardFooter(),
             ],

@@ -7,10 +7,14 @@ class JobPostingsResponseDto {
     required this.jobs,
     this.pagination,
     this.message,
+    this.authenticated,
+    this.candidateGuid,
   });
 
   final bool success;
   final String? message;
+  final bool? authenticated;
+  final String? candidateGuid;
   final JobPostingPaginationDto? pagination;
   final List<JobPostingDto> jobs;
 
@@ -35,6 +39,10 @@ class JobPostingsResponseDto {
     return JobPostingsResponseDto(
       success: json['success'] == true,
       message: json['message']?.toString(),
+      authenticated: json['authenticated'] is bool
+          ? json['authenticated'] as bool
+          : null,
+      candidateGuid: json['candidate_guid']?.toString(),
       pagination: pagination,
       jobs: jobs,
     );

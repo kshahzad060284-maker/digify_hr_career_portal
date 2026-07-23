@@ -2,6 +2,7 @@ import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_already_applied_banner.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
@@ -15,11 +16,13 @@ class DashboardJobDetailSidebar extends StatelessWidget {
     required this.job,
     required this.applyButtonLabel,
     this.onApplyPressed,
+    this.hasApplied = false,
   });
 
   final DashboardJob job;
   final String applyButtonLabel;
   final VoidCallback? onApplyPressed;
+  final bool hasApplied;
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +78,14 @@ class DashboardJobDetailSidebar extends StatelessWidget {
             ],
           ),
         ),
-        AppButton(
-          label: applyButtonLabel,
-          type: AppButtonType.primary,
-          onPressed: onApplyPressed,
-        ),
+        if (hasApplied)
+          const DashboardJobAlreadyAppliedBanner()
+        else
+          AppButton(
+            label: applyButtonLabel,
+            type: AppButtonType.primary,
+            onPressed: onApplyPressed,
+          ),
         _QuestionsCard(
           title: l10n.dashboardJobDetailQuestionsTitle,
           body: l10n.dashboardJobDetailQuestionsBody,

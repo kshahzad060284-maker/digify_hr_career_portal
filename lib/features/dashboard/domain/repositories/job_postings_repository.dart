@@ -8,11 +8,13 @@ abstract interface class JobPostingsRepository {
     required int page,
     required int pageSize,
     String? search,
+    String? candidateGuid,
   });
 
   Future<DashboardJob> getJobPosting({
     required String postingGuid,
     required int enterpriseId,
+    String? candidateGuid,
   });
 
   Future<void> applyForJob(ApplyJobInput input);
