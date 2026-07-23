@@ -1,4 +1,5 @@
 import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
 import 'package:career_portal/features/offers/domain/config/offers_config.dart';
 import 'package:career_portal/features/offers/domain/models/candidate_offers_page.dart';
@@ -10,6 +11,7 @@ class CandidateOffersController
     extends AutoDisposeAsyncNotifier<CandidateOffersState> {
   @override
   Future<CandidateOffersState> build() async {
+    ref.watch(enterpriseIdProvider);
     ref.listen(authSessionProvider, (previous, next) {
       final previousGuid = previous?.session?.candidateGuid;
       final nextGuid = next.session?.candidateGuid;
@@ -54,7 +56,7 @@ class CandidateOffersController
 
     final useCase = ref.read(getCandidateOffersUseCaseProvider);
     final pageResult = await useCase(
-      enterpriseId: OffersConfig.defaultEnterpriseId,
+      enterpriseId: ref.read(enterpriseIdProvider),
       candidateGuid: candidateGuid,
       page: page,
       pageSize: OffersConfig.defaultPageSize,

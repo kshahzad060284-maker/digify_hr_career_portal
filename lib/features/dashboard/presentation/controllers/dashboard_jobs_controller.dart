@@ -1,5 +1,6 @@
 import 'dart:async' show unawaited;
 
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/utils/debouncer.dart';
 import 'package:career_portal/features/dashboard/domain/config/dashboard_jobs_config.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
@@ -17,6 +18,7 @@ class DashboardJobsController extends AsyncNotifier<DashboardJobsState> {
   Future<DashboardJobsState> build() async {
     _debouncer = Debouncer(duration: _debounceDuration);
     ref.onDispose(_debouncer.dispose);
+    ref.watch(enterpriseIdProvider);
     return _loadPage(1);
   }
 
@@ -67,7 +69,7 @@ class DashboardJobsController extends AsyncNotifier<DashboardJobsState> {
   Future<DashboardJobsState> _loadPage(int page) async {
     final useCase = ref.read(getJobPostingsUseCaseProvider);
     final pageResult = await useCase(
-      enterpriseId: DashboardJobsConfig.defaultEnterpriseId,
+      enterpriseId: ref.read(enterpriseIdProvider),
       page: page,
       pageSize: DashboardJobsConfig.defaultPageSize,
       search: _searchQuery.isEmpty ? null : _searchQuery,

@@ -1,5 +1,7 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
+import 'package:career_portal/core/deep_link/deep_link.dart';
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
@@ -106,7 +108,18 @@ class _DashboardJobDetailPageState
               DashboardJobDetailHeader(
                 job: detailState.job,
                 fallbackTitle: l10n.dashboardJobDetailTitle(widget.jobId),
-                onBack: () => context.pop(),
+                onBack: () {
+                  if (context.canPop()) {
+                    context.pop();
+                    return;
+                  }
+                  context.go(
+                    DeepLink.withEnterpriseId(
+                      AppRoutes.home,
+                      ref.read(enterpriseIdProvider),
+                    ),
+                  );
+                },
                 applyButtonLabel: applyButtonLabel,
                 onApplyPressed: isLoggedIn
                     ? () => _onApply(detailState.job)
