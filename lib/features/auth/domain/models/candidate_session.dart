@@ -17,5 +17,5 @@ class CandidateSession {
   final String email;
   final String userStatus;
 
-  bool get isLoggedIn => candidateUserGuid.isNotEmpty;
+  bool get isLoggedIn => candidateGuid.isNotEmpty;
 }

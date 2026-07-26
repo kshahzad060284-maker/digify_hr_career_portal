@@ -83,6 +83,10 @@
       }
     }
   },
+  "authLogout": "Log out",
+  "authLogoutConfirmTitle": "Log out?",
+  "authLogoutConfirmMessage": "Are you sure you want to log out of your account?",
+  "authLogoutSuccess": "You have been logged out.",
   "commonCancel": "Cancel",
   "commonConfirm": "Confirm",
   "commonDelete": "Delete",

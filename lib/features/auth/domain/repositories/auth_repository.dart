@@ -12,4 +12,9 @@ abstract interface class AuthRepository {
   Future<RegisterCandidateResult> registerCandidate(
     RegisterCandidateInput input,
   );
+
+  Future<CandidateSession> getCandidateProfile({
+    required String candidateGuid,
+    required int enterpriseId,
+  });
 }

@@ -1,8 +1,10 @@
 import 'package:career_portal/core/network/api_endpoints.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/network/app_service.dart';
+import 'package:career_portal/features/auth/data/dto/candidate_profile_response_dto.dart';
 import 'package:career_portal/features/auth/data/dto/login_response_dto.dart';
 import 'package:career_portal/features/auth/data/dto/register_response_dto.dart';
+import 'package:career_portal/features/auth/data/mappers/candidate_profile_mapper.dart';
 import 'package:career_portal/features/auth/data/mappers/candidate_session_mapper.dart';
 import 'package:career_portal/features/auth/data/mappers/register_candidate_result_mapper.dart';
 import 'package:career_portal/features/auth/data/mappers/register_multipart_mapper.dart';
@@ -40,7 +42,7 @@ class AuthRemoteDataSource {
       }
 
       final user = dto.user;
-      if (user == null || user.candidateUserGuid.isEmpty) {
+      if (user == null || user.candidateGuid.isEmpty) {
         throw AppException(message: 'Login response data missing.');
       }
 
@@ -81,6 +83,41 @@ class AuthRemoteDataSource {
       rethrow;
     } catch (error) {
       throw AppException(message: 'Registration failed.', details: error);
+    }
+  }
+
+  Future<CandidateSession> getCandidateProfile({
+    required String candidateGuid,
+    required int enterpriseId,
+  }) async {
+    try {
+      final response = await _appService.get<Map<String, dynamic>>(
+        RecEndpoints.candidate(candidateGuid),
+        queryParameters: <String, dynamic>{'enterprise_id': enterpriseId},
+        parser: (data) {
+          if (data is Map<String, dynamic>) return data;
+          throw AppException(message: 'Invalid candidate profile response.');
+        },
+      );
+
+      final dto = CandidateProfileResponseDto.fromJson(response);
+      if (!dto.success) {
+        throw AppException(message: 'Failed to load candidate profile.');
+      }
+
+      final profile = dto.data;
+      if (profile == null || profile.candidateGuid.isEmpty) {
+        throw AppException(message: 'Candidate profile data missing.');
+      }
+
+      return CandidateProfileMapper.toSession(profile);
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException(
+        message: 'Failed to load candidate profile.',
+        details: error,
+      );
     }
   }
 }

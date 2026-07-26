@@ -5,6 +5,7 @@ import 'package:career_portal/core/services/responsive/breakpoints.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_mobile_theme.dart';
 import 'package:career_portal/core/theme/app_theme.dart';
+import 'package:career_portal/features/auth/presentation/providers/auth_bootstrap_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ class CareerPortalApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(authBootstrapProvider);
     final router = ref.watch(appRouterProvider);
 
     return LayoutBuilder(

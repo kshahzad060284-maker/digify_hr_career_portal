@@ -74,7 +74,7 @@ class LoginController extends Notifier<LoginState> {
             email: state.email.trim(),
             password: state.password,
           );
-      ref.read(authSessionProvider.notifier).setSession(session);
+      await ref.read(authSessionProvider.notifier).setSession(session);
       state = state.copyWith(
         isLoading: false,
         clearCredentials: true,
