@@ -560,6 +560,30 @@ abstract class AppLocalizations {
   /// **'Welcome back, {name}!'**
   String authWelcomeBackUser(String name);
 
+  /// No description provided for @authLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get authLogout;
+
+  /// No description provided for @authLogoutConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out?'**
+  String get authLogoutConfirmTitle;
+
+  /// No description provided for @authLogoutConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out of your account?'**
+  String get authLogoutConfirmMessage;
+
+  /// No description provided for @authLogoutSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have been logged out.'**
+  String get authLogoutSuccess;
+
   /// No description provided for @commonCancel.
   ///
   /// In en, this message translates to:

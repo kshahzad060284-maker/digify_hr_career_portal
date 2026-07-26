@@ -246,6 +246,19 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get authLogout => 'تسجيل الخروج';
+
+  @override
+  String get authLogoutConfirmTitle => 'تسجيل الخروج؟';
+
+  @override
+  String get authLogoutConfirmMessage =>
+      'هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟';
+
+  @override
+  String get authLogoutSuccess => 'تم تسجيل خروجك.';
+
+  @override
   String get commonCancel => 'إلغاء';
 
   @override

@@ -83,6 +83,10 @@
       }
     }
   },
+  "authLogout": "تسجيل الخروج",
+  "authLogoutConfirmTitle": "تسجيل الخروج؟",
+  "authLogoutConfirmMessage": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
+  "authLogoutSuccess": "تم تسجيل خروجك.",
   "commonCancel": "إلغاء",
   "commonConfirm": "تأكيد",
   "commonDelete": "حذف",

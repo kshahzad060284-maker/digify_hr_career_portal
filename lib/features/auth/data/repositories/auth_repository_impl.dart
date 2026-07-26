@@ -28,4 +28,15 @@ class AuthRepositoryImpl implements AuthRepository {
   ) {
     return _remoteDataSource.registerCandidate(input);
   }
+
+  @override
+  Future<CandidateSession> getCandidateProfile({
+    required String candidateGuid,
+    required int enterpriseId,
+  }) {
+    return _remoteDataSource.getCandidateProfile(
+      candidateGuid: candidateGuid,
+      enterpriseId: enterpriseId,
+    );
+  }
 }
