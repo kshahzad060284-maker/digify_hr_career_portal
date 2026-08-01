@@ -110,4 +110,4 @@ jobs:
         shell: bash
         run: |
           sleep 5
-          curl --fail --head --retry 5 "http://${SERVER_HOST}/"
+          curl --fail --head --retry 5 "https://careers.digifyhr.com/"
