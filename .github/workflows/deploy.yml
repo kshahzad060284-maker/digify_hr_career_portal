@@ -1,0 +1,113 @@
+name: Deploy Digify Career Portal
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: digify-career-production
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy Flutter Web
+    runs-on: ubuntu-latest
+
+    env:
+      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_USER: ${{ secrets.SERVER_USER }}
+      DEPLOY_PATH: /var/www/digify-career-portal
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Determine Flutter version
+        id: flutter_version
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -f ".fvmrc" ]; then
+            VERSION=$(python3 -c '
+          import json
+          with open(".fvmrc", "r", encoding="utf-8") as file:
+              print(json.load(file)["flutter"])
+          ')
+          else
+            VERSION="stable"
+          fi
+
+          echo "Using Flutter version: ${VERSION}"
+          echo "version=${VERSION}" >> "${GITHUB_OUTPUT}"
+
+      - name: Install Flutter
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git clone \
+            https://github.com/flutter/flutter.git \
+            --depth 1 \
+            --branch "${{ steps.flutter_version.outputs.version }}" \
+            "${HOME}/flutter"
+
+          echo "${HOME}/flutter/bin" >> "${GITHUB_PATH}"
+
+      - name: Install project dependencies
+        shell: bash
+        run: |
+          flutter config --enable-web
+          flutter pub get
+
+      - name: Build Flutter Web
+        shell: bash
+        run: |
+          flutter build web --release
+
+      - name: Install deployment tools
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync
+
+      - name: Configure SSH
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          install -m 700 -d "${HOME}/.ssh"
+
+          printf '%s\n' "${{ secrets.SERVER_SSH_KEY }}" \
+            > "${HOME}/.ssh/id_ed25519"
+
+          printf '%s\n' "${{ secrets.SERVER_KNOWN_HOSTS }}" \
+            > "${HOME}/.ssh/known_hosts"
+
+          chmod 600 "${HOME}/.ssh/id_ed25519"
+          chmod 600 "${HOME}/.ssh/known_hosts"
+
+      - name: Deploy to Ubuntu server
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          rsync \
+            --archive \
+            --compress \
+            --delete \
+            --human-readable \
+            -e "ssh -i ${HOME}/.ssh/id_ed25519" \
+            build/web/ \
+            "${SERVER_USER}@${SERVER_HOST}:${DEPLOY_PATH}/"
+
+      - name: Verify deployment
+        shell: bash
+        run: |
+          sleep 5
+          curl --fail --head --retry 5 "http://${SERVER_HOST}/"
