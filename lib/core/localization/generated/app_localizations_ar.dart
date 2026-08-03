@@ -431,11 +431,35 @@ class AppLocalizationsAr extends AppLocalizations {
       'اكتشف فرصتك المهنية القادمة وكن جزءاً من شيء رائع';
 
   @override
+  String get dashboardHeroBadge => 'نوظّف الآن';
+
+  @override
   String get dashboardJobSearchPlaceholder =>
       'ابحث عن الوظائف حسب المسمى أو القسم أو الكلمة المفتاحية...';
 
   @override
   String get dashboardFilterAllLocations => 'جميع المواقع';
+
+  @override
+  String get dashboardFilterAllDepartments => 'جميع الأقسام';
+
+  @override
+  String get dashboardFilterAllEmploymentTypes => 'جميع الأنواع';
+
+  @override
+  String get dashboardFilterLocationLabel => 'الموقع';
+
+  @override
+  String get dashboardFilterDepartmentLabel => 'القسم';
+
+  @override
+  String get dashboardFilterEmploymentTypeLabel => 'نوع الوظيفة';
+
+  @override
+  String get dashboardFilterClearAll => 'مسح الكل';
+
+  @override
+  String get dashboardOpenRolesHeading => 'الوظائف المتاحة';
 
   @override
   String dashboardPositionsAvailable(int count) {
@@ -469,8 +493,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashboardJobApplicationStatusNotApplied => 'لم يتم التقديم';
 
   @override
+  String get dashboardJobViewDetails => 'تفاصيل الوظيفة';
+
+  @override
+  String get dashboardJobCopyLink => 'نسخ الرابط';
+
+  @override
+  String get dashboardJobLinkCopied => 'تم نسخ رابط الوظيفة';
+
+  @override
+  String get dashboardEmptyJobsTitle => 'لا توجد وظائف مطابقة';
+
+  @override
   String get dashboardNoJobsFound =>
-      'لا توجد وظائف تطابق بحثك أو عوامل التصفية.';
+      'لا توجد وظائف تطابق بحثك أو عوامل التصفية. جرّب تعديل عوامل التصفية أو كلمات البحث.';
 
   @override
   String get dashboardHeaderMyOffers => 'عروضي';
@@ -625,13 +661,16 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get dashboardJobDetailAboutRole => 'نبذة عن الدور';
+  String get dashboardJobDetailAboutRole => 'وصف الوظيفة';
 
   @override
-  String get dashboardJobDetailResponsibilities => 'المسؤوليات';
+  String get dashboardJobDetailResponsibilities => 'المسؤوليات الرئيسية';
 
   @override
   String get dashboardJobDetailQualifications => 'المؤهلات';
+
+  @override
+  String get dashboardJobDetailTags => 'الوسوم';
 
   @override
   String get dashboardJobDetailNotFound => 'تعذر العثور على هذه الوظيفة.';
@@ -641,13 +680,16 @@ class AppLocalizationsAr extends AppLocalizations {
       'تعذر تحميل تفاصيل الوظيفة. يرجى المحاولة مرة أخرى.';
 
   @override
+  String get dashboardJobDetailLoading => 'جاري تحميل تفاصيل الوظيفة...';
+
+  @override
   String get dashboardJobDetailBack => 'العودة إلى جميع الوظائف';
 
   @override
   String get dashboardJobDetailSignInToApply => 'سجّل الدخول للتقديم';
 
   @override
-  String get dashboardJobDetailApply => 'تقديم';
+  String get dashboardJobDetailApply => 'قدّم الآن';
 
   @override
   String get dashboardJobDetailApplied => 'تم التقديم';
@@ -655,6 +697,19 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get dashboardJobDetailAlreadyApplied =>
       'لقد تقدمت بالفعل على هذا الدور';
+
+  @override
+  String get dashboardJobDetailCopyEmail => 'نسخ البريد';
+
+  @override
+  String get dashboardJobDetailEmailCopied => 'تم نسخ البريد إلى الحافظة';
+
+  @override
+  String get dashboardJobDetailReadyToApply => 'هل أنت مهتم بهذا الدور؟';
+
+  @override
+  String get dashboardJobDetailReadyToApplyBody =>
+      'أرسل طلبك وسيتواصل معك فريقنا قريبًا.';
 
   @override
   String get dashboardJobApplyDialogTitle => 'التقديم على الوظيفة';
@@ -731,19 +786,75 @@ class AppLocalizationsAr extends AppLocalizations {
       'فريق التوظيف لدينا هنا للمساعدة. لا تتردد في التواصل معنا بخصوص أي أسئلة حول هذا الدور.';
 
   @override
-  String get footerTagline => 'تخطيط واضح: رأس ومحتوى وتذييل للويب.';
+  String get footerTagline =>
+      'اعثر على فرصتك القادمة وانمُ مع فريق يستثمر فيك.';
 
   @override
   String get footerCopyright => '© 2026 بوابة الوظائف. جميع الحقوق محفوظة.';
 
   @override
-  String get footerPrivacy => 'الخصوصية';
+  String get footerPrivacy => 'سياسة الخصوصية';
 
   @override
-  String get footerTerms => 'الشروط';
+  String get footerTerms => 'الشروط والأحكام';
 
   @override
   String get footerContact => 'اتصل بنا';
+
+  @override
+  String get footerCompanyTitle => 'الشركة';
+
+  @override
+  String get footerCompanyAboutUs => 'من نحن';
+
+  @override
+  String get footerCompanyOurTeam => 'فريقنا';
+
+  @override
+  String get footerCompanyPartners => 'الشركاء';
+
+  @override
+  String get footerCompanyForCandidates => 'للمرشحين';
+
+  @override
+  String get footerCompanyForEmployers => 'لأصحاب العمل';
+
+  @override
+  String get footerJobCategoriesTitle => 'فئات الوظائف';
+
+  @override
+  String get footerCategoryTelecommunications => 'الاتصالات';
+
+  @override
+  String get footerCategoryHotelsTourism => 'الفنادق والسياحة';
+
+  @override
+  String get footerCategoryConstruction => 'البناء';
+
+  @override
+  String get footerCategoryEducation => 'التعليم';
+
+  @override
+  String get footerCategoryFinancialServices => 'الخدمات المالية';
+
+  @override
+  String get footerNewsletterTitle => 'النشرة البريدية';
+
+  @override
+  String get footerNewsletterDescription =>
+      'احصل على أحدث الوظائف ونصائح المسار المهني في بريدك.';
+
+  @override
+  String get footerNewsletterEmailHint => 'البريد الإلكتروني';
+
+  @override
+  String get footerNewsletterSubscribe => 'اشترك الآن';
+
+  @override
+  String get footerNewsletterEmailRequired => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get footerNewsletterSuccess => 'شكراً لاشتراكك. سنبقيك على اطلاع.';
 
   @override
   String get timePickerTitle => 'تعيين الوقت';

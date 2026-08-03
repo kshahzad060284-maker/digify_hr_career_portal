@@ -32,6 +32,24 @@ abstract final class DeepLink {
     ).toString();
   }
 
+  static String jobDetailShareUrl({
+    required String jobId,
+    required int enterpriseId,
+    Uri? base,
+  }) {
+    final origin = base ?? Uri.base;
+    return origin
+        .replace(
+          path: '/job',
+          queryParameters: jobDetailQuery(
+            jobId: jobId,
+            enterpriseId: enterpriseId,
+          ),
+          fragment: '',
+        )
+        .toString();
+  }
+
   static String withEnterpriseId(String location, int enterpriseId) {
     final uri = Uri.parse(location);
     final params = Map<String, String>.from(uri.queryParameters);

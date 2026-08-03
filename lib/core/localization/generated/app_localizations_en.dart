@@ -433,11 +433,35 @@ class AppLocalizationsEn extends AppLocalizations {
       'Discover your next career opportunity and be part of something amazing';
 
   @override
+  String get dashboardHeroBadge => 'We\'re hiring';
+
+  @override
   String get dashboardJobSearchPlaceholder =>
       'Search for jobs by title, department, or keyword...';
 
   @override
   String get dashboardFilterAllLocations => 'All Locations';
+
+  @override
+  String get dashboardFilterAllDepartments => 'All Departments';
+
+  @override
+  String get dashboardFilterAllEmploymentTypes => 'All Types';
+
+  @override
+  String get dashboardFilterLocationLabel => 'Location';
+
+  @override
+  String get dashboardFilterDepartmentLabel => 'Department';
+
+  @override
+  String get dashboardFilterEmploymentTypeLabel => 'Job type';
+
+  @override
+  String get dashboardFilterClearAll => 'Clear all';
+
+  @override
+  String get dashboardOpenRolesHeading => 'Open roles';
 
   @override
   String dashboardPositionsAvailable(int count) {
@@ -471,8 +495,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardJobApplicationStatusNotApplied => 'Not Applied';
 
   @override
+  String get dashboardJobViewDetails => 'Job Details';
+
+  @override
+  String get dashboardJobCopyLink => 'Copy link';
+
+  @override
+  String get dashboardJobLinkCopied => 'Job link copied to clipboard';
+
+  @override
+  String get dashboardEmptyJobsTitle => 'No matching roles';
+
+  @override
   String get dashboardNoJobsFound =>
-      'No positions match your search or filters.';
+      'No positions match your search or filters. Try adjusting your filters or search terms.';
 
   @override
   String get dashboardHeaderMyOffers => 'My Offers';
@@ -629,13 +665,16 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dashboardJobDetailAboutRole => 'About the Role';
+  String get dashboardJobDetailAboutRole => 'Job Description';
 
   @override
-  String get dashboardJobDetailResponsibilities => 'Responsibilities';
+  String get dashboardJobDetailResponsibilities => 'Key Responsibilities';
 
   @override
   String get dashboardJobDetailQualifications => 'Qualifications';
+
+  @override
+  String get dashboardJobDetailTags => 'Tags';
 
   @override
   String get dashboardJobDetailNotFound => 'This job could not be found.';
@@ -645,13 +684,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Could not load job details. Please try again.';
 
   @override
+  String get dashboardJobDetailLoading => 'Loading job details...';
+
+  @override
   String get dashboardJobDetailBack => 'Back to all jobs';
 
   @override
   String get dashboardJobDetailSignInToApply => 'Sign in to Apply';
 
   @override
-  String get dashboardJobDetailApply => 'Apply';
+  String get dashboardJobDetailApply => 'Apply Now';
 
   @override
   String get dashboardJobDetailApplied => 'Applied';
@@ -659,6 +701,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dashboardJobDetailAlreadyApplied =>
       'You have already applied for this role';
+
+  @override
+  String get dashboardJobDetailCopyEmail => 'Copy email';
+
+  @override
+  String get dashboardJobDetailEmailCopied => 'Email copied to clipboard';
+
+  @override
+  String get dashboardJobDetailReadyToApply => 'Interested in this role?';
+
+  @override
+  String get dashboardJobDetailReadyToApplyBody =>
+      'Submit your application and our team will get back to you.';
 
   @override
   String get dashboardJobApplyDialogTitle => 'Apply for Job';
@@ -736,19 +791,75 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get footerTagline =>
-      'A clean header-content-footer layout for the web.';
+      'Find your next opportunity and grow with a team that invests in you.';
 
   @override
   String get footerCopyright => '© 2026 Career Portal. All rights reserved.';
 
   @override
-  String get footerPrivacy => 'Privacy';
+  String get footerPrivacy => 'Privacy Policy';
 
   @override
-  String get footerTerms => 'Terms';
+  String get footerTerms => 'Terms & Conditions';
 
   @override
   String get footerContact => 'Contact';
+
+  @override
+  String get footerCompanyTitle => 'Company';
+
+  @override
+  String get footerCompanyAboutUs => 'About Us';
+
+  @override
+  String get footerCompanyOurTeam => 'Our Team';
+
+  @override
+  String get footerCompanyPartners => 'Partners';
+
+  @override
+  String get footerCompanyForCandidates => 'For Candidates';
+
+  @override
+  String get footerCompanyForEmployers => 'For Employers';
+
+  @override
+  String get footerJobCategoriesTitle => 'Job Categories';
+
+  @override
+  String get footerCategoryTelecommunications => 'Telecommunications';
+
+  @override
+  String get footerCategoryHotelsTourism => 'Hotels & Tourism';
+
+  @override
+  String get footerCategoryConstruction => 'Construction';
+
+  @override
+  String get footerCategoryEducation => 'Education';
+
+  @override
+  String get footerCategoryFinancialServices => 'Financial Services';
+
+  @override
+  String get footerNewsletterTitle => 'Newsletter';
+
+  @override
+  String get footerNewsletterDescription =>
+      'Get the latest open roles and career tips in your inbox.';
+
+  @override
+  String get footerNewsletterEmailHint => 'Email Address';
+
+  @override
+  String get footerNewsletterSubscribe => 'Subscribe now';
+
+  @override
+  String get footerNewsletterEmailRequired => 'Please enter your email address';
+
+  @override
+  String get footerNewsletterSuccess =>
+      'Thanks for subscribing. We\'ll keep you updated.';
 
   @override
   String get timePickerTitle => 'Set Time';

@@ -13,11 +13,13 @@ class DashboardWebLayout extends ConsumerWidget {
     required this.child,
     this.showOffersNavButton = true,
     this.showApplicationsNavButton = true,
+    this.showShellHeader = true,
   });
 
   final Widget child;
   final bool showOffersNavButton;
   final bool showApplicationsNavButton;
+  final bool showShellHeader;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,16 +27,19 @@ class DashboardWebLayout extends ConsumerWidget {
       ScreenLayout.mobile => DashboardMobileLayout(
         showOffersNavButton: showOffersNavButton,
         showApplicationsNavButton: showApplicationsNavButton,
+        showShellHeader: showShellHeader,
         child: child,
       ),
       ScreenLayout.desktop => DashboardDesktopLayout(
         showOffersNavButton: showOffersNavButton,
         showApplicationsNavButton: showApplicationsNavButton,
+        showShellHeader: showShellHeader,
         child: child,
       ),
       _ => DashboardTabletLayout(
         showOffersNavButton: showOffersNavButton,
         showApplicationsNavButton: showApplicationsNavButton,
+        showShellHeader: showShellHeader,
         child: child,
       ),
     };
