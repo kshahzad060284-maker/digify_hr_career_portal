@@ -661,13 +661,16 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get dashboardJobDetailAboutRole => 'نبذة عن الدور';
+  String get dashboardJobDetailAboutRole => 'وصف الوظيفة';
 
   @override
-  String get dashboardJobDetailResponsibilities => 'المسؤوليات';
+  String get dashboardJobDetailResponsibilities => 'المسؤوليات الرئيسية';
 
   @override
   String get dashboardJobDetailQualifications => 'المؤهلات';
+
+  @override
+  String get dashboardJobDetailTags => 'الوسوم';
 
   @override
   String get dashboardJobDetailNotFound => 'تعذر العثور على هذه الوظيفة.';
@@ -677,13 +680,16 @@ class AppLocalizationsAr extends AppLocalizations {
       'تعذر تحميل تفاصيل الوظيفة. يرجى المحاولة مرة أخرى.';
 
   @override
+  String get dashboardJobDetailLoading => 'جاري تحميل تفاصيل الوظيفة...';
+
+  @override
   String get dashboardJobDetailBack => 'العودة إلى جميع الوظائف';
 
   @override
   String get dashboardJobDetailSignInToApply => 'سجّل الدخول للتقديم';
 
   @override
-  String get dashboardJobDetailApply => 'تقديم';
+  String get dashboardJobDetailApply => 'قدّم الآن';
 
   @override
   String get dashboardJobDetailApplied => 'تم التقديم';
@@ -691,6 +697,19 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get dashboardJobDetailAlreadyApplied =>
       'لقد تقدمت بالفعل على هذا الدور';
+
+  @override
+  String get dashboardJobDetailCopyEmail => 'نسخ البريد';
+
+  @override
+  String get dashboardJobDetailEmailCopied => 'تم نسخ البريد إلى الحافظة';
+
+  @override
+  String get dashboardJobDetailReadyToApply => 'هل أنت مهتم بهذا الدور؟';
+
+  @override
+  String get dashboardJobDetailReadyToApplyBody =>
+      'أرسل طلبك وسيتواصل معك فريقنا قريبًا.';
 
   @override
   String get dashboardJobApplyDialogTitle => 'التقديم على الوظيفة';

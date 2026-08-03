@@ -1271,13 +1271,13 @@ abstract class AppLocalizations {
   /// No description provided for @dashboardJobDetailAboutRole.
   ///
   /// In en, this message translates to:
-  /// **'About the Role'**
+  /// **'Job Description'**
   String get dashboardJobDetailAboutRole;
 
   /// No description provided for @dashboardJobDetailResponsibilities.
   ///
   /// In en, this message translates to:
-  /// **'Responsibilities'**
+  /// **'Key Responsibilities'**
   String get dashboardJobDetailResponsibilities;
 
   /// No description provided for @dashboardJobDetailQualifications.
@@ -1285,6 +1285,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Qualifications'**
   String get dashboardJobDetailQualifications;
+
+  /// No description provided for @dashboardJobDetailTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get dashboardJobDetailTags;
 
   /// No description provided for @dashboardJobDetailNotFound.
   ///
@@ -1297,6 +1303,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not load job details. Please try again.'**
   String get dashboardJobDetailLoadFailed;
+
+  /// No description provided for @dashboardJobDetailLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading job details...'**
+  String get dashboardJobDetailLoading;
 
   /// No description provided for @dashboardJobDetailBack.
   ///
@@ -1313,7 +1325,7 @@ abstract class AppLocalizations {
   /// No description provided for @dashboardJobDetailApply.
   ///
   /// In en, this message translates to:
-  /// **'Apply'**
+  /// **'Apply Now'**
   String get dashboardJobDetailApply;
 
   /// No description provided for @dashboardJobDetailApplied.
@@ -1327,6 +1339,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You have already applied for this role'**
   String get dashboardJobDetailAlreadyApplied;
+
+  /// No description provided for @dashboardJobDetailCopyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy email'**
+  String get dashboardJobDetailCopyEmail;
+
+  /// No description provided for @dashboardJobDetailEmailCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Email copied to clipboard'**
+  String get dashboardJobDetailEmailCopied;
+
+  /// No description provided for @dashboardJobDetailReadyToApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Interested in this role?'**
+  String get dashboardJobDetailReadyToApply;
+
+  /// No description provided for @dashboardJobDetailReadyToApplyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit your application and our team will get back to you.'**
+  String get dashboardJobDetailReadyToApplyBody;
 
   /// No description provided for @dashboardJobApplyDialogTitle.
   ///
