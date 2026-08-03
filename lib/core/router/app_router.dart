@@ -30,91 +30,100 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) => EnterpriseSession.syncFromUri(state.uri),
     routes: [
       ShellRoute(
-        builder: (context, state, child) {
-          final location = state.matchedLocation;
-          return DashboardWebLayout(
-            showOffersNavButton: location != AppRoutes.candidateOffers,
-            showApplicationsNavButton:
-                location != AppRoutes.candidateApplications,
-            showShellHeader: location != AppRoutes.home,
-            child: child,
-          );
-        },
+        builder: (context, state, child) => SelectionArea(child: child),
         routes: [
-          GoRoute(
-            path: AppRoutes.home,
-            name: AppRouteNames.home,
-            builder: (context, state) => const DashboardContent(),
-          ),
-          GoRoute(
-            path: AppRoutes.jobDetail,
-            name: AppRouteNames.jobDetail,
-            redirect: (context, state) {
-              if (DeepLink.jobIdOf(state.uri) == null) return AppRoutes.home;
-              return null;
-            },
-            builder: (context, state) {
-              return DashboardJobDetailPage(
-                jobId: DeepLink.jobIdOf(state.uri)!,
+          ShellRoute(
+            builder: (context, state, child) {
+              final location = state.matchedLocation;
+              return DashboardWebLayout(
+                showOffersNavButton: location != AppRoutes.candidateOffers,
+                showApplicationsNavButton:
+                    location != AppRoutes.candidateApplications,
+                showShellHeader: location != AppRoutes.home,
+                child: child,
               );
             },
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: AppRouteNames.home,
+                builder: (context, state) => const DashboardContent(),
+              ),
+              GoRoute(
+                path: AppRoutes.jobDetail,
+                name: AppRouteNames.jobDetail,
+                redirect: (context, state) {
+                  if (DeepLink.jobIdOf(state.uri) == null) {
+                    return AppRoutes.home;
+                  }
+                  return null;
+                },
+                builder: (context, state) {
+                  return DashboardJobDetailPage(
+                    jobId: DeepLink.jobIdOf(state.uri)!,
+                  );
+                },
+              ),
+              GoRoute(
+                path: AppRoutes.candidateOffers,
+                name: AppRouteNames.candidateOffers,
+                builder: (context, state) => const CandidateOffersPage(),
+              ),
+              GoRoute(
+                path: AppRoutes.candidateApplications,
+                name: AppRouteNames.candidateApplications,
+                builder: (context, state) => const CandidateApplicationsPage(),
+              ),
+            ],
           ),
           GoRoute(
-            path: AppRoutes.candidateOffers,
-            name: AppRouteNames.candidateOffers,
-            builder: (context, state) => const CandidateOffersPage(),
+            path: AppRoutes.authLogin,
+            name: AppRouteNames.authLogin,
+            builder: (context, state) => const LoginPage(),
           ),
           GoRoute(
-            path: AppRoutes.candidateApplications,
-            name: AppRouteNames.candidateApplications,
-            builder: (context, state) => const CandidateApplicationsPage(),
+            path: AppRoutes.authSignUp,
+            name: AppRouteNames.authSignUp,
+            builder: (context, state) => const SignUpPage(),
           ),
-        ],
-      ),
-      GoRoute(
-        path: AppRoutes.authLogin,
-        name: AppRouteNames.authLogin,
-        builder: (context, state) => const LoginPage(),
-      ),
-      GoRoute(
-        path: AppRoutes.authSignUp,
-        name: AppRouteNames.authSignUp,
-        builder: (context, state) => const SignUpPage(),
-      ),
-      GoRoute(
-        path: AppRoutes.login,
-        name: AppRouteNames.login,
-        redirect: (context, state) => AppRoutes.authLogin,
-      ),
-      GoRoute(
-        path: AppRoutes.register,
-        name: AppRouteNames.register,
-        redirect: (context, state) => AppRoutes.authSignUp,
-      ),
-      GoRoute(
-        path: AppRoutes.signUp,
-        name: AppRouteNames.signUp,
-        redirect: (context, state) => AppRoutes.authSignUp,
-      ),
-      GoRoute(
-        path: AppRoutes.jobs,
-        name: AppRouteNames.jobs,
-        builder: (context, state) => const JobsPage(),
-        routes: [
           GoRoute(
-            path: ':id',
-            name: AppRouteNames.jobDetails,
-            builder: (context, state) {
-              final jobId = state.pathParameters['id'] ?? '';
-              return JobDetailsPage(jobId: jobId);
-            },
+            path: AppRoutes.login,
+            name: AppRouteNames.login,
+            redirect: (context, state) => AppRoutes.authLogin,
+          ),
+          GoRoute(
+            path: AppRoutes.register,
+            name: AppRouteNames.register,
+            redirect: (context, state) => AppRoutes.authSignUp,
+          ),
+          GoRoute(
+            path: AppRoutes.signUp,
+            name: AppRouteNames.signUp,
+            redirect: (context, state) => AppRoutes.authSignUp,
+          ),
+          GoRoute(
+            path: AppRoutes.jobs,
+            name: AppRouteNames.jobs,
+            builder: (context, state) => const JobsPage(),
+            routes: [
+              GoRoute(
+                path: ':id',
+                name: AppRouteNames.jobDetails,
+                builder: (context, state) {
+                  final jobId = state.pathParameters['id'] ?? '';
+                  return JobDetailsPage(jobId: jobId);
+                },
+              ),
+            ],
           ),
         ],
       ),
     ],
     errorBuilder: (context, state) {
-      return _RouterErrorPage(
-        errorMessage: state.error?.toString() ?? 'Page not found',
+      return SelectionArea(
+        child: _RouterErrorPage(
+          errorMessage: state.error?.toString() ?? 'Page not found',
+        ),
       );
     },
   );
