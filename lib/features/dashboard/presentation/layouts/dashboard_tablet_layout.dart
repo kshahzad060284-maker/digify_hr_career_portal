@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/dashboard_footer.dart';
 import '../widgets/dashboard_header.dart';
 
 class DashboardTabletLayout extends StatelessWidget {
@@ -9,11 +8,13 @@ class DashboardTabletLayout extends StatelessWidget {
     required this.child,
     this.showOffersNavButton = true,
     this.showApplicationsNavButton = true,
+    this.showShellHeader = true,
   });
 
   final Widget child;
   final bool showOffersNavButton;
   final bool showApplicationsNavButton;
+  final bool showShellHeader;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +24,12 @@ class DashboardTabletLayout extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DashboardHeader(
-                showOffersNavButton: showOffersNavButton,
-                showApplicationsNavButton: showApplicationsNavButton,
-              ),
+              if (showShellHeader)
+                DashboardHeader(
+                  showOffersNavButton: showOffersNavButton,
+                  showApplicationsNavButton: showApplicationsNavButton,
+                ),
               Expanded(child: child),
-              const DashboardFooter(),
             ],
           ),
         ),

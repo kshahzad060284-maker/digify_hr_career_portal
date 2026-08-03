@@ -1,27 +1,26 @@
-import 'package:career_portal/core/localization/generated/app_localizations.dart';
-import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
-class DashboardOffersNavButton extends StatelessWidget {
-  const DashboardOffersNavButton({
+class DashboardHeaderNavButton extends StatelessWidget {
+  const DashboardHeaderNavButton({
     super.key,
+    required this.label,
+    required this.onPressed,
     this.compact = false,
     this.foregroundColor,
   });
 
+  final String label;
+  final VoidCallback onPressed;
   final bool compact;
   final Color? foregroundColor;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
     return AppButton.text(
-      label: l10n.dashboardHeaderMyOffers,
-      onPressed: () => context.goNamed(AppRouteNames.candidateOffers),
+      label: label,
+      onPressed: onPressed,
       foregroundColor: foregroundColor,
       fontSize: compact ? 13.sp : 14.sp,
       padding: EdgeInsets.symmetric(horizontal: compact ? 4.w : 8.w),

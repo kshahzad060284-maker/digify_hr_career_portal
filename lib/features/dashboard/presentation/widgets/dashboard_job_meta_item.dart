@@ -33,7 +33,7 @@ class DashboardJobMetaItem extends StatelessWidget {
           label,
           style: context.textTheme.bodyMedium?.copyWith(
             color: color,
-            fontSize: 16.sp,
+            fontSize: 14.sp,
           ),
         ),
       ],

@@ -920,6 +920,12 @@ abstract class AppLocalizations {
   /// **'Discover your next career opportunity and be part of something amazing'**
   String get dashboardJoinTeamSubtitle;
 
+  /// No description provided for @dashboardHeroBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re hiring'**
+  String get dashboardHeroBadge;
+
   /// No description provided for @dashboardJobSearchPlaceholder.
   ///
   /// In en, this message translates to:
@@ -931,6 +937,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'All Locations'**
   String get dashboardFilterAllLocations;
+
+  /// No description provided for @dashboardFilterAllDepartments.
+  ///
+  /// In en, this message translates to:
+  /// **'All Departments'**
+  String get dashboardFilterAllDepartments;
+
+  /// No description provided for @dashboardFilterAllEmploymentTypes.
+  ///
+  /// In en, this message translates to:
+  /// **'All Types'**
+  String get dashboardFilterAllEmploymentTypes;
+
+  /// No description provided for @dashboardFilterLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get dashboardFilterLocationLabel;
+
+  /// No description provided for @dashboardFilterDepartmentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Department'**
+  String get dashboardFilterDepartmentLabel;
+
+  /// No description provided for @dashboardFilterEmploymentTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Job type'**
+  String get dashboardFilterEmploymentTypeLabel;
+
+  /// No description provided for @dashboardFilterClearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get dashboardFilterClearAll;
+
+  /// No description provided for @dashboardOpenRolesHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Open roles'**
+  String get dashboardOpenRolesHeading;
 
   /// No description provided for @dashboardPositionsAvailable.
   ///
@@ -962,10 +1010,34 @@ abstract class AppLocalizations {
   /// **'Not Applied'**
   String get dashboardJobApplicationStatusNotApplied;
 
+  /// No description provided for @dashboardJobViewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Job Details'**
+  String get dashboardJobViewDetails;
+
+  /// No description provided for @dashboardJobCopyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy link'**
+  String get dashboardJobCopyLink;
+
+  /// No description provided for @dashboardJobLinkCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Job link copied to clipboard'**
+  String get dashboardJobLinkCopied;
+
+  /// No description provided for @dashboardEmptyJobsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching roles'**
+  String get dashboardEmptyJobsTitle;
+
   /// No description provided for @dashboardNoJobsFound.
   ///
   /// In en, this message translates to:
-  /// **'No positions match your search or filters.'**
+  /// **'No positions match your search or filters. Try adjusting your filters or search terms.'**
   String get dashboardNoJobsFound;
 
   /// No description provided for @dashboardHeaderMyOffers.
@@ -1199,13 +1271,13 @@ abstract class AppLocalizations {
   /// No description provided for @dashboardJobDetailAboutRole.
   ///
   /// In en, this message translates to:
-  /// **'About the Role'**
+  /// **'Job Description'**
   String get dashboardJobDetailAboutRole;
 
   /// No description provided for @dashboardJobDetailResponsibilities.
   ///
   /// In en, this message translates to:
-  /// **'Responsibilities'**
+  /// **'Key Responsibilities'**
   String get dashboardJobDetailResponsibilities;
 
   /// No description provided for @dashboardJobDetailQualifications.
@@ -1213,6 +1285,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Qualifications'**
   String get dashboardJobDetailQualifications;
+
+  /// No description provided for @dashboardJobDetailTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get dashboardJobDetailTags;
 
   /// No description provided for @dashboardJobDetailNotFound.
   ///
@@ -1225,6 +1303,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not load job details. Please try again.'**
   String get dashboardJobDetailLoadFailed;
+
+  /// No description provided for @dashboardJobDetailLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading job details...'**
+  String get dashboardJobDetailLoading;
 
   /// No description provided for @dashboardJobDetailBack.
   ///
@@ -1241,7 +1325,7 @@ abstract class AppLocalizations {
   /// No description provided for @dashboardJobDetailApply.
   ///
   /// In en, this message translates to:
-  /// **'Apply'**
+  /// **'Apply Now'**
   String get dashboardJobDetailApply;
 
   /// No description provided for @dashboardJobDetailApplied.
@@ -1255,6 +1339,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You have already applied for this role'**
   String get dashboardJobDetailAlreadyApplied;
+
+  /// No description provided for @dashboardJobDetailCopyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy email'**
+  String get dashboardJobDetailCopyEmail;
+
+  /// No description provided for @dashboardJobDetailEmailCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Email copied to clipboard'**
+  String get dashboardJobDetailEmailCopied;
+
+  /// No description provided for @dashboardJobDetailReadyToApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Interested in this role?'**
+  String get dashboardJobDetailReadyToApply;
+
+  /// No description provided for @dashboardJobDetailReadyToApplyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit your application and our team will get back to you.'**
+  String get dashboardJobDetailReadyToApplyBody;
 
   /// No description provided for @dashboardJobApplyDialogTitle.
   ///
@@ -1379,7 +1487,7 @@ abstract class AppLocalizations {
   /// No description provided for @footerTagline.
   ///
   /// In en, this message translates to:
-  /// **'A clean header-content-footer layout for the web.'**
+  /// **'Find your next opportunity and grow with a team that invests in you.'**
   String get footerTagline;
 
   /// No description provided for @footerCopyright.
@@ -1391,13 +1499,13 @@ abstract class AppLocalizations {
   /// No description provided for @footerPrivacy.
   ///
   /// In en, this message translates to:
-  /// **'Privacy'**
+  /// **'Privacy Policy'**
   String get footerPrivacy;
 
   /// No description provided for @footerTerms.
   ///
   /// In en, this message translates to:
-  /// **'Terms'**
+  /// **'Terms & Conditions'**
   String get footerTerms;
 
   /// No description provided for @footerContact.
@@ -1405,6 +1513,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact'**
   String get footerContact;
+
+  /// No description provided for @footerCompanyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Company'**
+  String get footerCompanyTitle;
+
+  /// No description provided for @footerCompanyAboutUs.
+  ///
+  /// In en, this message translates to:
+  /// **'About Us'**
+  String get footerCompanyAboutUs;
+
+  /// No description provided for @footerCompanyOurTeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Team'**
+  String get footerCompanyOurTeam;
+
+  /// No description provided for @footerCompanyPartners.
+  ///
+  /// In en, this message translates to:
+  /// **'Partners'**
+  String get footerCompanyPartners;
+
+  /// No description provided for @footerCompanyForCandidates.
+  ///
+  /// In en, this message translates to:
+  /// **'For Candidates'**
+  String get footerCompanyForCandidates;
+
+  /// No description provided for @footerCompanyForEmployers.
+  ///
+  /// In en, this message translates to:
+  /// **'For Employers'**
+  String get footerCompanyForEmployers;
+
+  /// No description provided for @footerJobCategoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Job Categories'**
+  String get footerJobCategoriesTitle;
+
+  /// No description provided for @footerCategoryTelecommunications.
+  ///
+  /// In en, this message translates to:
+  /// **'Telecommunications'**
+  String get footerCategoryTelecommunications;
+
+  /// No description provided for @footerCategoryHotelsTourism.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotels & Tourism'**
+  String get footerCategoryHotelsTourism;
+
+  /// No description provided for @footerCategoryConstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Construction'**
+  String get footerCategoryConstruction;
+
+  /// No description provided for @footerCategoryEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Education'**
+  String get footerCategoryEducation;
+
+  /// No description provided for @footerCategoryFinancialServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Services'**
+  String get footerCategoryFinancialServices;
+
+  /// No description provided for @footerNewsletterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Newsletter'**
+  String get footerNewsletterTitle;
+
+  /// No description provided for @footerNewsletterDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Get the latest open roles and career tips in your inbox.'**
+  String get footerNewsletterDescription;
+
+  /// No description provided for @footerNewsletterEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get footerNewsletterEmailHint;
+
+  /// No description provided for @footerNewsletterSubscribe.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe now'**
+  String get footerNewsletterSubscribe;
+
+  /// No description provided for @footerNewsletterEmailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email address'**
+  String get footerNewsletterEmailRequired;
+
+  /// No description provided for @footerNewsletterSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for subscribing. We\'ll keep you updated.'**
+  String get footerNewsletterSuccess;
 
   /// No description provided for @timePickerTitle.
   ///

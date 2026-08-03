@@ -20,10 +20,12 @@ class DashboardUserProfileChip extends ConsumerWidget {
     super.key,
     required this.session,
     this.compact = false,
+    this.onHero = false,
   });
 
   final CandidateSession session;
   final bool compact;
+  final bool onHero;
 
   Future<void> _onLogout(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
@@ -87,12 +89,16 @@ class DashboardUserProfileChip extends ConsumerWidget {
           vertical: compact ? 6.h : 8.h,
         ),
         decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.cardBackgroundDark
-              : AppColors.sidebarActiveBg,
+          color: onHero
+              ? AppColors.onPrimary.withValues(alpha: 0.14)
+              : (isDark
+                    ? AppColors.cardBackgroundDark
+                    : AppColors.sidebarActiveBg),
           borderRadius: BorderRadius.circular(10.r),
           border: Border.all(
-            color: isDark ? AppColors.cardBorderDark : AppColors.cardBorder,
+            color: onHero
+                ? AppColors.onPrimary.withValues(alpha: 0.28)
+                : (isDark ? AppColors.cardBorderDark : AppColors.cardBorder),
           ),
         ),
         child: Row(
@@ -101,7 +107,9 @@ class DashboardUserProfileChip extends ConsumerWidget {
             AppAvatar(
               fallbackInitial: displayName,
               size: compact ? 32 : 40,
-              backgroundColor: AppColors.primary.withValues(alpha: 0.12),
+              backgroundColor: onHero
+                  ? AppColors.onPrimary.withValues(alpha: 0.2)
+                  : AppColors.primary.withValues(alpha: 0.12),
               showStatusDot: true,
               statusDotColor: AppColors.success,
             ),
@@ -116,7 +124,9 @@ class DashboardUserProfileChip extends ConsumerWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: context.textTheme.titleSmall?.copyWith(
-                      color: context.themeTextPrimary,
+                      color: onHero
+                          ? AppColors.onPrimary
+                          : context.themeTextPrimary,
                       fontWeight: FontWeight.w600,
                       fontSize: compact ? 13.sp : 14.sp,
                     ),
@@ -128,7 +138,9 @@ class DashboardUserProfileChip extends ConsumerWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.labelSmall?.copyWith(
-                        color: context.themeTextSecondary,
+                        color: onHero
+                            ? AppColors.onPrimary.withValues(alpha: 0.85)
+                            : context.themeTextSecondary,
                         fontSize: 12.sp,
                       ),
                     ),
@@ -139,7 +151,9 @@ class DashboardUserProfileChip extends ConsumerWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.labelSmall?.copyWith(
-                        color: AppColors.primary,
+                        color: onHero
+                            ? AppColors.onPrimary.withValues(alpha: 0.9)
+                            : AppColors.primary,
                         fontSize: 11.sp,
                         fontWeight: FontWeight.w500,
                       ),

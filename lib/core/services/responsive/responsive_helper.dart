@@ -7,19 +7,19 @@ class ResponsiveHelper {
   ResponsiveHelper._();
 
   static Size screenUtilDesignSize(BuildContext context) {
-    final layout = context.layout;
-    final landscape =
-        MediaQuery.orientationOf(context) == Orientation.landscape;
-
-    final size = switch (layout) {
+    final size = switch (context.layout) {
       ScreenLayout.mobile => const Size(375, 812),
       ScreenLayout.tabletSmall ||
       ScreenLayout.tabletMedium => const Size(768, 1024),
       ScreenLayout.tabletLarge || ScreenLayout.desktop => const Size(1440, 900),
     };
 
-    if (!landscape || layout == ScreenLayout.desktop) return size;
-    return Size(size.height, size.width);
+    final landscape =
+        MediaQuery.orientationOf(context) == Orientation.landscape;
+    if (landscape && size.height > size.width) {
+      return Size(size.height, size.width);
+    }
+    return size;
   }
 
   static EdgeInsets pagePadding(BuildContext context) {
