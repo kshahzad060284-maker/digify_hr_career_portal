@@ -17,10 +17,7 @@ abstract final class AppConfig {
   static const bool splitScreenMode = true;
 
   // Network configuration
-  static const String baseUrl = String.fromEnvironment(
-    'API_BASE_URL',
-    defaultValue: 'https://api.digifyhr.com',
-  );
+  static const String baseUrl = 'https://api.digifyhr.com';
   static const Duration connectTimeout = Duration(seconds: 20);
   static const Duration receiveTimeout = Duration(seconds: 20);
   static const Duration sendTimeout = Duration(seconds: 20);
@@ -32,10 +29,4 @@ abstract final class AppConfig {
   static const String defaultJobApplySourceCode = 'CAREER_SITE';
   static const String defaultJobApplyCreatedBy = 'CANDIDATE';
   static const String defaultSalaryCurrency = 'KWD';
-
-  // Secrets and keys
-  // Keep these in --dart-define values or a secure runtime source.
-  static const String apiKey = String.fromEnvironment('API_KEY');
-  static const String apiSecret = String.fromEnvironment('API_SECRET');
-  static const String appSecret = String.fromEnvironment('APP_SECRET');
 }
