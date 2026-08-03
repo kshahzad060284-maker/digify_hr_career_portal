@@ -36,6 +36,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             showOffersNavButton: location != AppRoutes.candidateOffers,
             showApplicationsNavButton:
                 location != AppRoutes.candidateApplications,
+            showShellHeader: location != AppRoutes.home,
             child: child,
           );
         },

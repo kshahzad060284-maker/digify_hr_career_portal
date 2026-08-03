@@ -8,6 +8,14 @@ class DashboardFiltersController extends Notifier<DashboardFiltersState> {
   void onLocationChanged(String? value) {
     state = state.copyWith(selectedLocation: value);
   }
+
+  void onDepartmentChanged(String? value) {
+    state = state.copyWith(selectedDepartment: value);
+  }
+
+  void onEmploymentTypeChanged(String? value) {
+    state = state.copyWith(selectedEmploymentType: value);
+  }
 }
 
 final dashboardFiltersControllerProvider =

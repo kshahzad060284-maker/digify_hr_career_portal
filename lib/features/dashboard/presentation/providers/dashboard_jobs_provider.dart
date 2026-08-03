@@ -17,13 +17,42 @@ final dashboardJobLocationsProvider = Provider<List<String>>((ref) {
     ..sort();
 });
 
+final dashboardJobDepartmentsProvider = Provider<List<String>>((ref) {
+  final jobs = ref.watch(dashboardAllJobsProvider);
+  return jobs
+      .map((job) => job.department)
+      .where((d) => d.isNotEmpty)
+      .toSet()
+      .toList()
+    ..sort();
+});
+
+final dashboardJobEmploymentTypesProvider = Provider<List<String>>((ref) {
+  final jobs = ref.watch(dashboardAllJobsProvider);
+  return jobs
+      .map((job) => job.employmentType)
+      .where((t) => t.isNotEmpty)
+      .toSet()
+      .toList()
+    ..sort();
+});
+
 final dashboardFilteredJobsProvider = Provider<List<DashboardJob>>((ref) {
   final jobs = ref.watch(dashboardAllJobsProvider);
   final filters = ref.watch(dashboardFiltersControllerProvider);
 
-  if (filters.isAllLocations) {
-    return jobs;
-  }
-
-  return jobs.where((job) => job.location == filters.selectedLocation).toList();
+  return jobs.where((job) {
+    if (!filters.isAllLocations && job.location != filters.selectedLocation) {
+      return false;
+    }
+    if (!filters.isAllDepartments &&
+        job.department != filters.selectedDepartment) {
+      return false;
+    }
+    if (!filters.isAllEmploymentTypes &&
+        job.employmentType != filters.selectedEmploymentType) {
+      return false;
+    }
+    return true;
+  }).toList();
 });

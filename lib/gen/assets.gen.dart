@@ -51,6 +51,10 @@ class $AssetsIconsDashboardGen {
       const SvgGenImage('assets/icons/dashboard/clock.svg');
   SvgGenImage get department =>
       const SvgGenImage('assets/icons/dashboard/department.svg');
+  SvgGenImage get jobApplication =>
+      const SvgGenImage('assets/icons/dashboard/job-application.svg');
+  SvgGenImage get jobOffers =>
+      const SvgGenImage('assets/icons/dashboard/job-offers.svg');
   SvgGenImage get locationPin =>
       const SvgGenImage('assets/icons/dashboard/location-pin.svg');
   SvgGenImage get magnifierSearch =>

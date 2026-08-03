@@ -2,6 +2,7 @@ import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/router/app_router.dart';
 import 'package:career_portal/core/services/responsive/breakpoints.dart';
+import 'package:career_portal/core/services/responsive/responsive_debug_logger.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_mobile_theme.dart';
 import 'package:career_portal/core/theme/app_theme.dart';
@@ -20,8 +21,11 @@ class CareerPortalApp extends ConsumerWidget {
 
     return LayoutBuilder(
       builder: (context, _) {
+        final designSize = ResponsiveHelper.screenUtilDesignSize(context);
+
         return ScreenUtilInit(
-          designSize: ResponsiveHelper.screenUtilDesignSize(context),
+          key: ValueKey('${designSize.width}x${designSize.height}'),
+          designSize: designSize,
           minTextAdapt: AppConfig.minTextAdapt,
           splitScreenMode: AppConfig.splitScreenMode,
           builder: (context, _) {
@@ -40,6 +44,11 @@ class CareerPortalApp extends ConsumerWidget {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: AppConfig.defaultLocale,
+              builder: (context, child) {
+                return ResponsiveDebugLogger(
+                  child: child ?? const SizedBox.shrink(),
+                );
+              },
             );
           },
         );
