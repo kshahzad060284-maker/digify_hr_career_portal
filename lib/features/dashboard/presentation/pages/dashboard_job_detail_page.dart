@@ -1,10 +1,9 @@
-import 'package:career_portal/core/extensions/app_extensions.dart';
-import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/deep_link/deep_link.dart';
 import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
-import 'package:career_portal/core/router/app_routes.dart';
+import 'package:career_portal/core/extensions/app_extensions.dart';
+import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
-import 'package:career_portal/core/services/responsive/responsive_helper.dart';
+import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/applications/presentation/providers/candidate_applications_list_provider.dart';
@@ -13,8 +12,9 @@ import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dar
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_detail_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_list_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_apply_job_dialog.dart';
-import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_body.dart';
-import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_header.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_footer.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_error_view.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_loaded_view.dart';
 import 'package:career_portal/shared/widgets/common/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,6 +64,22 @@ class _DashboardJobDetailPageState
     return l10n.dashboardJobDetailApply;
   }
 
+  void _onBack() {
+    if (context.canPop()) {
+      context.pop();
+      return;
+    }
+    context.go(
+      DeepLink.withEnterpriseId(AppRoutes.home, ref.read(enterpriseIdProvider)),
+    );
+  }
+
+  void _onRetry() {
+    ref
+        .read(dashboardJobDetailControllerProvider(widget.jobId).notifier)
+        .refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -71,7 +87,8 @@ class _DashboardJobDetailPageState
     final detailAsync = ref.watch(
       dashboardJobDetailControllerProvider(widget.jobId),
     );
-    final pagePadding = ResponsiveHelper.pagePadding(context);
+    final horizontalInset = 30.w;
+    final maxWidth = MediaQuery.sizeOf(context).width;
     final isDark = context.isDark;
     final sectionBg = isDark
         ? AppColors.backgroundDark
@@ -93,26 +110,33 @@ class _DashboardJobDetailPageState
     return ColoredBox(
       color: sectionBg,
       child: detailAsync.when(
-        loading: () => AppPageLoading(message: 'Loading job details...'),
-        error: (error, _) => SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(
-              pagePadding.left,
-              48.h,
-              pagePadding.right,
-              48.h,
+        loading: () => AppPageLoading(message: l10n.dashboardJobDetailLoading),
+        error: (error, _) => Column(
+          children: [
+            Expanded(
+              child: Center(
+                child: SingleChildScrollView(
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                    horizontalInset,
+                    48.h,
+                    horizontalInset,
+                    48.h,
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxWidth),
+                    child: DashboardJobDetailErrorView(
+                      message: error is AppException
+                          ? error.message
+                          : l10n.dashboardJobDetailLoadFailed,
+                      onRetry: _onRetry,
+                      onBack: _onBack,
+                    ),
+                  ),
+                ),
+              ),
             ),
-            child: _JobDetailErrorView(
-              message: error is AppException
-                  ? error.message
-                  : l10n.dashboardJobDetailLoadFailed,
-              onRetry: () => ref
-                  .read(
-                    dashboardJobDetailControllerProvider(widget.jobId).notifier,
-                  )
-                  .refresh(),
-            ),
-          ),
+            const DashboardFooter(),
+          ],
         ),
         data: (detailState) {
           final hasApplied = detailState.job.hasApplied;
@@ -126,79 +150,16 @@ class _DashboardJobDetailPageState
               ? _onSignInToApply
               : () => _onApply(detailState.job);
 
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                DashboardJobDetailHeader(
-                  job: detailState.job,
-                  fallbackTitle: l10n.dashboardJobDetailTitle(widget.jobId),
-                  onBack: () {
-                    if (context.canPop()) {
-                      context.pop();
-                      return;
-                    }
-                    context.go(
-                      DeepLink.withEnterpriseId(
-                        AppRoutes.home,
-                        ref.read(enterpriseIdProvider),
-                      ),
-                    );
-                  },
-                  applyButtonLabel: applyButtonLabel,
-                  onApplyPressed: onApplyPressed,
-                  hasApplied: hasApplied,
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(
-                    pagePadding.left,
-                    32.h,
-                    pagePadding.right,
-                    48.h,
-                  ),
-                  child: DashboardJobDetailBody(
-                    job: detailState.job,
-                    applyButtonLabel: applyButtonLabel,
-                    onApplyPressed: onApplyPressed,
-                    hasApplied: hasApplied,
-                  ),
-                ),
-              ],
-            ),
+          return DashboardJobDetailLoadedView(
+            job: detailState.job,
+            fallbackTitle: l10n.dashboardJobDetailTitle(widget.jobId),
+            applyButtonLabel: applyButtonLabel,
+            onBack: _onBack,
+            onApplyPressed: onApplyPressed,
+            hasApplied: hasApplied,
           );
         },
       ),
-    );
-  }
-}
-
-class _JobDetailErrorView extends StatelessWidget {
-  const _JobDetailErrorView({required this.message, required this.onRetry});
-
-  final String message;
-  final VoidCallback onRetry;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      spacing: 16.h,
-      children: [
-        Text(
-          message,
-          style: context.textTheme.bodyLarge?.copyWith(
-            color: context.themeTextSecondary,
-            fontSize: 16.sp,
-          ),
-        ),
-        Align(
-          alignment: AlignmentDirectional.centerStart,
-          child: FilledButton(
-            onPressed: onRetry,
-            child: Text(AppLocalizations.of(context)!.commonRetry),
-          ),
-        ),
-      ],
     );
   }
 }

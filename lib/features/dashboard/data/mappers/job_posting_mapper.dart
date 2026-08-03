@@ -30,7 +30,7 @@ class JobPostingMapper {
       salaryRange: '',
       startDate: dto.targetStartDate ?? dto.startDate ?? '',
       level: dto.priorityCode,
-      contactEmail: '',
+      contactEmail: 'support@digifyapps.net',
       openingsCount: dto.numberOfOpenings,
       isUrgent: dto.priorityCode.toUpperCase() == 'HIGH',
       applicationStatus: JobApplicationStatus.tryParse(
