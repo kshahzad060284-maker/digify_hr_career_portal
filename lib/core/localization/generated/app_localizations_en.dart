@@ -665,13 +665,16 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get dashboardJobDetailAboutRole => 'About the Role';
+  String get dashboardJobDetailAboutRole => 'Job Description';
 
   @override
-  String get dashboardJobDetailResponsibilities => 'Responsibilities';
+  String get dashboardJobDetailResponsibilities => 'Key Responsibilities';
 
   @override
   String get dashboardJobDetailQualifications => 'Qualifications';
+
+  @override
+  String get dashboardJobDetailTags => 'Tags';
 
   @override
   String get dashboardJobDetailNotFound => 'This job could not be found.';
@@ -681,13 +684,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Could not load job details. Please try again.';
 
   @override
+  String get dashboardJobDetailLoading => 'Loading job details...';
+
+  @override
   String get dashboardJobDetailBack => 'Back to all jobs';
 
   @override
   String get dashboardJobDetailSignInToApply => 'Sign in to Apply';
 
   @override
-  String get dashboardJobDetailApply => 'Apply';
+  String get dashboardJobDetailApply => 'Apply Now';
 
   @override
   String get dashboardJobDetailApplied => 'Applied';
@@ -695,6 +701,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get dashboardJobDetailAlreadyApplied =>
       'You have already applied for this role';
+
+  @override
+  String get dashboardJobDetailCopyEmail => 'Copy email';
+
+  @override
+  String get dashboardJobDetailEmailCopied => 'Email copied to clipboard';
+
+  @override
+  String get dashboardJobDetailReadyToApply => 'Interested in this role?';
+
+  @override
+  String get dashboardJobDetailReadyToApplyBody =>
+      'Submit your application and our team will get back to you.';
 
   @override
   String get dashboardJobApplyDialogTitle => 'Apply for Job';

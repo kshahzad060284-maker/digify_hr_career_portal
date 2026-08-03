@@ -13,14 +13,16 @@ class DashboardJobDetailBody extends StatelessWidget {
     required this.applyButtonLabel,
     this.onApplyPressed,
     this.hasApplied = false,
+    this.showApplyAction = true,
   });
 
   final DashboardJob job;
   final String applyButtonLabel;
   final VoidCallback? onApplyPressed;
   final bool hasApplied;
+  final bool showApplyAction;
 
-  static const double _sidebarWidth = 320;
+  static const double _sidebarWidth = 340;
 
   bool _useSideBySideLayout(BuildContext context) =>
       context.layout.index >= ScreenLayout.tabletMedium.index;
@@ -32,7 +34,9 @@ class DashboardJobDetailBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 24.w,
         children: [
-          Expanded(child: DashboardJobDetailContent(job: job)),
+          Expanded(
+            child: DashboardJobDetailContent(job: job, hasApplied: hasApplied),
+          ),
           SizedBox(
             width: _sidebarWidth.w,
             child: DashboardJobDetailSidebar(
@@ -40,6 +44,7 @@ class DashboardJobDetailBody extends StatelessWidget {
               applyButtonLabel: applyButtonLabel,
               onApplyPressed: onApplyPressed,
               hasApplied: hasApplied,
+              showApplyAction: showApplyAction,
             ),
           ),
         ],
@@ -48,14 +53,15 @@ class DashboardJobDetailBody extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      spacing: 24.h,
+      spacing: 20.h,
       children: [
-        DashboardJobDetailContent(job: job),
+        DashboardJobDetailContent(job: job, hasApplied: hasApplied),
         DashboardJobDetailSidebar(
           job: job,
           applyButtonLabel: applyButtonLabel,
           onApplyPressed: onApplyPressed,
           hasApplied: hasApplied,
+          showApplyAction: showApplyAction,
         ),
       ],
     );
