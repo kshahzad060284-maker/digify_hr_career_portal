@@ -1,5 +1,6 @@
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_filters_controller.dart';
+import 'package:career_portal/features/dashboard/presentation/providers/dashboard_filters_state.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_list_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -35,6 +36,23 @@ final dashboardJobEmploymentTypesProvider = Provider<List<String>>((ref) {
       .toSet()
       .toList()
     ..sort();
+});
+
+final dashboardFilterOptionsProvider = Provider<DashboardFilterOptions>((ref) {
+  return DashboardFilterOptions(
+    locations: [
+      DashboardFiltersState.allLocationsKey,
+      ...ref.watch(dashboardJobLocationsProvider),
+    ],
+    departments: [
+      DashboardFiltersState.allDepartmentsKey,
+      ...ref.watch(dashboardJobDepartmentsProvider),
+    ],
+    employmentTypes: [
+      DashboardFiltersState.allEmploymentTypesKey,
+      ...ref.watch(dashboardJobEmploymentTypesProvider),
+    ],
+  );
 });
 
 final dashboardFilteredJobsProvider = Provider<List<DashboardJob>>((ref) {

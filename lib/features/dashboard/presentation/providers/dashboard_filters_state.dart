@@ -13,6 +13,11 @@ class DashboardFiltersState {
   final String? selectedDepartment;
   final String? selectedEmploymentType;
 
+  String get locationValue => selectedLocation ?? allLocationsKey;
+  String get departmentValue => selectedDepartment ?? allDepartmentsKey;
+  String get employmentTypeValue =>
+      selectedEmploymentType ?? allEmploymentTypesKey;
+
   bool get isAllLocations =>
       selectedLocation == null || selectedLocation == allLocationsKey;
 
@@ -25,6 +30,24 @@ class DashboardFiltersState {
 
   bool get hasActiveFilters =>
       !isAllLocations || !isAllDepartments || !isAllEmploymentTypes;
+
+  List<DashboardActiveFilter> get activeFilters => [
+    if (!isAllLocations)
+      DashboardActiveFilter(
+        label: selectedLocation!,
+        type: DashboardFilterType.location,
+      ),
+    if (!isAllDepartments)
+      DashboardActiveFilter(
+        label: selectedDepartment!,
+        type: DashboardFilterType.department,
+      ),
+    if (!isAllEmploymentTypes)
+      DashboardActiveFilter(
+        label: selectedEmploymentType!,
+        type: DashboardFilterType.employmentType,
+      ),
+  ];
 
   DashboardFiltersState copyWith({
     String? selectedLocation,
@@ -58,4 +81,25 @@ class DashboardFiltersState {
   @override
   int get hashCode =>
       Object.hash(selectedLocation, selectedDepartment, selectedEmploymentType);
+}
+
+enum DashboardFilterType { location, department, employmentType }
+
+class DashboardActiveFilter {
+  const DashboardActiveFilter({required this.label, required this.type});
+
+  final String label;
+  final DashboardFilterType type;
+}
+
+class DashboardFilterOptions {
+  const DashboardFilterOptions({
+    required this.locations,
+    required this.departments,
+    required this.employmentTypes,
+  });
+
+  final List<String> locations;
+  final List<String> departments;
+  final List<String> employmentTypes;
 }

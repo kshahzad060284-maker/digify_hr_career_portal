@@ -950,6 +950,30 @@ abstract class AppLocalizations {
   /// **'All Types'**
   String get dashboardFilterAllEmploymentTypes;
 
+  /// No description provided for @dashboardFilterLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get dashboardFilterLocationLabel;
+
+  /// No description provided for @dashboardFilterDepartmentLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Department'**
+  String get dashboardFilterDepartmentLabel;
+
+  /// No description provided for @dashboardFilterEmploymentTypeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Job type'**
+  String get dashboardFilterEmploymentTypeLabel;
+
+  /// No description provided for @dashboardFilterClearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get dashboardFilterClearAll;
+
   /// No description provided for @dashboardOpenRolesHeading.
   ///
   /// In en, this message translates to:

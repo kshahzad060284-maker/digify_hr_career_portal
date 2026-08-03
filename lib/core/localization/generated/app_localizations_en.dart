@@ -449,6 +449,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardFilterAllEmploymentTypes => 'All Types';
 
   @override
+  String get dashboardFilterLocationLabel => 'Location';
+
+  @override
+  String get dashboardFilterDepartmentLabel => 'Department';
+
+  @override
+  String get dashboardFilterEmploymentTypeLabel => 'Job type';
+
+  @override
+  String get dashboardFilterClearAll => 'Clear all';
+
+  @override
   String get dashboardOpenRolesHeading => 'Open roles';
 
   @override

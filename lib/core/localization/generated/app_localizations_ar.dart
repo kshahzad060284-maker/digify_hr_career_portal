@@ -447,6 +447,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashboardFilterAllEmploymentTypes => 'جميع الأنواع';
 
   @override
+  String get dashboardFilterLocationLabel => 'الموقع';
+
+  @override
+  String get dashboardFilterDepartmentLabel => 'القسم';
+
+  @override
+  String get dashboardFilterEmploymentTypeLabel => 'نوع الوظيفة';
+
+  @override
+  String get dashboardFilterClearAll => 'مسح الكل';
+
+  @override
   String get dashboardOpenRolesHeading => 'الوظائف المتاحة';
 
   @override

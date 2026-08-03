@@ -148,6 +148,10 @@
   "dashboardFilterAllLocations": "All Locations",
   "dashboardFilterAllDepartments": "All Departments",
   "dashboardFilterAllEmploymentTypes": "All Types",
+  "dashboardFilterLocationLabel": "Location",
+  "dashboardFilterDepartmentLabel": "Department",
+  "dashboardFilterEmploymentTypeLabel": "Job type",
+  "dashboardFilterClearAll": "Clear all",
   "dashboardOpenRolesHeading": "Open roles",
   "dashboardPositionsAvailable": "{count, plural, =1{1 position available} other{{count} positions available}}",
   "@dashboardPositionsAvailable": {

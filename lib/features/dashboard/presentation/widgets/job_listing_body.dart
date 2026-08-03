@@ -53,7 +53,7 @@ class JobListingBody extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const DashboardFilterBar(),
-              Gap(20.h),
+              Gap(18.h),
               Text(
                 l10n.dashboardPositionsAvailable(totalPositions),
                 textAlign: TextAlign.start,
@@ -62,7 +62,7 @@ class JobListingBody extends ConsumerWidget {
                   fontSize: 16.sp,
                 ),
               ),
-              Gap(14.h),
+              Gap(16.h),
               if (filteredJobs.isEmpty)
                 JobListingEmptyView(
                   title: l10n.dashboardEmptyJobsTitle,
