@@ -1,5 +1,5 @@
 import 'package:career_portal/features/auth/data/local/auth_hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 class AuthLocalDataSource {
   AuthLocalDataSource({Box<String>? box}) : _box = box ?? AuthHive.box;

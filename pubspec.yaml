@@ -33,8 +33,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^33.2.10
   country_code_picker: ^3.4.1
   file_picker: ^11.0.2
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+  hive_ce: ^2.11.3
+  hive_ce_flutter: ^2.3.4
   web: ^1.1.1
 
 dev_dependencies:
