@@ -8,6 +8,7 @@ enum CandidateApplicationStatus {
 
 class CandidateApplication {
   const CandidateApplication({
+    required this.applicationId,
     required this.applicationGuid,
     required this.applicationNumber,
     required this.postingGuid,
@@ -20,6 +21,7 @@ class CandidateApplication {
     this.resumeFileName,
   });
 
+  final int applicationId;
   final String applicationGuid;
   final String applicationNumber;
   final String postingGuid;

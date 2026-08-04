@@ -52,6 +52,9 @@ abstract final class RecruitmentEndpoints {
 
   static String applications() =>
       '${ApiEndpoints.basePath}/recruitment/applications';
+
+  static String applicationResume(String applicationGuid) =>
+      '${ApiEndpoints.basePath}/recruitment/applications/$applicationGuid/resume';
 }
 
 abstract final class AuthEndpoints {
