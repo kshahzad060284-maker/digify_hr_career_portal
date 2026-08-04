@@ -17,10 +17,9 @@ class CandidateOfferCardSkeleton extends StatelessWidget {
         border: Border.all(color: context.themeCardBorder),
       ),
       child: Padding(
-        padding: EdgeInsets.all(24.w),
+        padding: EdgeInsetsDirectional.fromSTEB(20.w, 20.h, 20.w, 16.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 12.h,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,10 +28,10 @@ class CandidateOfferCardSkeleton extends StatelessWidget {
                   child: Skeletonizer(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 4.h,
                       children: [
-                        Bone.text(words: 3, style: TextStyle(fontSize: 20.sp)),
-                        Bone.text(words: 4, style: TextStyle(fontSize: 14.sp)),
+                        Bone.text(words: 3, style: TextStyle(fontSize: 18.sp)),
+                        Gap(4.h),
+                        Bone.text(words: 4, style: TextStyle(fontSize: 13.sp)),
                       ],
                     ),
                   ),
@@ -47,33 +46,51 @@ class CandidateOfferCardSkeleton extends StatelessWidget {
                 ),
               ],
             ),
+            Gap(14.h),
+            Skeletonizer(
+              child: Bone(
+                width: double.infinity,
+                height: 48.h,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+            ),
+            Gap(12.h),
             Skeletonizer(
               child: Wrap(
-                spacing: 16.w,
+                spacing: 8.w,
                 runSpacing: 8.h,
                 children: [
-                  _MetaPlaceholder(width: 120.w),
-                  _MetaPlaceholder(width: 110.w),
-                  _MetaPlaceholder(width: 140.w),
+                  Bone(
+                    width: 120.w,
+                    height: 32.h,
+                    borderRadius: BorderRadius.circular(999.r),
+                  ),
+                  Bone(
+                    width: 140.w,
+                    height: 32.h,
+                    borderRadius: BorderRadius.circular(999.r),
+                  ),
                 ],
               ),
             ),
+            Gap(14.h),
             Divider(height: 1.h, color: context.themeCardBorder),
+            Gap(12.h),
             Row(
               children: [
                 Expanded(
                   child: Skeletonizer(
                     child: Wrap(
                       spacing: 16.w,
-                      runSpacing: 4.h,
+                      runSpacing: 6.h,
                       children: [
                         Bone(
-                          width: 120.w,
+                          width: 110.w,
                           height: 14.h,
                           borderRadius: BorderRadius.circular(4.r),
                         ),
                         Bone(
-                          width: 130.w,
+                          width: 120.w,
                           height: 14.h,
                           borderRadius: BorderRadius.circular(4.r),
                         ),
@@ -84,8 +101,8 @@ class CandidateOfferCardSkeleton extends StatelessWidget {
                 Gap(12.w),
                 Skeletonizer(
                   child: Bone(
-                    width: 104.w,
-                    height: 40.h,
+                    width: 96.w,
+                    height: 36.h,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
@@ -94,28 +111,6 @@ class CandidateOfferCardSkeleton extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _MetaPlaceholder extends StatelessWidget {
-  const _MetaPlaceholder({required this.width});
-
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Bone.circle(size: 16.w),
-        Gap(4.w),
-        Bone(
-          width: width,
-          height: 14.h,
-          borderRadius: BorderRadius.circular(4.r),
-        ),
-      ],
     );
   }
 }

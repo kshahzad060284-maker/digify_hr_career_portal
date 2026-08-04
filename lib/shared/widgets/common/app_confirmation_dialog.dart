@@ -327,12 +327,11 @@ class AppConfirmationDialog extends StatelessWidget {
                       ],
                       if (hasTextField && textController != null) ...[
                         SizedBox(height: 16.h),
-                        AppTextField(
+                        AppTextArea(
                           controller: textController!,
                           labelText: textFieldLabel ?? '',
-                          maxLines: 3,
-                          minLines: 2,
-                          filled: true,
+                          maxLines: 5,
+                          minLines: 3,
                           fillColor: isDark
                               ? AppColors.inputBgDark
                               : AppColors.authInputFill,

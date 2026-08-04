@@ -13,9 +13,11 @@ class CandidateOfferDto {
     required this.statusCode,
     required this.stageDescription,
     this.annualSalary,
+    this.componentAmount,
     this.postingTitle = '',
     this.departmentName = '',
     this.currencyCode = '',
+    this.frequencyCode = '',
   });
 
   final String offerGuid;
@@ -31,14 +33,17 @@ class CandidateOfferDto {
   final String statusCode;
   final String stageDescription;
   final double? annualSalary;
+  final double? componentAmount;
   final String postingTitle;
   final String departmentName;
   final String currencyCode;
+  final String frequencyCode;
 
   factory CandidateOfferDto.fromJson(Map<String, dynamic> json) {
     final postingObj = json['posting_obj'];
     final departmentObj = json['department_obj'];
     final components = json['components_json'];
+    final firstComponent = _firstComponent(components);
 
     return CandidateOfferDto(
       offerGuid: json['offer_guid']?.toString() ?? '',
@@ -54,13 +59,15 @@ class CandidateOfferDto {
       statusCode: json['status_code']?.toString() ?? '',
       stageDescription: json['stage_description']?.toString() ?? '',
       annualSalary: _asDouble(json['annual_salary']),
+      componentAmount: _asDouble(firstComponent?['amount']),
       postingTitle: postingObj is Map<String, dynamic>
           ? postingObj['posting_title']?.toString() ?? ''
           : '',
       departmentName: departmentObj is Map<String, dynamic>
           ? departmentObj['org_unit_name']?.toString() ?? ''
           : '',
-      currencyCode: _extractCurrencyCode(components),
+      currencyCode: firstComponent?['currency_code']?.toString() ?? '',
+      frequencyCode: firstComponent?['frequency_code']?.toString() ?? '',
     );
   }
 }
@@ -73,11 +80,9 @@ double? _asDouble(dynamic value) {
   return null;
 }
 
-String _extractCurrencyCode(dynamic components) {
-  if (components is! List || components.isEmpty) return '';
+Map<String, dynamic>? _firstComponent(dynamic components) {
+  if (components is! List || components.isEmpty) return null;
   final first = components.first;
-  if (first is Map<String, dynamic>) {
-    return first['currency_code']?.toString() ?? '';
-  }
-  return '';
+  if (first is Map<String, dynamic>) return first;
+  return null;
 }
