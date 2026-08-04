@@ -7,6 +7,7 @@ import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_mobile_theme.dart';
 import 'package:career_portal/core/theme/app_theme.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_bootstrap_provider.dart';
+import 'package:career_portal/features/enterprise_context/presentation/widgets/enterprise_context_bootstrap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,8 +46,10 @@ class CareerPortalApp extends ConsumerWidget {
               supportedLocales: AppLocalizations.supportedLocales,
               locale: AppConfig.defaultLocale,
               builder: (context, child) {
-                return ResponsiveDebugLogger(
-                  child: child ?? const SizedBox.shrink(),
+                return EnterpriseContextBootstrap(
+                  child: ResponsiveDebugLogger(
+                    child: child ?? const SizedBox.shrink(),
+                  ),
                 );
               },
             );

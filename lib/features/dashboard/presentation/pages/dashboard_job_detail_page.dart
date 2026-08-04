@@ -1,5 +1,3 @@
-import 'package:career_portal/core/deep_link/deep_link.dart';
-import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
@@ -69,9 +67,7 @@ class _DashboardJobDetailPageState
       context.pop();
       return;
     }
-    context.go(
-      DeepLink.withEnterpriseId(AppRoutes.home, ref.read(enterpriseIdProvider)),
-    );
+    context.go(AppRoutes.home);
   }
 
   void _onRetry() {
