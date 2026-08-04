@@ -1,5 +1,4 @@
 import 'package:career_portal/core/deep_link/deep_link.dart';
-import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/router/app_routes.dart';
@@ -78,7 +77,6 @@ class JobListingBody extends ConsumerWidget {
                         AppRouteNames.jobDetail,
                         queryParameters: DeepLink.jobDetailQuery(
                           jobId: jobs[i].id,
-                          enterpriseId: ref.read(enterpriseIdProvider),
                         ),
                       );
                     },

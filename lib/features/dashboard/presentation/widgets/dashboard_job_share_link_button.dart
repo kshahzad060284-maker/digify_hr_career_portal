@@ -1,9 +1,9 @@
-import 'package:career_portal/core/deep_link/deep_link.dart';
-import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/features/enterprise_context/domain/helpers/career_portal_url_builder.dart';
+import 'package:career_portal/features/enterprise_context/presentation/providers/enterprise_context_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,9 +16,11 @@ class DashboardJobShareLinkButton extends ConsumerWidget {
 
   Future<void> _copyLink(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
-    final url = DeepLink.jobDetailShareUrl(
+    final careerPortalUrl = ref.read(hostCareerPortalUrlProvider);
+    if (careerPortalUrl == null || careerPortalUrl.isEmpty) return;
+    final url = CareerPortalUrlBuilder.jobUrl(
+      careerPortalUrl: careerPortalUrl,
       jobId: jobId,
-      enterpriseId: ref.read(enterpriseIdProvider),
     );
     await Clipboard.setData(ClipboardData(text: url));
     if (!context.mounted) return;

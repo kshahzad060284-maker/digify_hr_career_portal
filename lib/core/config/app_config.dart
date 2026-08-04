@@ -23,8 +23,14 @@ abstract final class AppConfig {
   static const Duration sendTimeout = Duration(seconds: 20);
   static const Map<String, dynamic> defaultHeaders = <String, dynamic>{};
 
-  // Tenant / API defaults
-  static const int defaultEnterpriseId = 1;
+  /// Debug-only host for `X-Forwarded-Host` when running on localhost.
+  /// Set to `''` to disable. Ignored in release builds.
+  // static const String debugTenantHost = 'abc-trading.careers.digifyhr.com';
+  static const String debugTenantHost = 'ent001.careers.digifyhr.com';
+  // static const String debugTenantHost = 'ent002.careers.digifyhr.com';
+  // static const String debugTenantHost = 'albabtain-hr.careers.digifyhr.com';
+
+  // API defaults (non-tenant)
   static const String defaultRegistrationSource = 'CAREER_PORTAL';
   static const String defaultJobApplySourceCode = 'CAREER_SITE';
   static const String defaultJobApplyCreatedBy = 'CANDIDATE';

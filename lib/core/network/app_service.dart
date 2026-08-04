@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../config/app_config.dart';
 import 'api_network_logger.dart';
 import 'app_exception.dart';
+import 'tenant_host.dart';
 
 class AppService {
   AppService({
@@ -23,6 +24,7 @@ class AppService {
                responseType: ResponseType.json,
              ),
            ) {
+    _dio.interceptors.add(TenantHostInterceptor());
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {

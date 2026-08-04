@@ -271,5 +271,17 @@
   "timePickerAm": "ص",
   "timePickerPm": "م",
   "datePickerSelectYear": "اختر السنة",
-  "datePickerSelectDate": "اختر التاريخ"
+  "datePickerSelectDate": "اختر التاريخ",
+  "loading": "جارٍ التحميل...",
+  "loadingWebsite": "جارٍ تحميل {enterpriseName}...",
+  "@loadingWebsite": {
+    "placeholders": {
+      "enterpriseName": {
+        "type": "String"
+      }
+    }
+  },
+  "loadingWebsiteMessage": "جارٍ تجهيز مساحة العمل...",
+  "enterpriseContextLoadFailed": "تعذر تحديد سياق المؤسسة. يرجى المحاولة مرة أخرى.",
+  "retry": "إعادة المحاولة"
 }
