@@ -1,6 +1,8 @@
 import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/router/app_router.dart';
+import 'package:career_portal/core/scroll/app_scroll_behavior.dart';
+import 'package:career_portal/core/scroll/web_scroll_scope.dart';
 import 'package:career_portal/core/services/responsive/breakpoints.dart';
 import 'package:career_portal/core/services/responsive/responsive_debug_logger.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
@@ -42,13 +44,16 @@ class CareerPortalApp extends ConsumerWidget {
                   : AppTheme.darkTheme,
               themeMode: ThemeMode.light,
               routerConfig: router,
+              scrollBehavior: AppScrollBehavior(),
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: AppConfig.defaultLocale,
               builder: (context, child) {
-                return EnterpriseContextBootstrap(
-                  child: ResponsiveDebugLogger(
-                    child: child ?? const SizedBox.shrink(),
+                return WebScrollScope(
+                  child: EnterpriseContextBootstrap(
+                    child: ResponsiveDebugLogger(
+                      child: child ?? const SizedBox.shrink(),
+                    ),
                   ),
                 );
               },

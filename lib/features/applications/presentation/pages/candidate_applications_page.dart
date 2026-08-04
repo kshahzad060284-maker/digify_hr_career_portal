@@ -59,6 +59,7 @@ class _CandidateApplicationsPageState
     return ColoredBox(
       color: sectionBg,
       child: SingleChildScrollView(
+        primary: true,
         padding: EdgeInsetsDirectional.fromSTEB(
           pagePadding.left,
           48.h,
