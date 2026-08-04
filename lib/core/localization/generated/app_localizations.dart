@@ -1693,6 +1693,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select Date'**
   String get datePickerSelectDate;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @loadingWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading {enterpriseName}...'**
+  String loadingWebsite(String enterpriseName);
+
+  /// No description provided for @loadingWebsiteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your workspace...'**
+  String get loadingWebsiteMessage;
+
+  /// No description provided for @enterpriseContextLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to resolve enterprise context. Please try again.'**
+  String get enterpriseContextLoadFailed;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
 }
 
 class _AppLocalizationsDelegate

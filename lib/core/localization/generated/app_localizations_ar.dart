@@ -891,4 +891,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get datePickerSelectDate => 'اختر التاريخ';
+
+  @override
+  String get loading => 'جارٍ التحميل...';
+
+  @override
+  String loadingWebsite(String enterpriseName) {
+    return 'جارٍ تحميل $enterpriseName...';
+  }
+
+  @override
+  String get loadingWebsiteMessage => 'جارٍ تجهيز مساحة العمل...';
+
+  @override
+  String get enterpriseContextLoadFailed =>
+      'تعذر تحديد سياق المؤسسة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get retry => 'إعادة المحاولة';
 }

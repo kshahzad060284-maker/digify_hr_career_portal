@@ -6,6 +6,9 @@ abstract final class ApiEndpoints {
 
   static String get baseUrlPath => '$basePath/$version';
 
+  static const String publicEnterpriseContext =
+      '$basePath/public/enterprise-context';
+
   static String health() => '$baseUrlPath/health';
 }
 
