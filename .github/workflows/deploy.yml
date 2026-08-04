@@ -65,10 +65,10 @@ jobs:
           flutter config --enable-web
           flutter pub get
 
-      - name: Build Flutter Web
+      - name: Build Flutter Web (WASM)
         shell: bash
         run: |
-          flutter build web --release
+          flutter build web --release --wasm
 
       - name: Install deployment tools
         shell: bash
