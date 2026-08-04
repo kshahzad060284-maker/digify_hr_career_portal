@@ -95,6 +95,7 @@ class AuthLayout extends StatelessWidget {
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     return SingleChildScrollView(
+                      primary: true,
                       child: ConstrainedBox(
                         constraints: BoxConstraints(
                           minHeight: constraints.maxHeight,

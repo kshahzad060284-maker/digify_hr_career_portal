@@ -45,6 +45,7 @@ class JobListingContent extends ConsumerWidget {
           final minBodyHeight = constraints.maxHeight;
 
           return CustomScrollView(
+            primary: true,
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),

@@ -137,6 +137,7 @@ class _CandidateOffersPageState extends ConsumerState<CandidateOffersPage> {
     return ColoredBox(
       color: sectionBg,
       child: SingleChildScrollView(
+        primary: true,
         padding: EdgeInsetsDirectional.fromSTEB(
           pagePadding.left,
           48.h,

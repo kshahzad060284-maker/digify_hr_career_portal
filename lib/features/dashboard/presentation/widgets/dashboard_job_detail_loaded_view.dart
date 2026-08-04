@@ -36,6 +36,7 @@ class DashboardJobDetailLoadedView extends StatelessWidget {
       children: [
         Expanded(
           child: CustomScrollView(
+            primary: true,
             physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics(),
             ),
