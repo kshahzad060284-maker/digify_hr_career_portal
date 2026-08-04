@@ -1,31 +1,40 @@
 import 'package:career_portal/core/deep_link/deep_link.dart';
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/router/app_routes.dart';
+import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/core/utils/open_external_url.dart';
 import 'package:career_portal/core/widgets/app_status_capsule.dart';
+import 'package:career_portal/features/applications/domain/helpers/application_resume_url_builder.dart';
 import 'package:career_portal/features/applications/domain/models/candidate_application.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
 import 'package:career_portal/shared/widgets/common/app_divider.dart';
 import 'package:career_portal/shared/widgets/common/app_meta_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-class CandidateApplicationCard extends StatelessWidget {
+class CandidateApplicationCard extends ConsumerWidget {
   const CandidateApplicationCard({super.key, required this.application});
 
   final CandidateApplication application;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final dateFormat = DateFormat.yMMMd(l10n.localeName);
     final statusLabel = application.stageCode.isNotEmpty
         ? application.stageCode
         : application.statusCode;
     final resumeFileName = application.resumeFileName?.trim();
+    final canOpenResume =
+        resumeFileName != null &&
+        resumeFileName.isNotEmpty &&
+        application.applicationGuid.isNotEmpty;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -72,7 +81,18 @@ class CandidateApplicationCard extends StatelessWidget {
                   AppStatusCapsule(status: statusLabel),
               ],
             ),
-            if (resumeFileName != null && resumeFileName.isNotEmpty)
+            if (canOpenResume)
+              _ResumeLink(
+                fileName: resumeFileName,
+                onTap: () {
+                  final url = ApplicationResumeUrlBuilder.build(
+                    applicationGuid: application.applicationGuid,
+                    enterpriseId: ref.read(enterpriseIdProvider),
+                  );
+                  openExternalUrl(url);
+                },
+              )
+            else if (resumeFileName != null && resumeFileName.isNotEmpty)
               AppMetaItem(
                 icon: Icons.attach_file_rounded,
                 label: resumeFileName,
@@ -127,5 +147,49 @@ class CandidateApplicationCard extends StatelessWidget {
           application.postingTitle.isNotEmpty)
         application.requisitionTitle,
     ].join(' · ');
+  }
+}
+
+class _ResumeLink extends StatelessWidget {
+  const _ResumeLink({required this.fileName, required this.onTap});
+
+  final String fileName;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(4.r),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 2.h),
+          child: Row(
+            children: [
+              Icon(
+                Icons.attach_file_rounded,
+                size: 16.sp,
+                color: AppColors.primary,
+              ),
+              Gap(4.w),
+              Expanded(
+                child: Text(
+                  fileName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: AppColors.primary,
+                    fontSize: 14.sp,
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.primary,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

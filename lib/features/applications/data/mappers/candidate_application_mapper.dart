@@ -9,6 +9,7 @@ class CandidateApplicationMapper {
 
   static CandidateApplication toDomain(CandidateApplicationDto dto) {
     return CandidateApplication(
+      applicationId: dto.applicationId,
       applicationGuid: dto.applicationGuid,
       applicationNumber: dto.applicationNumber,
       postingGuid: dto.postingGuid,
