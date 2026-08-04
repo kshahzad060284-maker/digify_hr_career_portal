@@ -1,16 +1,7 @@
 abstract final class DeepLink {
   DeepLink._();
 
-  static const String enterpriseIdParam = 'enterprise_id';
   static const String jobIdParam = 'id';
-
-  static int? enterpriseIdOf(Uri uri) {
-    final raw = uri.queryParameters[enterpriseIdParam];
-    if (raw == null || raw.isEmpty) return null;
-    final value = int.tryParse(raw);
-    if (value == null || value <= 0) return null;
-    return value;
-  }
 
   static String? jobIdOf(Uri uri) {
     final value = uri.queryParameters[jobIdParam];
@@ -18,42 +9,25 @@ abstract final class DeepLink {
     return value;
   }
 
-  static Map<String, String> jobDetailQuery({
-    required String jobId,
-    required int enterpriseId,
-  }) {
-    return {jobIdParam: jobId, enterpriseIdParam: '$enterpriseId'};
+  static Map<String, String> jobDetailQuery({required String jobId}) {
+    return {jobIdParam: jobId};
   }
 
-  static String jobDetail({required String jobId, required int enterpriseId}) {
+  static String jobDetail({required String jobId}) {
     return Uri(
       path: '/job',
-      queryParameters: jobDetailQuery(jobId: jobId, enterpriseId: enterpriseId),
+      queryParameters: jobDetailQuery(jobId: jobId),
     ).toString();
   }
 
-  static String jobDetailShareUrl({
-    required String jobId,
-    required int enterpriseId,
-    Uri? base,
-  }) {
+  static String jobDetailShareUrl({required String jobId, Uri? base}) {
     final origin = base ?? Uri.base;
     return origin
         .replace(
           path: '/job',
-          queryParameters: jobDetailQuery(
-            jobId: jobId,
-            enterpriseId: enterpriseId,
-          ),
+          queryParameters: jobDetailQuery(jobId: jobId),
           fragment: '',
         )
         .toString();
-  }
-
-  static String withEnterpriseId(String location, int enterpriseId) {
-    final uri = Uri.parse(location);
-    final params = Map<String, String>.from(uri.queryParameters);
-    params[enterpriseIdParam] = '$enterpriseId';
-    return uri.replace(queryParameters: params).toString();
   }
 }

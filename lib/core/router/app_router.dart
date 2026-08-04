@@ -1,5 +1,4 @@
 import 'package:career_portal/core/deep_link/deep_link.dart';
-import 'package:career_portal/core/enterprise/enterprise_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,7 +26,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     navigatorKey: rootNavigatorKey,
     initialLocation: AppRoutes.home,
     debugLogDiagnostics: kDebugMode,
-    redirect: (context, state) => EnterpriseSession.syncFromUri(state.uri),
     routes: [
       ShellRoute(
         builder: (context, state, child) => SelectionArea(child: child),
