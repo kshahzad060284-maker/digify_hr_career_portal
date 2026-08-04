@@ -896,4 +896,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get datePickerSelectDate => 'Select Date';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String loadingWebsite(String enterpriseName) {
+    return 'Loading $enterpriseName...';
+  }
+
+  @override
+  String get loadingWebsiteMessage => 'Preparing your workspace...';
+
+  @override
+  String get enterpriseContextLoadFailed =>
+      'Unable to resolve enterprise context. Please try again.';
+
+  @override
+  String get retry => 'Retry';
 }

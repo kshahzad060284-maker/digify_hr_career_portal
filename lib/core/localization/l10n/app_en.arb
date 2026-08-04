@@ -364,5 +364,17 @@
   "timePickerAm": "AM",
   "timePickerPm": "PM",
   "datePickerSelectYear": "Select Year",
-  "datePickerSelectDate": "Select Date"
+  "datePickerSelectDate": "Select Date",
+  "loading": "Loading...",
+  "loadingWebsite": "Loading {enterpriseName}...",
+  "@loadingWebsite": {
+    "placeholders": {
+      "enterpriseName": {
+        "type": "String"
+      }
+    }
+  },
+  "loadingWebsiteMessage": "Preparing your workspace...",
+  "enterpriseContextLoadFailed": "Unable to resolve enterprise context. Please try again.",
+  "retry": "Retry"
 }

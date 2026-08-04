@@ -1,5 +1,4 @@
 import 'package:career_portal/core/deep_link/deep_link.dart';
-import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/router/app_routes.dart';
@@ -9,19 +8,18 @@ import 'package:career_portal/shared/widgets/common/app_button.dart';
 import 'package:career_portal/shared/widgets/common/app_divider.dart';
 import 'package:career_portal/shared/widgets/common/app_meta_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-class CandidateApplicationCard extends ConsumerWidget {
+class CandidateApplicationCard extends StatelessWidget {
   const CandidateApplicationCard({super.key, required this.application});
 
   final CandidateApplication application;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final dateFormat = DateFormat.yMMMd(l10n.localeName);
     final statusLabel = application.stageCode.isNotEmpty
@@ -109,7 +107,6 @@ class CandidateApplicationCard extends ConsumerWidget {
                         AppRouteNames.jobDetail,
                         queryParameters: DeepLink.jobDetailQuery(
                           jobId: application.postingGuid,
-                          enterpriseId: ref.read(enterpriseIdProvider),
                         ),
                       );
                     },
