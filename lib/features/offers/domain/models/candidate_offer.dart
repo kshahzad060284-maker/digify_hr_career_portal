@@ -20,6 +20,8 @@ class CandidateOffer {
     this.startDate,
   });
 
+  static const missingValue = '--';
+
   final String offerGuid;
   final String offerNumber;
   final String jobTitle;
@@ -40,5 +42,33 @@ class CandidateOffer {
   bool get canRespond {
     final code = statusCode.trim().toUpperCase();
     return code == 'EXTENDED' || code == 'EXTEND' || code == 'PENDING';
+  }
+
+  String get subtitle {
+    return [
+      if (!isMissing(offerNumber)) offerNumber,
+      if (!isMissing(department)) department,
+      if (!isMissing(postingTitle) && postingTitle != jobTitle) postingTitle,
+    ].join(' · ');
+  }
+
+  String? get visibleStageDescription =>
+      isMissing(stageDescription) ? null : stageDescription.trim();
+
+  bool get isExpiryUrgent {
+    if (!canRespond || expiryDate == null) return false;
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final expiry = DateTime(
+      expiryDate!.year,
+      expiryDate!.month,
+      expiryDate!.day,
+    );
+    return !expiry.isAfter(today);
+  }
+
+  static bool isMissing(String value) {
+    final trimmed = value.trim();
+    return trimmed.isEmpty || trimmed == missingValue;
   }
 }

@@ -11,21 +11,24 @@ class CandidateOfferMapper {
   static CandidateOffer toDomain(CandidateOfferDto dto) {
     return CandidateOffer(
       offerGuid: dto.offerGuid,
-      offerNumber: dto.offerNumber,
-      jobTitle: dto.jobTitle,
-      postingTitle: dto.postingTitle,
-      department: dto.departmentName,
-      location: dto.location,
-      workMode: _formatCodeLabel(dto.workModeCode),
-      employmentType: _formatEmploymentLabel(
-        dto.employmentTypeCode,
-        dto.workModeCode,
+      offerNumber: _orMissing(dto.offerNumber),
+      jobTitle: _orMissing(dto.jobTitle),
+      postingTitle: dto.postingTitle.trim(),
+      department: dto.departmentName.trim(),
+      location: _orMissing(dto.location),
+      workMode: _orMissing(_formatCodeLabel(dto.workModeCode)),
+      employmentType: _orMissing(
+        _formatEmploymentLabel(dto.employmentTypeCode, dto.workModeCode),
       ),
-      salary: _formatSalary(dto.annualSalary, dto.currencyCode),
+      salary: _formatSalary(
+        amount: dto.componentAmount ?? dto.annualSalary,
+        currencyCode: dto.currencyCode,
+        frequencyCode: dto.frequencyCode,
+      ),
       status: _mapStatus(dto.statusCode),
-      statusCode: dto.statusCode,
-      stage: dto.stage,
-      stageDescription: dto.stageDescription,
+      statusCode: _orMissing(dto.statusCode),
+      stage: _orMissing(dto.stage),
+      stageDescription: _orMissing(dto.stageDescription),
       sentDate: _parseDate(dto.offerDate),
       expiryDate: _parseDate(dto.expiryDate),
       startDate: _parseDate(dto.startDate),
@@ -66,11 +69,20 @@ class CandidateOfferMapper {
     }
   }
 
-  static String _formatSalary(double? annualSalary, String currencyCode) {
-    if (annualSalary == null || annualSalary <= 0) return '';
-    final currency = currencyCode.trim().isEmpty ? 'USD' : currencyCode.trim();
-    final formatted = NumberFormat.decimalPattern().format(annualSalary);
-    return '$currency $formatted / year';
+  static String _formatSalary({
+    required double? amount,
+    required String currencyCode,
+    required String frequencyCode,
+  }) {
+    if (amount == null) return CandidateOffer.missingValue;
+
+    final frequency = _formatCodeLabel(frequencyCode);
+    final parts = <String>[
+      if (currencyCode.trim().isNotEmpty) currencyCode.trim(),
+      NumberFormat.decimalPattern().format(amount),
+      if (frequency.isNotEmpty) frequency,
+    ];
+    return parts.join(' ');
   }
 
   static String _formatEmploymentLabel(String employmentCode, String workMode) {
@@ -92,6 +104,11 @@ class CandidateOfferMapper {
               : '${part[0].toUpperCase()}${part.substring(1)}',
         )
         .join(' ');
+  }
+
+  static String _orMissing(String value) {
+    final trimmed = value.trim();
+    return trimmed.isEmpty ? CandidateOffer.missingValue : trimmed;
   }
 
   static DateTime? _parseDate(String value) {
