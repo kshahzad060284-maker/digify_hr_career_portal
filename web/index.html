@@ -19,6 +19,8 @@
     <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta name="description" content="Digify Careers" />
+    <meta name="theme-color" content="#155DFC" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- iOS meta tags & icons -->
     <meta name="mobile-web-app-capable" content="yes" />
@@ -33,16 +35,28 @@
 
     <title>Digify Careers</title>
     <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="splash/splash.css" />
   </head>
   <body>
-    <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+    <div id="flutter-splash" aria-live="polite" aria-busy="true">
+      <div class="splash-content">
+        <div class="splash-orbit" aria-hidden="true">
+          <span class="splash-dot"></span>
+          <span class="splash-dot"></span>
+          <span class="splash-dot"></span>
+          <div class="splash-logo-wrap">
+            <div class="splash-logo" role="img" aria-label="Digify"></div>
+          </div>
+        </div>
+        <p class="splash-title">Loading...</p>
+        <p class="splash-subtitle">Preparing your workspace...</p>
+        <div class="splash-bar" aria-hidden="true">
+          <div class="splash-bar-fill"></div>
+        </div>
+      </div>
+    </div>
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+    <script src="splash/splash.js"></script>
     <script src="flutter_bootstrap.js" async></script>
   </body>
 </html>

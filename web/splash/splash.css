@@ -1,0 +1,218 @@
+:root {
+  --splash-bg: #f8f8f8;
+  --splash-card: #ffffff;
+  --splash-primary: #155dfc;
+  --splash-text: #0f172b;
+  --splash-text-secondary: #4a5565;
+  --splash-ring: rgba(21, 93, 252, 0.18);
+  --splash-track: rgba(21, 93, 252, 0.12);
+  --splash-shadow: rgba(21, 93, 252, 0.16);
+  --splash-logo: url("digify-mark.png");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --splash-bg: #0f172a;
+    --splash-card: #1e293b;
+    --splash-text: #f1f5f9;
+    --splash-text-secondary: #cbd5e1;
+    --splash-ring: rgba(203, 213, 225, 0.35);
+    --splash-track: rgba(203, 213, 225, 0.2);
+    --splash-shadow: rgba(21, 93, 252, 0.25);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--splash-bg);
+  overflow: hidden;
+}
+
+#flutter-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--splash-bg);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  opacity: 1;
+  transition: opacity 200ms ease-out;
+  will-change: opacity;
+}
+
+#flutter-splash.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32px;
+  text-align: center;
+}
+
+.splash-orbit {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-orbit::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 2px solid var(--splash-ring);
+  border-radius: 50%;
+}
+
+.splash-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--splash-primary);
+  transform-origin: 0 0;
+  animation: splash-orbit 2.2s linear infinite;
+}
+
+.splash-dot:nth-child(1) {
+  animation-delay: 0s;
+  opacity: 1;
+}
+
+.splash-dot:nth-child(2) {
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  animation-delay: -0.733s;
+  opacity: 0.75;
+}
+
+.splash-dot:nth-child(3) {
+  width: 11px;
+  height: 11px;
+  margin: -5.5px 0 0 -5.5px;
+  animation-delay: -1.466s;
+  opacity: 0.5;
+}
+
+.splash-logo-wrap {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: var(--splash-card);
+  box-shadow: 0 0 32px 3px var(--splash-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.splash-logo {
+  width: 54px;
+  height: 54px;
+  background-image: var(--splash-logo);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.splash-title {
+  margin: 36px 0 0;
+  color: var(--splash-text);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.splash-subtitle {
+  margin: 10px 0 0;
+  color: var(--splash-text-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.splash-bar {
+  margin-top: 32px;
+  width: min(240px, 70vw);
+  height: 5px;
+  border-radius: 999px;
+  background: var(--splash-track);
+  overflow: hidden;
+  position: relative;
+}
+
+.splash-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 35%;
+  border-radius: 999px;
+  background: var(--splash-primary);
+  animation: splash-bar 1.6s ease-in-out infinite;
+}
+
+@keyframes splash-orbit {
+  from {
+    transform: rotate(0deg) translateX(84px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(84px) rotate(-360deg);
+  }
+}
+
+@keyframes splash-bar {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(340%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #flutter-splash {
+    transition: none;
+  }
+
+  .splash-dot,
+  .splash-bar-fill {
+    animation: none;
+  }
+
+  .splash-dot:nth-child(1) {
+    transform: rotate(0deg) translateX(84px);
+  }
+
+  .splash-dot:nth-child(2) {
+    transform: rotate(120deg) translateX(84px);
+  }
+
+  .splash-dot:nth-child(3) {
+    transform: rotate(240deg) translateX(84px);
+  }
+
+  .splash-bar-fill {
+    left: 32.5%;
+    transform: none;
+  }
+}
