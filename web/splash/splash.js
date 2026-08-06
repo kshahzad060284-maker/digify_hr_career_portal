@@ -1,6 +1,6 @@
 (function () {
   var FADE_MS = 200;
-  var SAFETY_TIMEOUT_MS = 15000;
+  var SAFETY_TIMEOUT_MS = 30000;
 
   var splash = document.getElementById("flutter-splash");
   if (!splash) return;
@@ -38,6 +38,6 @@
     window.setTimeout(finish, FADE_MS + 80);
   }
 
-  window.addEventListener("flutter-first-frame", hideSplash);
+  window.addEventListener("digify-app-ready", hideSplash, { once: true });
   window.setTimeout(hideSplash, SAFETY_TIMEOUT_MS);
 })();

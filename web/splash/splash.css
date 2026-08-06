@@ -8,18 +8,7 @@
   --splash-track: rgba(21, 93, 252, 0.12);
   --splash-shadow: rgba(21, 93, 252, 0.16);
   --splash-logo: url("digify-mark.png");
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --splash-bg: #0f172a;
-    --splash-card: #1e293b;
-    --splash-text: #f1f5f9;
-    --splash-text-secondary: #cbd5e1;
-    --splash-ring: rgba(203, 213, 225, 0.35);
-    --splash-track: rgba(203, 213, 225, 0.2);
-    --splash-shadow: rgba(21, 93, 252, 0.25);
-  }
+  color-scheme: light;
 }
 
 html,
@@ -30,6 +19,12 @@ body {
   width: 100%;
   background: var(--splash-bg);
   overflow: hidden;
+}
+
+flt-glass-pane,
+flutter-view,
+flt-scene-host {
+  background-color: var(--splash-bg) !important;
 }
 
 #flutter-splash {

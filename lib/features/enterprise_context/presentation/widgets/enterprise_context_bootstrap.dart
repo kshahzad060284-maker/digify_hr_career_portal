@@ -5,6 +5,7 @@ import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/core/web/html_splash_dismisser.dart';
 import 'package:career_portal/features/enterprise_context/domain/models/enterprise_context.dart';
 import 'package:career_portal/features/enterprise_context/presentation/providers/enterprise_context_provider.dart';
 import 'package:career_portal/gen/assets.gen.dart';
@@ -30,6 +31,7 @@ class _EnterpriseContextBootstrapState
   static const Duration _minBrandedLoadingDuration = Duration(seconds: 3);
 
   bool _holdComplete = false;
+  bool _htmlSplashDismissScheduled = false;
   String? _enterpriseName;
   Timer? _holdTimer;
 
@@ -37,6 +39,14 @@ class _EnterpriseContextBootstrapState
   void dispose() {
     _holdTimer?.cancel();
     super.dispose();
+  }
+
+  void _dismissHtmlSplashAfterPaint() {
+    if (_htmlSplashDismissScheduled) return;
+    _htmlSplashDismissScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      dismissHtmlSplash();
+    });
   }
 
   void _startHold(EnterpriseContext context) {
@@ -77,6 +87,7 @@ class _EnterpriseContextBootstrapState
     });
 
     final asyncContext = ref.watch(enterpriseContextProvider);
+    _dismissHtmlSplashAfterPaint();
 
     return asyncContext.when(
       data: (enterpriseContext) {
