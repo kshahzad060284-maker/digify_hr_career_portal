@@ -112,6 +112,26 @@ class _EnterpriseContextBootstrapState
   }
 }
 
+/// Fixed logical sizes shared with `web/splash/splash.css` so the HTML
+/// engine-boot splash and this view hand off without a size jump.
+/// Do not use ScreenUtil here — scaling would break that match.
+class _SplashMetrics {
+  static const double orbit = 200;
+  static const double logoWrap = 104;
+  static const double logo = 54;
+  static const double gapAfterOrbit = 36;
+  static const double titleSize = 24;
+  static const double gapTitleSubtitle = 10;
+  static const double subtitleSize = 16;
+  static const double gapBeforeBar = 32;
+  static const double barWidth = 240;
+  static const double barHeight = 5;
+  static const double horizontalPadding = 32;
+  static const double shadowBlur = 32;
+  static const double shadowSpread = 3;
+  static const double lineHeight = 1.2;
+}
+
 class _EnterpriseContextLoadingView extends StatefulWidget {
   const _EnterpriseContextLoadingView({this.enterpriseName});
 
@@ -127,9 +147,6 @@ class _EnterpriseContextLoadingViewState
     with TickerProviderStateMixin {
   late final AnimationController _orbitController;
   late final AnimationController _barController;
-  late final AnimationController _fadeController;
-
-  late final Animation<double> _fadeAnimation;
 
   @override
   void initState() {
@@ -142,21 +159,12 @@ class _EnterpriseContextLoadingViewState
       vsync: this,
       duration: const Duration(milliseconds: 1600),
     )..repeat();
-    _fadeController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 700),
-    )..forward();
-    _fadeAnimation = CurvedAnimation(
-      parent: _fadeController,
-      curve: Curves.easeOut,
-    );
   }
 
   @override
   void dispose() {
     _orbitController.dispose();
     _barController.dispose();
-    _fadeController.dispose();
     super.dispose();
   }
 
@@ -178,104 +186,105 @@ class _EnterpriseContextLoadingViewState
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.backgroundDark : AppColors.background,
-      body: FadeTransition(
-        opacity: _fadeAnimation,
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32.w),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  width: 200.r,
-                  height: 200.r,
-                  child: AnimatedBuilder(
-                    animation: _orbitController,
-                    builder: (context, child) {
-                      return CustomPaint(
-                        painter: _OrbitDotsPainter(
-                          progress: _orbitController.value,
-                          accent: accent,
-                          ringColor: ringColor,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: _SplashMetrics.horizontalPadding,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: _SplashMetrics.orbit,
+                height: _SplashMetrics.orbit,
+                child: AnimatedBuilder(
+                  animation: _orbitController,
+                  builder: (context, child) {
+                    return CustomPaint(
+                      painter: _OrbitDotsPainter(
+                        progress: _orbitController.value,
+                        accent: accent,
+                        ringColor: ringColor,
+                      ),
+                      child: Center(child: child),
+                    );
+                  },
+                  child: Container(
+                    width: _SplashMetrics.logoWrap,
+                    height: _SplashMetrics.logoWrap,
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? AppColors.cardBackgroundDark
+                          : AppColors.cardBackground,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: accent.withValues(alpha: isDark ? 0.25 : 0.16),
+                          blurRadius: _SplashMetrics.shadowBlur,
+                          spreadRadius: _SplashMetrics.shadowSpread,
                         ),
-                        child: Center(child: child),
-                      );
-                    },
-                    child: Container(
-                      width: 104.r,
-                      height: 104.r,
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? AppColors.cardBackgroundDark
-                            : AppColors.cardBackground,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: accent.withValues(
-                              alpha: isDark ? 0.25 : 0.16,
-                            ),
-                            blurRadius: 32.r,
-                            spreadRadius: 3.r,
-                          ),
-                        ],
-                      ),
-                      alignment: Alignment.center,
-                      child: AppAsset(
-                        assetPath: isDark
-                            ? Assets.logo.digifyLogoDark.path
-                            : Assets.logo.digifyLogo.path,
-                        width: 54.r,
-                        height: 54.r,
-                      ),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                    child: AppAsset(
+                      // Same mark as web/splash/digify-mark.png
+                      assetPath: Assets.logo.digifyFavicon.path,
+                      width: _SplashMetrics.logo,
+                      height: _SplashMetrics.logo,
                     ),
                   ),
                 ),
-                Gap(36.h),
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.headlineSmall?.copyWith(
-                    color: isDark
-                        ? AppColors.textPrimaryDark
-                        : AppColors.textPrimary,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24.sp,
-                  ),
+              ),
+              const SizedBox(height: _SplashMetrics.gapAfterOrbit),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  color: isDark
+                      ? AppColors.textPrimaryDark
+                      : AppColors.textPrimary,
+                  fontWeight: FontWeight.w700,
+                  fontSize: _SplashMetrics.titleSize,
+                  height: _SplashMetrics.lineHeight,
+                  letterSpacing: 0,
                 ),
-                Gap(10.h),
-                Text(
-                  subtitle,
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.bodyLarge?.copyWith(
-                    color: isDark
-                        ? AppColors.textSecondaryDark
-                        : AppColors.textSecondary,
-                    fontSize: 16.sp,
-                  ),
+              ),
+              const SizedBox(height: _SplashMetrics.gapTitleSubtitle),
+              Text(
+                subtitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  color: isDark
+                      ? AppColors.textSecondaryDark
+                      : AppColors.textSecondary,
+                  fontWeight: FontWeight.w400,
+                  fontSize: _SplashMetrics.subtitleSize,
+                  height: _SplashMetrics.lineHeight,
+                  letterSpacing: 0,
                 ),
-                Gap(32.h),
-                SizedBox(
-                  width: 240.w,
-                  height: 5.h,
-                  child: AnimatedBuilder(
-                    animation: _barController,
-                    builder: (context, _) {
-                      return CustomPaint(
-                        painter: _IndeterminateBarPainter(
-                          progress: _barController.value,
-                          accent: accent,
-                          trackColor: isDark
-                              ? AppColors.textSecondaryDark.withValues(
-                                  alpha: 0.2,
-                                )
-                              : accent.withValues(alpha: 0.12),
-                        ),
-                      );
-                    },
-                  ),
+              ),
+              const SizedBox(height: _SplashMetrics.gapBeforeBar),
+              SizedBox(
+                width: _SplashMetrics.barWidth,
+                height: _SplashMetrics.barHeight,
+                child: AnimatedBuilder(
+                  animation: _barController,
+                  builder: (context, _) {
+                    return CustomPaint(
+                      painter: _IndeterminateBarPainter(
+                        progress: _barController.value,
+                        accent: accent,
+                        trackColor: isDark
+                            ? AppColors.textSecondaryDark.withValues(alpha: 0.2)
+                            : accent.withValues(alpha: 0.12),
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
