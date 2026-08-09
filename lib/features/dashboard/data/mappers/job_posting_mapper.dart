@@ -3,6 +3,7 @@ import 'package:career_portal/features/dashboard/data/dto/job_posting_dto.dart';
 import 'package:career_portal/features/dashboard/data/dto/job_posting_pagination_dto.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_application_status.dart';
+import 'package:career_portal/features/dashboard/domain/models/job_company_info.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
 
 class JobPostingMapper {
@@ -39,7 +40,28 @@ class JobPostingMapper {
       ),
       applicationId: dto.applicationId,
       applicationGuid: dto.applicationGuid,
+      company: _mapCompany(dto),
     );
+  }
+
+  static JobCompanyInfo? _mapCompany(JobPostingDto dto) {
+    final company = JobCompanyInfo.fromApi(
+      name: dto.companyName ?? '',
+      logoUrl: dto.companyLogoUrl,
+      information: dto.companyInformation,
+      industry: dto.companyIndustry,
+      about: dto.aboutTheCompany,
+    );
+
+    final hasAny =
+        company.name.isNotEmpty ||
+        (company.logoUrl != null && company.logoUrl!.isNotEmpty) ||
+        (company.information != null && company.information!.isNotEmpty) ||
+        (company.industry != null && company.industry!.isNotEmpty) ||
+        (company.about != null && company.about!.isNotEmpty);
+
+    if (!hasAny) return null;
+    return company;
   }
 
   static JobPostingsPage toPage({

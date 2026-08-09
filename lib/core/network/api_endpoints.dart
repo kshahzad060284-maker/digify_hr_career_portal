@@ -20,6 +20,9 @@ abstract final class RecEndpoints {
   static String jobPosting(String postingGuid) =>
       '${ApiEndpoints.basePath}/rec/job-postings/$postingGuid';
 
+  static String jobPostingEmployerInfo(String postingGuid) =>
+      '${ApiEndpoints.basePath}/job-postings/$postingGuid/employer-info';
+
   static String applyJobPosting(String postingGuid) =>
       '${ApiEndpoints.basePath}/rec/job-postings/$postingGuid/apply';
 

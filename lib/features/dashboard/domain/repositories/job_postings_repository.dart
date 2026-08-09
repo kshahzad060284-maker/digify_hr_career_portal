@@ -1,5 +1,6 @@
 import 'package:career_portal/features/dashboard/domain/models/apply_job_input.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/domain/models/job_company_info.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
 
 abstract interface class JobPostingsRepository {
@@ -15,6 +16,11 @@ abstract interface class JobPostingsRepository {
     required String postingGuid,
     required int enterpriseId,
     String? candidateGuid,
+  });
+
+  Future<JobCompanyInfo> getJobEmployerInfo({
+    required String postingGuid,
+    required int enterpriseId,
   });
 
   Future<void> applyForJob(ApplyJobInput input);

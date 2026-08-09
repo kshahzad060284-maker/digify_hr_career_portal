@@ -1484,6 +1484,24 @@ abstract class AppLocalizations {
   /// **'Our recruitment team is here to help. Feel free to reach out with any questions about this role.'**
   String get dashboardJobDetailQuestionsBody;
 
+  /// No description provided for @dashboardJobDetailCompanyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About the Company'**
+  String get dashboardJobDetailCompanyTitle;
+
+  /// No description provided for @dashboardJobDetailCompanyInformationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get dashboardJobDetailCompanyInformationLabel;
+
+  /// No description provided for @dashboardJobDetailCompanyAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get dashboardJobDetailCompanyAbout;
+
   /// No description provided for @footerTagline.
   ///
   /// In en, this message translates to:

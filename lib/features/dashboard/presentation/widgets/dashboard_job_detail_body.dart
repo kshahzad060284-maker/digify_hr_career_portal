@@ -1,6 +1,7 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/services/responsive/breakpoints.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_company_card.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_content.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_sidebar.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +30,21 @@ class DashboardJobDetailBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainColumn = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      spacing: 20.h,
+      children: [
+        DashboardJobDetailCompanyCard(postingGuid: job.id),
+        DashboardJobDetailContent(job: job, hasApplied: hasApplied),
+      ],
+    );
+
     if (_useSideBySideLayout(context)) {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 24.w,
         children: [
-          Expanded(
-            child: DashboardJobDetailContent(job: job, hasApplied: hasApplied),
-          ),
+          Expanded(child: mainColumn),
           SizedBox(
             width: _sidebarWidth.w,
             child: DashboardJobDetailSidebar(
@@ -55,7 +63,7 @@ class DashboardJobDetailBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       spacing: 20.h,
       children: [
-        DashboardJobDetailContent(job: job, hasApplied: hasApplied),
+        mainColumn,
         DashboardJobDetailSidebar(
           job: job,
           applyButtonLabel: applyButtonLabel,
