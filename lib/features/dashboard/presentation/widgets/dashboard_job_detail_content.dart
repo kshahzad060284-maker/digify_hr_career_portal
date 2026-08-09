@@ -2,6 +2,7 @@ import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_section_heading.dart';
 import 'package:career_portal/shared/widgets/common/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,10 +49,9 @@ class DashboardJobDetailContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _SectionHeading(
+            DashboardJobDetailSectionHeading(
               title: l10n.dashboardJobDetailAboutRole,
               color: sectionTitleColor,
-              accentColor: AppColors.primary,
             ),
             Gap(12.h),
             Text(
@@ -64,21 +64,20 @@ class DashboardJobDetailContent extends StatelessWidget {
             ),
             if (job.responsibilities.isNotEmpty) ...[
               Gap(28.h),
-              _SectionDivider(color: borderColor),
+              AppDivider.horizontal(color: borderColor),
               Gap(24.h),
-              _SectionHeading(
+              DashboardJobDetailSectionHeading(
                 title: l10n.dashboardJobDetailResponsibilities,
                 color: sectionTitleColor,
-                accentColor: AppColors.primary,
               ),
               Gap(14.h),
               _ContentList(items: job.responsibilities, color: bodyColor),
             ],
             if (job.qualifications.isNotEmpty) ...[
               Gap(28.h),
-              _SectionDivider(color: borderColor),
+              AppDivider.horizontal(color: borderColor),
               Gap(24.h),
-              _SectionHeading(
+              DashboardJobDetailSectionHeading(
                 title: l10n.dashboardJobDetailQualifications,
                 color: sectionTitleColor,
                 accentColor: AppColors.success,
@@ -87,12 +86,11 @@ class DashboardJobDetailContent extends StatelessWidget {
               _ContentList(items: job.qualifications, color: bodyColor),
             ],
             Gap(28.h),
-            _SectionDivider(color: borderColor),
+            AppDivider.horizontal(color: borderColor),
             Gap(24.h),
-            _SectionHeading(
+            DashboardJobDetailSectionHeading(
               title: l10n.dashboardJobDetailTags,
               color: sectionTitleColor,
-              accentColor: AppColors.primary,
             ),
             Gap(14.h),
             _JobTags(
@@ -181,56 +179,6 @@ class _JobTags extends StatelessWidget {
           ),
       ],
     );
-  }
-}
-
-class _SectionHeading extends StatelessWidget {
-  const _SectionHeading({
-    required this.title,
-    required this.color,
-    required this.accentColor,
-  });
-
-  final String title;
-  final Color color;
-  final Color accentColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        DecoratedBox(
-          decoration: BoxDecoration(
-            color: accentColor,
-            borderRadius: BorderRadius.circular(999.r),
-          ),
-          child: SizedBox(width: 4.w, height: 20.h),
-        ),
-        Gap(10.w),
-        Expanded(
-          child: Text(
-            title,
-            style: context.textTheme.titleSmall?.copyWith(
-              color: color,
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w700,
-              height: 1.3,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _SectionDivider extends StatelessWidget {
-  const _SectionDivider({required this.color});
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Divider(height: 1, thickness: 1, color: color);
   }
 }
 

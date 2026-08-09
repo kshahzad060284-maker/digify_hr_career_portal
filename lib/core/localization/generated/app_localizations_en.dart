@@ -790,6 +790,15 @@ class AppLocalizationsEn extends AppLocalizations {
       'Our recruitment team is here to help. Feel free to reach out with any questions about this role.';
 
   @override
+  String get dashboardJobDetailCompanyTitle => 'About the Company';
+
+  @override
+  String get dashboardJobDetailCompanyInformationLabel => 'Information';
+
+  @override
+  String get dashboardJobDetailCompanyAbout => 'About';
+
+  @override
   String get footerTagline =>
       'Find your next opportunity and grow with a team that invests in you.';
 
