@@ -786,6 +786,15 @@ class AppLocalizationsAr extends AppLocalizations {
       'فريق التوظيف لدينا هنا للمساعدة. لا تتردد في التواصل معنا بخصوص أي أسئلة حول هذا الدور.';
 
   @override
+  String get dashboardJobDetailCompanyTitle => 'عن الشركة';
+
+  @override
+  String get dashboardJobDetailCompanyInformationLabel => 'المعلومات';
+
+  @override
+  String get dashboardJobDetailCompanyAbout => 'نبذة';
+
+  @override
   String get footerTagline =>
       'اعثر على فرصتك القادمة وانمُ مع فريق يستثمر فيك.';
 
