@@ -26,7 +26,9 @@ abstract final class AppConfig {
   /// Debug-only host for `X-Forwarded-Host` when running on localhost.
   /// Set to `''` to disable. Ignored in release builds.
   // static const String debugTenantHost = 'abc-trading.careers.digifyhr.com';
-  static const String debugTenantHost = 'ent001.careers.digifyhr.com';
+  // static const String debugTenantHost = 'ent001.careers.digifyhr.com';
+  static const String debugTenantHost =
+      'digify-solutions-llc.careers.digifyhr.com';
   // static const String debugTenantHost = 'ent002.careers.digifyhr.com';
   // static const String debugTenantHost = 'albabtain-hr.careers.digifyhr.com';
 
