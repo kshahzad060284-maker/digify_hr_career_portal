@@ -1,6 +1,7 @@
 import 'package:career_portal/features/dashboard/data/datasources/job_postings_remote_data_source.dart';
 import 'package:career_portal/features/dashboard/domain/models/apply_job_input.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/domain/models/employer_assignment_type.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_company_info.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
 import 'package:career_portal/features/dashboard/domain/repositories/job_postings_repository.dart';
@@ -41,13 +42,22 @@ class JobPostingsRepositoryImpl implements JobPostingsRepository {
   }
 
   @override
-  Future<JobCompanyInfo> getJobEmployerInfo({
-    required String postingGuid,
+  Future<JobCompanyInfo> getEmployerInfo({
     required int enterpriseId,
+    required EmployerAssignmentType assignmentType,
   }) {
-    return _remoteDataSource.getJobEmployerInfo(
-      postingGuid: postingGuid,
+    return _remoteDataSource.getEmployerInfo(
       enterpriseId: enterpriseId,
+      assignmentType: assignmentType,
+    );
+  }
+
+  @override
+  Future<JobCompanyInfo> getJobPostingEmployerInfo({
+    required String postingGuid,
+  }) {
+    return _remoteDataSource.getJobPostingEmployerInfo(
+      postingGuid: postingGuid,
     );
   }
 

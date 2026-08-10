@@ -12,6 +12,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'Career Portal';
 
   @override
+  String enterpriseCareerPortalTitle(String enterpriseName) {
+    return '$enterpriseName Career Portal';
+  }
+
+  @override
   String get appTagline => 'Find your next opportunity';
 
   @override

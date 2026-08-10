@@ -1,5 +1,13 @@
 {
   "appTitle": "بوابة الوظائف",
+  "enterpriseCareerPortalTitle": "{enterpriseName} بوابة الوظائف",
+  "@enterpriseCareerPortalTitle": {
+    "placeholders": {
+      "enterpriseName": {
+        "type": "String"
+      }
+    }
+  },
   "appTagline": "اعثر على فرصتك القادمة",
   "login": "تسجيل الدخول",
   "signIn": "تسجيل الدخول",
