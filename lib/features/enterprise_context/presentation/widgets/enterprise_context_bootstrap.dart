@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:career_portal/core/extensions/app_extensions.dart';
@@ -6,7 +5,8 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/core/web/html_splash_dismisser.dart';
-import 'package:career_portal/features/enterprise_context/domain/models/enterprise_context.dart';
+import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_employer_info_provider.dart';
+import 'package:career_portal/features/enterprise_context/presentation/providers/enterprise_bootstrap_provider.dart';
 import 'package:career_portal/features/enterprise_context/presentation/providers/enterprise_context_provider.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
@@ -16,32 +16,36 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class EnterpriseContextBootstrap extends ConsumerStatefulWidget {
+bool _htmlSplashDismissScheduled = false;
+
+class EnterpriseContextBootstrap extends ConsumerWidget {
   const EnterpriseContextBootstrap({required this.child, super.key});
 
   final Widget child;
 
   @override
-  ConsumerState<EnterpriseContextBootstrap> createState() =>
-      _EnterpriseContextBootstrapState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    _scheduleHtmlSplashDismiss();
 
-class _EnterpriseContextBootstrapState
-    extends ConsumerState<EnterpriseContextBootstrap> {
-  static const Duration _minBrandedLoadingDuration = Duration(seconds: 3);
+    final bootstrap = ref.watch(enterpriseBootstrapProvider);
+    final enterpriseName = ref.watch(hostEnterpriseNameProvider);
 
-  bool _holdComplete = false;
-  bool _htmlSplashDismissScheduled = false;
-  String? _enterpriseName;
-  Timer? _holdTimer;
-
-  @override
-  void dispose() {
-    _holdTimer?.cancel();
-    super.dispose();
+    return bootstrap.when(
+      data: (_) => child,
+      loading: () =>
+          _EnterpriseContextLoadingView(enterpriseName: enterpriseName),
+      error: (error, _) => _EnterpriseContextErrorView(
+        message: _resolveErrorMessage(context, error),
+        onRetry: () {
+          ref.invalidate(enterpriseEmployerInfoProvider);
+          ref.read(enterpriseContextProvider.notifier).retry();
+          ref.invalidate(enterpriseBootstrapProvider);
+        },
+      ),
+    );
   }
 
-  void _dismissHtmlSplashAfterPaint() {
+  static void _scheduleHtmlSplashDismiss() {
     if (_htmlSplashDismissScheduled) return;
     _htmlSplashDismissScheduled = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -49,71 +53,7 @@ class _EnterpriseContextBootstrapState
     });
   }
 
-  void _startHold(EnterpriseContext context) {
-    _holdTimer?.cancel();
-    setState(() {
-      _holdComplete = false;
-      _enterpriseName = context.enterpriseName.trim();
-    });
-    _holdTimer = Timer(_minBrandedLoadingDuration, () {
-      if (!mounted) return;
-      setState(() => _holdComplete = true);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    ref.listen<AsyncValue<EnterpriseContext>>(enterpriseContextProvider, (
-      previous,
-      next,
-    ) {
-      next.whenOrNull(
-        data: _startHold,
-        loading: () {
-          _holdTimer?.cancel();
-          setState(() {
-            _holdComplete = false;
-            _enterpriseName = null;
-          });
-        },
-        error: (error, stackTrace) {
-          _holdTimer?.cancel();
-          setState(() {
-            _holdComplete = false;
-            _enterpriseName = null;
-          });
-        },
-      );
-    });
-
-    final asyncContext = ref.watch(enterpriseContextProvider);
-    _dismissHtmlSplashAfterPaint();
-
-    return asyncContext.when(
-      data: (enterpriseContext) {
-        if (!_holdComplete && _holdTimer == null) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted || _holdComplete || _holdTimer != null) return;
-            _startHold(enterpriseContext);
-          });
-        }
-        if (!_holdComplete) {
-          return _EnterpriseContextLoadingView(
-            enterpriseName: _enterpriseName ?? enterpriseContext.enterpriseName,
-          );
-        }
-        return widget.child;
-      },
-      loading: () =>
-          _EnterpriseContextLoadingView(enterpriseName: _enterpriseName),
-      error: (error, _) => _EnterpriseContextErrorView(
-        message: _resolveErrorMessage(context, error),
-        onRetry: () => ref.read(enterpriseContextProvider.notifier).retry(),
-      ),
-    );
-  }
-
-  String _resolveErrorMessage(BuildContext context, Object error) {
+  static String _resolveErrorMessage(BuildContext context, Object error) {
     final localizations = AppLocalizations.of(context);
     if (error is AppException && error.message.trim().isNotEmpty) {
       return error.message;
