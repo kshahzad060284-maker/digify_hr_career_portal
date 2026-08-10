@@ -4,10 +4,10 @@ import 'package:career_portal/core/router/app_routes.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_header_brand.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_header_nav_button.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_user_profile_chip.dart';
 import 'package:career_portal/gen/assets.gen.dart';
-import 'package:career_portal/shared/widgets/assets/app_asset.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -115,38 +115,11 @@ class DashboardDesktopHeader extends ConsumerWidget {
           child: InkWell(
             onTap: () => context.go(AppRoutes.home),
             borderRadius: BorderRadius.circular(8.r),
-            child: Row(
-              children: [
-                AppAsset(
-                  assetPath: Assets.icons.dashboard.department.path,
-                  color: iconColor,
-                  width: 28.w,
-                  height: 28.h,
-                ),
-                Gap(12.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.appTitle,
-                        style: context.textTheme.titleLarge?.copyWith(
-                          color: titleColor,
-                          fontSize: 24.sp,
-                        ),
-                      ),
-                      Gap(2.h),
-                      Text(
-                        l10n.appTagline,
-                        style: context.textTheme.labelSmall?.copyWith(
-                          color: taglineColor,
-                          fontSize: 12.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            child: DashboardHeaderBrand(
+              titleColor: titleColor,
+              taglineColor: taglineColor,
+              logoSize: 36,
+              titleFontSize: 24.sp,
             ),
           ),
         ),
@@ -228,53 +201,13 @@ class DashboardMobileHeader extends ConsumerWidget {
           child: InkWell(
             onTap: () => context.go(AppRoutes.home),
             borderRadius: BorderRadius.circular(10.r),
-            child: Row(
-              children: [
-                Container(
-                  width: 40.w,
-                  height: 40.w,
-                  decoration: BoxDecoration(
-                    color: onHero
-                        ? AppColors.onPrimary.withValues(alpha: 0.16)
-                        : AppColors.sidebarActiveBg,
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  child: Center(
-                    child: AppAsset(
-                      assetPath: Assets.icons.dashboard.department.path,
-                      color: iconColor,
-                      width: 20.w,
-                      height: 20.w,
-                    ),
-                  ),
-                ),
-                Gap(12.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.appTitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.textTheme.titleMedium?.copyWith(
-                          color: titleColor,
-                          fontSize: 19.sp,
-                        ),
-                      ),
-                      Gap(4.h),
-                      Text(
-                        l10n.appTagline,
-                        maxLines: isLoggedIn ? 1 : 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.textTheme.labelSmall?.copyWith(
-                          color: taglineColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            child: DashboardHeaderBrand(
+              titleColor: titleColor,
+              taglineColor: taglineColor,
+              logoSize: 40,
+              titleFontSize: 19.sp,
+              titleMaxLines: 1,
+              taglineMaxLines: isLoggedIn ? 1 : 2,
             ),
           ),
         ),

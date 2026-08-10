@@ -12,6 +12,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appTitle => 'بوابة الوظائف';
 
   @override
+  String enterpriseCareerPortalTitle(String enterpriseName) {
+    return '$enterpriseName بوابة الوظائف';
+  }
+
+  @override
   String get appTagline => 'اعثر على فرصتك القادمة';
 
   @override

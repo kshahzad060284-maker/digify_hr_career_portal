@@ -1,5 +1,13 @@
 {
   "appTitle": "Career Portal",
+  "enterpriseCareerPortalTitle": "{enterpriseName} Career Portal",
+  "@enterpriseCareerPortalTitle": {
+    "placeholders": {
+      "enterpriseName": {
+        "type": "String"
+      }
+    }
+  },
   "appTagline": "Find your next opportunity",
   "login": "Login",
   "signIn": "Sign In",

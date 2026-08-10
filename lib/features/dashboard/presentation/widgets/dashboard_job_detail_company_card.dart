@@ -12,7 +12,7 @@ class DashboardJobDetailCompanyCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final employerInfoAsync = ref.watch(
-      dashboardJobEmployerInfoProvider(postingGuid),
+      jobPostingEmployerInfoProvider(postingGuid),
     );
 
     return employerInfoAsync.when(

@@ -10,6 +10,7 @@ import 'package:career_portal/features/dashboard/data/mappers/employer_info_mapp
 import 'package:career_portal/features/dashboard/data/mappers/job_posting_mapper.dart';
 import 'package:career_portal/features/dashboard/domain/models/apply_job_input.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
+import 'package:career_portal/features/dashboard/domain/models/employer_assignment_type.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_company_info.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_postings_page.dart';
 
@@ -118,14 +119,17 @@ class JobPostingsRemoteDataSource {
     }
   }
 
-  Future<JobCompanyInfo> getJobEmployerInfo({
-    required String postingGuid,
+  Future<JobCompanyInfo> getEmployerInfo({
     required int enterpriseId,
+    required EmployerAssignmentType assignmentType,
   }) async {
     try {
       final response = await _appService.get<Map<String, dynamic>>(
-        RecEndpoints.jobPostingEmployerInfo(postingGuid),
-        queryParameters: <String, dynamic>{'enterprise_id': enterpriseId},
+        RecEndpoints.employerInfo(),
+        queryParameters: <String, dynamic>{
+          'enterprise_id': enterpriseId,
+          'assignment_type': assignmentType.apiValue,
+        },
         parser: (data) {
           if (data is Map<String, dynamic>) return data;
           throw AppException(message: 'Invalid employer info response.');
@@ -139,17 +143,55 @@ class JobPostingsRemoteDataSource {
         );
       }
 
-      final data = dto.data;
-      if (data == null) {
+      if (dto.data.isEmpty) {
         throw AppException(message: 'Employer info data missing.');
       }
 
-      return EmployerInfoMapper.toDomain(data);
+      return EmployerInfoMapper.toDomain(
+        dto.data,
+        preferredType: assignmentType,
+      );
     } on AppException {
       rethrow;
     } catch (error) {
       throw AppException(
         message: 'Failed to fetch employer info.',
+        details: error,
+      );
+    }
+  }
+
+  Future<JobCompanyInfo> getJobPostingEmployerInfo({
+    required String postingGuid,
+  }) async {
+    try {
+      final response = await _appService.get<Map<String, dynamic>>(
+        RecEndpoints.jobPostingEmployerInfo(postingGuid),
+        parser: (data) {
+          if (data is Map<String, dynamic>) return data;
+          throw AppException(
+            message: 'Invalid job posting employer info response.',
+          );
+        },
+      );
+
+      final dto = EmployerInfoResponseDto.fromJson(response);
+      if (!dto.success) {
+        throw AppException(
+          message: dto.message ?? 'Failed to fetch job posting employer info.',
+        );
+      }
+
+      if (dto.data.isEmpty) {
+        throw AppException(message: 'Job posting employer info data missing.');
+      }
+
+      return EmployerInfoMapper.fromDto(dto.data.first);
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException(
+        message: 'Failed to fetch job posting employer info.',
         details: error,
       );
     }
