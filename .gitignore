@@ -18,14 +18,13 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
-#.vscode/
 
 # FVM (pin SDK via .fvmrc + .fvm/fvm_config.json; ignore cached SDK)
 .fvm/flutter_sdk
 .fvm/versions
+temp_auto_push.bat
 .fvm/release
 
 # Flutter/Dart/Pub related
@@ -51,3 +50,7 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+config.bat
+node_modules
+.gitignore
+branch_structure.json

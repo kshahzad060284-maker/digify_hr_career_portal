@@ -3,7 +3,6 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/core/theme/app_shadows.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_company_info.dart';
-import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_section_heading.dart';
 import 'package:career_portal/shared/widgets/common/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,8 +13,6 @@ class DashboardJobDetailCompanyCardContent extends StatelessWidget {
     super.key,
     required this.company,
   });
-
-  static const String missingValue = '---';
 
   final JobCompanyInfo company;
 
@@ -32,10 +29,7 @@ class DashboardJobDetailCompanyCardContent extends StatelessWidget {
         ? AppColors.textSecondaryDark
         : AppColors.textSecondary;
 
-    final name = _displayValue(company.localizedName(isArabic: isArabic));
-    final industry = _displayValue(company.industry);
-    final information = _displayValue(company.information);
-    final about = _displayValue(company.about);
+    final name = company.localizedName(isArabic: isArabic);
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -49,41 +43,40 @@ class DashboardJobDetailCompanyCardContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DashboardJobDetailSectionHeading(
-              title: l10n.dashboardJobDetailCompanyTitle,
-            ),
-            Gap(20.h),
             _CompanyIdentity(
               name: name,
               logoUrl: company.logoUrl,
-              industry: industry,
+              industry: company.displayIndustry,
+              hasName: company.hasName,
             ),
             Gap(20.h),
-            _LabeledTextBlock(
-              label: l10n.dashboardJobDetailCompanyInformationLabel,
-              value: information,
-              labelColor: labelColor,
-              valueColor: bodyColor,
+            // Text(
+            //   company.displayInformation,
+            //   style: context.textTheme.bodyLarge?.copyWith(
+            //     color: bodyColor,
+            //     fontSize: 15.sp,
+            //   ),
+            // ),
+            // Gap(16.h),
+            Text(
+              l10n.dashboardJobDetailCompanyAbout,
+              style: context.textTheme.labelLarge?.copyWith(
+                color: labelColor,
+                fontSize: 12.sp,
+              ),
             ),
-            Gap(20.h),
-            const AppDivider.horizontal(),
-            Gap(20.h),
-            _LabeledTextBlock(
-              label: l10n.dashboardJobDetailCompanyAbout,
-              value: about,
-              labelColor: labelColor,
-              valueColor: bodyColor,
+            Gap(8.h),
+            Text(
+              company.displayAbout,
+              style: context.textTheme.bodyLarge?.copyWith(
+                color: bodyColor,
+                fontSize: 15.sp,
+              ),
             ),
           ],
         ),
       ),
     );
-  }
-
-  static String _displayValue(String? value) {
-    final trimmed = value?.trim();
-    if (trimmed == null || trimmed.isEmpty) return missingValue;
-    return trimmed;
   }
 }
 
@@ -92,28 +85,27 @@ class _CompanyIdentity extends StatelessWidget {
     required this.name,
     required this.logoUrl,
     required this.industry,
+    required this.hasName,
   });
 
   final String name;
   final String? logoUrl;
   final String industry;
+  final bool hasName;
 
   @override
   Widget build(BuildContext context) {
     final isDark = context.isDark;
     final isMobile = context.isMobileLayout;
     final logoSize = isMobile ? 56.0 : 64.0;
-    final fallbackName =
-        name == DashboardJobDetailCompanyCardContent.missingValue ? null : name;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         AppAvatar(
           image: logoUrl,
-          fallbackInitial: fallbackName,
+          fallbackInitial: hasName ? name : null,
           size: logoSize,
-          border: Border.all(color: AppColors.primaryLight, width: 1),
         ),
         Gap(14.w),
         Expanded(
@@ -147,44 +139,6 @@ class _CompanyIdentity extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _LabeledTextBlock extends StatelessWidget {
-  const _LabeledTextBlock({
-    required this.label,
-    required this.value,
-    required this.labelColor,
-    required this.valueColor,
-  });
-
-  final String label;
-  final String value;
-  final Color labelColor;
-  final Color valueColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: context.textTheme.labelLarge?.copyWith(
-            color: labelColor,
-            fontSize: 12.sp,
-          ),
-        ),
-        Gap(8.h),
-        Text(
-          value,
-          style: context.textTheme.bodyLarge?.copyWith(
-            color: valueColor,
-            fontSize: 15.sp,
           ),
         ),
       ],

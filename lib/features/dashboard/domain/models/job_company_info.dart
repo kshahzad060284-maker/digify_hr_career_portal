@@ -10,6 +10,8 @@ class JobCompanyInfo {
     this.about,
   });
 
+  static const String missingValue = '---';
+
   factory JobCompanyInfo.fromApi({
     String name = '',
     String? nameAr,
@@ -36,15 +38,23 @@ class JobCompanyInfo {
   final String? industry;
   final String? about;
 
+  String get displayIndustry => _displayOrMissing(industry);
+
+  String get displayInformation => _displayOrMissing(information);
+
+  String get displayAbout => _displayOrMissing(about);
+
+  bool get hasName => _hasText(name) || _hasText(nameAr);
+
   String localizedName({required bool isArabic}) {
     if (isArabic) {
       if (_hasText(nameAr)) return nameAr!.trim();
       if (_hasText(name)) return name.trim();
-      return '';
+      return missingValue;
     }
     if (_hasText(name)) return name.trim();
     if (_hasText(nameAr)) return nameAr!.trim();
-    return '';
+    return missingValue;
   }
 
   /// Prefixed with [AppConfig.baseUrl] when the API returns a relative path.
@@ -76,6 +86,12 @@ class JobCompanyInfo {
       industry: industry ?? this.industry,
       about: about ?? this.about,
     );
+  }
+
+  static String _displayOrMissing(String? value) {
+    final trimmed = value?.trim();
+    if (trimmed == null || trimmed.isEmpty) return missingValue;
+    return trimmed;
   }
 
   static String? _nullIfEmpty(String? value) {

@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// **'Career Portal'**
   String get appTitle;
 
+  /// No description provided for @enterpriseCareerPortalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{enterpriseName} Career Portal'**
+  String enterpriseCareerPortalTitle(String enterpriseName);
+
   /// No description provided for @appTagline.
   ///
   /// In en, this message translates to:
