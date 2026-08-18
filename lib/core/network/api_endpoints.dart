@@ -34,6 +34,9 @@ abstract final class RecEndpoints {
   static String declineJobOffer(String offerGuid) =>
       '${ApiEndpoints.basePath}/rec/job-offers/$offerGuid/decline';
 
+  static String jobOfferPdf(String offerGuid) =>
+      '${ApiEndpoints.basePath}/rec/job-offers/$offerGuid/pdf';
+
   static String candidate(String candidateGuid) =>
       '${ApiEndpoints.basePath}/rec/candidates/$candidateGuid';
 }

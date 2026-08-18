@@ -1,10 +1,13 @@
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
+import 'package:career_portal/core/utils/open_external_url.dart';
 import 'package:career_portal/core/widgets/pagination_controls.dart';
+import 'package:career_portal/features/offers/domain/helpers/candidate_offer_pdf_url_builder.dart';
 import 'package:career_portal/features/offers/domain/models/candidate_offer.dart';
 import 'package:career_portal/features/offers/presentation/providers/candidate_offers_list_provider.dart';
 import 'package:career_portal/features/offers/presentation/state/candidate_offers_state.dart';
@@ -86,6 +89,14 @@ class _CandidateOffersPageState extends ConsumerState<CandidateOffersPage> {
         );
     if (!mounted) return;
     _showActionToast(result, l10n);
+  }
+
+  void _onViewOffer(CandidateOffer offer) {
+    final url = CandidateOfferPdfUrlBuilder.build(
+      offerGuid: offer.offerGuid,
+      enterpriseId: ref.read(enterpriseIdProvider),
+    );
+    openExternalUrl(url);
   }
 
   void _showActionToast(
@@ -219,6 +230,7 @@ class _CandidateOffersPageState extends ConsumerState<CandidateOffersPage> {
                           offer: offer,
                           onAccept: () => _onAcceptOffer(offer),
                           onDecline: () => _onDeclineOffer(offer),
+                          onView: () => _onViewOffer(offer),
                         );
                       },
                     ),
