@@ -118,7 +118,7 @@ class DashboardDesktopHeader extends ConsumerWidget {
             child: DashboardHeaderBrand(
               titleColor: titleColor,
               taglineColor: taglineColor,
-              logoSize: 36,
+              logoSize: 50,
               titleFontSize: 24.sp,
             ),
           ),

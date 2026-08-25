@@ -5,6 +5,7 @@ class JobCompanyInfo {
     this.name = '',
     this.nameAr,
     this.logoUrl,
+    this.logoMimeType,
     this.information,
     this.industry,
     this.about,
@@ -17,6 +18,7 @@ class JobCompanyInfo {
     String? nameAr,
     String? logoUrl,
     String? logoAvailable,
+    String? logoMimeType,
     String? information,
     String? industry,
     String? about,
@@ -25,6 +27,7 @@ class JobCompanyInfo {
       name: name.trim(),
       nameAr: _nullIfEmpty(nameAr),
       logoUrl: resolveLogoUrl(logoUrl: logoUrl, logoAvailable: logoAvailable),
+      logoMimeType: _nullIfEmpty(logoMimeType),
       information: _nullIfEmpty(information),
       industry: _nullIfEmpty(industry),
       about: _nullIfEmpty(about),
@@ -34,6 +37,7 @@ class JobCompanyInfo {
   final String name;
   final String? nameAr;
   final String? logoUrl;
+  final String? logoMimeType;
   final String? information;
   final String? industry;
   final String? about;
@@ -74,6 +78,7 @@ class JobCompanyInfo {
     String? name,
     String? nameAr,
     String? logoUrl,
+    String? logoMimeType,
     String? information,
     String? industry,
     String? about,
@@ -82,6 +87,7 @@ class JobCompanyInfo {
       name: name ?? this.name,
       nameAr: nameAr ?? this.nameAr,
       logoUrl: logoUrl ?? this.logoUrl,
+      logoMimeType: logoMimeType ?? this.logoMimeType,
       information: information ?? this.information,
       industry: industry ?? this.industry,
       about: about ?? this.about,

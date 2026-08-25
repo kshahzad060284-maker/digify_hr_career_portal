@@ -1,5 +1,6 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
+import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_employer_info_provider.dart';
 import 'package:career_portal/features/enterprise_context/presentation/providers/enterprise_context_provider.dart';
 import 'package:career_portal/shared/widgets/common/app_avatar.dart';
@@ -43,8 +44,11 @@ class DashboardHeaderBrand extends ConsumerWidget {
       children: [
         AppAvatar(
           image: employerInfo?.logoUrl,
+          mimeType: employerInfo?.logoMimeType,
           fallbackInitial: enterpriseName ?? title,
           size: logoSize.r,
+          backgroundColor: AppColors.cardBackground,
+          border: Border.all(color: AppColors.cardBorder),
         ),
         Gap(12.w),
         Expanded(

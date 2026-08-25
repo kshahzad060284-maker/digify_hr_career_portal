@@ -46,6 +46,7 @@ class DashboardJobDetailCompanyCardContent extends StatelessWidget {
             _CompanyIdentity(
               name: name,
               logoUrl: company.logoUrl,
+              logoMimeType: company.logoMimeType,
               industry: company.displayIndustry,
               hasName: company.hasName,
             ),
@@ -84,12 +85,14 @@ class _CompanyIdentity extends StatelessWidget {
   const _CompanyIdentity({
     required this.name,
     required this.logoUrl,
+    required this.logoMimeType,
     required this.industry,
     required this.hasName,
   });
 
   final String name;
   final String? logoUrl;
+  final String? logoMimeType;
   final String industry;
   final bool hasName;
 
@@ -104,6 +107,7 @@ class _CompanyIdentity extends StatelessWidget {
       children: [
         AppAvatar(
           image: logoUrl,
+          mimeType: logoMimeType,
           fallbackInitial: hasName ? name : null,
           size: logoSize,
         ),
