@@ -74,7 +74,7 @@ class AuthFormField extends StatelessWidget {
       onChanged: onChanged,
       onSubmitted: onSubmitted,
       filled: true,
-      fillColor: isDark ? AppColors.inputBgDark : AppColors.authInputFill,
+      fillColor: isDark ? AppColors.inputBgDark : AppColors.cardBackground,
       borderColor: isDark
           ? AppColors.inputBorderDark
           : AppColors.authInputBorder,

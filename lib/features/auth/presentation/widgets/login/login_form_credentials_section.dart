@@ -19,40 +19,53 @@ class LoginFormCredentialsSection extends ConsumerWidget {
     final controller = ref.read(loginControllerProvider.notifier);
     final isDark = context.isDark;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        AuthFormField(
-          label: l10n.authEmailAddress,
-          initialValue: state.email,
-          hintText: l10n.authEmailHint,
-          isDark: isDark,
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.next,
-          onChanged: controller.onEmailChanged,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(
+          color: isDark ? AppColors.cardBorderDark : AppColors.cardBorder,
         ),
-        Gap(16.h),
-        AuthFormField(
-          label: l10n.authPassword,
-          initialValue: state.password,
-          hintText: l10n.authPasswordHint,
-          isDark: isDark,
-          obscureText: true,
-          textInputAction: TextInputAction.done,
-          onChanged: controller.onPasswordChanged,
-          onSubmitted: (_) => controller.signIn(),
+      ),
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(16.w, 16.h, 16.w, 16.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AuthFormField(
+              label: l10n.authEmailAddress,
+              initialValue: state.email,
+              hintText: l10n.authEmailHint,
+              isDark: isDark,
+              isRequired: true,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              onChanged: controller.onEmailChanged,
+            ),
+            Gap(16.h),
+            AuthFormField(
+              label: l10n.authPassword,
+              initialValue: state.password,
+              hintText: l10n.authPasswordHint,
+              isDark: isDark,
+              isRequired: true,
+              obscureText: true,
+              textInputAction: TextInputAction.done,
+              onChanged: controller.onPasswordChanged,
+              onSubmitted: (_) => controller.signIn(),
+            ),
+            Gap(28.h),
+            AppButton(
+              label: l10n.signIn,
+              width: double.infinity,
+              isLoading: state.isLoading,
+              onPressed: state.canSubmit ? controller.signIn : null,
+              backgroundColor: AppColors.primary,
+              foregroundColor: AppColors.onPrimary,
+            ),
+          ],
         ),
-        Gap(16.h),
-        AppButton(
-          label: l10n.signIn,
-          width: double.infinity,
-          isLoading: state.isLoading,
-          onPressed: state.canSubmit ? controller.signIn : null,
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.onPrimary,
-        ),
-      ],
+      ),
     );
   }
 }

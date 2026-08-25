@@ -31,6 +31,7 @@ class AppFormOptionalSection extends StatelessWidget {
     this.items = const [],
     this.onEditItem,
     this.onRemoveItem,
+    this.showHeader = true,
   });
 
   final String title;
@@ -43,6 +44,7 @@ class AppFormOptionalSection extends StatelessWidget {
   final List<AppFormListItem> items;
   final ValueChanged<String>? onEditItem;
   final ValueChanged<String>? onRemoveItem;
+  final bool showHeader;
 
   @override
   Widget build(BuildContext context) {
@@ -54,34 +56,36 @@ class AppFormOptionalSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            icon,
-            Gap(8.w),
-            Expanded(
-              child: Text(
-                title,
-                style: titleStyle,
-                overflow: TextOverflow.ellipsis,
+        if (showHeader) ...[
+          Row(
+            children: [
+              icon,
+              Gap(8.w),
+              Expanded(
+                child: Text(
+                  title,
+                  style: titleStyle,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-            Gap(8.w),
-            AppButton.outline(
-              label: buttonLabel,
-              icon: buttonSvgPath == null ? (buttonIcon ?? Icons.add) : null,
-              svgPath: buttonSvgPath,
-              onPressed: onAddPressed,
-              height: 36.h,
-            ),
-          ],
-        ),
-        Gap(12.h),
+              Gap(8.w),
+              AppButton.outline(
+                label: buttonLabel,
+                icon: buttonSvgPath == null ? (buttonIcon ?? Icons.add) : null,
+                svgPath: buttonSvgPath,
+                onPressed: onAddPressed,
+                height: 36.h,
+              ),
+            ],
+          ),
+          Gap(12.h),
+        ],
         if (items.isEmpty)
           Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
             decoration: BoxDecoration(
-              color: isDark ? AppColors.inputBgDark : AppColors.sidebarSearchBg,
+              color: isDark ? AppColors.inputBgDark : AppColors.cardBackground,
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Center(
@@ -138,7 +142,7 @@ class _AppFormListItemTile extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.inputBgDark : AppColors.sidebarSearchBg,
+        color: isDark ? AppColors.inputBgDark : AppColors.cardBackground,
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(
           color: isDark ? AppColors.cardBorderDark : AppColors.cardBorder,

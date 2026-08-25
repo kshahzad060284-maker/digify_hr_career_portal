@@ -11,6 +11,8 @@ enum RegisterToastType {
   emailRequired,
   emailInvalid,
   phoneRequired,
+  educationRequired,
+  workExperienceRequired,
   passwordRequired,
   confirmPasswordRequired,
   passwordsMismatch,
@@ -18,3 +20,5 @@ enum RegisterToastType {
 }
 
 enum RegisterRelocatePreference { yes, no }
+
+enum RegisterExperienceType { fresh, experienced }

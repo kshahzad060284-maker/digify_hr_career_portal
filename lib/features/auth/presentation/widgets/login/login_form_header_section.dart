@@ -1,8 +1,6 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
-import 'package:career_portal/features/auth/presentation/widgets/auth_form_helpers.dart';
-import 'package:career_portal/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -21,9 +19,22 @@ class LoginFormHeaderSection extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.center,
-          child: AuthIconCircle(assetPath: Assets.icons.auth.login.path),
+          child: Container(
+            width: 64.w,
+            height: 64.w,
+            decoration: const BoxDecoration(
+              color: AppColors.authIconCircleBg,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.login_rounded,
+              size: 28.sp,
+              color: AppColors.primary,
+            ),
+          ),
         ),
-        Gap(8.h),
+        Gap(12.h),
         Text(
           l10n.authSignInTitle,
           textAlign: TextAlign.center,

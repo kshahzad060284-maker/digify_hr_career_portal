@@ -114,7 +114,7 @@ class _AddRegisterWorkExperienceDialogState
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = context.isDark;
-    final fillColor = isDark ? AppColors.inputBgDark : AppColors.authInputFill;
+    final fillColor = isDark ? AppColors.inputBgDark : AppColors.cardBackground;
     final currentJobOptions = [l10n.authYes, l10n.authNo];
     final currentJobValue = _isCurrentJob ? l10n.authYes : l10n.authNo;
 

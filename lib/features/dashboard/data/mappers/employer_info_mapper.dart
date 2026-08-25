@@ -1,3 +1,5 @@
+import 'package:career_portal/core/config/app_config.dart';
+import 'package:career_portal/core/network/api_endpoints.dart';
 import 'package:career_portal/features/dashboard/data/dto/employer_info_dto.dart';
 import 'package:career_portal/features/dashboard/domain/models/employer_assignment_type.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_company_info.dart';
@@ -23,12 +25,34 @@ class EmployerInfoMapper {
     return JobCompanyInfo.fromApi(
       name: dto.companyName ?? '',
       nameAr: dto.companyNameAr,
-      logoUrl: dto.logoUrl,
+      logoUrl: _logoUrlOnApiHost(
+        dto.employerInfoGuid ?? '',
+        dto.logoAvailable,
+        dto.logoUrl,
+        dto.logoFileName,
+      ),
       logoAvailable: dto.logoAvailable,
+      logoMimeType: dto.logoMimeType,
       information: dto.information ?? dto.employeeInfo,
       industry: dto.industry,
       about: dto.aboutCompany,
     );
+  }
+
+  static String? _logoUrlOnApiHost(
+    String guid,
+    String? logoAvailable,
+    String? fromApi,
+    String? logoFileName,
+  ) {
+    final hasLogo = (logoAvailable ?? '').toUpperCase() == 'Y';
+    if (!hasLogo || guid.isEmpty) return fromApi;
+
+    final base = AppConfig.baseUrl.endsWith('/')
+        ? AppConfig.baseUrl.substring(0, AppConfig.baseUrl.length - 1)
+        : AppConfig.baseUrl;
+    final v = (logoFileName?.trim() ?? '').hashCode;
+    return '$base${RecEndpoints.employerInfoLogo(guid)}?v=$v';
   }
 
   static EmployerInfoDto? _firstOfType(

@@ -19,46 +19,43 @@ class RegisterFormSecuritySection extends ConsumerWidget {
     final controller = ref.read(registerControllerProvider.notifier);
     final isDark = context.isDark;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          l10n.authSecurity,
-          style: context.textTheme.titleLarge?.copyWith(
-            color: isDark ? AppColors.textPrimaryDark : AppColors.dialogTitle,
+    return RegisterFormSectionPanel(
+      step: 6,
+      title: l10n.authSecurity,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          RegisterAuthField(
+            label: l10n.authPassword,
+            initialValue: state.password,
+            hintText: l10n.authPasswordHint,
+            isDark: isDark,
+            isRequired: true,
+            obscureText: true,
+            onChanged: controller.onPasswordChanged,
           ),
-        ),
-        Gap(16.h),
-        RegisterAuthField(
-          label: l10n.authPassword,
-          initialValue: state.password,
-          hintText: l10n.authPasswordHint,
-          isDark: isDark,
-          isRequired: true,
-          obscureText: true,
-          onChanged: controller.onPasswordChanged,
-        ),
-        Gap(16.h),
-        RegisterAuthField(
-          label: l10n.authConfirmPassword,
-          initialValue: state.confirmPassword,
-          hintText: l10n.authConfirmPasswordHint,
-          isDark: isDark,
-          isRequired: true,
-          obscureText: true,
-          onChanged: controller.onConfirmPasswordChanged,
-        ),
-        Gap(16.h),
-        AppButton(
-          label: l10n.authCreateAccount,
-          width: double.infinity,
-          isLoading: state.isLoading,
-          onPressed: state.canSubmit ? controller.createAccount : null,
-          backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.onPrimary,
-        ),
-      ],
+          Gap(16.h),
+          RegisterAuthField(
+            label: l10n.authConfirmPassword,
+            initialValue: state.confirmPassword,
+            hintText: l10n.authConfirmPasswordHint,
+            isDark: isDark,
+            isRequired: true,
+            obscureText: true,
+            onChanged: controller.onConfirmPasswordChanged,
+          ),
+          Gap(28.h),
+          AppButton(
+            label: l10n.authCreateAccount,
+            width: double.infinity,
+            isLoading: state.isLoading,
+            onPressed: state.canSubmit ? controller.createAccount : null,
+            backgroundColor: AppColors.primary,
+            foregroundColor: AppColors.onPrimary,
+          ),
+        ],
+      ),
     );
   }
 }
