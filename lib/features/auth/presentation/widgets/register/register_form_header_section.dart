@@ -1,7 +1,6 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
-import 'package:career_portal/features/auth/presentation/widgets/register/register_form_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -18,8 +17,24 @@ class RegisterFormHeaderSection extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Align(alignment: Alignment.center, child: RegisterIconCircle()),
-        Gap(8.h),
+        Align(
+          alignment: Alignment.center,
+          child: Container(
+            width: 64.w,
+            height: 64.w,
+            decoration: const BoxDecoration(
+              color: AppColors.authIconCircleBg,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              Icons.person_add_alt_1_rounded,
+              size: 28.sp,
+              color: AppColors.primary,
+            ),
+          ),
+        ),
+        Gap(12.h),
         Text(
           l10n.authCreateAccountTitle,
           textAlign: TextAlign.center,

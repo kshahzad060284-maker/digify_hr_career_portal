@@ -19,23 +19,37 @@ class RegisterFormSignInPrompt extends StatelessWidget {
       color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary,
     );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          l10n.authAlreadyHaveAccountPrompt,
-          style: baseStyle,
-          textAlign: TextAlign.center,
-          softWrap: false,
-          overflow: TextOverflow.ellipsis,
+        Divider(
+          height: 1.h,
+          thickness: 1,
+          color: isDark ? AppColors.cardBorderDark : AppColors.cardBorder,
         ),
-        Gap(4.w),
-        AppButton.text(
-          label: l10n.signIn,
-          onPressed: onSignInTap,
-          fontSize: 14.sp,
-          foregroundColor: AppColors.primary,
+        Gap(16.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: Text(
+                l10n.authAlreadyHaveAccountPrompt,
+                style: baseStyle,
+                textAlign: TextAlign.center,
+                softWrap: false,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Gap(4.w),
+            AppButton.text(
+              label: l10n.signIn,
+              onPressed: onSignInTap,
+              fontSize: 14.sp,
+              foregroundColor: AppColors.primary,
+            ),
+          ],
         ),
       ],
     );

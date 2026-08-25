@@ -18,58 +18,62 @@ class RegisterFormPersonalInfoSection extends ConsumerWidget {
     final controller = ref.read(registerControllerProvider.notifier);
     final isDark = context.isDark;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        RegisterResponsiveRow(
-          children: [
-            RegisterAuthField(
-              label: l10n.authFirstName,
-              initialValue: state.firstName,
-              hintText: l10n.authFirstNameHint,
-              isDark: isDark,
-              isRequired: true,
-              onChanged: controller.onFirstNameChanged,
-            ),
-            RegisterAuthField(
-              label: l10n.authMiddleName,
-              initialValue: state.middleName,
-              hintText: l10n.authMiddleNameHint,
-              isDark: isDark,
-              onChanged: controller.onMiddleNameChanged,
-            ),
-            RegisterAuthField(
-              label: l10n.authLastName,
-              initialValue: state.lastName,
-              hintText: l10n.authLastNameHint,
-              isDark: isDark,
-              isRequired: true,
-              onChanged: controller.onLastNameChanged,
-            ),
-          ],
-        ),
-        Gap(16.h),
-        RegisterAuthField(
-          label: l10n.authEmailAddress,
-          initialValue: state.email,
-          hintText: l10n.authEmailHint,
-          isDark: isDark,
-          isRequired: true,
-          keyboardType: TextInputType.emailAddress,
-          onChanged: controller.onEmailChanged,
-        ),
-        Gap(16.h),
-        AppPhoneField(
-          labelText: l10n.authPhoneNumber,
-          hintText: l10n.authPhoneHint,
-          isRequired: true,
-          initialDialCode: state.phoneDialCode,
-          initialNumber: state.phone,
-          onDialCodeChanged: controller.onPhoneDialCodeChanged,
-          onNumberChanged: controller.onPhoneNumberChanged,
-        ),
-      ],
+    return RegisterFormSectionPanel(
+      step: 1,
+      title: l10n.authPersonalInformation,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          RegisterResponsiveRow(
+            children: [
+              RegisterAuthField(
+                label: l10n.authFirstName,
+                initialValue: state.firstName,
+                hintText: l10n.authFirstNameHint,
+                isDark: isDark,
+                isRequired: true,
+                onChanged: controller.onFirstNameChanged,
+              ),
+              RegisterAuthField(
+                label: l10n.authMiddleName,
+                initialValue: state.middleName,
+                hintText: l10n.authMiddleNameHint,
+                isDark: isDark,
+                onChanged: controller.onMiddleNameChanged,
+              ),
+              RegisterAuthField(
+                label: l10n.authLastName,
+                initialValue: state.lastName,
+                hintText: l10n.authLastNameHint,
+                isDark: isDark,
+                isRequired: true,
+                onChanged: controller.onLastNameChanged,
+              ),
+            ],
+          ),
+          Gap(16.h),
+          RegisterAuthField(
+            label: l10n.authEmailAddress,
+            initialValue: state.email,
+            hintText: l10n.authEmailHint,
+            isDark: isDark,
+            isRequired: true,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: controller.onEmailChanged,
+          ),
+          Gap(16.h),
+          AppPhoneField(
+            labelText: l10n.authPhoneNumber,
+            hintText: l10n.authPhoneHint,
+            isRequired: true,
+            initialDialCode: state.phoneDialCode,
+            initialNumber: state.phone,
+            onDialCodeChanged: controller.onPhoneDialCodeChanged,
+            onNumberChanged: controller.onPhoneNumberChanged,
+          ),
+        ],
+      ),
     );
   }
 }

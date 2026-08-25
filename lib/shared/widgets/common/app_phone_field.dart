@@ -48,7 +48,8 @@ class AppPhoneField extends StatelessWidget {
       initialDialCode,
     );
     final effectiveFillColor =
-        fillColor ?? (isDark ? AppColors.inputBgDark : AppColors.authInputFill);
+        fillColor ??
+        (isDark ? AppColors.inputBgDark : AppColors.cardBackground);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

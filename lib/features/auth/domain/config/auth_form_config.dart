@@ -8,6 +8,15 @@ abstract final class AuthFormConfig {
     31,
   );
 
+  static const List<String> educationLevelOptions = [
+    'High School',
+    'Diploma',
+    "Bachelor's",
+    "Master's",
+    'PhD',
+    'Other',
+  ];
+
   static const List<String> educationGradeOptions = [
     'A+',
     'A',

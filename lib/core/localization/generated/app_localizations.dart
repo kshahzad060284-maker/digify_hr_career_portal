@@ -278,6 +278,12 @@ abstract class AppLocalizations {
   /// **'Search country...'**
   String get phoneCountrySearchHint;
 
+  /// No description provided for @authPersonalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get authPersonalInformation;
+
   /// No description provided for @authProfessionalInformation.
   ///
   /// In en, this message translates to:
@@ -389,19 +395,19 @@ abstract class AppLocalizations {
   /// No description provided for @authSalaryExampleHint.
   ///
   /// In en, this message translates to:
-  /// **'e.g., \$80,000'**
+  /// **'e.g., 80,000'**
   String get authSalaryExampleHint;
 
   /// No description provided for @authExpectedSalaryExampleHint.
   ///
   /// In en, this message translates to:
-  /// **'e.g., \$100,000'**
+  /// **'e.g., 100,000'**
   String get authExpectedSalaryExampleHint;
 
   /// No description provided for @authSocialLinksSection.
   ///
   /// In en, this message translates to:
-  /// **'Social & Professional Links'**
+  /// **'LinkedIn Profile'**
   String get authSocialLinksSection;
 
   /// No description provided for @authLinkedInProfile.
@@ -440,6 +446,30 @@ abstract class AppLocalizations {
   /// **'https://yourportfolio.com'**
   String get authPortfolioHint;
 
+  /// No description provided for @authEducation.
+  ///
+  /// In en, this message translates to:
+  /// **'Education'**
+  String get authEducation;
+
+  /// No description provided for @authEducationHighestLevelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your highest education level'**
+  String get authEducationHighestLevelHint;
+
+  /// No description provided for @authSelectEducationLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Select education level'**
+  String get authSelectEducationLevel;
+
+  /// No description provided for @authEducationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please add at least one education entry'**
+  String get authEducationRequired;
+
   /// No description provided for @authEducationOptional.
   ///
   /// In en, this message translates to:
@@ -455,14 +485,32 @@ abstract class AppLocalizations {
   /// No description provided for @authEducationEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No education added yet. Click \"Add Education\" to include your academic background.'**
+  /// **'No education added yet. Select your highest level, then click \"Add Education\".'**
   String get authEducationEmpty;
 
-  /// No description provided for @authWorkExperienceOptional.
+  /// No description provided for @authWorkExperience.
   ///
   /// In en, this message translates to:
-  /// **'Work Experience (Optional)'**
-  String get authWorkExperienceOptional;
+  /// **'Work Experience'**
+  String get authWorkExperience;
+
+  /// No description provided for @authFresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresh'**
+  String get authFresh;
+
+  /// No description provided for @authExperienced.
+  ///
+  /// In en, this message translates to:
+  /// **'Experienced'**
+  String get authExperienced;
+
+  /// No description provided for @authWorkExperienceRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please add at least one work experience entry'**
+  String get authWorkExperienceRequired;
 
   /// No description provided for @authAddExperience.
   ///

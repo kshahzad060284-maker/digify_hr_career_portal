@@ -102,6 +102,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phoneCountrySearchHint => 'Search country...';
 
   @override
+  String get authPersonalInformation => 'Personal Information';
+
+  @override
   String get authProfessionalInformation => 'Professional Information';
 
   @override
@@ -156,13 +159,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authExpectedSalaryOptional => 'Expected Salary (Optional)';
 
   @override
-  String get authSalaryExampleHint => 'e.g., \$80,000';
+  String get authSalaryExampleHint => 'e.g., 80,000';
 
   @override
-  String get authExpectedSalaryExampleHint => 'e.g., \$100,000';
+  String get authExpectedSalaryExampleHint => 'e.g., 100,000';
 
   @override
-  String get authSocialLinksSection => 'Social & Professional Links';
+  String get authSocialLinksSection => 'LinkedIn Profile';
 
   @override
   String get authLinkedInProfile => 'LinkedIn Profile';
@@ -183,6 +186,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authPortfolioHint => 'https://yourportfolio.com';
 
   @override
+  String get authEducation => 'Education';
+
+  @override
+  String get authEducationHighestLevelHint =>
+      'Select your highest education level';
+
+  @override
+  String get authSelectEducationLevel => 'Select education level';
+
+  @override
+  String get authEducationRequired => 'Please add at least one education entry';
+
+  @override
   String get authEducationOptional => 'Education (Optional)';
 
   @override
@@ -190,10 +206,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authEducationEmpty =>
-      'No education added yet. Click \"Add Education\" to include your academic background.';
+      'No education added yet. Select your highest level, then click \"Add Education\".';
 
   @override
-  String get authWorkExperienceOptional => 'Work Experience (Optional)';
+  String get authWorkExperience => 'Work Experience';
+
+  @override
+  String get authFresh => 'Fresh';
+
+  @override
+  String get authExperienced => 'Experienced';
+
+  @override
+  String get authWorkExperienceRequired =>
+      'Please add at least one work experience entry';
 
   @override
   String get authAddExperience => 'Add Experience';

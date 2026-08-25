@@ -14,18 +14,26 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class AddRegisterEducationDialog extends StatefulWidget {
-  const AddRegisterEducationDialog({super.key, this.initialEntry});
+  const AddRegisterEducationDialog({
+    super.key,
+    this.initialEntry,
+    this.initialDegreeName,
+  });
 
   final RegisterEducationEntry? initialEntry;
+  final String? initialDegreeName;
 
   static Future<RegisterEducationEntry?> show(
     BuildContext context, {
     RegisterEducationEntry? initialEntry,
+    String? initialDegreeName,
   }) {
     return showDialog<RegisterEducationEntry>(
       context: context,
-      builder: (context) =>
-          AddRegisterEducationDialog(initialEntry: initialEntry),
+      builder: (context) => AddRegisterEducationDialog(
+        initialEntry: initialEntry,
+        initialDegreeName: initialDegreeName,
+      ),
     );
   }
 
@@ -59,6 +67,8 @@ class _AddRegisterEducationDialogState
       _startDate = entry.startDate;
       _endDate = entry.endDate;
       _grade = entry.grade;
+    } else {
+      _degreeController.text = widget.initialDegreeName?.trim() ?? '';
     }
   }
 
@@ -118,7 +128,7 @@ class _AddRegisterEducationDialogState
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = context.isDark;
-    final fillColor = isDark ? AppColors.inputBgDark : AppColors.authInputFill;
+    final fillColor = isDark ? AppColors.inputBgDark : AppColors.cardBackground;
 
     return AppDialog(
       title: _isEditing

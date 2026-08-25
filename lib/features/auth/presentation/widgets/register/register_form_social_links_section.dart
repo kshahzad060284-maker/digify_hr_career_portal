@@ -1,12 +1,9 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
-import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/auth/presentation/providers/register_provider.dart';
 import 'package:career_portal/features/auth/presentation/widgets/register/register_form_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 
 class RegisterFormSocialLinksSection extends ConsumerWidget {
   const RegisterFormSocialLinksSection({super.key});
@@ -18,44 +15,17 @@ class RegisterFormSocialLinksSection extends ConsumerWidget {
     final controller = ref.read(registerControllerProvider.notifier);
     final isDark = context.isDark;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          l10n.authSocialLinksSection,
-          style: context.textTheme.titleLarge?.copyWith(
-            color: isDark ? AppColors.textPrimaryDark : AppColors.dialogTitle,
-          ),
-        ),
-        Gap(16.h),
-        RegisterAuthField(
-          label: l10n.authLinkedInProfile,
-          initialValue: state.linkedIn,
-          hintText: l10n.authLinkedInHint,
-          isDark: isDark,
-          keyboardType: TextInputType.url,
-          onChanged: controller.onLinkedInChanged,
-        ),
-        Gap(16.h),
-        RegisterAuthField(
-          label: l10n.authGitHubProfile,
-          initialValue: state.github,
-          hintText: l10n.authGitHubHint,
-          isDark: isDark,
-          keyboardType: TextInputType.url,
-          onChanged: controller.onGithubChanged,
-        ),
-        Gap(16.h),
-        RegisterAuthField(
-          label: l10n.authPortfolioWebsite,
-          initialValue: state.portfolio,
-          hintText: l10n.authPortfolioHint,
-          isDark: isDark,
-          keyboardType: TextInputType.url,
-          onChanged: controller.onPortfolioChanged,
-        ),
-      ],
+    return RegisterFormSectionPanel(
+      step: 3,
+      title: l10n.authSocialLinksSection,
+      child: RegisterAuthField(
+        label: l10n.authLinkedInProfile,
+        initialValue: state.linkedIn,
+        hintText: l10n.authLinkedInHint,
+        isDark: isDark,
+        keyboardType: TextInputType.url,
+        onChanged: controller.onLinkedInChanged,
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:career_portal/core/common/auth_enums.dart';
 import 'package:career_portal/core/config/app_config.dart';
+import 'package:career_portal/core/extensions/number_formatting_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
@@ -56,9 +57,6 @@ class RegisterController extends Notifier<RegisterState> {
   void onCurrentLocationChanged(String value) =>
       state = state.copyWith(currentLocation: value, clearToast: true);
 
-  void onSourceChanged(String value) =>
-      state = state.copyWith(source: value, clearToast: true);
-
   void onNoticePeriodChanged(String value) =>
       state = state.copyWith(noticePeriod: value, clearToast: true);
 
@@ -113,6 +111,16 @@ class RegisterController extends Notifier<RegisterState> {
     );
   }
 
+  void onExperienceTypeChanged(RegisterExperienceType value) {
+    state = state.copyWith(
+      experienceType: value,
+      workExperienceEntries: value == RegisterExperienceType.fresh
+          ? const []
+          : state.workExperienceEntries,
+      clearToast: true,
+    );
+  }
+
   void addWorkExperience(RegisterWorkExperienceEntry entry) {
     state = state.copyWith(
       workExperienceEntries: [...state.workExperienceEntries, entry],
@@ -162,6 +170,15 @@ class RegisterController extends Notifier<RegisterState> {
       _emitToast(RegisterToastType.phoneRequired);
       return false;
     }
+    if (state.educationEntries.isEmpty) {
+      _emitToast(RegisterToastType.educationRequired);
+      return false;
+    }
+    if (state.experienceType == RegisterExperienceType.experienced &&
+        state.workExperienceEntries.isEmpty) {
+      _emitToast(RegisterToastType.workExperienceRequired);
+      return false;
+    }
     if (state.password.isEmpty) {
       _emitToast(RegisterToastType.passwordRequired);
       return false;
@@ -198,7 +215,7 @@ class RegisterController extends Notifier<RegisterState> {
       currentEmployer: state.currentCompany.trim(),
       yearsExperience: int.tryParse(state.totalExperience.trim()) ?? 0,
       currentLocation: state.currentLocation.trim(),
-      source: state.source.trim(),
+      source: 'CAREER_SITE',
       expectedSalary: _normalizeSalary(state.expectedSalary),
       salaryCurrency: AppConfig.defaultSalaryCurrency,
       noticePeriod: int.tryParse(state.noticePeriod.trim()) ?? 0,
@@ -214,7 +231,7 @@ class RegisterController extends Notifier<RegisterState> {
   }
 
   String _normalizeSalary(String value) {
-    return value.replaceAll(RegExp(r'[^0-9.]'), '').trim();
+    return value.withoutCommas.replaceAll(RegExp(r'[^0-9.]'), '').trim();
   }
 
   Future<void> createAccount() async {
@@ -261,6 +278,9 @@ class RegisterController extends Notifier<RegisterState> {
       RegisterToastType.emailRequired => l10n.authEmailRequired,
       RegisterToastType.emailInvalid => l10n.authEmailInvalid,
       RegisterToastType.phoneRequired => l10n.authPhoneRequired,
+      RegisterToastType.educationRequired => l10n.authEducationRequired,
+      RegisterToastType.workExperienceRequired =>
+        l10n.authWorkExperienceRequired,
       RegisterToastType.passwordRequired => l10n.authPasswordRequired,
       RegisterToastType.confirmPasswordRequired =>
         l10n.authConfirmPasswordRequired,

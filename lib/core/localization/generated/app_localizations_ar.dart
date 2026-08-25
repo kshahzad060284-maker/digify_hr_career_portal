@@ -101,6 +101,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get phoneCountrySearchHint => 'ابحث عن الدولة...';
 
   @override
+  String get authPersonalInformation => 'المعلومات الشخصية';
+
+  @override
   String get authProfessionalInformation => 'المعلومات المهنية';
 
   @override
@@ -155,13 +158,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authExpectedSalaryOptional => 'الراتب المتوقع (اختياري)';
 
   @override
-  String get authSalaryExampleHint => 'مثال: 80,000\$';
+  String get authSalaryExampleHint => 'مثال: 80,000';
 
   @override
-  String get authExpectedSalaryExampleHint => 'مثال: 100,000\$';
+  String get authExpectedSalaryExampleHint => 'مثال: 100,000';
 
   @override
-  String get authSocialLinksSection => 'روابط التواصل والمهنة';
+  String get authSocialLinksSection => 'ملف LinkedIn';
 
   @override
   String get authLinkedInProfile => 'ملف LinkedIn';
@@ -182,6 +185,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authPortfolioHint => 'https://yourportfolio.com';
 
   @override
+  String get authEducation => 'التعليم';
+
+  @override
+  String get authEducationHighestLevelHint => 'اختر أعلى مستوى تعليمي لديك';
+
+  @override
+  String get authSelectEducationLevel => 'اختر المستوى التعليمي';
+
+  @override
+  String get authEducationRequired => 'يرجى إضافة سجل تعليمي واحد على الأقل';
+
+  @override
   String get authEducationOptional => 'التعليم (اختياري)';
 
   @override
@@ -189,10 +204,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get authEducationEmpty =>
-      'لم تُضف أي تعليم بعد. انقر \"إضافة تعليم\" لإضافة خلفيتك الأكاديمية.';
+      'لم تُضف أي تعليم بعد. اختر أعلى مستوى تعليمي، ثم انقر \"إضافة تعليم\".';
 
   @override
-  String get authWorkExperienceOptional => 'الخبرة العملية (اختياري)';
+  String get authWorkExperience => 'الخبرة العملية';
+
+  @override
+  String get authFresh => 'حديث التخرج';
+
+  @override
+  String get authExperienced => 'ذو خبرة';
+
+  @override
+  String get authWorkExperienceRequired =>
+      'يرجى إضافة سجل خبرة عمل واحد على الأقل';
 
   @override
   String get authAddExperience => 'إضافة خبرة';

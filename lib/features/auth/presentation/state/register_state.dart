@@ -15,7 +15,6 @@ class RegisterState {
     this.currentTitle = '',
     this.totalExperience = '',
     this.currentLocation = '',
-    this.source = '',
     this.noticePeriod = '',
     this.willingToRelocate = RegisterRelocatePreference.no,
     this.currentSalary = '',
@@ -26,6 +25,7 @@ class RegisterState {
     this.password = '',
     this.confirmPassword = '',
     this.educationEntries = const [],
+    this.experienceType = RegisterExperienceType.fresh,
     this.workExperienceEntries = const [],
     this.isLoading = false,
     this.toastType,
@@ -45,7 +45,6 @@ class RegisterState {
   final String currentTitle;
   final String totalExperience;
   final String currentLocation;
-  final String source;
   final String noticePeriod;
   final RegisterRelocatePreference willingToRelocate;
   final String currentSalary;
@@ -56,6 +55,7 @@ class RegisterState {
   final String password;
   final String confirmPassword;
   final List<RegisterEducationEntry> educationEntries;
+  final RegisterExperienceType experienceType;
   final List<RegisterWorkExperienceEntry> workExperienceEntries;
   final bool isLoading;
   final RegisterToastType? toastType;
@@ -77,7 +77,6 @@ class RegisterState {
     String? currentTitle,
     String? totalExperience,
     String? currentLocation,
-    String? source,
     String? noticePeriod,
     RegisterRelocatePreference? willingToRelocate,
     String? currentSalary,
@@ -88,6 +87,7 @@ class RegisterState {
     String? password,
     String? confirmPassword,
     List<RegisterEducationEntry>? educationEntries,
+    RegisterExperienceType? experienceType,
     List<RegisterWorkExperienceEntry>? workExperienceEntries,
     bool? isLoading,
     RegisterToastType? toastType,
@@ -117,7 +117,6 @@ class RegisterState {
       currentLocation: clearForm
           ? ''
           : (currentLocation ?? this.currentLocation),
-      source: clearForm ? '' : (source ?? this.source),
       noticePeriod: clearForm ? '' : (noticePeriod ?? this.noticePeriod),
       willingToRelocate: clearForm
           ? RegisterRelocatePreference.no
@@ -134,6 +133,9 @@ class RegisterState {
       educationEntries: clearForm
           ? const []
           : (educationEntries ?? this.educationEntries),
+      experienceType: clearForm
+          ? RegisterExperienceType.fresh
+          : (experienceType ?? this.experienceType),
       workExperienceEntries: clearForm
           ? const []
           : (workExperienceEntries ?? this.workExperienceEntries),
