@@ -9,9 +9,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class LoginFormCard extends StatelessWidget {
-  const LoginFormCard({super.key, this.onRegisterTap});
+  const LoginFormCard({
+    super.key,
+    this.onRegisterTap,
+    this.onForgotPasswordTap,
+  });
 
   final VoidCallback? onRegisterTap;
+  final VoidCallback? onForgotPasswordTap;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,9 @@ class LoginFormCard extends StatelessWidget {
                 children: [
                   const LoginFormHeaderSection(),
                   Gap(28.h),
-                  const LoginFormCredentialsSection(),
+                  LoginFormCredentialsSection(
+                    onForgotPasswordTap: onForgotPasswordTap,
+                  ),
                   Gap(20.h),
                   LoginFormRegisterPrompt(onRegisterTap: onRegisterTap),
                 ],

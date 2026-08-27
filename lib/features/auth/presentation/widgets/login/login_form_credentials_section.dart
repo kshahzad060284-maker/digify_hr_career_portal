@@ -10,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class LoginFormCredentialsSection extends ConsumerWidget {
-  const LoginFormCredentialsSection({super.key});
+  const LoginFormCredentialsSection({super.key, this.onForgotPasswordTap});
+
+  final VoidCallback? onForgotPasswordTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,7 +56,18 @@ class LoginFormCredentialsSection extends ConsumerWidget {
               onChanged: controller.onPasswordChanged,
               onSubmitted: (_) => controller.signIn(),
             ),
-            Gap(28.h),
+            Gap(8.h),
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: AppButton.text(
+                label: l10n.authForgotPassword,
+                onPressed: onForgotPasswordTap,
+                fontSize: 13.sp,
+                foregroundColor: AppColors.primary,
+                shrinkWrap: true,
+              ),
+            ),
+            Gap(20.h),
             AppButton(
               label: l10n.signIn,
               width: double.infinity,

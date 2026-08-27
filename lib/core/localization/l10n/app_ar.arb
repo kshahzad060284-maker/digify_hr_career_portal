@@ -12,7 +12,14 @@
   "login": "تسجيل الدخول",
   "signIn": "تسجيل الدخول",
   "authBack": "رجوع",
-  "authSignInTitle": "مرحباً بعودتك",
+  "authSignInTitle": "مرحباً بك في {name}",
+  "@authSignInTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "authSignInSubtitle": "سجّل الدخول إلى حسابك",
   "authEmailAddress": "البريد الإلكتروني",
   "authPassword": "كلمة المرور",
@@ -21,6 +28,53 @@
   "authEmailRequired": "يرجى إدخال بريدك الإلكتروني",
   "authEmailInvalid": "يرجى إدخال بريد إلكتروني صالح",
   "authPasswordRequired": "يرجى إدخال كلمة المرور",
+  "authForgotPassword": "نسيت كلمة المرور؟",
+  "authForgotPasswordTitle": "إعادة تعيين كلمة المرور",
+  "authForgotPasswordSubtitle": "اتبع الخطوات لإعادة تعيين كلمة مرور حسابك بأمان",
+  "authForgotStepVerifyEmail": "التحقق من البريد",
+  "authForgotStepCheckOtp": "التحقق من الرمز",
+  "authForgotStepResetPassword": "إعادة تعيين كلمة المرور",
+  "authForgotSendCode": "إرسال رمز التحقق",
+  "authForgotOtpBody": "أرسلنا رمزًا مكونًا من 6 أرقام إلى {email}",
+  "@authForgotOtpBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "authForgotOtpHint": "أدخل الرمز المكون من 6 أرقام",
+  "authForgotOtpLabel": "رمز التحقق",
+  "authForgotVerifyOtp": "تحقق من الرمز",
+  "authForgotResendOtp": "إعادة إرسال الرمز",
+  "authForgotResendOtpIn": "إعادة الإرسال خلال {seconds}ث",
+  "@authForgotResendOtpIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "authForgotResetPassword": "إعادة تعيين كلمة المرور",
+  "authForgotNewPassword": "كلمة المرور الجديدة",
+  "authForgotNewPasswordHint": "أدخل كلمة المرور الجديدة",
+  "authOtpRequired": "يرجى إدخال رمز التحقق",
+  "authOtpIncomplete": "يرجى إدخال الرمز المكون من 6 أرقام بالكامل",
+  "authForgotOtpSent": "تم إرسال رمز التحقق إلى بريدك الإلكتروني",
+  "authForgotResetPasswordSuccess": "تمت إعادة تعيين كلمة المرور بنجاح. يرجى تسجيل الدخول.",
+  "authForgotRememberPassword": "هل تتذكر كلمة المرور؟ ",
+  "authForgotBackToSignIn": "تسجيل الدخول",
+  "authForgotStepOf": "الخطوة {current} من {total}",
+  "@authForgotStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "authNoAccountPrompt": "ليس لديك حساب؟ ",
   "authRegisterNow": "سجّل الآن",
   "authRegisterComingSoon": "التسجيل قريباً",
