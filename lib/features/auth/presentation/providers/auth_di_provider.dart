@@ -1,10 +1,13 @@
 import 'package:career_portal/core/providers/app_service_provider.dart';
 import 'package:career_portal/features/auth/application/use_cases/clear_candidate_guid_use_case.dart';
+import 'package:career_portal/features/auth/application/use_cases/forgot_password_use_case.dart';
 import 'package:career_portal/features/auth/application/use_cases/get_candidate_profile_use_case.dart';
 import 'package:career_portal/features/auth/application/use_cases/login_use_case.dart';
 import 'package:career_portal/features/auth/application/use_cases/read_candidate_guid_use_case.dart';
 import 'package:career_portal/features/auth/application/use_cases/register_candidate_use_case.dart';
+import 'package:career_portal/features/auth/application/use_cases/reset_password_use_case.dart';
 import 'package:career_portal/features/auth/application/use_cases/save_candidate_guid_use_case.dart';
+import 'package:career_portal/features/auth/application/use_cases/verify_reset_otp_use_case.dart';
 import 'package:career_portal/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:career_portal/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:career_portal/features/auth/data/repositories/auth_local_repository_impl.dart';
@@ -31,6 +34,18 @@ final authLocalRepositoryProvider = Provider<AuthLocalRepository>((ref) {
 
 final loginUseCaseProvider = Provider<LoginUseCase>((ref) {
   return LoginUseCase(ref.watch(authRepositoryProvider));
+});
+
+final forgotPasswordUseCaseProvider = Provider<ForgotPasswordUseCase>((ref) {
+  return ForgotPasswordUseCase(ref.watch(authRepositoryProvider));
+});
+
+final verifyResetOtpUseCaseProvider = Provider<VerifyResetOtpUseCase>((ref) {
+  return VerifyResetOtpUseCase(ref.watch(authRepositoryProvider));
+});
+
+final resetPasswordUseCaseProvider = Provider<ResetPasswordUseCase>((ref) {
+  return ResetPasswordUseCase(ref.watch(authRepositoryProvider));
 });
 
 final registerCandidateUseCaseProvider = Provider<RegisterCandidateUseCase>((
