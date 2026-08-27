@@ -47,6 +47,7 @@ class LoginPage extends ConsumerWidget {
     return AuthLayout(
       child: LoginFormCard(
         onRegisterTap: () => context.go(AppRoutes.authSignUp),
+        onForgotPasswordTap: () => context.go(AppRoutes.authForgotPassword),
       ),
     );
   }

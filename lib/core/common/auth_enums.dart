@@ -22,3 +22,5 @@ enum RegisterToastType {
 enum RegisterRelocatePreference { yes, no }
 
 enum RegisterExperienceType { fresh, experienced }
+
+enum ForgotPasswordStep { verifyEmail, checkOtp, resetPassword }
