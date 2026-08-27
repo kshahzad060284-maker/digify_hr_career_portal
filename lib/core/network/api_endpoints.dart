@@ -45,6 +45,15 @@ abstract final class RecEndpoints {
 
   static String candidate(String candidateGuid) =>
       '${ApiEndpoints.basePath}/rec/candidates/$candidateGuid';
+
+  static String candidateForgotPassword() =>
+      '${ApiEndpoints.basePath}/rec/candidate-auth/forgot-password';
+
+  static String candidateVerifyResetOtp() =>
+      '${ApiEndpoints.basePath}/rec/candidate-auth/verify-reset-otp';
+
+  static String candidateResetPassword() =>
+      '${ApiEndpoints.basePath}/rec/candidate-auth/reset-password';
 }
 
 abstract final class CandidateAuthEndpoints {

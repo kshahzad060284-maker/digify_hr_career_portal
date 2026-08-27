@@ -4,6 +4,7 @@ abstract final class AppRoutes {
   static const String home = '/';
   static const String authLogin = '/auth/login';
   static const String authSignUp = '/auth/signup';
+  static const String authForgotPassword = '/auth/forgot-password';
   static const String jobDetail = '/job';
   static const String candidateOffers = '/offers';
   static const String candidateApplications = '/applications';
@@ -21,6 +22,7 @@ abstract final class AppRouteNames {
   static const String home = 'home';
   static const String authLogin = 'auth-login';
   static const String authSignUp = 'auth-signup';
+  static const String authForgotPassword = 'auth-forgot-password';
   static const String jobDetail = 'job-detail';
   static const String candidateOffers = 'candidate-offers';
   static const String candidateApplications = 'candidate-applications';

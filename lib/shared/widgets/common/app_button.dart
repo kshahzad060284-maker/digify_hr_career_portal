@@ -25,6 +25,7 @@ class AppButton extends StatelessWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.borderColor,
+    this.shrinkWrap = false,
   });
 
   final String label;
@@ -43,6 +44,10 @@ class AppButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final Color? borderColor;
+
+  /// When true (text buttons only), sizes to content so parent Align/Row
+  /// placement works. Defaults to false to keep existing call sites unchanged.
+  final bool shrinkWrap;
 
   factory AppButton.primary({
     required String label,
@@ -219,6 +224,7 @@ class AppButton extends StatelessWidget {
     EdgeInsetsGeometry? padding,
     BorderRadius? borderRadius,
     Color? foregroundColor,
+    bool shrinkWrap = false,
   }) {
     return AppButton(
       label: label,
@@ -235,6 +241,7 @@ class AppButton extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       borderRadius: borderRadius,
       foregroundColor: foregroundColor,
+      shrinkWrap: shrinkWrap,
     );
   }
 
@@ -294,6 +301,16 @@ class AppButton extends StatelessWidget {
     final border = _getBorder();
 
     final effectiveIconSize = iconSize ?? 18.w;
+    final labelText = Text(
+      label,
+      overflow: TextOverflow.ellipsis,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: fontSize ?? 14.sp,
+        fontWeight: FontWeight.w600,
+        color: contentColor,
+      ),
+    );
     final child = Padding(
       padding: padding ?? const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
@@ -317,18 +334,7 @@ class AppButton extends StatelessWidget {
             ),
           if (icon != null || svgPath != null || isLoading)
             SizedBox(width: 8.w),
-          Flexible(
-            child: Text(
-              label,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: fontSize ?? 14.sp,
-                fontWeight: FontWeight.w600,
-                color: contentColor,
-              ),
-            ),
-          ),
+          if (shrinkWrap) labelText else Flexible(child: labelText),
         ],
       ),
     );
@@ -344,11 +350,13 @@ class AppButton extends StatelessWidget {
             highlightColor: Colors.transparent,
             hoverColor: Colors.transparent,
             focusColor: Colors.transparent,
-            child: SizedBox(
-              width: effectiveWidth,
-              height: effectiveHeight,
-              child: Center(child: child),
-            ),
+            child: shrinkWrap
+                ? child
+                : SizedBox(
+                    width: effectiveWidth,
+                    height: effectiveHeight,
+                    child: Center(child: child),
+                  ),
           ),
         ),
       );

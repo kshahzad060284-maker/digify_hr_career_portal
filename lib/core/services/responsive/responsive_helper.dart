@@ -43,4 +43,14 @@ class ResponsiveHelper {
       ScreenLayout.desktop => 1440,
     };
   }
+
+  static double authMaxCardWidth(BuildContext context) {
+    return switch (context.layout) {
+      ScreenLayout.mobile => double.infinity,
+      ScreenLayout.tabletSmall => 680,
+      ScreenLayout.tabletMedium => 760,
+      ScreenLayout.tabletLarge => 820,
+      ScreenLayout.desktop => 880,
+    };
+  }
 }

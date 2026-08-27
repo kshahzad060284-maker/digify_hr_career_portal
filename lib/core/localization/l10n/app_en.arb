@@ -12,7 +12,14 @@
   "login": "Login",
   "signIn": "Sign In",
   "authBack": "Back",
-  "authSignInTitle": "Welcome Back",
+  "authSignInTitle": "Welcome to {name}",
+  "@authSignInTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "authSignInSubtitle": "Sign in to your account",
   "authEmailAddress": "Email Address",
   "authPassword": "Password",
@@ -21,6 +28,53 @@
   "authEmailRequired": "Please enter your email address",
   "authEmailInvalid": "Please enter a valid email address",
   "authPasswordRequired": "Please enter your password",
+  "authForgotPassword": "Forgot password?",
+  "authForgotPasswordTitle": "Reset your password",
+  "authForgotPasswordSubtitle": "Follow the steps to securely reset your account password",
+  "authForgotStepVerifyEmail": "Verify email",
+  "authForgotStepCheckOtp": "Check OTP",
+  "authForgotStepResetPassword": "Reset password",
+  "authForgotSendCode": "Send verification code",
+  "authForgotOtpBody": "We sent a 6-digit code to {email}",
+  "@authForgotOtpBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "authForgotOtpHint": "Enter 6-digit code",
+  "authForgotOtpLabel": "OTP Code",
+  "authForgotVerifyOtp": "Verify code",
+  "authForgotResendOtp": "Resend code",
+  "authForgotResendOtpIn": "Resend code in {seconds}s",
+  "@authForgotResendOtpIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "authForgotResetPassword": "Reset password",
+  "authForgotNewPassword": "New password",
+  "authForgotNewPasswordHint": "Enter your new password",
+  "authOtpRequired": "Please enter the verification code",
+  "authOtpIncomplete": "Please enter the complete 6-digit code",
+  "authForgotOtpSent": "Verification code sent to your email",
+  "authForgotResetPasswordSuccess": "Password reset successfully. Please sign in.",
+  "authForgotRememberPassword": "Remember your password? ",
+  "authForgotBackToSignIn": "Sign in",
+  "authForgotStepOf": "Step {current} of {total}",
+  "@authForgotStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "authNoAccountPrompt": "Don't have an account? ",
   "authRegisterNow": "Register now",
   "authRegisterComingSoon": "Registration is coming soon",
