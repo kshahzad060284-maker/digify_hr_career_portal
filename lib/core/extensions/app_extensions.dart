@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../services/responsive/breakpoints.dart';
+import '../services/responsive/responsive_helper.dart';
 import '../theme/app_colors.dart';
 
 extension AppBuildContextExtension on BuildContext {
@@ -22,6 +23,12 @@ extension AppBuildContextExtension on BuildContext {
       isDark ? AppColors.textMutedDark : AppColors.textMuted;
 
   ScreenLayout get layout => AppBreakpoints.fromContext(this);
+
+  EdgeInsets get pagePadding => ResponsiveHelper.pagePadding(this);
+
+  double get maxContentWidth => ResponsiveHelper.maxContentWidth(this);
+
+  double get authMaxCardWidth => ResponsiveHelper.authMaxCardWidth(this);
 
   T responsiveFine<T>({
     required T mobile,

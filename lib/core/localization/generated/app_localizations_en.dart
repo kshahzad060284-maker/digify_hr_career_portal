@@ -29,7 +29,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authBack => 'Back';
 
   @override
-  String get authSignInTitle => 'Welcome Back';
+  String authSignInTitle(String name) {
+    return 'Welcome to $name';
+  }
 
   @override
   String get authSignInSubtitle => 'Sign in to your account';
@@ -54,6 +56,83 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authPasswordRequired => 'Please enter your password';
+
+  @override
+  String get authForgotPassword => 'Forgot password?';
+
+  @override
+  String get authForgotPasswordTitle => 'Reset your password';
+
+  @override
+  String get authForgotPasswordSubtitle =>
+      'Follow the steps to securely reset your account password';
+
+  @override
+  String get authForgotStepVerifyEmail => 'Verify email';
+
+  @override
+  String get authForgotStepCheckOtp => 'Check OTP';
+
+  @override
+  String get authForgotStepResetPassword => 'Reset password';
+
+  @override
+  String get authForgotSendCode => 'Send verification code';
+
+  @override
+  String authForgotOtpBody(String email) {
+    return 'We sent a 6-digit code to $email';
+  }
+
+  @override
+  String get authForgotOtpHint => 'Enter 6-digit code';
+
+  @override
+  String get authForgotOtpLabel => 'OTP Code';
+
+  @override
+  String get authForgotVerifyOtp => 'Verify code';
+
+  @override
+  String get authForgotResendOtp => 'Resend code';
+
+  @override
+  String authForgotResendOtpIn(int seconds) {
+    return 'Resend code in ${seconds}s';
+  }
+
+  @override
+  String get authForgotResetPassword => 'Reset password';
+
+  @override
+  String get authForgotNewPassword => 'New password';
+
+  @override
+  String get authForgotNewPasswordHint => 'Enter your new password';
+
+  @override
+  String get authOtpRequired => 'Please enter the verification code';
+
+  @override
+  String get authOtpIncomplete => 'Please enter the complete 6-digit code';
+
+  @override
+  String get authForgotOtpSent => 'Verification code sent to your email';
+
+  @override
+  String get authForgotResetPasswordSuccess =>
+      'Password reset successfully. Please sign in.';
+
+  @override
+  String get authForgotRememberPassword => 'Remember your password? ';
+
+  @override
+  String get authForgotBackToSignIn => 'Sign in';
+
+  @override
+  String authForgotStepOf(int current, int total) {
+    return 'Step $current of $total';
+  }
 
   @override
   String get authNoAccountPrompt => 'Don\'t have an account? ';

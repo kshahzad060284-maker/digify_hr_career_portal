@@ -137,8 +137,8 @@ abstract class AppLocalizations {
   /// No description provided for @authSignInTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome Back'**
-  String get authSignInTitle;
+  /// **'Welcome to {name}'**
+  String authSignInTitle(String name);
 
   /// No description provided for @authSignInSubtitle.
   ///
@@ -187,6 +187,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter your password'**
   String get authPasswordRequired;
+
+  /// No description provided for @authForgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get authForgotPassword;
+
+  /// No description provided for @authForgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your password'**
+  String get authForgotPasswordTitle;
+
+  /// No description provided for @authForgotPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the steps to securely reset your account password'**
+  String get authForgotPasswordSubtitle;
+
+  /// No description provided for @authForgotStepVerifyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify email'**
+  String get authForgotStepVerifyEmail;
+
+  /// No description provided for @authForgotStepCheckOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Check OTP'**
+  String get authForgotStepCheckOtp;
+
+  /// No description provided for @authForgotStepResetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get authForgotStepResetPassword;
+
+  /// No description provided for @authForgotSendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send verification code'**
+  String get authForgotSendCode;
+
+  /// No description provided for @authForgotOtpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a 6-digit code to {email}'**
+  String authForgotOtpBody(String email);
+
+  /// No description provided for @authForgotOtpHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 6-digit code'**
+  String get authForgotOtpHint;
+
+  /// No description provided for @authForgotOtpLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'OTP Code'**
+  String get authForgotOtpLabel;
+
+  /// No description provided for @authForgotVerifyOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify code'**
+  String get authForgotVerifyOtp;
+
+  /// No description provided for @authForgotResendOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get authForgotResendOtp;
+
+  /// No description provided for @authForgotResendOtpIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code in {seconds}s'**
+  String authForgotResendOtpIn(int seconds);
+
+  /// No description provided for @authForgotResetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get authForgotResetPassword;
+
+  /// No description provided for @authForgotNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get authForgotNewPassword;
+
+  /// No description provided for @authForgotNewPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your new password'**
+  String get authForgotNewPasswordHint;
+
+  /// No description provided for @authOtpRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the verification code'**
+  String get authOtpRequired;
+
+  /// No description provided for @authOtpIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the complete 6-digit code'**
+  String get authOtpIncomplete;
+
+  /// No description provided for @authForgotOtpSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent to your email'**
+  String get authForgotOtpSent;
+
+  /// No description provided for @authForgotResetPasswordSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset successfully. Please sign in.'**
+  String get authForgotResetPasswordSuccess;
+
+  /// No description provided for @authForgotRememberPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember your password? '**
+  String get authForgotRememberPassword;
+
+  /// No description provided for @authForgotBackToSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get authForgotBackToSignIn;
+
+  /// No description provided for @authForgotStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String authForgotStepOf(int current, int total);
 
   /// No description provided for @authNoAccountPrompt.
   ///

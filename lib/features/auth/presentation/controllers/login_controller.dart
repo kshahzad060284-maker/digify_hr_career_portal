@@ -1,14 +1,13 @@
 import 'package:career_portal/core/common/auth_enums.dart';
-import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
+import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/core/utils/email_utils.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_di_provider.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_session_provider.dart';
 import 'package:career_portal/features/auth/presentation/state/login_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LoginController extends Notifier<LoginState> {
-  static final _emailPattern = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
-
   @override
   LoginState build() => const LoginState();
 
@@ -30,11 +29,10 @@ class LoginController extends Notifier<LoginState> {
   }
 
   LoginToastType? _validateEmail(String value) {
-    final trimmed = value.trim();
-    if (trimmed.isEmpty) {
+    if (EmailUtils.isEmpty(value)) {
       return LoginToastType.emailRequired;
     }
-    if (!_emailPattern.hasMatch(trimmed)) {
+    if (!EmailUtils.isValid(value)) {
       return LoginToastType.emailInvalid;
     }
     return null;
@@ -71,7 +69,7 @@ class LoginController extends Notifier<LoginState> {
           .read(loginUseCaseProvider)
           .call(
             enterpriseId: ref.read(enterpriseIdProvider),
-            email: state.email.trim(),
+            email: EmailUtils.normalize(state.email),
             password: state.password,
           );
       await ref.read(authSessionProvider.notifier).setSession(session);

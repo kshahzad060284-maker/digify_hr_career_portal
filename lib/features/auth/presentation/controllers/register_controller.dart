@@ -1,9 +1,10 @@
 import 'package:career_portal/core/common/auth_enums.dart';
 import 'package:career_portal/core/config/app_config.dart';
+import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/extensions/number_formatting_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
-import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
+import 'package:career_portal/core/utils/email_utils.dart';
 import 'package:career_portal/core/utils/phone_number_utils.dart';
 import 'package:career_portal/features/auth/domain/models/register_candidate_input.dart';
 import 'package:career_portal/features/auth/domain/models/register_education_entry.dart';
@@ -13,8 +14,6 @@ import 'package:career_portal/features/auth/presentation/state/register_state.da
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RegisterController extends Notifier<RegisterState> {
-  static final _emailPattern = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
-
   @override
   RegisterState build() => const RegisterState();
 
@@ -157,12 +156,12 @@ class RegisterController extends Notifier<RegisterState> {
       _emitToast(RegisterToastType.lastNameRequired);
       return false;
     }
-    final email = state.email.trim();
-    if (email.isEmpty) {
+    final email = EmailUtils.normalize(state.email);
+    if (EmailUtils.isEmpty(email)) {
       _emitToast(RegisterToastType.emailRequired);
       return false;
     }
-    if (!_emailPattern.hasMatch(email)) {
+    if (!EmailUtils.isValid(email)) {
       _emitToast(RegisterToastType.emailInvalid);
       return false;
     }
@@ -195,7 +194,7 @@ class RegisterController extends Notifier<RegisterState> {
   }
 
   RegisterCandidateInput _buildInput() {
-    final email = state.email.trim();
+    final email = EmailUtils.normalize(state.email);
     final phone =
         PhoneNumberUtils.fullPhoneNumber(
           dialCode: state.phoneDialCode,

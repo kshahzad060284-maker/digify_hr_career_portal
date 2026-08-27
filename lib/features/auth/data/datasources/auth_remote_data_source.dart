@@ -2,6 +2,7 @@ import 'package:career_portal/core/network/api_endpoints.dart';
 import 'package:career_portal/core/network/app_exception.dart';
 import 'package:career_portal/core/network/app_service.dart';
 import 'package:career_portal/features/auth/data/dto/candidate_profile_response_dto.dart';
+import 'package:career_portal/features/auth/data/dto/forgot_password_response_dto.dart';
 import 'package:career_portal/features/auth/data/dto/login_response_dto.dart';
 import 'package:career_portal/features/auth/data/dto/register_response_dto.dart';
 import 'package:career_portal/features/auth/data/mappers/candidate_profile_mapper.dart';
@@ -11,6 +12,7 @@ import 'package:career_portal/features/auth/data/mappers/register_multipart_mapp
 import 'package:career_portal/features/auth/domain/models/candidate_session.dart';
 import 'package:career_portal/features/auth/domain/models/register_candidate_input.dart';
 import 'package:career_portal/features/auth/domain/models/register_candidate_result.dart';
+import 'package:career_portal/features/auth/domain/models/verify_reset_otp_result.dart';
 
 class AuthRemoteDataSource {
   const AuthRemoteDataSource(this._appService);
@@ -118,6 +120,103 @@ class AuthRemoteDataSource {
         message: 'Failed to load candidate profile.',
         details: error,
       );
+    }
+  }
+
+  Future<String> forgotPassword({
+    required int enterpriseId,
+    required String email,
+  }) async {
+    try {
+      final response = await _appService.post<Map<String, dynamic>>(
+        RecEndpoints.candidateForgotPassword(),
+        data: <String, dynamic>{'enterprise_id': enterpriseId, 'email': email},
+        parser: (data) {
+          if (data is Map<String, dynamic>) return data;
+          throw AppException(message: 'Invalid forgot password response.');
+        },
+      );
+
+      final dto = ForgotPasswordResponseDto.fromJson(response);
+      final message = dto.message?.trim() ?? '';
+      if (!dto.success) {
+        throw AppException(message: message);
+      }
+      return message;
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException(message: '', details: error);
+    }
+  }
+
+  Future<VerifyResetOtpResult> verifyResetOtp({
+    required int enterpriseId,
+    required String email,
+    required String otp,
+  }) async {
+    try {
+      final response = await _appService.post<Map<String, dynamic>>(
+        RecEndpoints.candidateVerifyResetOtp(),
+        data: <String, dynamic>{
+          'enterprise_id': enterpriseId,
+          'email': email,
+          'otp': otp,
+        },
+        parser: (data) {
+          if (data is Map<String, dynamic>) return data;
+          throw AppException(message: 'Invalid verify OTP response.');
+        },
+      );
+
+      final dto = ForgotPasswordResponseDto.fromJson(response);
+      final message = dto.message?.trim() ?? '';
+      if (!dto.success) {
+        throw AppException(message: message);
+      }
+
+      final resetToken = dto.resetToken ?? '';
+      if (resetToken.isEmpty) {
+        throw AppException(message: message);
+      }
+
+      return VerifyResetOtpResult(resetToken: resetToken, message: message);
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException(message: '', details: error);
+    }
+  }
+
+  Future<String> resetPassword({
+    required String resetToken,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
+    try {
+      final response = await _appService.post<Map<String, dynamic>>(
+        RecEndpoints.candidateResetPassword(),
+        data: <String, dynamic>{
+          'reset_token': resetToken,
+          'new_password': newPassword,
+          'confirm_password': confirmPassword,
+        },
+        parser: (data) {
+          if (data is Map<String, dynamic>) return data;
+          throw AppException(message: 'Invalid reset password response.');
+        },
+      );
+
+      final dto = ForgotPasswordResponseDto.fromJson(response);
+      final message = dto.message?.trim() ?? '';
+      if (!dto.success) {
+        throw AppException(message: message);
+      }
+      return message;
+    } on AppException {
+      rethrow;
+    } catch (error) {
+      throw AppException(message: '', details: error);
     }
   }
 }
