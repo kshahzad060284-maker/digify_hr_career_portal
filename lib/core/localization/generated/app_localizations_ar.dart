@@ -29,7 +29,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authBack => 'رجوع';
 
   @override
-  String get authSignInTitle => 'مرحباً بعودتك';
+  String authSignInTitle(String name) {
+    return 'مرحباً بك في $name';
+  }
 
   @override
   String get authSignInSubtitle => 'سجّل الدخول إلى حسابك';
@@ -54,6 +56,83 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get authPasswordRequired => 'يرجى إدخال كلمة المرور';
+
+  @override
+  String get authForgotPassword => 'نسيت كلمة المرور؟';
+
+  @override
+  String get authForgotPasswordTitle => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get authForgotPasswordSubtitle =>
+      'اتبع الخطوات لإعادة تعيين كلمة مرور حسابك بأمان';
+
+  @override
+  String get authForgotStepVerifyEmail => 'التحقق من البريد';
+
+  @override
+  String get authForgotStepCheckOtp => 'التحقق من الرمز';
+
+  @override
+  String get authForgotStepResetPassword => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get authForgotSendCode => 'إرسال رمز التحقق';
+
+  @override
+  String authForgotOtpBody(String email) {
+    return 'أرسلنا رمزًا مكونًا من 6 أرقام إلى $email';
+  }
+
+  @override
+  String get authForgotOtpHint => 'أدخل الرمز المكون من 6 أرقام';
+
+  @override
+  String get authForgotOtpLabel => 'رمز التحقق';
+
+  @override
+  String get authForgotVerifyOtp => 'تحقق من الرمز';
+
+  @override
+  String get authForgotResendOtp => 'إعادة إرسال الرمز';
+
+  @override
+  String authForgotResendOtpIn(int seconds) {
+    return 'إعادة الإرسال خلال $secondsث';
+  }
+
+  @override
+  String get authForgotResetPassword => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get authForgotNewPassword => 'كلمة المرور الجديدة';
+
+  @override
+  String get authForgotNewPasswordHint => 'أدخل كلمة المرور الجديدة';
+
+  @override
+  String get authOtpRequired => 'يرجى إدخال رمز التحقق';
+
+  @override
+  String get authOtpIncomplete => 'يرجى إدخال الرمز المكون من 6 أرقام بالكامل';
+
+  @override
+  String get authForgotOtpSent => 'تم إرسال رمز التحقق إلى بريدك الإلكتروني';
+
+  @override
+  String get authForgotResetPasswordSuccess =>
+      'تمت إعادة تعيين كلمة المرور بنجاح. يرجى تسجيل الدخول.';
+
+  @override
+  String get authForgotRememberPassword => 'هل تتذكر كلمة المرور؟ ';
+
+  @override
+  String get authForgotBackToSignIn => 'تسجيل الدخول';
+
+  @override
+  String authForgotStepOf(int current, int total) {
+    return 'الخطوة $current من $total';
+  }
 
   @override
   String get authNoAccountPrompt => 'ليس لديك حساب؟ ';
