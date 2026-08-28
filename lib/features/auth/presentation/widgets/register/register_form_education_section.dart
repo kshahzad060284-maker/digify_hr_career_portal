@@ -4,7 +4,6 @@ import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/auth/domain/config/auth_form_config.dart';
 import 'package:career_portal/features/auth/presentation/providers/register_provider.dart';
 import 'package:career_portal/features/auth/presentation/widgets/register/add_register_education_dialog.dart';
-import 'package:career_portal/features/auth/presentation/widgets/register/register_form_helpers.dart';
 import 'package:career_portal/gen/assets.gen.dart';
 import 'package:career_portal/shared/widgets/assets/app_asset.dart';
 import 'package:career_portal/shared/widgets/common/app_button.dart';
@@ -40,71 +39,66 @@ class _RegisterFormEducationSectionState
       color: AppColors.primary,
     );
 
-    return RegisterFormSectionPanel(
-      step: 4,
-      title: l10n.authEducation,
-      isRequired: true,
-      icon: educationIcon,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            l10n.authEducationHighestLevelHint,
-            style: context.textTheme.bodyMedium?.copyWith(
-              color: isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondary,
-            ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          l10n.authEducationHighestLevelHint,
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: isDark
+                ? AppColors.textSecondaryDark
+                : AppColors.textSecondary,
           ),
-          Gap(12.h),
-          Row(
-            children: [
-              Expanded(
-                child: AppSelectField<String>(
-                  value: _selectedLevel,
-                  items: AuthFormConfig.educationLevelOptions,
-                  itemLabelBuilder: (item) => item,
-                  hint: l10n.authSelectEducationLevel,
-                  fillColor: isDark
-                      ? AppColors.inputBgDark
-                      : AppColors.cardBackground,
-                  onChanged: (value) => setState(() => _selectedLevel = value),
-                ),
+        ),
+        Gap(12.h),
+        Row(
+          children: [
+            Expanded(
+              child: AppSelectField<String>(
+                value: _selectedLevel,
+                items: AuthFormConfig.educationLevelOptions,
+                itemLabelBuilder: (item) => item,
+                hint: l10n.authSelectEducationLevel,
+                fillColor: isDark
+                    ? AppColors.inputBgDark
+                    : AppColors.cardBackground,
+                onChanged: (value) => setState(() => _selectedLevel = value),
               ),
-              if (_selectedLevel != null) ...[
-                Gap(12.w),
-                AppButton.outline(
-                  label: l10n.authAddEducation,
-                  icon: Icons.add,
-                  onPressed: () =>
-                      _openEducationDialog(initialDegreeName: _selectedLevel),
-                ),
-              ],
+            ),
+            if (_selectedLevel != null) ...[
+              Gap(12.w),
+              AppButton.outline(
+                label: l10n.authAddEducation,
+                icon: Icons.add,
+                onPressed: () =>
+                    _openEducationDialog(initialDegreeName: _selectedLevel),
+              ),
             ],
-          ),
-          Gap(16.h),
-          AppFormOptionalSection(
-            title: l10n.authEducation,
-            icon: educationIcon,
-            buttonLabel: l10n.authAddEducation,
-            emptyStateMessage: l10n.authEducationEmpty,
-            onAddPressed: () {},
-            showHeader: false,
-            items: state.educationEntries
-                .map(
-                  (e) => AppFormListItem(
-                    id: e.id,
-                    title: e.displayTitle,
-                    subtitle: e.displaySubtitle,
-                  ),
-                )
-                .toList(),
-            onEditItem: (id) => _openEducationDialog(editId: id),
-            onRemoveItem: _confirmRemoveEducation,
-          ),
-        ],
-      ),
+          ],
+        ),
+        Gap(16.h),
+        AppFormOptionalSection(
+          title: l10n.authEducation,
+          icon: educationIcon,
+          buttonLabel: l10n.authAddEducation,
+          emptyStateMessage: l10n.authEducationEmpty,
+          onAddPressed: () =>
+              _openEducationDialog(initialDegreeName: _selectedLevel),
+          showHeader: false,
+          items: state.educationEntries
+              .map(
+                (e) => AppFormListItem(
+                  id: e.id,
+                  title: e.displayTitle,
+                  subtitle: e.displaySubtitle,
+                ),
+              )
+              .toList(),
+          onEditItem: (id) => _openEducationDialog(editId: id),
+          onRemoveItem: _confirmRemoveEducation,
+        ),
+      ],
     );
   }
 

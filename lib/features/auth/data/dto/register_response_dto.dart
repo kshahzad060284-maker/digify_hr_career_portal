@@ -16,14 +16,22 @@ class RegisterResponseDto {
   final String? candidateUserGuid;
 
   factory RegisterResponseDto.fromJson(Map<String, dynamic> json) {
+    final payload = _readPayload(json);
+
     return RegisterResponseDto(
       success: json['success'] == true,
       message: json['message']?.toString(),
-      candidateId: _parseInt(json['candidate_id']),
-      candidateGuid: json['candidate_guid']?.toString(),
-      candidateUserId: _parseInt(json['candidate_user_id']),
-      candidateUserGuid: json['candidate_user_guid']?.toString(),
+      candidateId: _parseInt(payload['candidate_id']),
+      candidateGuid: payload['candidate_guid']?.toString(),
+      candidateUserId: _parseInt(payload['candidate_user_id']),
+      candidateUserGuid: payload['candidate_user_guid']?.toString(),
     );
+  }
+
+  static Map<String, dynamic> _readPayload(Map<String, dynamic> json) {
+    final data = json['data'];
+    if (data is Map<String, dynamic>) return data;
+    return json;
   }
 
   static int? _parseInt(dynamic value) {

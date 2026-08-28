@@ -53,4 +53,77 @@ class ResponsiveHelper {
       ScreenLayout.desktop => 880,
     };
   }
+
+  static double registerMaxContentWidth(BuildContext context) {
+    return switch (AppBreakpoints.fromContext(context)) {
+      ScreenLayout.mobile => double.infinity,
+      ScreenLayout.tabletSmall => 840,
+      ScreenLayout.tabletMedium => 1000,
+      ScreenLayout.tabletLarge => 1140,
+      ScreenLayout.desktop => 1280,
+    };
+  }
+
+  static bool registerUsesSidebarStepper(BuildContext context) {
+    final layout = AppBreakpoints.fromContext(context);
+    return layout.index >= ScreenLayout.tabletMedium.index;
+  }
+
+  static double registerStepsPanelWidth(BuildContext context) {
+    return switch (AppBreakpoints.fromContext(context)) {
+      ScreenLayout.mobile => 0,
+      ScreenLayout.tabletSmall => 0,
+      ScreenLayout.tabletMedium => 260,
+      ScreenLayout.tabletLarge => 272,
+      ScreenLayout.desktop => 280,
+    };
+  }
+
+  static double registerCompactStepsMaxWidth(BuildContext context) {
+    return switch (AppBreakpoints.fromContext(context)) {
+      ScreenLayout.mobile => 360,
+      ScreenLayout.tabletSmall => 420,
+      ScreenLayout.tabletMedium => 480,
+      ScreenLayout.tabletLarge => 520,
+      ScreenLayout.desktop => 560,
+    };
+  }
+
+  static EdgeInsetsDirectional registerContentPadding(BuildContext context) {
+    final padding = pagePadding(context);
+    return EdgeInsetsDirectional.only(
+      top: padding.top,
+      bottom: padding.bottom * 2,
+    );
+  }
+
+  static double registerFormPadding(BuildContext context) {
+    return switch (AppBreakpoints.fromContext(context)) {
+      ScreenLayout.mobile => 20,
+      ScreenLayout.tabletSmall => 24,
+      ScreenLayout.tabletMedium => 28,
+      ScreenLayout.tabletLarge => 28,
+      ScreenLayout.desktop => 32,
+    };
+  }
+
+  static double registerSectionGap(BuildContext context) {
+    return switch (AppBreakpoints.fromContext(context)) {
+      ScreenLayout.mobile => 24,
+      ScreenLayout.tabletSmall => 28,
+      ScreenLayout.tabletMedium => 32,
+      ScreenLayout.tabletLarge => 36,
+      ScreenLayout.desktop => 36,
+    };
+  }
+
+  static double registerSidebarGap(BuildContext context) {
+    return switch (AppBreakpoints.fromContext(context)) {
+      ScreenLayout.mobile => 0,
+      ScreenLayout.tabletSmall => 0,
+      ScreenLayout.tabletMedium => 28,
+      ScreenLayout.tabletLarge => 32,
+      ScreenLayout.desktop => 36,
+    };
+  }
 }

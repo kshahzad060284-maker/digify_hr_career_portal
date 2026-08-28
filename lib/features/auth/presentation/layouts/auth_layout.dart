@@ -15,12 +15,16 @@ class AuthLayout extends StatelessWidget {
     required this.child,
     this.maxCardWidth,
     this.contentPadding,
+    this.contentAlignment = Alignment.center,
+    this.fillViewport = false,
     this.onBack,
   });
 
   final Widget child;
   final double? maxCardWidth;
   final EdgeInsetsDirectional? contentPadding;
+  final AlignmentGeometry contentAlignment;
+  final bool fillViewport;
   final VoidCallback? onBack;
 
   void _handleBack(BuildContext context) {
@@ -94,6 +98,29 @@ class AuthLayout extends StatelessWidget {
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
+                    if (fillViewport) {
+                      final contentInsets = _resolveContentPadding(context);
+                      final contentHeight =
+                          constraints.maxHeight - contentInsets.vertical;
+
+                      return Align(
+                        alignment: contentAlignment,
+                        child: Padding(
+                          padding: contentInsets,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxWidth: resolvedMaxCardWidth.w,
+                              maxHeight: contentHeight,
+                            ),
+                            child: SizedBox(
+                              height: contentHeight,
+                              child: child,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+
                     return SingleChildScrollView(
                       primary: true,
                       child: ConstrainedBox(
@@ -101,7 +128,7 @@ class AuthLayout extends StatelessWidget {
                           minHeight: constraints.maxHeight,
                         ),
                         child: Align(
-                          alignment: Alignment.center,
+                          alignment: contentAlignment,
                           child: Padding(
                             padding: _resolveContentPadding(context),
                             child: ConstrainedBox(

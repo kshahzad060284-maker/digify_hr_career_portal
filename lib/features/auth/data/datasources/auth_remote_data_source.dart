@@ -76,9 +76,6 @@ class AuthRemoteDataSource {
       }
 
       final result = RegisterCandidateResultMapper.toDomain(dto);
-      if (result.candidateUserGuid.isEmpty) {
-        throw AppException(message: 'Registration response data missing.');
-      }
 
       return result;
     } on AppException {

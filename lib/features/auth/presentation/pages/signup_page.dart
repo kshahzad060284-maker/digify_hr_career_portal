@@ -8,7 +8,6 @@ import 'package:career_portal/features/auth/presentation/providers/register_prov
 import 'package:career_portal/features/auth/presentation/widgets/register/register_form_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpPage extends ConsumerWidget {
@@ -43,26 +42,11 @@ class SignUpPage extends ConsumerWidget {
       }
     });
 
-    final maxCardWidth = context.responsiveFine<double>(
-      mobile: double.infinity,
-      tabletSmall: 640,
-      tabletMedium: 720,
-      tabletLarge: 760,
-      desktop: 800,
-    );
-    final verticalPadding = context.responsiveFine<double>(
-      mobile: 24,
-      tabletSmall: 32,
-      tabletMedium: 40,
-      tabletLarge: 48,
-      desktop: 48,
-    );
-
     return AuthLayout(
-      maxCardWidth: maxCardWidth,
-      contentPadding: EdgeInsetsDirectional.symmetric(
-        vertical: verticalPadding.h,
-      ),
+      maxCardWidth: context.registerMaxContentWidth,
+      contentAlignment: Alignment.topCenter,
+      contentPadding: context.registerContentPadding,
+      fillViewport: true,
       child: RegisterFormCard(
         onSignInTap: () => context.go(AppRoutes.authLogin),
       ),

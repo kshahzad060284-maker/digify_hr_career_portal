@@ -1,13 +1,12 @@
 import 'package:career_portal/core/common/auth_enums.dart';
 import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
-import 'package:career_portal/core/extensions/number_formatting_extensions.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
-import 'package:career_portal/core/utils/email_utils.dart';
 import 'package:career_portal/core/utils/phone_number_utils.dart';
 import 'package:career_portal/features/auth/domain/models/register_candidate_input.dart';
 import 'package:career_portal/features/auth/domain/models/register_education_entry.dart';
+import 'package:career_portal/features/auth/domain/models/register_skill_entry.dart';
 import 'package:career_portal/features/auth/domain/models/register_work_experience_entry.dart';
 import 'package:career_portal/features/auth/presentation/providers/auth_di_provider.dart';
 import 'package:career_portal/features/auth/presentation/state/register_state.dart';
@@ -44,6 +43,24 @@ class RegisterController extends Notifier<RegisterState> {
   void onPhoneNumberChanged(String value) =>
       state = state.copyWith(phone: value, clearToast: true);
 
+  void onDateOfBirthChanged(DateTime? value) =>
+      state = state.copyWith(dateOfBirth: value, clearToast: true);
+
+  void onGenderChanged(RegisterGender? value) =>
+      state = state.copyWith(gender: value, clearToast: true);
+
+  void onNationalityChanged(String value) =>
+      state = state.copyWith(nationality: value, clearToast: true);
+
+  void onAlternatePhoneDialCodeChanged(String value) =>
+      state = state.copyWith(alternatePhoneDialCode: value, clearToast: true);
+
+  void onAlternatePhoneNumberChanged(String value) =>
+      state = state.copyWith(alternatePhone: value, clearToast: true);
+
+  void onAlternateEmailChanged(String value) =>
+      state = state.copyWith(alternateEmail: value, clearToast: true);
+
   void onCurrentCompanyChanged(String value) =>
       state = state.copyWith(currentCompany: value, clearToast: true);
 
@@ -55,6 +72,15 @@ class RegisterController extends Notifier<RegisterState> {
 
   void onCurrentLocationChanged(String value) =>
       state = state.copyWith(currentLocation: value, clearToast: true);
+
+  void onPreferredLocationChanged(String value) =>
+      state = state.copyWith(preferredLocation: value, clearToast: true);
+
+  void onSourceChanged(String value) =>
+      state = state.copyWith(source: value, clearToast: true);
+
+  void onVisaStatusChanged(RegisterVisaStatus? value) =>
+      state = state.copyWith(visaStatus: value, clearToast: true);
 
   void onNoticePeriodChanged(String value) =>
       state = state.copyWith(noticePeriod: value, clearToast: true);
@@ -147,95 +173,109 @@ class RegisterController extends Notifier<RegisterState> {
     );
   }
 
-  bool validateForm() {
-    if (state.firstName.trim().isEmpty) {
-      _emitToast(RegisterToastType.firstNameRequired);
-      return false;
-    }
-    if (state.lastName.trim().isEmpty) {
-      _emitToast(RegisterToastType.lastNameRequired);
-      return false;
-    }
-    final email = EmailUtils.normalize(state.email);
-    if (EmailUtils.isEmpty(email)) {
-      _emitToast(RegisterToastType.emailRequired);
-      return false;
-    }
-    if (!EmailUtils.isValid(email)) {
-      _emitToast(RegisterToastType.emailInvalid);
-      return false;
-    }
-    if (state.phone.trim().isEmpty) {
-      _emitToast(RegisterToastType.phoneRequired);
-      return false;
-    }
-    if (state.educationEntries.isEmpty) {
-      _emitToast(RegisterToastType.educationRequired);
-      return false;
-    }
-    if (state.experienceType == RegisterExperienceType.experienced &&
-        state.workExperienceEntries.isEmpty) {
-      _emitToast(RegisterToastType.workExperienceRequired);
-      return false;
-    }
-    if (state.password.isEmpty) {
-      _emitToast(RegisterToastType.passwordRequired);
-      return false;
-    }
-    if (state.confirmPassword.isEmpty) {
-      _emitToast(RegisterToastType.confirmPasswordRequired);
-      return false;
-    }
-    if (state.password != state.confirmPassword) {
-      _emitToast(RegisterToastType.passwordsMismatch);
-      return false;
-    }
-    return true;
-  }
+  void addSkill(String value) {
+    final skillName = value.trim();
+    if (skillName.isEmpty) return;
 
-  RegisterCandidateInput _buildInput() {
-    final email = EmailUtils.normalize(state.email);
-    final phone =
-        PhoneNumberUtils.fullPhoneNumber(
-          dialCode: state.phoneDialCode,
-          localNumber: state.phone,
-        ) ??
-        '';
-
-    return RegisterCandidateInput(
-      enterpriseId: ref.read(enterpriseIdProvider),
-      firstName: state.firstName.trim(),
-      lastName: state.lastName.trim(),
-      middleName: state.middleName.trim(),
-      email: email,
-      password: state.password,
-      phone: phone,
-      currentTitle: state.currentTitle.trim(),
-      currentEmployer: state.currentCompany.trim(),
-      yearsExperience: int.tryParse(state.totalExperience.trim()) ?? 0,
-      currentLocation: state.currentLocation.trim(),
-      source: 'CAREER_SITE',
-      expectedSalary: _normalizeSalary(state.expectedSalary),
-      salaryCurrency: AppConfig.defaultSalaryCurrency,
-      noticePeriod: int.tryParse(state.noticePeriod.trim()) ?? 0,
-      linkedInProfile: state.linkedIn.trim(),
-      educationEntries: state.educationEntries,
-      workExperienceEntries: state.workExperienceEntries,
-      githubLink: state.github.trim(),
-      portfolioLink: state.portfolio.trim(),
-      willingToRelocate:
-          state.willingToRelocate == RegisterRelocatePreference.yes,
-      createdBy: email,
+    state = state.copyWith(
+      skills: [
+        ...state.skills,
+        RegisterSkillEntry(skillName: skillName),
+      ],
+      clearToast: true,
     );
   }
 
-  String _normalizeSalary(String value) {
-    return value.withoutCommas.replaceAll(RegExp(r'[^0-9.]'), '').trim();
+  void removeSkill(String skillName) {
+    state = state.copyWith(
+      skills: [
+        for (final skill in state.skills)
+          if (skill.skillName != skillName) skill,
+      ],
+      clearToast: true,
+    );
+  }
+
+  static const _steps = RegisterStep.values;
+
+  RegisterStep? get _nextStep {
+    final index = state.step.index;
+    if (index >= _steps.length - 1) return null;
+    return _steps[index + 1];
+  }
+
+  RegisterStep? get _previousStep {
+    final index = state.step.index;
+    if (index <= 0) return null;
+    return _steps[index - 1];
+  }
+
+  void goToStep(RegisterStep step) {
+    if (step.index > state.step.index) return;
+    state = state.copyWith(step: step, clearToast: true);
+  }
+
+  void previousStep() {
+    final previous = _previousStep;
+    if (previous == null) return;
+    state = state.copyWith(step: previous, clearToast: true);
+  }
+
+  void nextStep() {
+    final next = _nextStep;
+    if (next == null) return;
+    state = state.copyWith(step: next, clearToast: true);
+  }
+
+  RegisterCandidateInput _buildInput() {
+    return RegisterCandidateInput(
+      enterpriseId: ref.read(enterpriseIdProvider),
+      firstName: state.firstName,
+      lastName: state.lastName,
+      middleName: state.middleName,
+      email: state.email,
+      password: state.password,
+      phone:
+          PhoneNumberUtils.fullPhoneNumber(
+            dialCode: state.phoneDialCode,
+            localNumber: state.phone,
+          ) ??
+          '',
+      dateOfBirth: state.dateOfBirth,
+      gender: state.gender,
+      nationality: state.nationality,
+      alternatePhone:
+          PhoneNumberUtils.fullPhoneNumber(
+            dialCode: state.alternatePhoneDialCode,
+            localNumber: state.alternatePhone,
+          ) ??
+          '',
+      alternateEmail: state.alternateEmail,
+      currentTitle: state.currentTitle,
+      currentEmployer: state.currentCompany,
+      yearsExperience: int.tryParse(state.totalExperience) ?? 0,
+      currentLocation: state.currentLocation,
+      preferredLocation: state.preferredLocation,
+      source: state.source,
+      visaStatus: state.visaStatus,
+      currentSalary: state.currentSalary,
+      expectedSalary: state.expectedSalary,
+      salaryCurrency: AppConfig.defaultSalaryCurrency,
+      noticePeriod: int.tryParse(state.noticePeriod) ?? 0,
+      linkedInProfile: state.linkedIn,
+      educationEntries: state.educationEntries,
+      workExperienceEntries: state.workExperienceEntries,
+      skills: state.skills,
+      githubLink: state.github,
+      portfolioLink: state.portfolio,
+      willingToRelocate:
+          state.willingToRelocate == RegisterRelocatePreference.yes,
+      createdBy: AppConfig.defaultRegistrationCreatedBy,
+    );
   }
 
   Future<void> createAccount() async {
     if (state.isLoading) return;
-    if (!validateForm()) return;
 
     state = state.copyWith(
       isLoading: true,
@@ -277,9 +317,12 @@ class RegisterController extends Notifier<RegisterState> {
       RegisterToastType.emailRequired => l10n.authEmailRequired,
       RegisterToastType.emailInvalid => l10n.authEmailInvalid,
       RegisterToastType.phoneRequired => l10n.authPhoneRequired,
+      RegisterToastType.nationalityRequired => l10n.authNationalityRequired,
       RegisterToastType.educationRequired => l10n.authEducationRequired,
       RegisterToastType.workExperienceRequired =>
         l10n.authWorkExperienceRequired,
+      RegisterToastType.skillsRequired => l10n.authSkillsRequired,
+      RegisterToastType.skillAlreadyAdded => l10n.authSkillAlreadyAdded,
       RegisterToastType.passwordRequired => l10n.authPasswordRequired,
       RegisterToastType.confirmPasswordRequired =>
         l10n.authConfirmPasswordRequired,

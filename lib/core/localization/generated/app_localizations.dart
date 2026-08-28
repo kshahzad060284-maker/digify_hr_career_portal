@@ -134,6 +134,12 @@ abstract class AppLocalizations {
   /// **'Back'**
   String get authBack;
 
+  /// No description provided for @authContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get authContinue;
+
   /// No description provided for @authSignInTitle.
   ///
   /// In en, this message translates to:
@@ -410,6 +416,72 @@ abstract class AppLocalizations {
   /// **'5XX XXX XXXX'**
   String get authPhoneHint;
 
+  /// No description provided for @authDateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of Birth'**
+  String get authDateOfBirth;
+
+  /// No description provided for @authGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get authGender;
+
+  /// No description provided for @authSelectGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Select gender'**
+  String get authSelectGender;
+
+  /// No description provided for @authGenderMale.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get authGenderMale;
+
+  /// No description provided for @authGenderFemale.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get authGenderFemale;
+
+  /// No description provided for @authGenderOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get authGenderOther;
+
+  /// No description provided for @authNationality.
+  ///
+  /// In en, this message translates to:
+  /// **'Nationality'**
+  String get authNationality;
+
+  /// No description provided for @authNationalityHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Pakistani'**
+  String get authNationalityHint;
+
+  /// No description provided for @authAlternatePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Alternate Phone'**
+  String get authAlternatePhone;
+
+  /// No description provided for @authAlternateEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Alternate Email'**
+  String get authAlternateEmail;
+
+  /// No description provided for @authAlternateEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'candidate.alt@example.com'**
+  String get authAlternateEmailHint;
+
   /// No description provided for @phoneCountrySearchHint.
   ///
   /// In en, this message translates to:
@@ -476,6 +548,18 @@ abstract class AppLocalizations {
   /// **'City, State'**
   String get authLocationHint;
 
+  /// No description provided for @authPreferredLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Location'**
+  String get authPreferredLocation;
+
+  /// No description provided for @authPreferredLocationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Kuwait City'**
+  String get authPreferredLocationHint;
+
   /// No description provided for @authSource.
   ///
   /// In en, this message translates to:
@@ -485,8 +569,50 @@ abstract class AppLocalizations {
   /// No description provided for @authSourceHint.
   ///
   /// In en, this message translates to:
-  /// **'e.g., CAREER_SITE'**
+  /// **'e.g., LinkedIn Campaign'**
   String get authSourceHint;
+
+  /// No description provided for @authVisaStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Visa Status'**
+  String get authVisaStatus;
+
+  /// No description provided for @authSelectVisaStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Select visa status'**
+  String get authSelectVisaStatus;
+
+  /// No description provided for @authVisaStatusTransferable.
+  ///
+  /// In en, this message translates to:
+  /// **'Transferable'**
+  String get authVisaStatusTransferable;
+
+  /// No description provided for @authVisaStatusNotTransferable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Transferable'**
+  String get authVisaStatusNotTransferable;
+
+  /// No description provided for @authVisaStatusVisitVisa.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit Visa'**
+  String get authVisaStatusVisitVisa;
+
+  /// No description provided for @authVisaStatusResident.
+  ///
+  /// In en, this message translates to:
+  /// **'Resident'**
+  String get authVisaStatusResident;
+
+  /// No description provided for @authVisaStatusNoVisa.
+  ///
+  /// In en, this message translates to:
+  /// **'No Visa'**
+  String get authVisaStatusNoVisa;
 
   /// No description provided for @authNoticePeriod.
   ///
@@ -545,7 +671,7 @@ abstract class AppLocalizations {
   /// No description provided for @authSocialLinksSection.
   ///
   /// In en, this message translates to:
-  /// **'LinkedIn Profile'**
+  /// **'Social Profile'**
   String get authSocialLinksSection;
 
   /// No description provided for @authLinkedInProfile.
@@ -662,6 +788,36 @@ abstract class AppLocalizations {
   /// **'No work experience added yet. Click \"Add Experience\" to include your professional background.'**
   String get authWorkExperienceEmpty;
 
+  /// No description provided for @authSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get authSkills;
+
+  /// No description provided for @authSkillsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Oracle PL/SQL'**
+  String get authSkillsHint;
+
+  /// No description provided for @authAddSkill.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get authAddSkill;
+
+  /// No description provided for @authSkillAlreadyAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'This skill has already been added'**
+  String get authSkillAlreadyAdded;
+
+  /// No description provided for @authSkillsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please add at least one skill'**
+  String get authSkillsRequired;
+
   /// No description provided for @authSecurity.
   ///
   /// In en, this message translates to:
@@ -709,6 +865,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter your phone number'**
   String get authPhoneRequired;
+
+  /// No description provided for @authNationalityRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your nationality'**
+  String get authNationalityRequired;
 
   /// No description provided for @authConfirmPasswordRequired.
   ///
