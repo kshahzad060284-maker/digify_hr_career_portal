@@ -15,17 +15,13 @@ class RegisterFormSocialLinksSection extends ConsumerWidget {
     final controller = ref.read(registerControllerProvider.notifier);
     final isDark = context.isDark;
 
-    return RegisterFormSectionPanel(
-      step: 3,
-      title: l10n.authSocialLinksSection,
-      child: RegisterAuthField(
-        label: l10n.authLinkedInProfile,
-        initialValue: state.linkedIn,
-        hintText: l10n.authLinkedInHint,
-        isDark: isDark,
-        keyboardType: TextInputType.url,
-        onChanged: controller.onLinkedInChanged,
-      ),
+    return RegisterAuthField(
+      label: l10n.authLinkedInProfile,
+      initialValue: state.linkedIn,
+      hintText: l10n.authLinkedInHint,
+      isDark: isDark,
+      keyboardType: TextInputType.url,
+      onChanged: controller.onLinkedInChanged,
     );
   }
 }

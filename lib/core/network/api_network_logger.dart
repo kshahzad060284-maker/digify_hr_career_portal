@@ -211,11 +211,16 @@ abstract final class ApiNetworkLogger {
         return const JsonEncoder.withIndent('  ').convert(data);
       }
       if (data is FormData) {
-        final fields = data.fields
-            .map((e) => '${e.key}: ${e.value}')
-            .join(', ');
-        final files = data.files.map((e) => e.key).join(', ');
-        return 'FormData(fields: [$fields], files: [$files])';
+        final fieldLines = data.fields.map((entry) {
+          final value = _formatFormFieldValue(entry.value);
+          return '    ${entry.key}: $value';
+        });
+        final fileLines = data.files.map((entry) => '    ${entry.key}: [file]');
+        final lines = [...fieldLines, ...fileLines];
+        if (lines.isEmpty) {
+          return 'FormData(empty)';
+        }
+        return 'FormData(\n${lines.join('\n')}\n  )';
       }
       if (data is String) {
         final trimmed = data.trim();
@@ -230,6 +235,18 @@ abstract final class ApiNetworkLogger {
     } catch (_) {
       return data.toString();
     }
+  }
+
+  static String _formatFormFieldValue(String value) {
+    final trimmed = value.trim();
+    if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+      try {
+        return const JsonEncoder.withIndent('  ').convert(jsonDecode(trimmed));
+      } catch (_) {
+        return value;
+      }
+    }
+    return value.isEmpty ? '""' : value;
   }
 
   static Map<String, dynamic> _sanitizeHeaders(Map<String, dynamic> headers) {

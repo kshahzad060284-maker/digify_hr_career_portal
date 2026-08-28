@@ -1,22 +1,33 @@
 import 'package:career_portal/core/common/auth_enums.dart';
 import 'package:career_portal/core/utils/phone_number_utils.dart';
 import 'package:career_portal/features/auth/domain/models/register_education_entry.dart';
+import 'package:career_portal/features/auth/domain/models/register_skill_entry.dart';
 import 'package:career_portal/features/auth/domain/models/register_work_experience_entry.dart';
 
 class RegisterState {
   const RegisterState({
+    this.step = RegisterStep.personalInfo,
     this.firstName = '',
     this.middleName = '',
     this.lastName = '',
     this.email = '',
     this.phoneDialCode = PhoneNumberUtils.defaultDialCode,
     this.phone = '',
+    this.dateOfBirth,
+    this.gender,
+    this.nationality = '',
+    this.alternatePhoneDialCode = PhoneNumberUtils.defaultDialCode,
+    this.alternatePhone = '',
+    this.alternateEmail = '',
     this.currentCompany = '',
     this.currentTitle = '',
     this.totalExperience = '',
     this.currentLocation = '',
+    this.preferredLocation = '',
+    this.source = '',
+    this.visaStatus,
     this.noticePeriod = '',
-    this.willingToRelocate = RegisterRelocatePreference.no,
+    this.willingToRelocate = RegisterRelocatePreference.yes,
     this.currentSalary = '',
     this.expectedSalary = '',
     this.linkedIn = '',
@@ -27,6 +38,7 @@ class RegisterState {
     this.educationEntries = const [],
     this.experienceType = RegisterExperienceType.fresh,
     this.workExperienceEntries = const [],
+    this.skills = const [],
     this.isLoading = false,
     this.toastType,
     this.toastEventId = 0,
@@ -35,16 +47,26 @@ class RegisterState {
     this.registerSuccessMessage,
   });
 
+  final RegisterStep step;
   final String firstName;
   final String middleName;
   final String lastName;
   final String email;
   final String phoneDialCode;
   final String phone;
+  final DateTime? dateOfBirth;
+  final RegisterGender? gender;
+  final String nationality;
+  final String alternatePhoneDialCode;
+  final String alternatePhone;
+  final String alternateEmail;
   final String currentCompany;
   final String currentTitle;
   final String totalExperience;
   final String currentLocation;
+  final String preferredLocation;
+  final String source;
+  final RegisterVisaStatus? visaStatus;
   final String noticePeriod;
   final RegisterRelocatePreference willingToRelocate;
   final String currentSalary;
@@ -57,6 +79,7 @@ class RegisterState {
   final List<RegisterEducationEntry> educationEntries;
   final RegisterExperienceType experienceType;
   final List<RegisterWorkExperienceEntry> workExperienceEntries;
+  final List<RegisterSkillEntry> skills;
   final bool isLoading;
   final RegisterToastType? toastType;
   final int toastEventId;
@@ -67,16 +90,26 @@ class RegisterState {
   bool get canSubmit => !isLoading;
 
   RegisterState copyWith({
+    RegisterStep? step,
     String? firstName,
     String? middleName,
     String? lastName,
     String? email,
     String? phoneDialCode,
     String? phone,
+    DateTime? dateOfBirth,
+    RegisterGender? gender,
+    String? nationality,
+    String? alternatePhoneDialCode,
+    String? alternatePhone,
+    String? alternateEmail,
     String? currentCompany,
     String? currentTitle,
     String? totalExperience,
     String? currentLocation,
+    String? preferredLocation,
+    String? source,
+    RegisterVisaStatus? visaStatus,
     String? noticePeriod,
     RegisterRelocatePreference? willingToRelocate,
     String? currentSalary,
@@ -89,6 +122,7 @@ class RegisterState {
     List<RegisterEducationEntry>? educationEntries,
     RegisterExperienceType? experienceType,
     List<RegisterWorkExperienceEntry>? workExperienceEntries,
+    List<RegisterSkillEntry>? skills,
     bool? isLoading,
     RegisterToastType? toastType,
     int? toastEventId,
@@ -101,6 +135,7 @@ class RegisterState {
     bool clearForm = false,
   }) {
     return RegisterState(
+      step: clearForm ? RegisterStep.personalInfo : (step ?? this.step),
       firstName: clearForm ? '' : (firstName ?? this.firstName),
       middleName: clearForm ? '' : (middleName ?? this.middleName),
       lastName: clearForm ? '' : (lastName ?? this.lastName),
@@ -109,6 +144,14 @@ class RegisterState {
           ? PhoneNumberUtils.defaultDialCode
           : (phoneDialCode ?? this.phoneDialCode),
       phone: clearForm ? '' : (phone ?? this.phone),
+      dateOfBirth: clearForm ? null : (dateOfBirth ?? this.dateOfBirth),
+      gender: clearForm ? null : (gender ?? this.gender),
+      nationality: clearForm ? '' : (nationality ?? this.nationality),
+      alternatePhoneDialCode: clearForm
+          ? PhoneNumberUtils.defaultDialCode
+          : (alternatePhoneDialCode ?? this.alternatePhoneDialCode),
+      alternatePhone: clearForm ? '' : (alternatePhone ?? this.alternatePhone),
+      alternateEmail: clearForm ? '' : (alternateEmail ?? this.alternateEmail),
       currentCompany: clearForm ? '' : (currentCompany ?? this.currentCompany),
       currentTitle: clearForm ? '' : (currentTitle ?? this.currentTitle),
       totalExperience: clearForm
@@ -117,9 +160,14 @@ class RegisterState {
       currentLocation: clearForm
           ? ''
           : (currentLocation ?? this.currentLocation),
+      preferredLocation: clearForm
+          ? ''
+          : (preferredLocation ?? this.preferredLocation),
+      source: clearForm ? '' : (source ?? this.source),
+      visaStatus: clearForm ? null : (visaStatus ?? this.visaStatus),
       noticePeriod: clearForm ? '' : (noticePeriod ?? this.noticePeriod),
       willingToRelocate: clearForm
-          ? RegisterRelocatePreference.no
+          ? RegisterRelocatePreference.yes
           : (willingToRelocate ?? this.willingToRelocate),
       currentSalary: clearForm ? '' : (currentSalary ?? this.currentSalary),
       expectedSalary: clearForm ? '' : (expectedSalary ?? this.expectedSalary),
@@ -139,6 +187,7 @@ class RegisterState {
       workExperienceEntries: clearForm
           ? const []
           : (workExperienceEntries ?? this.workExperienceEntries),
+      skills: clearForm ? const [] : (skills ?? this.skills),
       isLoading: isLoading ?? this.isLoading,
       toastType: clearToast ? null : (toastType ?? this.toastType),
       toastEventId: toastEventId ?? this.toastEventId,
