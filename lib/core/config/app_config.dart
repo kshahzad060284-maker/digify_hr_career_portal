@@ -34,6 +34,7 @@ abstract final class AppConfig {
 
   // API defaults (non-tenant)
   static const String defaultRegistrationSource = 'CAREER_PORTAL';
+  static const String defaultRegistrationCreatedBy = 'admin';
   static const String defaultJobApplySourceCode = 'CAREER_SITE';
   static const String defaultJobApplyCreatedBy = 'CANDIDATE';
   static const String defaultSalaryCurrency = 'KWD';

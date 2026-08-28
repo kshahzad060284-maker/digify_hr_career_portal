@@ -30,6 +30,27 @@ extension AppBuildContextExtension on BuildContext {
 
   double get authMaxCardWidth => ResponsiveHelper.authMaxCardWidth(this);
 
+  double get registerMaxContentWidth =>
+      ResponsiveHelper.registerMaxContentWidth(this);
+
+  bool get registerUsesSidebarStepper =>
+      ResponsiveHelper.registerUsesSidebarStepper(this);
+
+  double get registerStepsPanelWidth =>
+      ResponsiveHelper.registerStepsPanelWidth(this);
+
+  double get registerCompactStepsMaxWidth =>
+      ResponsiveHelper.registerCompactStepsMaxWidth(this);
+
+  EdgeInsetsDirectional get registerContentPadding =>
+      ResponsiveHelper.registerContentPadding(this);
+
+  double get registerFormPadding => ResponsiveHelper.registerFormPadding(this);
+
+  double get registerSectionGap => ResponsiveHelper.registerSectionGap(this);
+
+  double get registerSidebarGap => ResponsiveHelper.registerSidebarGap(this);
+
   T responsiveFine<T>({
     required T mobile,
     required T tabletSmall,

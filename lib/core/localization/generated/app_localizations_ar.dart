@@ -29,6 +29,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authBack => 'رجوع';
 
   @override
+  String get authContinue => 'متابعة';
+
+  @override
   String authSignInTitle(String name) {
     return 'مرحباً بك في $name';
   }
@@ -177,6 +180,39 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authPhoneHint => '5XX XXX XXXX';
 
   @override
+  String get authDateOfBirth => 'تاريخ الميلاد';
+
+  @override
+  String get authGender => 'الجنس';
+
+  @override
+  String get authSelectGender => 'اختر الجنس';
+
+  @override
+  String get authGenderMale => 'ذكر';
+
+  @override
+  String get authGenderFemale => 'أنثى';
+
+  @override
+  String get authGenderOther => 'آخر';
+
+  @override
+  String get authNationality => 'الجنسية';
+
+  @override
+  String get authNationalityHint => 'مثال: باكستاني';
+
+  @override
+  String get authAlternatePhone => 'هاتف بديل';
+
+  @override
+  String get authAlternateEmail => 'بريد إلكتروني بديل';
+
+  @override
+  String get authAlternateEmailHint => 'candidate.alt@example.com';
+
+  @override
   String get phoneCountrySearchHint => 'ابحث عن الدولة...';
 
   @override
@@ -210,10 +246,37 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authLocationHint => 'المدينة، المنطقة';
 
   @override
+  String get authPreferredLocation => 'الموقع المفضل';
+
+  @override
+  String get authPreferredLocationHint => 'مثال: مدينة الكويت';
+
+  @override
   String get authSource => 'المصدر';
 
   @override
-  String get authSourceHint => 'مثال: CAREER_SITE';
+  String get authSourceHint => 'مثال: حملة LinkedIn';
+
+  @override
+  String get authVisaStatus => 'حالة التأشيرة';
+
+  @override
+  String get authSelectVisaStatus => 'اختر حالة التأشيرة';
+
+  @override
+  String get authVisaStatusTransferable => 'قابلة للنقل';
+
+  @override
+  String get authVisaStatusNotTransferable => 'غير قابلة للنقل';
+
+  @override
+  String get authVisaStatusVisitVisa => 'تأشيرة زيارة';
+
+  @override
+  String get authVisaStatusResident => 'مقيم';
+
+  @override
+  String get authVisaStatusNoVisa => 'بدون تأشيرة';
 
   @override
   String get authNoticePeriod => 'فترة الإشعار (بالأيام)';
@@ -243,7 +306,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authExpectedSalaryExampleHint => 'مثال: 100,000';
 
   @override
-  String get authSocialLinksSection => 'ملف LinkedIn';
+  String get authSocialLinksSection => 'الملف الاجتماعي';
 
   @override
   String get authLinkedInProfile => 'ملف LinkedIn';
@@ -306,6 +369,21 @@ class AppLocalizationsAr extends AppLocalizations {
       'لم تُضف أي خبرة عمل بعد. انقر \"إضافة خبرة\" لإضافة خلفيتك المهنية.';
 
   @override
+  String get authSkills => 'المهارات';
+
+  @override
+  String get authSkillsHint => 'مثال: Oracle PL/SQL';
+
+  @override
+  String get authAddSkill => 'إضافة';
+
+  @override
+  String get authSkillAlreadyAdded => 'تمت إضافة هذه المهارة بالفعل';
+
+  @override
+  String get authSkillsRequired => 'يرجى إضافة مهارة واحدة على الأقل';
+
+  @override
   String get authSecurity => 'الأمان';
 
   @override
@@ -328,6 +406,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get authPhoneRequired => 'يرجى إدخال رقم الهاتف';
+
+  @override
+  String get authNationalityRequired => 'يرجى إدخال الجنسية';
 
   @override
   String get authConfirmPasswordRequired => 'يرجى تأكيد كلمة المرور';
