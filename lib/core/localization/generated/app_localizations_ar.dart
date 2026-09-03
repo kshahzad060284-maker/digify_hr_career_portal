@@ -100,8 +100,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authForgotResendOtp => 'إعادة إرسال الرمز';
 
   @override
-  String authForgotResendOtpIn(int seconds) {
-    return 'إعادة الإرسال خلال $secondsث';
+  String authForgotResendOtpIn(String time) {
+    return 'إعادة الإرسال خلال $time';
   }
 
   @override
@@ -183,6 +183,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authDateOfBirth => 'تاريخ الميلاد';
 
   @override
+  String get authDateOfBirthRequired => 'يرجى تحديد تاريخ الميلاد';
+
+  @override
   String get authGender => 'الجنس';
 
   @override
@@ -240,16 +243,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authTotalExperienceHint => 'مثال: 5';
 
   @override
-  String get authCurrentLocation => 'الموقع الحالي';
+  String get authCurrentLocation => 'البلد المعيّن الحالي';
 
   @override
-  String get authLocationHint => 'المدينة، المنطقة';
+  String get authLocationHint => 'اختر البلد';
 
   @override
-  String get authPreferredLocation => 'الموقع المفضل';
+  String get authPreferredLocation => 'البلد المفضل';
 
   @override
-  String get authPreferredLocationHint => 'مثال: مدينة الكويت';
+  String get authPreferredLocationHint => 'اختر البلد';
 
   @override
   String get authSource => 'المصدر';
@@ -409,6 +412,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get authNationalityRequired => 'يرجى إدخال الجنسية';
+
+  @override
+  String get authCurrentLocationRequired => 'يرجى اختيار البلد المعيّن الحالي';
 
   @override
   String get authConfirmPasswordRequired => 'يرجى تأكيد كلمة المرور';

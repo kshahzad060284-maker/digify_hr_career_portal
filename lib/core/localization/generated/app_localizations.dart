@@ -269,8 +269,8 @@ abstract class AppLocalizations {
   /// No description provided for @authForgotResendOtpIn.
   ///
   /// In en, this message translates to:
-  /// **'Resend code in {seconds}s'**
-  String authForgotResendOtpIn(int seconds);
+  /// **'Resend code in {time}'**
+  String authForgotResendOtpIn(String time);
 
   /// No description provided for @authForgotResetPassword.
   ///
@@ -422,6 +422,12 @@ abstract class AppLocalizations {
   /// **'Date of Birth'**
   String get authDateOfBirth;
 
+  /// No description provided for @authDateOfBirthRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select your date of birth'**
+  String get authDateOfBirthRequired;
+
   /// No description provided for @authGender.
   ///
   /// In en, this message translates to:
@@ -539,25 +545,25 @@ abstract class AppLocalizations {
   /// No description provided for @authCurrentLocation.
   ///
   /// In en, this message translates to:
-  /// **'Current Location'**
+  /// **'Current Designated Country'**
   String get authCurrentLocation;
 
   /// No description provided for @authLocationHint.
   ///
   /// In en, this message translates to:
-  /// **'City, State'**
+  /// **'Select country'**
   String get authLocationHint;
 
   /// No description provided for @authPreferredLocation.
   ///
   /// In en, this message translates to:
-  /// **'Preferred Location'**
+  /// **'Preferred Country'**
   String get authPreferredLocation;
 
   /// No description provided for @authPreferredLocationHint.
   ///
   /// In en, this message translates to:
-  /// **'e.g., Kuwait City'**
+  /// **'Select country'**
   String get authPreferredLocationHint;
 
   /// No description provided for @authSource.
@@ -871,6 +877,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter your nationality'**
   String get authNationalityRequired;
+
+  /// No description provided for @authCurrentLocationRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select your current designated country'**
+  String get authCurrentLocationRequired;
 
   /// No description provided for @authConfirmPasswordRequired.
   ///

@@ -1,4 +1,5 @@
 import 'package:career_portal/app/app.dart';
+import 'package:career_portal/core/integration/digify_core_integration.dart';
 import 'package:career_portal/features/auth/data/local/auth_hive.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -11,5 +12,10 @@ Future<void> main() async {
     usePathUrlStrategy();
   }
   await AuthHive.init();
-  runApp(const ProviderScope(child: CareerPortalApp()));
+  runApp(
+    ProviderScope(
+      overrides: buildDigifyCoreHostOverrides(),
+      child: const CareerPortalApp(),
+    ),
+  );
 }

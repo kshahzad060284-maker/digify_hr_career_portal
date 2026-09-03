@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ForgotPasswordController
     extends AutoDisposeNotifier<ForgotPasswordState> {
   static const _otpLength = 6;
-  static const _resendCooldown = 60;
+  static const _resendCooldown = 120;
 
   Timer? _resendTimer;
 

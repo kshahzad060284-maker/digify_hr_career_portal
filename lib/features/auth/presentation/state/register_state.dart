@@ -1,4 +1,5 @@
 import 'package:career_portal/core/common/auth_enums.dart';
+import 'package:career_portal/core/utils/email_utils.dart';
 import 'package:career_portal/core/utils/phone_number_utils.dart';
 import 'package:career_portal/features/auth/domain/models/register_education_entry.dart';
 import 'package:career_portal/features/auth/domain/models/register_skill_entry.dart';
@@ -88,6 +89,70 @@ class RegisterState {
   final String? registerSuccessMessage;
 
   bool get canSubmit => !isLoading;
+
+  bool containsSkill(String value) {
+    final name = value.trim().toLowerCase();
+    if (name.isEmpty) return false;
+    return skills.any((skill) => skill.skillName.trim().toLowerCase() == name);
+  }
+
+  bool isStepValid(RegisterStep step) => validationErrorFor(step) == null;
+
+  RegisterToastType? validationErrorFor(RegisterStep step) {
+    return switch (step) {
+      RegisterStep.personalInfo => _personalInfoError,
+      RegisterStep.professionalInfo => _professionalInfoError,
+      RegisterStep.socialLinks => null,
+      RegisterStep.education =>
+        educationEntries.isEmpty ? RegisterToastType.educationRequired : null,
+      RegisterStep.workExperience => _workExperienceError,
+      RegisterStep.security => _securityError,
+    };
+  }
+
+  RegisterToastType? get _personalInfoError {
+    if (firstName.trim().isEmpty) return RegisterToastType.firstNameRequired;
+    if (lastName.trim().isEmpty) return RegisterToastType.lastNameRequired;
+    if (EmailUtils.isEmpty(email)) return RegisterToastType.emailRequired;
+    if (!EmailUtils.isValid(email)) return RegisterToastType.emailInvalid;
+    if (!EmailUtils.isEmpty(alternateEmail) &&
+        !EmailUtils.isValid(alternateEmail)) {
+      return RegisterToastType.emailInvalid;
+    }
+    if (phone.trim().isEmpty) return RegisterToastType.phoneRequired;
+    if (dateOfBirth == null) return RegisterToastType.dateOfBirthRequired;
+    if (nationality.trim().isEmpty) {
+      return RegisterToastType.nationalityRequired;
+    }
+    return null;
+  }
+
+  RegisterToastType? get _professionalInfoError {
+    if (currentLocation.trim().isEmpty) {
+      return RegisterToastType.currentLocationRequired;
+    }
+    return null;
+  }
+
+  RegisterToastType? get _workExperienceError {
+    if (experienceType == RegisterExperienceType.experienced &&
+        workExperienceEntries.isEmpty) {
+      return RegisterToastType.workExperienceRequired;
+    }
+    if (skills.isEmpty) return RegisterToastType.skillsRequired;
+    return null;
+  }
+
+  RegisterToastType? get _securityError {
+    if (password.isEmpty) return RegisterToastType.passwordRequired;
+    if (confirmPassword.isEmpty) {
+      return RegisterToastType.confirmPasswordRequired;
+    }
+    if (password != confirmPassword) {
+      return RegisterToastType.passwordsMismatch;
+    }
+    return null;
+  }
 
   RegisterState copyWith({
     RegisterStep? step,
