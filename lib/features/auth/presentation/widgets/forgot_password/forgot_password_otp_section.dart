@@ -60,17 +60,24 @@ class ForgotPasswordOtpSection extends ConsumerWidget {
             Gap(8.h),
             Align(
               alignment: AlignmentDirectional.centerEnd,
-              child: AppButton.text(
-                label: state.canResendOtp
-                    ? l10n.authForgotResendOtp
-                    : l10n.authForgotResendOtpIn(state.resendCooldownSeconds),
-                onPressed: state.canResendOtp
-                    ? () => controller.resendOtp(l10n)
-                    : null,
-                fontSize: 13.sp,
-                foregroundColor: AppColors.primary,
-                shrinkWrap: true,
-              ),
+              child: state.canResendOtp
+                  ? AppButton.text(
+                      label: l10n.authForgotResendOtp,
+                      onPressed: () => controller.resendOtp(l10n),
+                      fontSize: 13.sp,
+                      foregroundColor: AppColors.primary,
+                      shrinkWrap: true,
+                    )
+                  : Text(
+                      l10n.authForgotResendOtpIn(
+                        _formatCooldown(state.resendCooldownSeconds),
+                      ),
+                      style: context.textTheme.bodySmall?.copyWith(
+                        color: isDark
+                            ? AppColors.textSecondaryDark
+                            : AppColors.textSecondary,
+                      ),
+                    ),
             ),
             Gap(16.h),
             AppButton(
@@ -87,5 +94,13 @@ class ForgotPasswordOtpSection extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  static String _formatCooldown(int totalSeconds) {
+    final minutes = totalSeconds ~/ 60;
+    final seconds = totalSeconds % 60;
+    final mm = minutes.toString().padLeft(2, '0');
+    final ss = seconds.toString().padLeft(2, '0');
+    return '$mm:$ss';
   }
 }

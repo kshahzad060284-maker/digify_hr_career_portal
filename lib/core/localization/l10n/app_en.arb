@@ -48,11 +48,11 @@
   "authForgotOtpLabel": "OTP Code",
   "authForgotVerifyOtp": "Verify code",
   "authForgotResendOtp": "Resend code",
-  "authForgotResendOtpIn": "Resend code in {seconds}s",
+  "authForgotResendOtpIn": "Resend code in {time}",
   "@authForgotResendOtpIn": {
     "placeholders": {
-      "seconds": {
-        "type": "int"
+      "time": {
+        "type": "String"
       }
     }
   },
@@ -91,6 +91,7 @@
   "authPhoneNumber": "Phone Number",
   "authPhoneHint": "5XX XXX XXXX",
   "authDateOfBirth": "Date of Birth",
+  "authDateOfBirthRequired": "Please select your date of birth",
   "authGender": "Gender",
   "authSelectGender": "Select gender",
   "authGenderMale": "Male",
@@ -110,10 +111,10 @@
   "authCurrentTitleHint": "e.g., Software Engineer",
   "authTotalExperience": "Total Experience (Years)",
   "authTotalExperienceHint": "e.g., 5",
-  "authCurrentLocation": "Current Location",
-  "authLocationHint": "City, State",
-  "authPreferredLocation": "Preferred Location",
-  "authPreferredLocationHint": "e.g., Kuwait City",
+  "authCurrentLocation": "Current Designated Country",
+  "authLocationHint": "Select country",
+  "authPreferredLocation": "Preferred Country",
+  "authPreferredLocationHint": "Select country",
   "authSource": "Source",
   "authSourceHint": "e.g., LinkedIn Campaign",
   "authVisaStatus": "Visa Status",
@@ -166,6 +167,7 @@
   "authLastNameRequired": "Please enter your last name",
   "authPhoneRequired": "Please enter your phone number",
   "authNationalityRequired": "Please enter your nationality",
+  "authCurrentLocationRequired": "Please select your current designated country",
   "authConfirmPasswordRequired": "Please confirm your password",
   "authPasswordsMismatch": "Passwords do not match",
   "authCreateAccountFailed": "Could not create account. Please try again.",

@@ -3,6 +3,7 @@ import 'package:career_portal/core/config/app_config.dart';
 import 'package:career_portal/core/enterprise/enterprise_id_provider.dart';
 import 'package:career_portal/core/localization/generated/app_localizations.dart';
 import 'package:career_portal/core/network/app_exception.dart';
+import 'package:career_portal/core/utils/email_utils.dart';
 import 'package:career_portal/core/utils/phone_number_utils.dart';
 import 'package:career_portal/features/auth/domain/models/register_candidate_input.dart';
 import 'package:career_portal/features/auth/domain/models/register_education_entry.dart';
@@ -176,6 +177,10 @@ class RegisterController extends Notifier<RegisterState> {
   void addSkill(String value) {
     final skillName = value.trim();
     if (skillName.isEmpty) return;
+    if (state.containsSkill(skillName)) {
+      _emitToast(RegisterToastType.skillAlreadyAdded);
+      return;
+    }
 
     state = state.copyWith(
       skills: [
@@ -222,18 +227,40 @@ class RegisterController extends Notifier<RegisterState> {
   }
 
   void nextStep() {
+    if (!_validateCurrentStep()) return;
     final next = _nextStep;
     if (next == null) return;
     state = state.copyWith(step: next, clearToast: true);
   }
 
+  bool _validateCurrentStep() {
+    final error = state.validationErrorFor(state.step);
+    if (error == null) return true;
+    _emitToast(error);
+    return false;
+  }
+
+  bool _validateAllSteps() {
+    for (final step in _steps) {
+      final error = state.validationErrorFor(step);
+      if (error == null) continue;
+      state = state.copyWith(
+        step: step,
+        toastType: error,
+        toastEventId: state.toastEventId + 1,
+      );
+      return false;
+    }
+    return true;
+  }
+
   RegisterCandidateInput _buildInput() {
     return RegisterCandidateInput(
       enterpriseId: ref.read(enterpriseIdProvider),
-      firstName: state.firstName,
-      lastName: state.lastName,
-      middleName: state.middleName,
-      email: state.email,
+      firstName: state.firstName.trim(),
+      lastName: state.lastName.trim(),
+      middleName: state.middleName.trim(),
+      email: EmailUtils.normalize(state.email),
       password: state.password,
       phone:
           PhoneNumberUtils.fullPhoneNumber(
@@ -243,14 +270,14 @@ class RegisterController extends Notifier<RegisterState> {
           '',
       dateOfBirth: state.dateOfBirth,
       gender: state.gender,
-      nationality: state.nationality,
+      nationality: state.nationality.trim(),
       alternatePhone:
           PhoneNumberUtils.fullPhoneNumber(
             dialCode: state.alternatePhoneDialCode,
             localNumber: state.alternatePhone,
           ) ??
           '',
-      alternateEmail: state.alternateEmail,
+      alternateEmail: EmailUtils.normalize(state.alternateEmail),
       currentTitle: state.currentTitle,
       currentEmployer: state.currentCompany,
       yearsExperience: int.tryParse(state.totalExperience) ?? 0,
@@ -276,6 +303,7 @@ class RegisterController extends Notifier<RegisterState> {
 
   Future<void> createAccount() async {
     if (state.isLoading) return;
+    if (!_validateAllSteps()) return;
 
     state = state.copyWith(
       isLoading: true,
@@ -317,7 +345,10 @@ class RegisterController extends Notifier<RegisterState> {
       RegisterToastType.emailRequired => l10n.authEmailRequired,
       RegisterToastType.emailInvalid => l10n.authEmailInvalid,
       RegisterToastType.phoneRequired => l10n.authPhoneRequired,
+      RegisterToastType.dateOfBirthRequired => l10n.authDateOfBirthRequired,
       RegisterToastType.nationalityRequired => l10n.authNationalityRequired,
+      RegisterToastType.currentLocationRequired =>
+        l10n.authCurrentLocationRequired,
       RegisterToastType.educationRequired => l10n.authEducationRequired,
       RegisterToastType.workExperienceRequired =>
         l10n.authWorkExperienceRequired,
@@ -331,5 +362,6 @@ class RegisterController extends Notifier<RegisterState> {
     };
   }
 
-  bool isInfoToast(RegisterToastType type) => false;
+  bool isInfoToast(RegisterToastType type) =>
+      type == RegisterToastType.skillAlreadyAdded;
 }
