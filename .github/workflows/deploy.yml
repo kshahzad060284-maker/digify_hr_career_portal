@@ -27,22 +27,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Clone private Digify Core package
-        shell: bash
-        env:
-          DIGIFY_GITHUB_TOKEN: ${{ secrets.DIGIFY_GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-
-          rm -rf _vendor
-          mkdir -p _vendor
-
-          git clone \
-            --depth 1 \
-            --branch main \
-            "https://oauth2:${DIGIFY_GITHUB_TOKEN}@github.com/hananmalik21/digify_core.git" \
-            _vendor/digify_core
-
       - name: Determine Flutter version
         id: flutter_version
         shell: bash
