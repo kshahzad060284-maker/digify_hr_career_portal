@@ -38,10 +38,6 @@ migrate_working_dir/
 /build/
 /coverage/
 
-# CI: private packages vendored at build time
-/_vendor/
-pubspec_overrides.yaml
-
 # Symbolication related
 app.*.symbols
 
