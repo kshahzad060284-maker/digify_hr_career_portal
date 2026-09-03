@@ -9,6 +9,7 @@ import 'package:career_portal/features/auth/presentation/providers/register_prov
 import 'package:career_portal/features/auth/presentation/widgets/register/register_form_helpers.dart';
 import 'package:career_portal/shared/widgets/common/app_radio_option.dart';
 import 'package:career_portal/shared/widgets/common/app_select_field.dart';
+import 'package:digify_core/widgets/forms/location_selection_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -74,19 +75,23 @@ class RegisterFormProfessionalInfoSection extends ConsumerWidget {
         Gap(16.h),
         RegisterResponsiveRow(
           children: [
-            RegisterAuthField(
+            LocationSelectionField(
               label: l10n.authCurrentLocation,
-              initialValue: state.currentLocation,
-              hintText: l10n.authLocationHint,
-              isDark: isDark,
-              onChanged: controller.onCurrentLocationChanged,
+              hint: l10n.authLocationHint,
+              value: state.currentLocation,
+              isRequired: true,
+              fillColor: fillColor,
+              onChanged: (option) =>
+                  controller.onCurrentLocationChanged(option?.meaningEn ?? ''),
             ),
-            RegisterAuthField(
+            LocationSelectionField(
               label: l10n.authPreferredLocation,
-              initialValue: state.preferredLocation,
-              hintText: l10n.authPreferredLocationHint,
-              isDark: isDark,
-              onChanged: controller.onPreferredLocationChanged,
+              hint: l10n.authPreferredLocationHint,
+              value: state.preferredLocation,
+              fillColor: fillColor,
+              onChanged: (option) => controller.onPreferredLocationChanged(
+                option?.meaningEn ?? '',
+              ),
             ),
           ],
         ),

@@ -100,8 +100,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authForgotResendOtp => 'Resend code';
 
   @override
-  String authForgotResendOtpIn(int seconds) {
-    return 'Resend code in ${seconds}s';
+  String authForgotResendOtpIn(String time) {
+    return 'Resend code in $time';
   }
 
   @override
@@ -184,6 +184,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authDateOfBirth => 'Date of Birth';
 
   @override
+  String get authDateOfBirthRequired => 'Please select your date of birth';
+
+  @override
   String get authGender => 'Gender';
 
   @override
@@ -241,16 +244,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authTotalExperienceHint => 'e.g., 5';
 
   @override
-  String get authCurrentLocation => 'Current Location';
+  String get authCurrentLocation => 'Current Designated Country';
 
   @override
-  String get authLocationHint => 'City, State';
+  String get authLocationHint => 'Select country';
 
   @override
-  String get authPreferredLocation => 'Preferred Location';
+  String get authPreferredLocation => 'Preferred Country';
 
   @override
-  String get authPreferredLocationHint => 'e.g., Kuwait City';
+  String get authPreferredLocationHint => 'Select country';
 
   @override
   String get authSource => 'Source';
@@ -411,6 +414,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authNationalityRequired => 'Please enter your nationality';
+
+  @override
+  String get authCurrentLocationRequired =>
+      'Please select your current designated country';
 
   @override
   String get authConfirmPasswordRequired => 'Please confirm your password';

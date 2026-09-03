@@ -17,6 +17,11 @@ dependencies:
     sdk: flutter
   intl: ^0.20.2
 
+  digify_core:
+    git:
+      url: https://github.com/hananmalik21/digify_core.git
+      ref: main
+
   cupertino_icons: ^1.0.8
   dio: ^5.7.0
   go_router: ^17.2.3
@@ -46,10 +51,11 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-    - assets/icons/
+    - assets/icons/auth/
     - assets/icons/dashboard/
     - assets/icons/job_detail/
-    - assets/icons/auth/
+    - assets/icons/workforce/
+    - assets/icons/close_icon.svg
     - assets/logos/
     - assets/logo/
     - assets/favicon/

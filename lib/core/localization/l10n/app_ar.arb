@@ -48,11 +48,11 @@
   "authForgotOtpLabel": "رمز التحقق",
   "authForgotVerifyOtp": "تحقق من الرمز",
   "authForgotResendOtp": "إعادة إرسال الرمز",
-  "authForgotResendOtpIn": "إعادة الإرسال خلال {seconds}ث",
+  "authForgotResendOtpIn": "إعادة الإرسال خلال {time}",
   "@authForgotResendOtpIn": {
     "placeholders": {
-      "seconds": {
-        "type": "int"
+      "time": {
+        "type": "String"
       }
     }
   },
@@ -91,6 +91,7 @@
   "authPhoneNumber": "رقم الهاتف",
   "authPhoneHint": "5XX XXX XXXX",
   "authDateOfBirth": "تاريخ الميلاد",
+  "authDateOfBirthRequired": "يرجى تحديد تاريخ الميلاد",
   "authGender": "الجنس",
   "authSelectGender": "اختر الجنس",
   "authGenderMale": "ذكر",
@@ -110,10 +111,10 @@
   "authCurrentTitleHint": "مثال: مهندس برمجيات",
   "authTotalExperience": "إجمالي الخبرة (بالسنوات)",
   "authTotalExperienceHint": "مثال: 5",
-  "authCurrentLocation": "الموقع الحالي",
-  "authLocationHint": "المدينة، المنطقة",
-  "authPreferredLocation": "الموقع المفضل",
-  "authPreferredLocationHint": "مثال: مدينة الكويت",
+  "authCurrentLocation": "البلد المعيّن الحالي",
+  "authLocationHint": "اختر البلد",
+  "authPreferredLocation": "البلد المفضل",
+  "authPreferredLocationHint": "اختر البلد",
   "authSource": "المصدر",
   "authSourceHint": "مثال: حملة LinkedIn",
   "authVisaStatus": "حالة التأشيرة",
@@ -166,6 +167,7 @@
   "authLastNameRequired": "يرجى إدخال اسم العائلة",
   "authPhoneRequired": "يرجى إدخال رقم الهاتف",
   "authNationalityRequired": "يرجى إدخال الجنسية",
+  "authCurrentLocationRequired": "يرجى اختيار البلد المعيّن الحالي",
   "authConfirmPasswordRequired": "يرجى تأكيد كلمة المرور",
   "authPasswordsMismatch": "كلمتا المرور غير متطابقتين",
   "authCreateAccountFailed": "تعذر إنشاء الحساب. يرجى المحاولة مرة أخرى.",
