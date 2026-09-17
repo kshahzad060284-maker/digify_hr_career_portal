@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'breakpoints.dart';
 
+const double kMaxContentWidth = 1200.0;
+
 class ResponsiveHelper {
   ResponsiveHelper._();
 

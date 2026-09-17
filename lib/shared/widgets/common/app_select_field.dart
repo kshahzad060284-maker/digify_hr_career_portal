@@ -43,8 +43,7 @@ class AppSelectFieldWithLabel<T> extends StatelessWidget {
             children: [
               TextSpan(
                 text: label,
-                style: TextStyle(
-                  fontSize: 14.sp,
+                style: context.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: isDark
                       ? context.themeTextPrimary
@@ -54,10 +53,9 @@ class AppSelectFieldWithLabel<T> extends StatelessWidget {
               if (isRequired)
                 TextSpan(
                   text: ' *',
-                  style: TextStyle(
-                    color: AppColors.error,
-                    fontSize: 14.sp,
+                  style: context.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w500,
+                    color: AppColors.error,
                   ),
                 ),
             ],

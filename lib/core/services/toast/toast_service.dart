@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../extensions/app_extensions.dart';
 import '../../router/app_router.dart';
 import '../../theme/app_colors.dart';
 
@@ -269,7 +270,7 @@ class _ToastWidgetState extends State<_ToastWidget>
           position: _slideAnimation,
           child: Center(
             child: Material(
-              color: Colors.transparent,
+              color: AppColors.transparent,
               child: Container(
                 constraints: BoxConstraints(maxWidth: 500.w, minWidth: 300.w),
                 margin: EdgeInsets.symmetric(horizontal: 20.w),
@@ -280,7 +281,7 @@ class _ToastWidgetState extends State<_ToastWidget>
                   border: Border.all(color: _borderColor(), width: 1.5),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
+                      color: AppColors.shadowColor,
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -299,8 +300,7 @@ class _ToastWidgetState extends State<_ToastWidget>
                           if (widget.title != null) ...[
                             Text(
                               widget.title!,
-                              style: TextStyle(
-                                fontSize: 14.sp,
+                              style: context.textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: _textColor(),
                               ),
@@ -309,8 +309,7 @@ class _ToastWidgetState extends State<_ToastWidget>
                           ],
                           Text(
                             widget.message,
-                            style: TextStyle(
-                              fontSize: 13.sp,
+                            style: context.textTheme.bodySmall?.copyWith(
                               fontWeight: FontWeight.w500,
                               color: _textColor(),
                             ),

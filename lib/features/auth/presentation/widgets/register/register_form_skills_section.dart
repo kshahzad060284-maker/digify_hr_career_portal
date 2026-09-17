@@ -56,10 +56,10 @@ class _RegisterFormSkillsSectionState
             style: context.textTheme.titleSmall?.copyWith(
               color: AppColors.inputLabel,
             ),
-            children: const [
+            children: [
               TextSpan(
                 text: ' *',
-                style: TextStyle(color: AppColors.deleteIconRed),
+                style: context.textTheme.titleSmall?.copyWith(color: AppColors.deleteIconRed),
               ),
             ],
           ),

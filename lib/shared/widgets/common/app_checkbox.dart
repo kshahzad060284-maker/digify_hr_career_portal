@@ -46,7 +46,7 @@ class AppCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = context.isDark;
     final effectiveActiveColor = activeColor ?? AppColors.primary;
-    final effectiveCheckColor = checkColor ?? Colors.white;
+    final effectiveCheckColor = checkColor ?? AppColors.onPrimary;
 
     final effectiveSize = size ?? 15.w;
     final effectiveBorderRadius = borderRadius ?? 4.r;
@@ -60,7 +60,7 @@ class AppCheckbox extends StatelessWidget {
             : (uncheckedBorderColor ?? (isDark ? AppColors.borderGreyDark : AppColors.borderGrey)))
         : (isDark ? AppColors.cardBorderDark : AppColors.cardBorder);
 
-    final backgroundColor = value ? effectiveActiveColor : (isDark ? AppColors.cardBackgroundDark : Colors.white);
+    final backgroundColor = value ? effectiveActiveColor : (isDark ? AppColors.cardBackgroundDark : AppColors.onPrimary);
 
     final checkbox = InkWell(
       onTap: enabled && onChanged != null ? () => onChanged!(!value) : null,

@@ -144,19 +144,12 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
                       children: [
                         Text(
                           l10n.timePickerTitle,
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w700,
-                            color: textColor,
-                          ),
+                          style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700, color: textColor),
                         ),
                         SizedBox(height: 4.h),
                         Text(
                           l10n.timePickerSubtitle,
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            color: mutedTextColor,
-                          ),
+                          style: context.textTheme.bodySmall?.copyWith(color: mutedTextColor),
                         ),
                       ],
                     ),
@@ -201,11 +194,7 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
                       ),
                       child: Text(
                         ':',
-                        style: TextStyle(
-                          fontSize: 32.sp,
-                          fontWeight: FontWeight.w200,
-                          color: textColor.withValues(alpha: 0.3),
-                        ),
+                        style: context.textTheme.titleLarge?.copyWith(fontSize: 32.sp, fontWeight: FontWeight.w200, color: textColor.withValues(alpha: 0.3)),
                       ),
                     ),
                     _buildPickerColumn(
@@ -274,11 +263,7 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
       ),
       child: Text(
         '${_selectedHour.toString().padLeft(2, '0')}:${_selectedMinute.toString().padLeft(2, '0')} ${_isAM ? l10n.timePickerAm : l10n.timePickerPm}',
-        style: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w600,
-          color: AppColors.primary,
-        ),
+        style: context.textTheme.titleMedium?.copyWith(color: AppColors.primary),
       ),
     );
   }
@@ -302,12 +287,7 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
       children: [
         Text(
           label,
-          style: TextStyle(
-            fontSize: 10.sp,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.2,
-            color: textColor.withValues(alpha: 0.4),
-          ),
+          style: context.textTheme.labelSmall?.copyWith(fontSize: 10.sp, fontWeight: FontWeight.w600, letterSpacing: 1.2, color: textColor.withValues(alpha: 0.4)),
         ),
         SizedBox(height: 12.h),
         Container(
@@ -336,12 +316,7 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
                             autofocus: true,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 28.sp,
-                              fontWeight: FontWeight.w700,
-                              color: textColor,
-                              letterSpacing: -1,
-                            ),
+                            style: context.textTheme.titleLarge?.copyWith(fontSize: 28.sp, fontWeight: FontWeight.w700, color: textColor, letterSpacing: -1),
                             decoration: const InputDecoration(
                               border: InputBorder.none,
                               isDense: true,
@@ -363,12 +338,7 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
                           onTap: () => onToggleEdit(true),
                           child: Text(
                             value.toString().padLeft(2, '0'),
-                            style: TextStyle(
-                              fontSize: 28.sp,
-                              fontWeight: FontWeight.w700,
-                              color: textColor,
-                              letterSpacing: -1,
-                            ),
+                            style: context.textTheme.titleLarge?.copyWith(fontSize: 28.sp, fontWeight: FontWeight.w700, color: textColor, letterSpacing: -1),
                           ),
                         ),
                 ),
@@ -423,12 +393,7 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
       children: [
         Text(
           l10n.timePickerPeriodLabel,
-          style: TextStyle(
-            fontSize: 10.sp,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1.2,
-            color: textColor.withValues(alpha: 0.4),
-          ),
+          style: context.textTheme.labelSmall?.copyWith(fontSize: 10.sp, fontWeight: FontWeight.w600, letterSpacing: 1.2, color: textColor.withValues(alpha: 0.4)),
         ),
         SizedBox(height: 12.h),
         Container(
@@ -496,15 +461,7 @@ class _AppTimePickerDialogState extends State<AppTimePickerDialog> {
           child: Text(
             label,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 13.sp,
-              fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
-              color: isSelected
-                  ? AppColors.onPrimary
-                  : (widget.isDark
-                        ? context.themeTextMuted
-                        : AppColors.textSecondary),
-            ),
+            style: context.textTheme.bodySmall?.copyWith(fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600, color: isSelected ? AppColors.onPrimary : (widget.isDark ? context.themeTextMuted : AppColors.textSecondary)),
           ),
         ),
       ),

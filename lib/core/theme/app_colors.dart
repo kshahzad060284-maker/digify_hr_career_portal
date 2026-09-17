@@ -12,6 +12,7 @@ class AppColors {
   // Brand Colors
   static const Color brandRed = Color(0xFFE7000B);
   static const Color linkedinBlue = Color(0xFF0A66C2);
+  static const Color gradientStart = Color(0xFF0A3FBF);
 
   static const Color sidebarActiveBg = Color(0xFFE8F2FF);
   static const Color sidebarSearchBg = Color(0xFFF9FAFB);
@@ -20,7 +21,7 @@ class AppColors {
   static const Color sidebarCategoryText = Color(0xFF99A1AF);
 
   // Background Colors
-  static const Color background = Color(0xFFF8F8F8);
+  static const Color background = Color(0xFFF8FAFC);
   static const Color lightWhiteBackground = Color(0xFFF5F5F5);
   static const Color cardBackground = Color(0xFFFFFFFF);
   static const Color cardBackgroundGrey = Color(0xFFF3F4F6);
@@ -33,9 +34,10 @@ class AppColors {
   static const Color cardBackgroundGreyDark = Color(0xFF334155);
 
   // Text Colors
-  static const Color textPrimary = Color(0xFF0F172B);
+  static const Color textPrimary = Color(0xFF1E293B);
   static const Color textDarkSlate = Color(0xFF364153);
-  static const Color textSecondary = Color(0xFF4A5565);
+  static const Color textSlate = Color(0xFF334155);
+  static const Color textSecondary = Color(0xFF64748B);
   static const Color textTertiary = Color(0xFF717182);
   static const Color textPlaceholder = Color(0xFF9CA3AF);
   static const Color textMuted = Color(0xFFB4B9C5);
@@ -51,6 +53,7 @@ class AppColors {
   // Border Colors
   static const Color borderGrey = Color(0xFFD1D5DC);
   static const Color cardBorder = Color(0xFFE5E7EB);
+  static const Color borderLight = Color(0xFFE2E8F0);
 
   // Dark Mode Border Colors
   static const Color borderGreyDark = Color(0xFF475569);
@@ -141,6 +144,7 @@ class AppColors {
 
   // Red Error Colors (enhanced)
   static const Color redBg = Color(0xFFFEF2F2);
+  static const Color redBgDark = Color(0xFF450A0A);
   static const Color redBorder = Color(0xFFFFA2A2);
   static const Color redText = Color(0xFF82181A);
   static const Color redTextSecondary = Color(0xFF9F0712);
@@ -212,6 +216,11 @@ class AppColors {
   static const Color dashboardCardBorder = Color(0xFFE5E7EB);
   static const Color dashboardStatLabel = Color(0xFF717182);
   static const Color dashboardStatValue = Color(0xFF0F172B);
+  static const Color jobCardTitle = Color(0xFF0F172A);
+  static const Color jobCardTitleLink = Color(0xFF2563EB);
+  static const Color jobCardDescription = Color(0xFF475569);
+  static const Color jobCardMetaIcon = Color(0xFF94A3B8);
+  static const Color jobCardDot = Color(0xFFCBD5E1);
 
   // Dashboard Module Icon Colors
   static const Color dashJobSchedules = Color(0xFF0B5FCC);
@@ -395,6 +404,19 @@ class AppColors {
 
   // Shadow Colors
   static const Color shadowColor = Color(0x1A000000);
+  static const Color shadowMedium = Color(0x28000000);
+  static const Color shadowSubtle = Color(0x0A000000);
+  static const Color shadowLight = Color(0x14000000);
+  static const Color shadowXSubtle = Color(0x0D000000);
+  static const Color shadowDark = Color(0x33000000);
+
+  // Barrier Colors
+  static const Color barrierColor = Color(0x73000000);
+  static const Color barrierColorAlt = Color(0x8A000000);
+
+  // Dark Mode Overlay Colors
+  static const Color whiteOverlaySubtle = Color(0x0DFFFFFF);
+  static const Color whiteOverlay = Color(0x14FFFFFF);
 
   // Work Pattern Type Badge Colors
   static const Color workPatternBadgeBgLight = Color(0xFFF3E8FF);

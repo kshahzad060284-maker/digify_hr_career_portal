@@ -63,7 +63,7 @@ class AppSquareCapsule extends StatelessWidget {
 
     if (onTap != null) {
       return Material(
-        color: Colors.transparent,
+        color: AppColors.transparent,
         child: InkWell(onTap: onTap, child: container),
       );
     }

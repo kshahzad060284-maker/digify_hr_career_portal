@@ -113,9 +113,9 @@ class AppMobileButton extends StatelessWidget {
     return switch (type) {
       AppButtonType.primary => AppColors.primary,
       AppButtonType.secondary => AppColors.cardBackgroundGrey,
-      AppButtonType.outline => Colors.transparent,
-      AppButtonType.text => Colors.transparent,
-      AppButtonType.dotted => Colors.transparent,
+      AppButtonType.outline => AppColors.transparent,
+      AppButtonType.text => AppColors.transparent,
+      AppButtonType.dotted => AppColors.transparent,
       AppButtonType.danger => AppColors.error,
     };
   }
@@ -123,12 +123,12 @@ class AppMobileButton extends StatelessWidget {
   Color _getTextColor() {
     if (foregroundColor != null) return foregroundColor!;
     return switch (type) {
-      AppButtonType.primary => Colors.white,
-      AppButtonType.secondary => Colors.white,
+      AppButtonType.primary => AppColors.onPrimary,
+      AppButtonType.secondary => AppColors.onPrimary,
       AppButtonType.outline => AppColors.blackTextColor,
       AppButtonType.text => AppColors.primary,
       AppButtonType.dotted => AppColors.primary,
-      AppButtonType.danger => Colors.white,
+      AppButtonType.danger => AppColors.onPrimary,
     };
   }
 
@@ -167,21 +167,21 @@ class AppMobileButton extends StatelessWidget {
     final isDisabled = isLoading || onPressed == null;
     final bgColor = isDisabled
         ? (type == AppButtonType.outline || type == AppButtonType.text
-            ? Colors.transparent
+            ? AppColors.transparent
             : _getBaseBackgroundColor().withValues(alpha: 0.5))
         : _getBaseBackgroundColor();
 
     final contentColor = isDisabled
         ? (type == AppButtonType.outline || type == AppButtonType.dotted
             ? AppColors.textMuted
-            : Colors.white70)
+            : AppColors.onPrimary.withValues(alpha: 0.7))
         : _getTextColor();
 
     final borderProp = _getBorder();
     final buttonSize = 40.w;
 
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: Ink(
         width: buttonSize,
         height: buttonSize,

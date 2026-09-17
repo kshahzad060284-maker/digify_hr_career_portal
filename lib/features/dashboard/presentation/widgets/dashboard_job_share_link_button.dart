@@ -9,18 +9,27 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DashboardJobShareLinkButton extends ConsumerWidget {
+class DashboardJobShareLinkButton extends ConsumerStatefulWidget {
   const DashboardJobShareLinkButton({super.key, required this.jobId});
 
   final String jobId;
 
-  Future<void> _copyLink(BuildContext context, WidgetRef ref) async {
+  @override
+  ConsumerState<DashboardJobShareLinkButton> createState() =>
+      _DashboardJobShareLinkButtonState();
+}
+
+class _DashboardJobShareLinkButtonState
+    extends ConsumerState<DashboardJobShareLinkButton> {
+  bool _isHovered = false;
+
+  Future<void> _copyLink(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
     final careerPortalUrl = ref.read(hostCareerPortalUrlProvider);
     if (careerPortalUrl == null || careerPortalUrl.isEmpty) return;
     final url = CareerPortalUrlBuilder.jobUrl(
       careerPortalUrl: careerPortalUrl,
-      jobId: jobId,
+      jobId: widget.jobId,
     );
     await Clipboard.setData(ClipboardData(text: url));
     if (!context.mounted) return;
@@ -28,35 +37,31 @@ class DashboardJobShareLinkButton extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = context.isDark;
-    final iconColor = isDark
-        ? AppColors.textSecondaryDark
-        : AppColors.textSecondary;
-    final borderColor = isDark
-        ? AppColors.cardBorderDark
-        : AppColors.dashboardCardBorder;
-    final bgColor = isDark
-        ? AppColors.cardBackgroundGreyDark
-        : AppColors.sidebarSearchBg;
+    final baseColor =
+        isDark ? AppColors.textTertiaryDark : AppColors.textTertiary;
 
     return Tooltip(
       message: l10n.dashboardJobCopyLink,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () => _copyLink(context, ref),
-          borderRadius: BorderRadius.circular(8.r),
-          child: Ink(
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: BorderRadius.circular(8.r),
-              border: Border.all(color: borderColor),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: GestureDetector(
+          onTap: () => _copyLink(context),
+          child: TweenAnimationBuilder<Color?>(
+            tween: ColorTween(
+              begin: baseColor,
+              end: _isHovered ? AppColors.primary : baseColor,
             ),
-            child: Padding(
-              padding: EdgeInsets.all(8.w),
-              child: Icon(Icons.link_rounded, size: 18.sp, color: iconColor),
+            duration: const Duration(milliseconds: 150),
+            curve: Curves.easeOut,
+            builder: (context, color, _) => Icon(
+              Icons.link_rounded,
+              size: 18.sp,
+              color: color,
             ),
           ),
         ),

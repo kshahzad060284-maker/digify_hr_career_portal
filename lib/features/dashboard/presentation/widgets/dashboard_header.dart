@@ -57,7 +57,7 @@ class DashboardHeader extends ConsumerWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: isMobile
-            ? Colors.transparent
+            ? AppColors.transparent
             : (isDark ? AppColors.cardBackgroundDark : AppColors.dashboardCard),
         border: isMobile
             ? null

@@ -46,8 +46,7 @@ class AppFileUploadField extends StatelessWidget {
             children: [
               TextSpan(
                 text: labelText,
-                style: TextStyle(
-                  fontSize: 14.sp,
+                style: context.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: isDark
                       ? context.themeTextPrimary
@@ -57,8 +56,7 @@ class AppFileUploadField extends StatelessWidget {
               if (isRequired)
                 TextSpan(
                   text: ' *',
-                  style: TextStyle(
-                    fontSize: 14.sp,
+                  style: context.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: AppColors.deleteIconRed,
                   ),

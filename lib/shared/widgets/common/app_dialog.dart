@@ -37,7 +37,7 @@ class AppDialog extends StatelessWidget {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
       child: Dialog(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         insetPadding: isSmall
             ? const EdgeInsets.symmetric(horizontal: 12, vertical: 12)
             : EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
@@ -104,7 +104,7 @@ class AppDialog extends StatelessWidget {
                       ),
                     ),
                     Material(
-                      color: Colors.transparent,
+                      color: AppColors.transparent,
                       child: InkWell(
                         onTap: onClose ?? () => context.pop(),
                         borderRadius: BorderRadius.circular(100.r),
