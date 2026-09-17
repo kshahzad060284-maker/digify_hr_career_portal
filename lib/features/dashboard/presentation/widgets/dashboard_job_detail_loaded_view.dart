@@ -1,6 +1,5 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
-import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_footer.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_body.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_header.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_mobile_apply_bar.dart';
@@ -74,7 +73,6 @@ class DashboardJobDetailLoadedView extends StatelessWidget {
                   ),
                 ),
               ),
-              const SliverToBoxAdapter(child: DashboardFooter()),
               if (isMobile) SliverToBoxAdapter(child: SizedBox(height: 88.h)),
             ],
           ),

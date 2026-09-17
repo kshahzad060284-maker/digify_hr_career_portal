@@ -60,9 +60,7 @@ class AppPhoneField extends StatelessWidget {
             children: [
               TextSpan(
                 text: labelText,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
+                style: context.textTheme.titleSmall?.copyWith(
                   color: isDark
                       ? context.themeTextPrimary
                       : AppColors.inputLabel,
@@ -71,9 +69,7 @@ class AppPhoneField extends StatelessWidget {
               if (isRequired)
                 TextSpan(
                   text: ' *',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
+                  style: context.textTheme.titleSmall?.copyWith(
                     color: AppColors.deleteIconRed,
                   ),
                 ),
@@ -103,13 +99,12 @@ class AppPhoneField extends StatelessWidget {
                 showFlag: false,
                 showFlagDialog: true,
                 padding: EdgeInsetsDirectional.only(start: 8.w, end: 2.w),
-                textStyle: TextStyle(
-                  fontSize: 15.sp,
+                textStyle: context.textTheme.bodyLarge?.copyWith(
                   color: textColor,
                   fontWeight: FontWeight.w500,
                 ),
-                dialogTextStyle: TextStyle(fontSize: 15.sp, color: textColor),
-                searchStyle: TextStyle(fontSize: 15.sp, color: textColor),
+                dialogTextStyle: context.textTheme.bodyLarge?.copyWith(color: textColor),
+                searchStyle: context.textTheme.bodyLarge?.copyWith(color: textColor),
                 dialogBackgroundColor: isDark
                     ? AppColors.cardBackgroundDark
                     : AppColors.cardBackground,
@@ -121,8 +116,7 @@ class AppPhoneField extends StatelessWidget {
                 ),
                 searchDecoration: InputDecoration(
                   hintText: l10n.phoneCountrySearchHint,
-                  hintStyle: TextStyle(
-                    fontSize: 14.sp,
+                  hintStyle: context.textTheme.bodyMedium?.copyWith(
                     color: isDark
                         ? AppColors.textSecondaryDark
                         : AppColors.textSecondary,
@@ -166,7 +160,7 @@ class AppPhoneField extends StatelessWidget {
                     ),
                   ),
                 ),
-                barrierColor: Colors.black54,
+                barrierColor: AppColors.barrierColorAlt,
               ),
               Icon(
                 Icons.keyboard_arrow_down_rounded,

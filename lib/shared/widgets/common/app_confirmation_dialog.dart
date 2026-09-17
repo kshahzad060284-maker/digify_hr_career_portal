@@ -84,7 +84,7 @@ class AppConfirmationDialog extends StatelessWidget {
   }) {
     return showDialog<bool>(
       context: context,
-      barrierColor: Colors.black.withValues(alpha: 0.45),
+      barrierColor: AppColors.barrierColor,
       builder: (context) => AppConfirmationDialog(
         title: title,
         message: message,
@@ -118,7 +118,7 @@ class AppConfirmationDialog extends StatelessWidget {
 
     return showDialog<String>(
       context: context,
-      barrierColor: Colors.black.withValues(alpha: 0.45),
+      barrierColor: AppColors.barrierColor,
       builder: (dialogContext) => AppConfirmationDialog(
         title: title,
         message: message,
@@ -227,13 +227,13 @@ class AppConfirmationDialog extends StatelessWidget {
       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
       child: Center(
         child: Material(
-          color: Colors.transparent,
+          color: AppColors.transparent,
           child: Container(
             width: isMobile ? 0.9 * MediaQuery.sizeOf(context).width : maxWidth,
             constraints: BoxConstraints(maxWidth: maxWidth),
             margin: EdgeInsets.symmetric(horizontal: horizontalMargin),
             decoration: BoxDecoration(
-              color: isDark ? AppColors.cardBackgroundDark : Colors.white,
+              color: isDark ? AppColors.cardBackgroundDark : AppColors.cardBackground,
               borderRadius: BorderRadius.circular(isMobile ? 20.r : 16.r),
             ),
             child: Column(
@@ -271,7 +271,7 @@ class AppConfirmationDialog extends StatelessWidget {
                       Text(
                         title,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: context.textTheme.headlineSmall?.copyWith(
                           fontSize: titleFontSize.sp,
                           fontWeight: FontWeight.w700,
                           color: isDark
@@ -284,9 +284,8 @@ class AppConfirmationDialog extends StatelessWidget {
                       Text(
                         message,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: context.textTheme.bodyMedium?.copyWith(
                           fontSize: bodyFontSize.sp,
-                          fontWeight: FontWeight.w400,
                           color: isDark
                               ? AppColors.textSecondaryDark
                               : AppColors.textSecondary,
@@ -303,19 +302,19 @@ class AppConfirmationDialog extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: isDark
-                                ? Colors.white.withValues(alpha: 0.05)
+                                ? AppColors.whiteOverlaySubtle
                                 : AppColors.grayBg,
                             borderRadius: BorderRadius.circular(12.r),
                             border: Border.all(
                               color: isDark
-                                  ? Colors.white.withValues(alpha: 0.08)
+                                  ? AppColors.whiteOverlay
                                   : AppColors.grayBorder.withValues(alpha: 0.5),
                             ),
                           ),
                           child: Text(
                             itemName!,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: context.textTheme.bodyMedium?.copyWith(
                               fontSize: bodyFontSize.sp,
                               fontWeight: FontWeight.w600,
                               color: isDark

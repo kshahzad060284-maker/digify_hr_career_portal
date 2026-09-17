@@ -267,6 +267,13 @@ class AppService {
           endpoint: endpoint,
           details: error,
         );
+      case DioExceptionType.transformTimeout:
+        return AppException(
+          message: 'Response transform timed out.',
+          statusCode: statusCode,
+          endpoint: endpoint,
+          details: error,
+        );
     }
   }
 

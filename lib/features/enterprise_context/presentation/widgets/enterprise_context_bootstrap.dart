@@ -190,13 +190,11 @@ class _EnterpriseContextLoadingViewState
               Text(
                 title,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Inter',
+                style: context.textTheme.displaySmall?.copyWith(
+                  fontSize: _SplashMetrics.titleSize,
                   color: isDark
                       ? AppColors.textPrimaryDark
                       : AppColors.textPrimary,
-                  fontWeight: FontWeight.w700,
-                  fontSize: _SplashMetrics.titleSize,
                   height: _SplashMetrics.lineHeight,
                   letterSpacing: 0,
                 ),
@@ -205,13 +203,12 @@ class _EnterpriseContextLoadingViewState
               Text(
                 subtitle,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Inter',
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontSize: _SplashMetrics.subtitleSize,
+                  fontWeight: FontWeight.w400,
                   color: isDark
                       ? AppColors.textSecondaryDark
                       : AppColors.textSecondary,
-                  fontWeight: FontWeight.w400,
-                  fontSize: _SplashMetrics.subtitleSize,
                   height: _SplashMetrics.lineHeight,
                   letterSpacing: 0,
                 ),

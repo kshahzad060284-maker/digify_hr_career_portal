@@ -10,7 +10,6 @@ import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dar
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_detail_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_list_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_apply_job_dialog.dart';
-import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_footer.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_error_view.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_loaded_view.dart';
 import 'package:career_portal/shared/widgets/common/common_widgets.dart';
@@ -131,7 +130,6 @@ class _DashboardJobDetailPageState
                 ),
               ),
             ),
-            const DashboardFooter(),
           ],
         ),
         data: (detailState) {

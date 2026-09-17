@@ -6,6 +6,7 @@ import 'package:career_portal/core/services/toast/toast_service.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_jobs_list_provider.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_content_header.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_filter_bar.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_footer.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_card_skeleton.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/job_listing_body.dart';
@@ -26,7 +27,7 @@ class JobListingContent extends ConsumerWidget {
     final sectionBg = isDark
         ? AppColors.backgroundDark
         : AppColors.sidebarSearchBg;
-    final maxWidth = ResponsiveHelper.maxContentWidth(context);
+    final maxWidth = kMaxContentWidth;
 
     ref.listen(dashboardJobsControllerProvider, (previous, next) {
       if (next.hasError && previous?.hasError != true) {
@@ -51,6 +52,33 @@ class JobListingContent extends ConsumerWidget {
             ),
             slivers: [
               const DashboardHeroSliver(),
+              SliverAppBar(
+                pinned: true,
+                automaticallyImplyLeading: false,
+                toolbarHeight: 68,
+                backgroundColor: sectionBg,
+                surfaceTintColor: AppColors.transparent,
+                elevation: 0,
+                scrolledUnderElevation: 3,
+                shadowColor: AppColors.shadowLight,
+                flexibleSpace: Padding(
+                  padding: EdgeInsetsDirectional.symmetric(
+                    horizontal: pagePadding.left,
+                    vertical: 14,
+                  ),
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: kMaxContentWidth,
+                      ),
+                      child: const Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: DashboardFilterDropdowns(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               SliverToBoxAdapter(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: minBodyHeight),

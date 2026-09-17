@@ -89,8 +89,8 @@ class PaginationControls extends StatelessWidget {
 
     final infoText = Text(
       l10n.paginationShowingRange(startItem, endItem, totalItems),
-      style: TextStyle(
-        fontSize: 13.sp,
+      style: context.textTheme.bodyMedium?.copyWith(
+        fontWeight: FontWeight.w500,
         color: isDark ? AppColors.textSecondaryDark : AppColors.textSecondary,
       ),
     );
@@ -133,27 +133,29 @@ class PaginationControls extends StatelessWidget {
   ) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _buildNavButton(
-          context: context,
+        _SleekTextNavButton(
           isDark: isDark,
-          icon: Icons.chevron_left,
+          text: 'Previous',
+          icon: Icons.arrow_back,
           enabled: hasPrevious && !isLoading,
           onTap: onPrevious,
         ),
-        Gap(8.w),
+        Gap(24.w),
         Text(
           l10n.paginationPageOf(currentPage, totalPages),
-          style: TextStyle(
-            fontSize: 13.sp,
+          style: context.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w600,
             color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimary,
           ),
         ),
-        Gap(8.w),
-        _buildNavButton(
-          context: context,
+        Gap(24.w),
+        _SleekTextNavButton(
           isDark: isDark,
-          icon: Icons.chevron_right,
+          text: 'Next',
+          icon: Icons.arrow_forward,
+          isNext: true,
           enabled: hasNext && !isLoading,
           onTap: onNext,
         ),
@@ -180,8 +182,7 @@ class PaginationControls extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Text(
               '...',
-              style: TextStyle(
-                fontSize: 14.sp,
+              style: context.textTheme.bodyMedium?.copyWith(
                 color: isDark
                     ? AppColors.textSecondaryDark
                     : AppColors.textSecondary,
@@ -223,8 +224,7 @@ class PaginationControls extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: Text(
               '...',
-              style: TextStyle(
-                fontSize: 14.sp,
+              style: context.textTheme.bodyMedium?.copyWith(
                 color: isDark
                     ? AppColors.textSecondaryDark
                     : AppColors.textSecondary,
@@ -251,49 +251,30 @@ class PaginationControls extends StatelessWidget {
     required bool enabled,
     required VoidCallback? onTap,
   }) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: enabled ? onTap : null,
-        borderRadius: BorderRadius.circular(6.r),
-        child: Container(
-          width: 36.w,
-          height: 36.h,
-          decoration: BoxDecoration(
-            color: isDark ? AppColors.cardBackgroundGreyDark : AppColors.grayBg,
-            borderRadius: BorderRadius.circular(6.r),
-            border: Border.all(
-              color: isDark ? AppColors.cardBorderDark : AppColors.cardBorder,
-              width: 1,
+    if (isLoading) {
+      return SizedBox(
+        width: 48.w,
+        height: 48.w,
+        child: Center(
+          child: SizedBox(
+            width: 20.w,
+            height: 20.w,
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                isDark ? AppColors.textPrimaryDark : AppColors.textPrimary,
+              ),
             ),
           ),
-          alignment: Alignment.center,
-          child: isLoading
-              ? SizedBox(
-                  width: 16.w,
-                  height: 16.h,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      isDark
-                          ? AppColors.textPrimaryDark
-                          : AppColors.textPrimary,
-                    ),
-                  ),
-                )
-              : Icon(
-                  icon,
-                  size: 18.sp,
-                  color: enabled
-                      ? (isDark
-                            ? AppColors.textPrimaryDark
-                            : AppColors.textPrimary)
-                      : (isDark
-                            ? AppColors.textPlaceholderDark
-                            : AppColors.textPlaceholder),
-                ),
         ),
-      ),
+      );
+    }
+
+    return _HoverNavButton(
+      isDark: isDark,
+      icon: icon,
+      enabled: enabled,
+      onTap: onTap,
     );
   }
 
@@ -305,7 +286,7 @@ class PaginationControls extends StatelessWidget {
     required VoidCallback? onTap,
   }) {
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(6.r),
@@ -331,11 +312,10 @@ class PaginationControls extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             '$page',
-            style: TextStyle(
-              fontSize: 13.sp,
+            style: context.textTheme.bodySmall?.copyWith(
               fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
               color: isActive
-                  ? Colors.white
+                  ? AppColors.onPrimary
                   : (isDark
                         ? AppColors.textPrimaryDark
                         : AppColors.textPrimary),
@@ -408,7 +388,7 @@ class MobilePaginationControls extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _MobileNavButton(
           isDark: isDark,
@@ -416,6 +396,7 @@ class MobilePaginationControls extends StatelessWidget {
           enabled: hasPrevious,
           onTap: onPrevious,
         ),
+        Gap(16.w),
         Text(
           l10n.paginationPageOf(currentPage, totalPages),
           style: context.textTheme.labelMedium?.copyWith(
@@ -423,6 +404,7 @@ class MobilePaginationControls extends StatelessWidget {
             color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimary,
           ),
         ),
+        Gap(16.w),
         _MobileNavButton(
           isDark: isDark,
           icon: Icons.chevron_right,
@@ -453,7 +435,7 @@ class _MobileNavButton extends StatelessWidget {
       height: 40.w,
       width: 40.w,
       child: Material(
-        color: Colors.transparent,
+        color: AppColors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(10.r),
           onTap: enabled ? onTap : null,
@@ -467,6 +449,180 @@ class _MobileNavButton extends StatelessWidget {
                         ? AppColors.textPlaceholderDark
                         : AppColors.textPlaceholder),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HoverNavButton extends StatefulWidget {
+  const _HoverNavButton({
+    required this.isDark,
+    required this.icon,
+    required this.enabled,
+    required this.onTap,
+  });
+
+  final bool isDark;
+  final IconData icon;
+  final bool enabled;
+  final VoidCallback? onTap;
+
+  @override
+  State<_HoverNavButton> createState() => _HoverNavButtonState();
+}
+
+class _HoverNavButtonState extends State<_HoverNavButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: widget.enabled
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
+      onEnter: (_) {
+        if (widget.enabled) setState(() => _isHovered = true);
+      },
+      onExit: (_) {
+        if (widget.enabled) setState(() => _isHovered = false);
+      },
+      child: GestureDetector(
+        onTap: widget.enabled ? widget.onTap : null,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+          width: 48.w,
+          height: 48.w,
+          transform: Matrix4.translationValues(0, _isHovered ? -2.0 : 0, 0),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _isHovered
+                ? AppColors.primary
+                : (widget.isDark
+                      ? AppColors.cardBackgroundGreyDark
+                      : AppColors.onPrimary),
+            border: Border.all(
+              color: _isHovered
+                  ? AppColors.primary
+                  : (widget.isDark
+                        ? AppColors.cardBorderDark
+                        : AppColors.borderLight),
+              width: 1,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: _isHovered
+                    ? AppColors.shadowColor
+                    : AppColors.shadowXSubtle,
+                blurRadius: _isHovered ? 8 : 4,
+                offset: Offset(0, _isHovered ? 4 : 2),
+              ),
+            ],
+          ),
+          child: Center(
+            child: Icon(
+              widget.icon,
+              size: 24.sp,
+              color: _isHovered
+                  ? AppColors.onPrimary
+                  : (widget.enabled
+                        ? AppColors.textSecondary
+                        : (widget.isDark
+                              ? AppColors.textPlaceholderDark
+                              : AppColors.textPlaceholder)),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SleekTextNavButton extends StatefulWidget {
+  const _SleekTextNavButton({
+    required this.isDark,
+    required this.text,
+    required this.icon,
+    required this.enabled,
+    required this.onTap,
+    this.isNext = false,
+  });
+
+  final bool isDark;
+  final String text;
+  final IconData icon;
+  final bool enabled;
+  final VoidCallback? onTap;
+  final bool isNext;
+
+  @override
+  State<_SleekTextNavButton> createState() => _SleekTextNavButtonState();
+}
+
+class _SleekTextNavButtonState extends State<_SleekTextNavButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = widget.enabled
+        ? (widget.isDark ? AppColors.textPrimaryDark : AppColors.textPrimary)
+        : (widget.isDark
+              ? AppColors.textPlaceholderDark
+              : AppColors.textPlaceholder);
+
+    final hoverBg = widget.isDark
+        ? AppColors.cardBackgroundGreyDark.withValues(alpha: 0.5)
+        : AppColors.grayBg;
+
+    return MouseRegion(
+      cursor: widget.enabled
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
+      onEnter: (_) {
+        if (widget.enabled) setState(() => _isHovered = true);
+      },
+      onExit: (_) {
+        if (widget.enabled) setState(() => _isHovered = false);
+      },
+      child: GestureDetector(
+        onTap: widget.enabled ? widget.onTap : null,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeOut,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          decoration: BoxDecoration(
+            color: _isHovered ? hoverBg : AppColors.transparent,
+            borderRadius: BorderRadius.circular(100.r),
+            border: Border.all(
+              color: widget.enabled
+                  ? (widget.isDark
+                        ? AppColors.cardBorderDark
+                        : AppColors.borderLight)
+                  : AppColors.transparent,
+              width: 1,
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (!widget.isNext) ...[
+                Icon(widget.icon, size: 16.sp, color: color),
+                Gap(8.w),
+              ],
+              Text(
+                widget.text,
+                style: context.textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: color,
+                ),
+              ),
+              if (widget.isNext) ...[
+                Gap(8.w),
+                Icon(widget.icon, size: 16.sp, color: color),
+              ],
+            ],
           ),
         ),
       ),

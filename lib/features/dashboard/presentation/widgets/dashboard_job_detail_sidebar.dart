@@ -370,7 +370,7 @@ class _QuestionsCard extends StatelessWidget {
             ),
             Gap(14.h),
             Material(
-              color: Colors.transparent,
+              color: AppColors.transparent,
               child: InkWell(
                 onTap: () => _copyEmail(context),
                 borderRadius: BorderRadius.circular(10.r),

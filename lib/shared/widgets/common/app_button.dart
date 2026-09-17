@@ -1,3 +1,4 @@
+import 'package:career_portal/core/extensions/app_extensions.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -203,7 +204,7 @@ class AppButton extends StatelessWidget {
       fontSize: fontSize,
       padding: padding,
       borderRadius: borderRadius,
-      backgroundColor: backgroundColor ?? Colors.transparent,
+      backgroundColor: backgroundColor ?? AppColors.transparent,
       foregroundColor: foregroundColor,
       borderColor: borderColor,
       iconSize: iconSize,
@@ -250,10 +251,10 @@ class AppButton extends StatelessWidget {
     return switch (type) {
       AppButtonType.primary => AppColors.primary,
       AppButtonType.secondary => AppColors.cardBackgroundGrey,
-      AppButtonType.outline => Colors.transparent,
+      AppButtonType.outline => AppColors.transparent,
       AppButtonType.danger => AppColors.error,
-      AppButtonType.dotted => Colors.transparent,
-      AppButtonType.text => Colors.transparent,
+      AppButtonType.dotted => AppColors.transparent,
+      AppButtonType.text => AppColors.transparent,
     };
   }
 
@@ -288,14 +289,14 @@ class AppButton extends StatelessWidget {
 
     final bgColor = isDisabled
         ? (type == AppButtonType.outline || type == AppButtonType.text
-              ? Colors.transparent
+              ? AppColors.transparent
               : baseBackground.withValues(alpha: 0.5))
         : baseBackground;
 
     final contentColor = isDisabled
         ? (type == AppButtonType.outline || type == AppButtonType.dotted
               ? AppColors.textMuted
-              : Colors.white70)
+              : AppColors.onPrimary.withValues(alpha: 0.7))
         : _getForegroundColor();
 
     final border = _getBorder();
@@ -305,7 +306,7 @@ class AppButton extends StatelessWidget {
       label,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: context.textTheme.bodyMedium?.copyWith(
         fontSize: fontSize ?? 14.sp,
         fontWeight: FontWeight.w600,
         color: contentColor,
@@ -343,13 +344,13 @@ class AppButton extends StatelessWidget {
       return Semantics(
         button: true,
         child: Material(
-          color: Colors.transparent,
+          color: AppColors.transparent,
           child: InkWell(
             onTap: isDisabled ? null : onPressed,
             splashFactory: NoSplash.splashFactory,
-            highlightColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            focusColor: Colors.transparent,
+            highlightColor: AppColors.transparent,
+            hoverColor: AppColors.transparent,
+            focusColor: AppColors.transparent,
             child: shrinkWrap
                 ? child
                 : SizedBox(
@@ -363,7 +364,7 @@ class AppButton extends StatelessWidget {
     }
 
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: isDisabled ? null : onPressed,
         borderRadius: borderRadius ?? BorderRadius.circular(10.r),

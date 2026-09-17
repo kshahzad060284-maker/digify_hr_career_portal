@@ -322,7 +322,7 @@ class _AppTextFieldState extends State<AppTextField> {
       textDirection: widget.textDirection,
       autovalidateMode: widget.autovalidateMode,
       focusNode: widget.focusNode,
-      style: TextStyle(
+      style: context.textTheme.bodyLarge?.copyWith(
         fontSize: widget.fontSize ?? 15.sp,
         color: isDark ? context.themeTextPrimary : AppColors.textPrimary,
       ),
@@ -365,12 +365,12 @@ class _AppTextFieldState extends State<AppTextField> {
               horizontal: 16.w,
               vertical: fieldVerticalPadding.w,
             ),
-        hintStyle: TextStyle(
+        hintStyle: context.textTheme.bodyLarge?.copyWith(
           fontSize: widget.fontSize ?? 15.sp,
           height: 1.0,
           color: isDark ? context.themeTextMuted : AppColors.textPlaceholder,
         ),
-        errorStyle: TextStyle(
+        errorStyle: context.textTheme.labelMedium?.copyWith(
           fontSize: 12.sp,
           color: AppColors.error,
           height: 1.2,
@@ -394,7 +394,7 @@ class _AppTextFieldState extends State<AppTextField> {
               children: [
                 TextSpan(
                   text: widget.labelText,
-                  style: TextStyle(
+                  style: context.textTheme.titleSmall?.copyWith(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: isDark
@@ -405,7 +405,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 if (widget.isRequired)
                   TextSpan(
                     text: ' *',
-                    style: TextStyle(
+                    style: context.textTheme.titleSmall?.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                       color: AppColors.deleteIconRed,
@@ -545,7 +545,7 @@ class _AppTextAreaState extends State<AppTextArea> {
               children: [
                 TextSpan(
                   text: widget.labelText,
-                  style: TextStyle(
+                  style: context.textTheme.titleSmall?.copyWith(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: isDark
@@ -556,7 +556,7 @@ class _AppTextAreaState extends State<AppTextArea> {
                 if (widget.isRequired)
                   TextSpan(
                     text: ' *',
-                    style: TextStyle(
+                    style: context.textTheme.titleSmall?.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
                       color: AppColors.deleteIconRed,
@@ -584,7 +584,7 @@ class _AppTextAreaState extends State<AppTextArea> {
               : widget.textAlign,
           textDirection: widget.textDirection,
           inputFormatters: widget.inputFormatters,
-          style: TextStyle(
+          style: context.textTheme.bodyLarge?.copyWith(
             fontSize: 15.sp,
             color: isDark ? context.themeTextPrimary : AppColors.textPrimary,
           ),
@@ -599,7 +599,7 @@ class _AppTextAreaState extends State<AppTextArea> {
               horizontal: 16.w,
               vertical: fieldVerticalPadding.w,
             ),
-            hintStyle: TextStyle(
+            hintStyle: context.textTheme.bodyLarge?.copyWith(
               fontSize: 15.sp,
               height: 1.0,
               color: isDark

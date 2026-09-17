@@ -9,8 +9,7 @@ abstract class EnterpriseContextRemoteDataSource {
 
 class EnterpriseContextRemoteDataSourceImpl
     implements EnterpriseContextRemoteDataSource {
-  const EnterpriseContextRemoteDataSourceImpl({required AppService appService})
-    : _appService = appService;
+  const EnterpriseContextRemoteDataSourceImpl({required this._appService});
 
   final AppService _appService;
 

@@ -9,7 +9,7 @@ import 'package:career_portal/features/auth/presentation/providers/register_prov
 import 'package:career_portal/features/auth/presentation/widgets/register/register_form_helpers.dart';
 import 'package:career_portal/shared/widgets/common/app_radio_option.dart';
 import 'package:career_portal/shared/widgets/common/app_select_field.dart';
-import 'package:digify_core/widgets/forms/location_selection_field.dart';
+import 'package:digify_hr_designs/digify_hr_designs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
