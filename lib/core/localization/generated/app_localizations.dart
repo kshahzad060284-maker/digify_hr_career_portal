@@ -1868,6 +1868,12 @@ abstract class AppLocalizations {
   /// **'About'**
   String get dashboardJobDetailCompanyAbout;
 
+  /// No description provided for @dashboardJobDetailCompanyViewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'See more'**
+  String get dashboardJobDetailCompanyViewDetails;
+
   /// No description provided for @footerTagline.
   ///
   /// In en, this message translates to:

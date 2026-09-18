@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class DashboardJobDetailCompanyCardSkeleton extends StatelessWidget {
-  const DashboardJobDetailCompanyCardSkeleton({super.key});
+  const DashboardJobDetailCompanyCardSkeleton({super.key, this.embedded = false});
+
+  final bool embedded;
 
   static const JobCompanyInfo _mockCompany = JobCompanyInfo(
     name: 'Company Name Placeholder',
@@ -17,9 +19,12 @@ class DashboardJobDetailCompanyCardSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Skeletonizer(
+    return Skeletonizer(
       enabled: true,
-      child: DashboardJobDetailCompanyCardContent(company: _mockCompany),
+      child: DashboardJobDetailCompanyCardContent(
+        company: _mockCompany,
+        embedded: embedded,
+      ),
     );
   }
 }
