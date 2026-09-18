@@ -37,6 +37,7 @@ class DashboardJobDetailCompanyCardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppAvatar(
                 image: company.logoUrl,
@@ -68,20 +69,17 @@ class DashboardJobDetailCompanyCardContent extends StatelessWidget {
                         fontSize: 15.sp,
                         height: 1.2,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
-              Gap(12.w),
-              CompanyIndustryCapsule(industry: company.displayIndustry),
             ],
           ),
-          Gap(4.h),
+          Gap(8.h),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              CompanyIndustryCapsule(industry: company.displayIndustry),
               AppButton(
                 label: l10n.dashboardJobDetailCompanyViewDetails,
                 type: AppButtonType.text,
