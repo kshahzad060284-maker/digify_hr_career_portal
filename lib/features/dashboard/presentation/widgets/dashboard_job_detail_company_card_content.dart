@@ -43,10 +43,7 @@ class DashboardJobDetailCompanyCardContent extends StatelessWidget {
                 mimeType: company.logoMimeType,
                 fallbackInitial: company.hasName ? name : null,
                 size: 56,
-                border: Border.all(
-                  color: context.themeCardBorder,
-                  width: 0.8,
-                ),
+                border: Border.all(color: context.themeCardBorder, width: 0.8),
               ),
               Gap(12.w),
               Expanded(
