@@ -1,4 +1,5 @@
 import 'package:career_portal/core/extensions/app_extensions.dart';
+import 'package:career_portal/core/services/responsive/responsive_helper.dart';
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
 import 'package:career_portal/features/dashboard/presentation/providers/dashboard_job_detail_view_provider.dart';
@@ -73,7 +74,7 @@ class _DashboardJobDetailDesktopLayoutState
 
   @override
   Widget build(BuildContext context) {
-    final horizontalPadding = 24.w;
+    final horizontalPadding = ResponsiveHelper.pagePadding(context).left;
     final viewState = ref.watch(dashboardJobDetailViewProvider);
 
     return Stack(
