@@ -119,6 +119,13 @@ jobs:
 
           echo "${HOME}/flutter/bin" >> "${GITHUB_PATH}"
 
+      - name: Configure git credentials for private packages
+        shell: bash
+        env:
+          DIGIFY_GITHUB_TOKEN: ${{ secrets.DIGIFY_GITHUB_TOKEN }}
+        run: |
+          git config --global url."https://oauth2:${DIGIFY_GITHUB_TOKEN}@github.com/hananmalik21/".insteadOf "https://github.com/hananmalik21/"
+
       - name: Install project dependencies
         shell: bash
         run: |
