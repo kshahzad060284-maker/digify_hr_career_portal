@@ -3,12 +3,12 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/features/dashboard/domain/models/dashboard_job.dart';
 import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_share_link_button.dart';
-import 'package:career_portal/gen/assets.gen.dart';
-import 'package:career_portal/shared/widgets/assets/app_asset.dart';
 import 'package:career_portal/shared/widgets/common/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+double _lerp(double a, double b, double t) => a + (b - a) * t;
 
 class DashboardJobDetailHeader extends StatelessWidget {
   const DashboardJobDetailHeader({
@@ -17,9 +17,10 @@ class DashboardJobDetailHeader extends StatelessWidget {
     required this.fallbackTitle,
     required this.onBack,
     required this.applyButtonLabel,
-    this.onApplyPressed,
-    this.hasApplied = false,
-    this.showApplyAction = true,
+    required this.onApplyPressed,
+    required this.hasApplied,
+    required this.showApplyAction,
+    this.collapseProgress = 0,
   });
 
   final DashboardJob? job;
@@ -30,165 +31,280 @@ class DashboardJobDetailHeader extends StatelessWidget {
   final bool hasApplied;
   final bool showApplyAction;
 
+  /// Desktop only — 0 is the full header, 1 the slim bar. Driven straight from
+  /// scroll offset so the morph tracks the wheel instead of replaying a clip.
+  final double collapseProgress;
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isMobile = context.isMobileLayout;
-    final isDark = context.isDark;
-    final horizontalInset = 30.w;
-    final maxWidth = MediaQuery.sizeOf(context).width;
-    final titleColor = context.themeTextPrimary;
-    final metaColor = context.themeTextSecondary;
+    final raw = collapseProgress.clamp(0.0, 1.0);
+    final t = isMobile ? 0.0 : Curves.easeOutCubic.transform(raw);
+    final hPad = isMobile ? 16.w : 30.w;
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: isDark
-              ? [
-                  AppColors.cardBackgroundDark,
-                  AppColors.infoBgDark.withValues(alpha: 0.35),
-                ]
-              : [
-                  AppColors.cardBackground,
-                  AppColors.infoBg.withValues(alpha: 0.65),
-                ],
-        ),
-        border: Border(
-          bottom: BorderSide(color: context.themeCardBorder, width: 1),
-        ),
-      ),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxWidth),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(
-              horizontalInset,
-              isMobile ? 20.h : 28.h,
-              horizontalInset,
-              isMobile ? 24.h : 32.h,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: isMobile ? 16.h : 20.h,
-              children: [
-                _BackLink(
-                  label: l10n.dashboardJobDetailBack,
-                  onPressed: onBack,
+        color: context.themeCardBackground,
+        border: Border(bottom: BorderSide(color: context.themeCardBorder)),
+        boxShadow: t <= 0
+            ? null
+            : [
+                BoxShadow(
+                  color: AppColors.shadowColor.withValues(alpha: 0.06 * t),
+                  blurRadius: 16 * t,
+                  offset: Offset(0, 3 * t),
                 ),
-                if (isMobile)
-                  _buildMobileBody(context, titleColor, metaColor)
-                else
-                  _buildDesktopBody(context, titleColor, metaColor),
+              ],
+      ),
+      child: ClipRect(
+        child: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(
+            hPad,
+            _lerp(12.h, 9.h, t),
+            hPad,
+            _lerp(isMobile ? 18.h : 22.h, 9.h, t),
+          ),
+          child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _CollapseVertical(
+              t: t,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _BackLink(
+                    label: l10n.dashboardJobDetailBack,
+                    onPressed: onBack,
+                  ),
+                  Gap(12.h),
+                ],
+              ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _RevealHorizontal(
+                  t: t,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                    child: _BackIconButton(
+                      tooltip: l10n.dashboardJobDetailBack,
+                      onPressed: onBack,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: _TitleBlock(
+                    job: job,
+                    title: job?.title ?? fallbackTitle,
+                    l10n: l10n,
+                    t: t,
+                  ),
+                ),
+                if (!isMobile && showApplyAction && !hasApplied) ...[
+                  Gap(_lerp(24.w, 16.w, t)),
+                  AppButton.primary(
+                    label: applyButtonLabel,
+                    onPressed: onApplyPressed,
+                    width: _lerp(160.w, 132.w, t),
+                  ),
+                ],
               ],
             ),
-          ),
+          ],
         ),
       ),
-    );
+    ),
+  );
   }
+}
 
-  Widget _buildApplyAction() {
-    if (!showApplyAction || hasApplied) return const SizedBox.shrink();
-    return AppButton.primary(
-      label: applyButtonLabel,
-      onPressed: onApplyPressed,
-      width: 220.w,
-    );
-  }
+class _TitleBlock extends StatelessWidget {
+  const _TitleBlock({
+    required this.job,
+    required this.title,
+    required this.l10n,
+    required this.t,
+  });
 
-  Widget _buildDesktopBody(
-    BuildContext context,
-    Color titleColor,
-    Color metaColor,
-  ) {
-    final showHeaderApply = showApplyAction && !hasApplied;
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(child: _buildTitleAndMeta(context, titleColor, metaColor)),
-        if (showHeaderApply) ...[Gap(24.w), _buildApplyAction()],
-      ],
-    );
-  }
+  final DashboardJob? job;
+  final String title;
+  final AppLocalizations l10n;
+  final double t;
 
-  Widget _buildMobileBody(
-    BuildContext context,
-    Color titleColor,
-    Color metaColor,
-  ) {
-    return _buildTitleAndMeta(context, titleColor, metaColor);
-  }
-
-  Widget _buildTitleAndMeta(
-    BuildContext context,
-    Color titleColor,
-    Color metaColor,
-  ) {
+  @override
+  Widget build(BuildContext context) {
     final isMobile = context.isMobileLayout;
+    final fontSize = isMobile ? 22.sp : _lerp(26.sp, 17.sp, t);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 14.h,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
+            Flexible(
               child: Text(
-                job?.title ?? fallbackTitle,
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: context.textTheme.titleSmall?.copyWith(
-                  color: titleColor,
-                  fontSize: isMobile ? 26.sp : 34.sp,
-                  fontWeight: FontWeight.w700,
+                  color: context.themeTextPrimary,
+                  fontSize: fontSize,
                   height: 1.2,
+                  letterSpacing: _lerp(-0.6, -0.3, t),
                 ),
               ),
             ),
-            if (job != null) ...[
-              Gap(12.w),
-              DashboardJobShareLinkButton(jobId: job!.id),
+            if (job?.isUrgent ?? false) ...[
+              Gap(10.w),
+              _UrgentBadge(label: l10n.dashboardJobUrgentHiring),
             ],
+            if (job != null)
+              _RevealHorizontal(
+                t: 1 - t,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.only(start: 8.w),
+                  child: DashboardJobShareLinkButton(jobId: job!.id),
+                ),
+              ),
           ],
         ),
         if (job != null)
-          Wrap(
-            spacing: 8.w,
-            runSpacing: 8.h,
-            children: [
-              _MetaChip(
-                iconPath: Assets.icons.dashboard.department.path,
-                label: job!.department,
-                color: metaColor,
-              ),
-              _MetaChip(
-                iconPath: Assets.icons.dashboard.locationPin.path,
-                label: job!.location,
-                color: metaColor,
-              ),
-              _MetaChip(
-                iconPath: Assets.icons.dashboard.clock.path,
-                label: job!.employmentType,
-                color: metaColor,
-              ),
-            ],
+          _CollapseVertical(
+            t: t,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [Gap(12.h), _MetaTags(job: job!)],
+            ),
           ),
       ],
     );
   }
 }
 
-class _MetaChip extends StatelessWidget {
-  const _MetaChip({
-    required this.iconPath,
-    required this.label,
-    required this.color,
-  });
+/// Collapses a block upward as [t] runs 0 to 1, fading a little ahead of the
+/// size change so outgoing content never ghosts over what remains.
+class _CollapseVertical extends StatelessWidget {
+  const _CollapseVertical({required this.t, required this.child});
 
-  final String iconPath;
+  final double t;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (t <= 0) return child;
+    if (t >= 1) return const SizedBox.shrink();
+
+    return ClipRect(
+      child: Align(
+        alignment: AlignmentDirectional.topStart,
+        heightFactor: 1 - t,
+        child: Opacity(opacity: (1 - t * 1.7).clamp(0.0, 1.0), child: child),
+      ),
+    );
+  }
+}
+
+/// Grows a block in from zero width as [t] runs 0 to 1, fading in over the
+/// back half so it arrives only once there is room for it.
+class _RevealHorizontal extends StatelessWidget {
+  const _RevealHorizontal({required this.t, required this.child});
+
+  final double t;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (t <= 0) return const SizedBox.shrink();
+    if (t >= 1) return child;
+
+    return ClipRect(
+      child: Align(
+        alignment: AlignmentDirectional.centerStart,
+        widthFactor: t,
+        child: Opacity(
+          opacity: ((t - 0.45) / 0.55).clamp(0.0, 1.0),
+          child: child,
+        ),
+      ),
+    );
+  }
+}
+
+/// Text-only pills — metadata reads as labels, not as a row of icons.
+class _MetaTags extends StatelessWidget {
+  const _MetaTags({required this.job});
+
+  final DashboardJob job;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 8.w,
+      runSpacing: 8.h,
+      children: [
+        _MetaTag(label: job.department),
+        _MetaTag(label: job.location),
+        _MetaTag(label: job.employmentType),
+      ],
+    );
+  }
+}
+
+class _MetaTag extends StatefulWidget {
+  const _MetaTag({required this.label});
+
   final String label;
-  final Color color;
+
+  @override
+  State<_MetaTag> createState() => _MetaTagState();
+}
+
+class _MetaTagState extends State<_MetaTag> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final hoverFill = context.isDark
+        ? AppColors.cardBackgroundGreyDark
+        : AppColors.slateBg;
+
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 160),
+        padding: EdgeInsets.symmetric(horizontal: 11.w, vertical: 5.h),
+        decoration: BoxDecoration(
+          color: _hovered ? hoverFill : AppColors.transparent,
+          border: Border.all(
+            color: _hovered ? context.themeTextMuted : context.themeCardBorder,
+          ),
+          borderRadius: BorderRadius.circular(999.r),
+        ),
+        child: Text(
+          widget.label,
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: context.themeTextSecondary,
+            fontSize: 12.5.sp,
+            height: 1.3,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _UrgentBadge extends StatelessWidget {
+  const _UrgentBadge({required this.label});
+
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -197,72 +313,104 @@ class _MetaChip extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: isDark
-            ? AppColors.cardBackgroundGreyDark.withValues(alpha: 0.6)
-            : AppColors.cardBackground.withValues(alpha: 0.85),
+            ? AppColors.redBg.withValues(alpha: 0.18)
+            : AppColors.redBg,
         borderRadius: BorderRadius.circular(999.r),
-        border: Border.all(color: context.themeCardBorder),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 7.h),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AppAsset(
-              assetPath: iconPath,
-              width: 14.w,
-              height: 14.w,
-              color: color,
-            ),
-            Gap(6.w),
-            Text(
-              label,
-              style: context.textTheme.bodyMedium?.copyWith(
-                color: color,
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ],
+        padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 4.h),
+        child: Text(
+          label,
+          style: context.textTheme.labelSmall?.copyWith(
+            color: AppColors.brandRed,
+            fontSize: 11.5.sp,
+          ),
         ),
       ),
     );
   }
 }
 
-class _BackLink extends StatelessWidget {
+class _BackLink extends StatefulWidget {
   const _BackLink({required this.label, required this.onPressed});
 
   final String label;
   final VoidCallback onPressed;
 
   @override
+  State<_BackLink> createState() => _BackLinkState();
+}
+
+class _BackLinkState extends State<_BackLink> {
+  bool _hovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.transparent,
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(8.r),
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 2.w),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AppAsset(
-                assetPath: Assets.icons.jobDetail.leftArrow.path,
-                width: 18.w,
-                height: 18.w,
-                color: AppColors.primary,
-              ),
-              Gap(8.w),
-              Text(
-                label,
-                style: context.textTheme.bodyLarge?.copyWith(
-                  color: AppColors.primary,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
+    final color = _hovered ? AppColors.primary : context.themeTextSecondary;
+
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: Material(
+        color: AppColors.transparent,
+        child: InkWell(
+          onTap: widget.onPressed,
+          borderRadius: BorderRadius.circular(8.r),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 3.h, horizontal: 2.w),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AnimatedSlide(
+                  duration: const Duration(milliseconds: 180),
+                  curve: Curves.easeOut,
+                  offset: _hovered ? const Offset(-0.2, 0) : Offset.zero,
+                  child: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    size: 12.sp,
+                    color: color,
+                  ),
                 ),
-              ),
-            ],
+                Gap(6.w),
+                Text(
+                  widget.label,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: color,
+                    fontSize: 13.sp,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BackIconButton extends StatelessWidget {
+  const _BackIconButton({required this.tooltip, required this.onPressed});
+
+  final String tooltip;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: tooltip,
+      child: Material(
+        color: AppColors.transparent,
+        shape: const CircleBorder(),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onPressed,
+          child: Padding(
+            padding: EdgeInsets.all(8.w),
+            child: Icon(
+              Icons.arrow_back_rounded,
+              size: 18.sp,
+              color: context.themeTextSecondary,
+            ),
           ),
         ),
       ),

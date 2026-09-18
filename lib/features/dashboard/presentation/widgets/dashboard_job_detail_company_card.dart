@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DashboardJobDetailCompanyCard extends ConsumerWidget {
-  const DashboardJobDetailCompanyCard({super.key, required this.postingGuid});
+  const DashboardJobDetailCompanyCard({
+    super.key,
+    required this.postingGuid,
+    this.embedded = false,
+  });
 
   final String postingGuid;
+  final bool embedded;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,9 +21,12 @@ class DashboardJobDetailCompanyCard extends ConsumerWidget {
     );
 
     return employerInfoAsync.when(
-      loading: () => const DashboardJobDetailCompanyCardSkeleton(),
+      loading: () => DashboardJobDetailCompanyCardSkeleton(embedded: embedded),
       error: (_, _) => const SizedBox.shrink(),
-      data: (company) => DashboardJobDetailCompanyCardContent(company: company),
+      data: (company) => DashboardJobDetailCompanyCardContent(
+        company: company,
+        embedded: embedded,
+      ),
     );
   }
 }

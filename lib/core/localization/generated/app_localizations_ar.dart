@@ -991,6 +991,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashboardJobDetailCompanyAbout => 'نبذة';
 
   @override
+  String get dashboardJobDetailCompanyViewDetails => 'عرض المزيد';
+
+  @override
   String get footerTagline =>
       'اعثر على فرصتك القادمة وانمُ مع فريق يستثمر فيك.';
 

@@ -3,149 +3,117 @@ import 'package:career_portal/core/localization/generated/app_localizations.dart
 import 'package:career_portal/core/theme/app_colors.dart';
 import 'package:career_portal/core/theme/app_shadows.dart';
 import 'package:career_portal/features/dashboard/domain/models/job_company_info.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/company_industry_capsule.dart';
+import 'package:career_portal/features/dashboard/presentation/widgets/dashboard_job_detail_company_dialog.dart';
 import 'package:career_portal/shared/widgets/common/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
+/// Minimal employer summary: identity plus an action opening the full profile.
+///
+/// Set [embedded] when the caller already provides the card surface, as the
+/// job detail sidebar does.
 class DashboardJobDetailCompanyCardContent extends StatelessWidget {
   const DashboardJobDetailCompanyCardContent({
     super.key,
     required this.company,
+    this.embedded = false,
   });
 
   final JobCompanyInfo company;
+  final bool embedded;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = context.isDark;
-    final isMobile = context.isMobileLayout;
     final isArabic = Localizations.localeOf(context).languageCode == 'ar';
-    final bodyColor = isDark
-        ? AppColors.textSecondaryDark
-        : AppColors.textDarkSlate;
-    final labelColor = isDark
-        ? AppColors.textSecondaryDark
-        : AppColors.textSecondary;
-
     final name = company.localizedName(isArabic: isArabic);
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.themeCardBackground,
-        borderRadius: BorderRadius.circular(14.r),
-        border: Border.all(color: context.themeCardBorder),
-        boxShadow: AppShadows.primaryShadow,
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(isMobile ? 20.w : 28.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _CompanyIdentity(
-              name: name,
-              logoUrl: company.logoUrl,
-              logoMimeType: company.logoMimeType,
-              industry: company.displayIndustry,
-              hasName: company.hasName,
-            ),
-            Gap(20.h),
-            // Text(
-            //   company.displayInformation,
-            //   style: context.textTheme.bodyLarge?.copyWith(
-            //     color: bodyColor,
-            //     fontSize: 15.sp,
-            //   ),
-            // ),
-            // Gap(16.h),
-            Text(
-              l10n.dashboardJobDetailCompanyAbout,
-              style: context.textTheme.labelLarge?.copyWith(
-                color: labelColor,
-                fontSize: 12.sp,
-              ),
-            ),
-            Gap(8.h),
-            Text(
-              company.displayAbout,
-              style: context.textTheme.bodyLarge?.copyWith(
-                color: bodyColor,
-                fontSize: 15.sp,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CompanyIdentity extends StatelessWidget {
-  const _CompanyIdentity({
-    required this.name,
-    required this.logoUrl,
-    required this.logoMimeType,
-    required this.industry,
-    required this.hasName,
-  });
-
-  final String name;
-  final String? logoUrl;
-  final String? logoMimeType;
-  final String industry;
-  final bool hasName;
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = context.isDark;
-    final isMobile = context.isMobileLayout;
-    final logoSize = isMobile ? 56.0 : 64.0;
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        AppAvatar(
-          image: logoUrl,
-          mimeType: logoMimeType,
-          fallbackInitial: hasName ? name : null,
-          size: logoSize,
-        ),
-        Gap(14.w),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 8.h,
+    final content = Padding(
+      padding: EdgeInsets.all(embedded ? 22.w : 16.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             children: [
-              Text(
-                name,
-                style: context.textTheme.headlineMedium?.copyWith(
-                  color: context.themeTextPrimary,
-                  fontSize: isMobile ? 18.sp : 20.sp,
+              AppAvatar(
+                image: company.logoUrl,
+                mimeType: company.logoMimeType,
+                fallbackInitial: company.hasName ? name : null,
+                size: 56,
+                border: Border.all(
+                  color: context.themeCardBorder,
+                  width: 0.8,
                 ),
               ),
-              AppCapsule(
-                label: industry,
-                backgroundColor: isDark
-                    ? AppColors.purpleBgDark.withValues(alpha: 0.35)
-                    : AppColors.purpleBg,
-                textColor: isDark
-                    ? AppColors.purpleTextDark
-                    : AppColors.purpleText,
-                borderColor: isDark
-                    ? AppColors.purpleBorderDark.withValues(alpha: 0.45)
-                    : AppColors.purpleBorder,
-                textStyle: context.textTheme.labelLarge?.copyWith(
-                  fontSize: 12.sp,
-                  color: isDark
-                      ? AppColors.purpleTextDark
-                      : AppColors.purpleText,
+              Gap(12.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 4.h,
+                  children: [
+                    Text(
+                      l10n.dashboardJobDetailCompanyTitle,
+                      style: context.textTheme.labelLarge?.copyWith(
+                        color: isDark
+                            ? AppColors.textTertiaryDark
+                            : AppColors.textSecondary,
+                        fontSize: 11.sp,
+                        letterSpacing: 0.6,
+                      ),
+                    ),
+                    Text(
+                      name,
+                      style: context.textTheme.titleMedium?.copyWith(
+                        color: context.themeTextPrimary,
+                        fontSize: 15.sp,
+                        height: 1.2,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              Gap(12.w),
+              CompanyIndustryCapsule(industry: company.displayIndustry),
+            ],
+          ),
+          Gap(4.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              AppButton(
+                label: l10n.dashboardJobDetailCompanyViewDetails,
+                type: AppButtonType.text,
+                shrinkWrap: true,
+                fontSize: 12.sp,
+                height: 20.h,
+                padding: EdgeInsets.zero,
+                foregroundColor: AppColors.primary,
+                onPressed: () => DashboardJobDetailCompanyDialog.show(
+                  context,
+                  company: company,
                 ),
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
+    );
+
+    if (embedded) return content;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: context.themeCardBackground,
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(color: context.themeCardBorder),
+        boxShadow: AppShadows.primaryShadow,
+      ),
+      child: content,
     );
   }
 }
