@@ -412,7 +412,9 @@ class _HoverDetailsButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 0),
         minimumSize: Size(0, 40.h),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
-        textStyle: context.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600),
+        textStyle: context.textTheme.bodySmall?.copyWith(
+          fontWeight: FontWeight.w600,
+        ),
       ),
       child: Text(label),
     );
