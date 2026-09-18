@@ -30,17 +30,6 @@ class DashboardJobDetailPage extends ConsumerStatefulWidget {
 
 class _DashboardJobDetailPageState
     extends ConsumerState<DashboardJobDetailPage> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _fetchJobDetail());
-  }
-
-  void _fetchJobDetail() {
-    if (!mounted) return;
-    ref.invalidate(dashboardJobDetailControllerProvider(widget.jobId));
-  }
-
   void _onSignInToApply() => context.go(AppRoutes.authLogin);
 
   Future<void> _onApply(DashboardJob job) async {
